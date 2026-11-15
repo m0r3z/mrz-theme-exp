@@ -37,7 +37,7 @@ Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`.
 - Une classe Tailwind utilisée dans le parent doit apparaître en entier dans un fichier scanné (pas de nom construit par concaténation).
 
 ## Options
-- Customizer, panneau « MRZ Theme » + section « Identité du site ». Lecture : `mrz_theme_option( 'nom' )`, valeurs par défaut dans `inc/options.php`.
+- Customizer natif, panneau « MRZ Theme » (le logo natif y est déplacé, section Header), ouvert par le menu d'admin « MRZ Theme » (`inc/admin.php`), qui porte aussi les sections globales. Pas de page d'options sur mesure : garder les écrans natifs de WordPress. Lecture : `mrz_theme_option( 'nom' )`, valeurs par défaut dans `inc/options.php`.
 - Le point de rupture mobile est un réglage : les classes `.mrz-desktop-only` et `.mrz-mobile-only` sont pilotées par du CSS en ligne, pas par Tailwind.
 
 ## Sections globales

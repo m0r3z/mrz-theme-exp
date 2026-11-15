@@ -45,7 +45,7 @@ function mrz_theme_register_global_sections() {
 			),
 			'public'              => false,
 			'show_ui'             => true,
-			'show_in_menu'        => true,
+			'show_in_menu'        => mrz_theme_admin_menu_slug(),
 			'show_in_nav_menus'   => false,
 			'exclude_from_search' => true,
 			'menu_position'       => 21,

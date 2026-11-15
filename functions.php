@@ -15,6 +15,7 @@ define( 'MRZ_THEME_URI', get_template_directory_uri() );
 
 $mrz_theme_includes = array(
 	'options',
+	'admin',
 	'setup',
 	'assets',
 	'customizer',

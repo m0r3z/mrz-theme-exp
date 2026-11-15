@@ -15,7 +15,7 @@ Ce guide s'adresse à la personne qui installe ou retouche un site. Les règles 
 2. [Démarrer un site](#démarrer-un-site)
 3. [Construire une page](#construire-une-page)
 4. [Sections globales](#sections-globales)
-5. [Réglages du Customizer](#réglages-du-customizer)
+5. [Menu MRZ Theme](#menu-mrz-theme)
 6. [Retoucher un site à la main](#retoucher-un-site-à-la-main)
 7. [Blog, CPT et plugins](#blog-cpt-et-plugins)
 8. [Pour l'IA](#pour-lia)
@@ -47,7 +47,7 @@ Aucun Node n'est nécessaire sur le serveur : le CSS compilé (`dist/main.css`) 
    | Footer menu | Liens du bas de page (1 niveau) |
 
 4. **Apparence > Widgets** : jusqu'à trois colonnes dans le footer (Footer column 1 à 3), à côté du logo et du slogan.
-5. **Apparence > Personnaliser** : logo, header, menu mobile, 404, copyright (voir [Réglages du Customizer](#réglages-du-customizer)).
+5. **MRZ Theme** (menu de l'admin) : logo, header, menu mobile, 404, copyright (voir [Menu MRZ Theme](#menu-mrz-theme)).
 6. Dans le `style.css` de l'enfant : couleurs et polices du client (voir [Retoucher un site à la main](#retoucher-un-site-à-la-main)).
 
 ## Construire une page
@@ -89,7 +89,7 @@ Les couleurs des fonds suivent les variables du thème enfant (`--color-light`, 
 
 ## Sections globales
 
-Menu **Global sections** dans l'admin. Une section globale se construit comme une page (même constructeur) et s'affiche :
+**MRZ Theme > Global sections.** Une section globale se construit comme une page (même constructeur) et s'affiche :
 
 - **automatiquement sur tout le site**, à l'emplacement choisi, ou
 - **à la main**, avec le layout « Section globale » dans une page (choisir alors « Manual insertion only »).
@@ -104,16 +104,23 @@ Menu **Global sections** dans l'admin. Une section globale se construit comme un
 
 La **priorité** ordonne plusieurs sections au même emplacement (10 par défaut, plus petit = plus haut). La colonne « Where it shows » de la liste résume où chaque section apparaît. Seules les sections publiées s'affichent.
 
-## Réglages du Customizer
+## Menu MRZ Theme
 
-**Apparence > Personnaliser.** Ce qui touche à l'identité visuelle (couleurs, polices, rayons) n'est pas ici : c'est dans le CSS de l'enfant.
+Le menu **MRZ Theme** de l'admin rassemble le thème :
+
+- **Theme options** ouvre le Customizer natif directement sur le panneau MRZ Theme, avec l'aperçu en direct ;
+- **Global sections** liste les [sections globales](#sections-globales).
+
+Restent à leur place native : les menus et les widgets (**Apparence**), le titre, le slogan et l'icône du site (**Personnaliser > Identité du site**). Ce qui touche à l'identité visuelle (couleurs, polices, rayons) n'est pas dans le Customizer : c'est dans le CSS de l'enfant.
+
+Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 
 | Section | Réglage | Défaut |
 | --- | --- | --- |
-| Identité du site | Logo (natif) | |
+| MRZ Theme > Header | Logo (le logo natif de WordPress, déplacé ici) | |
 | | Logo du header transparent : affiché avant le défilement, remplacé par le logo principal ensuite | aucun |
 | | Hauteur du logo : desktop, mobile, footer (px) | 48, 40, 48 |
-| MRZ Theme > Header | Disposition : classique (logo à gauche, menu à droite) ou centrée (logo au-dessus, menu dessous) | classique |
+| | Disposition : classique (logo à gauche, menu à droite) ou centrée (logo au-dessus, menu dessous) | classique |
 | | Header sticky | oui |
 | | Header transparent quand applicable (pages qui commencent par un Hero) | non |
 | MRZ Theme > Mobile header | Header sticky sur mobile | oui |
@@ -158,7 +165,7 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 | `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` | Header | fond, texte, bordure du site |
 | `--mrz-footer-bg`, `--mrz-footer-color` | Footer | `--color-dark`, blanc |
 
-La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur des logos se règlent dans le Customizer, pas en CSS.
+La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur des logos se règlent dans MRZ Theme, pas en CSS.
 
 ### Polices
 
@@ -265,7 +272,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 mrz-theme-exp/
 ├── functions.php        chargeur, aucune logique
 ├── inc/                 options, setup, assets, customizer, template-tags,
-│                        builder, global-sections, woocommerce, updater
+│                        builder, global-sections, woocommerce, updater, admin
 ├── acf-json/            groupes de champs du constructeur et des sections globales
 ├── layouts/             un template par layout
 ├── parts/               header/, mobile-menu/, content/

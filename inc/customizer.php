@@ -62,45 +62,6 @@ function mrz_theme_add_setting( $wp_customize, $name, $sanitize, $transport = 'r
  */
 function mrz_theme_customize_register( $wp_customize ) {
 
-	/* Logo : ajouts dans la section native « Identité du site ». */
-	mrz_theme_add_setting( $wp_customize, 'logo_transparent', 'absint' );
-	$wp_customize->add_control(
-		new WP_Customize_Media_Control(
-			$wp_customize,
-			'mrz_logo_transparent',
-			array(
-				'label'       => __( 'Logo for the transparent header', 'mrz-theme-exp' ),
-				'description' => __( 'Shown before scrolling when the header is transparent. Replaced by the main logo on scroll.', 'mrz-theme-exp' ),
-				'section'     => 'title_tagline',
-				'mime_type'   => 'image',
-				'priority'    => 9,
-			)
-		)
-	);
-
-	$logo_sizes = array(
-		'logo_height'        => __( 'Logo height on desktop (px)', 'mrz-theme-exp' ),
-		'logo_height_mobile' => __( 'Logo height on mobile (px)', 'mrz-theme-exp' ),
-		'footer_logo_height' => __( 'Footer logo height (px)', 'mrz-theme-exp' ),
-	);
-	foreach ( $logo_sizes as $name => $label ) {
-		mrz_theme_add_setting( $wp_customize, $name, 'absint' );
-		$wp_customize->add_control(
-			'mrz_' . $name,
-			array(
-				'label'       => $label,
-				'section'     => 'title_tagline',
-				'type'        => 'number',
-				'priority'    => 9,
-				'input_attrs' => array(
-					'min'  => 16,
-					'max'  => 300,
-					'step' => 1,
-				),
-			)
-		);
-	}
-
 	$wp_customize->add_panel(
 		'mrz_theme',
 		array(
@@ -117,6 +78,45 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'panel' => 'mrz_theme',
 		)
 	);
+
+	/* Logos : en tête de la section Header (le logo natif y est déplacé plus bas). */
+	mrz_theme_add_setting( $wp_customize, 'logo_transparent', 'absint' );
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'mrz_logo_transparent',
+			array(
+				'label'       => __( 'Logo for the transparent header', 'mrz-theme-exp' ),
+				'description' => __( 'Shown before scrolling when the header is transparent. Replaced by the main logo on scroll.', 'mrz-theme-exp' ),
+				'section'     => 'mrz_header',
+				'mime_type'   => 'image',
+				'priority'    => 2,
+			)
+		)
+	);
+
+	$logo_sizes = array(
+		'logo_height'        => __( 'Logo height on desktop (px)', 'mrz-theme-exp' ),
+		'logo_height_mobile' => __( 'Logo height on mobile (px)', 'mrz-theme-exp' ),
+		'footer_logo_height' => __( 'Footer logo height (px)', 'mrz-theme-exp' ),
+	);
+	foreach ( $logo_sizes as $name => $label ) {
+		mrz_theme_add_setting( $wp_customize, $name, 'absint' );
+		$wp_customize->add_control(
+			'mrz_' . $name,
+			array(
+				'label'       => $label,
+				'section'     => 'mrz_header',
+				'type'        => 'number',
+				'priority'    => 3,
+				'input_attrs' => array(
+					'min'  => 16,
+					'max'  => 300,
+					'step' => 1,
+				),
+			)
+		);
+	}
 
 	mrz_theme_add_setting( $wp_customize, 'header_layout', 'mrz_theme_sanitize_choice' );
 	$wp_customize->add_control(
@@ -284,6 +284,22 @@ function mrz_theme_customize_register( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'mrz_theme_customize_register' );
+
+/**
+ * Déplace le logo natif dans la section Header, en premier : tous les réglages
+ * du logo au même endroit. Il reste le logo natif (custom_logo) que lisent les plugins.
+ *
+ * @param WP_Customize_Manager $wp_customize Manager.
+ */
+function mrz_theme_customize_move_logo( $wp_customize ) {
+	$logo_control = $wp_customize->get_control( 'custom_logo' );
+
+	if ( $logo_control ) {
+		$logo_control->section  = 'mrz_header';
+		$logo_control->priority = 1;
+	}
+}
+add_action( 'customize_register', 'mrz_theme_customize_move_logo', 20 );
 
 /**
  * CSS généré par les options : variables, point de rupture mobile, transitions.
