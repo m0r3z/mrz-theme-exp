@@ -1,0 +1,69 @@
+/*
+ * WooCommerce : couleurs et rayons branchés sur les variables du thème.
+ * Chargé uniquement sur les pages WooCommerce. CSS classique, sans compilation.
+ */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt {
+	background: var(--color-primary);
+	color: var(--color-primary-contrast);
+	border-radius: var(--radius-button);
+	padding: 0.85em 1.6em;
+	font-weight: 600;
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover {
+	background: var(--color-primary);
+	color: var(--color-primary-contrast);
+	filter: brightness(1.08);
+}
+
+.woocommerce span.onsale {
+	background: var(--color-accent);
+	color: var(--color-dark);
+}
+
+.woocommerce ul.products li.product .price,
+.woocommerce div.product p.price,
+.woocommerce div.product span.price {
+	color: var(--color-text);
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+	font-family: var(--font-title);
+	font-size: 1.125rem;
+}
+
+.woocommerce ul.products li.product a img {
+	border-radius: var(--radius-base);
+}
+
+.woocommerce div.product .product_title {
+	font-size: var(--mrz-h2);
+}
+
+.woocommerce-message,
+.woocommerce-info {
+	border-top-color: var(--color-primary);
+}
+
+.woocommerce-message::before,
+.woocommerce-info::before {
+	color: var(--color-primary);
+}
+
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce form .form-row select {
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-base);
+}

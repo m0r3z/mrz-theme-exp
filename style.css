@@ -1,0 +1,17 @@
+/*
+Theme Name: MRZ Theme Experience
+Theme URI: https://github.com/m0r3z/mrz-theme-exp
+Author: Morez Al Bakouni
+Author URI: https://doublea.io
+Description: Thème classique ultra léger pour les sites de l'Agence Double A : éditeur classique, constructeur ACF Flexible Content, Tailwind CSS v4.
+Version: 0.1.0
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: mrz-theme-exp
+Domain Path: /languages
+*/
+
+/* Les styles du thème sont dans dist/main.css (compilé depuis src/css). */

@@ -1,0 +1,2188 @@
+{
+    "key": "group_mrz_builder",
+    "title": "Constructeur de page",
+    "fields": [
+        {
+            "key": "field_mrz_builder",
+            "label": "Sections",
+            "name": "mrz_builder",
+            "type": "flexible_content",
+            "instructions": "Chaque section s’affiche dans l’ordre. Glisser pour réordonner.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_mrzb_hero": {
+                    "key": "layout_mrzb_hero",
+                    "name": "hero",
+                    "label": "Hero",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_hero_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            }
+                        },
+                        {
+                            "key": "field_mrzb_hero_subtitle",
+                            "label": "Sous-titre",
+                            "name": "subtitle",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_mrzb_hero_image",
+                            "label": "Image de fond",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "width": "40"
+                        },
+                        {
+                            "key": "field_mrzb_hero_height",
+                            "label": "Hauteur",
+                            "name": "height",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "auto": "Selon le contenu",
+                                "large": "Grande (70 % de l’écran)",
+                                "full": "Plein écran"
+                            },
+                            "default_value": "large",
+                            "return_format": "value",
+                            "ui": 0,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "width": "30"
+                        },
+                        {
+                            "key": "field_mrzb_hero_align",
+                            "label": "Alignement",
+                            "name": "align",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "center": "Centré",
+                                "left": "À gauche"
+                            },
+                            "default_value": "center",
+                            "return_format": "value",
+                            "ui": 0,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "width": "30"
+                        },
+                        {
+                            "key": "field_mrzb_hero_buttons",
+                            "label": "Boutons",
+                            "name": "buttons",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "button_label": "Ajouter un bouton",
+                            "min": 0,
+                            "max": 3,
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_hero_buttons_link",
+                                    "label": "Lien",
+                                    "name": "link",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "width": "70"
+                                },
+                                {
+                                    "key": "field_mrzb_hero_buttons_style",
+                                    "label": "Style",
+                                    "name": "style",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "primary": "Plein",
+                                        "outline": "Contour"
+                                    },
+                                    "default_value": "primary",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "30"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_mrzb_hero_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_hero_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_hero_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_hero_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_hero_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_hero_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_text_image": {
+                    "key": "layout_mrzb_text_image",
+                    "name": "text_image",
+                    "label": "Texte + image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_text_image_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            }
+                        },
+                        {
+                            "key": "field_mrzb_text_image_content",
+                            "label": "Texte",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_mrzb_text_image_button",
+                            "label": "Bouton",
+                            "name": "button",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "width": "50"
+                        },
+                        {
+                            "key": "field_mrzb_text_image_image_position",
+                            "label": "Position de l’image",
+                            "name": "image_position",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "right": "À droite",
+                                "left": "À gauche"
+                            },
+                            "default_value": "right",
+                            "return_format": "value",
+                            "ui": 0,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "width": "50"
+                        },
+                        {
+                            "key": "field_mrzb_text_image_image",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "medium",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_mrzb_text_image_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_text_image_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_image_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_image_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_image_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_image_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_cards": {
+                    "key": "layout_mrzb_cards",
+                    "name": "cards",
+                    "label": "Grille de cartes",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_cards_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "70",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "70"
+                        },
+                        {
+                            "key": "field_mrzb_cards_columns",
+                            "label": "Colonnes",
+                            "name": "columns",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "2": "2",
+                                "3": "3",
+                                "4": "4"
+                            },
+                            "default_value": "3",
+                            "return_format": "value",
+                            "ui": 0,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "width": "30"
+                        },
+                        {
+                            "key": "field_mrzb_cards_intro",
+                            "label": "Introduction",
+                            "name": "intro",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_mrzb_cards_items",
+                            "label": "Cartes",
+                            "name": "items",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Ajouter une carte",
+                            "min": 0,
+                            "max": 0,
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_cards_items_image",
+                                    "label": "Image",
+                                    "name": "image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all",
+                                    "width": "30"
+                                },
+                                {
+                                    "key": "field_mrzb_cards_items_title",
+                                    "label": "Titre",
+                                    "name": "title",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "35",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "35"
+                                },
+                                {
+                                    "key": "field_mrzb_cards_items_link",
+                                    "label": "Lien",
+                                    "name": "link",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "35",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "width": "35"
+                                },
+                                {
+                                    "key": "field_mrzb_cards_items_text",
+                                    "label": "Texte",
+                                    "name": "text",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "rows": 3,
+                                    "new_lines": ""
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_mrzb_cards_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_cards_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cards_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cards_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cards_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cards_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_gallery": {
+                    "key": "layout_mrzb_gallery",
+                    "name": "gallery",
+                    "label": "Galerie",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_gallery_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "70",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "70"
+                        },
+                        {
+                            "key": "field_mrzb_gallery_columns",
+                            "label": "Colonnes",
+                            "name": "columns",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "2": "2",
+                                "3": "3",
+                                "4": "4"
+                            },
+                            "default_value": "3",
+                            "return_format": "value",
+                            "ui": 0,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "width": "30"
+                        },
+                        {
+                            "key": "field_mrzb_gallery_images",
+                            "label": "Images",
+                            "name": "images",
+                            "type": "gallery",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "preview_size": "medium",
+                            "insert": "append",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_mrzb_gallery_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_gallery_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_gallery_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_gallery_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_gallery_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_gallery_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_cta": {
+                    "key": "layout_mrzb_cta",
+                    "name": "cta",
+                    "label": "Appel à l’action",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_cta_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            }
+                        },
+                        {
+                            "key": "field_mrzb_cta_text",
+                            "label": "Texte",
+                            "name": "text",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_mrzb_cta_button",
+                            "label": "Bouton",
+                            "name": "button",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_mrzb_cta_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_cta_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cta_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cta_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cta_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_cta_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_faq": {
+                    "key": "layout_mrzb_faq",
+                    "name": "faq",
+                    "label": "FAQ",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_faq_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            }
+                        },
+                        {
+                            "key": "field_mrzb_faq_items",
+                            "label": "Questions",
+                            "name": "items",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Ajouter une question",
+                            "min": 0,
+                            "max": 0,
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_faq_items_question",
+                                    "label": "Question",
+                                    "name": "question",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    }
+                                },
+                                {
+                                    "key": "field_mrzb_faq_items_answer",
+                                    "label": "Réponse",
+                                    "name": "answer",
+                                    "type": "wysiwyg",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "tabs": "all",
+                                    "toolbar": "full",
+                                    "media_upload": 1,
+                                    "delay": 0
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_mrzb_faq_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_faq_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_faq_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_faq_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_faq_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_faq_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_text": {
+                    "key": "layout_mrzb_text",
+                    "name": "text",
+                    "label": "Texte libre",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_text_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            }
+                        },
+                        {
+                            "key": "field_mrzb_text_content",
+                            "label": "Texte",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_mrzb_text_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_text_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_text_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_form": {
+                    "key": "layout_mrzb_form",
+                    "name": "form",
+                    "label": "Formulaire",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_form_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "60"
+                        },
+                        {
+                            "key": "field_mrzb_form_form_id",
+                            "label": "Formulaire Gravity Forms",
+                            "name": "form_id",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {},
+                            "default_value": "",
+                            "return_format": "value",
+                            "ui": 0,
+                            "allow_null": 1,
+                            "multiple": 0,
+                            "width": "40"
+                        },
+                        {
+                            "key": "field_mrzb_form_intro",
+                            "label": "Introduction",
+                            "name": "intro",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_mrzb_form_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_form_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_form_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_form_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_form_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_form_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_posts": {
+                    "key": "layout_mrzb_posts",
+                    "name": "posts",
+                    "label": "Liste de posts (MRZ Display Post)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_posts_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "60"
+                        },
+                        {
+                            "key": "field_mrzb_posts_list_id",
+                            "label": "Liste",
+                            "name": "list_id",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "mrzdpe_list"
+                            ],
+                            "return_format": "id",
+                            "allow_null": 1,
+                            "ui": 1,
+                            "multiple": 0,
+                            "width": "40"
+                        },
+                        {
+                            "key": "field_mrzb_posts_intro",
+                            "label": "Introduction",
+                            "name": "intro",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_mrzb_posts_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_posts_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_posts_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_posts_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_posts_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_posts_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_map": {
+                    "key": "layout_mrzb_map",
+                    "name": "map",
+                    "label": "Carte (MRZ Maps)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_map_title",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
+                            "width": "60"
+                        },
+                        {
+                            "key": "field_mrzb_map_map_id",
+                            "label": "Carte",
+                            "name": "map_id",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "mrzme_map"
+                            ],
+                            "return_format": "id",
+                            "allow_null": 1,
+                            "ui": 1,
+                            "multiple": 0,
+                            "width": "40"
+                        },
+                        {
+                            "key": "field_mrzb_map_intro",
+                            "label": "Introduction",
+                            "name": "intro",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_mrzb_map_settings",
+                            "label": "Réglages de la section",
+                            "name": "settings",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "row",
+                            "sub_fields": [
+                                {
+                                    "key": "field_mrzb_map_settings_background",
+                                    "label": "Fond",
+                                    "name": "background",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "none": "Aucun",
+                                        "light": "Clair",
+                                        "dark": "Sombre",
+                                        "primary": "Couleur principale"
+                                    },
+                                    "default_value": "none",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_map_settings_spacing",
+                                    "label": "Espacement",
+                                    "name": "spacing",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "normal": "Normal",
+                                        "compact": "Compact",
+                                        "large": "Large",
+                                        "none": "Aucun"
+                                    },
+                                    "default_value": "normal",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_map_settings_width",
+                                    "label": "Largeur",
+                                    "name": "width",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "container": "Conteneur",
+                                        "wide": "Large",
+                                        "full": "Pleine largeur"
+                                    },
+                                    "default_value": "container",
+                                    "return_format": "value",
+                                    "ui": 0,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_map_settings_anchor",
+                                    "label": "Ancre",
+                                    "name": "anchor",
+                                    "type": "text",
+                                    "instructions": "Sans #, pour un lien de menu vers cette section.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "width": "25"
+                                },
+                                {
+                                    "key": "field_mrzb_map_settings_background_image",
+                                    "label": "Image de fond",
+                                    "name": "background_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_mrzb_global_section": {
+                    "key": "layout_mrzb_global_section",
+                    "name": "global_section",
+                    "label": "Section globale",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_mrzb_global_section_section",
+                            "label": "Section globale",
+                            "name": "section",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "mrz_section"
+                            ],
+                            "return_format": "id",
+                            "allow_null": 0,
+                            "ui": 1,
+                            "multiple": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Ajouter une section",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mrz_section"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Thème MRZ Theme Experience",
+    "show_in_rest": 0,
+    "modified": 1794751784
+}

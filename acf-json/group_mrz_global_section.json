@@ -1,0 +1,63 @@
+{
+    "key": "group_mrz_global_section",
+    "title": "Emplacement de la section",
+    "fields": [
+        {
+            "key": "field_mrz_section_hook",
+            "label": "Emplacement",
+            "name": "mrz_section_hook",
+            "type": "select",
+            "instructions": "Affichée sur tout le site à cet endroit. « Insertion manuelle » : seulement via le layout Section globale.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_mrz_section_priority",
+            "label": "Priorité",
+            "name": "mrz_section_priority",
+            "type": "number",
+            "instructions": "Plus petit = affiché avant les autres sections du même emplacement.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 10,
+            "min": 0,
+            "max": 100,
+            "step": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mrz_section"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Thème MRZ Theme Experience",
+    "show_in_rest": 0,
+    "modified": 1794751784
+}

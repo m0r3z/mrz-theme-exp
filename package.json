@@ -1,0 +1,13 @@
+{
+  "name": "mrz-theme-exp",
+  "private": true,
+  "description": "Build CSS du thème MRZ Theme Experience",
+  "scripts": {
+    "build": "tailwindcss -i ./src/css/main.css -o ./dist/main.css --minify",
+    "watch": "tailwindcss -i ./src/css/main.css -o ./dist/main.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

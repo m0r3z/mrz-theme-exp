@@ -1,0 +1,17 @@
+/*
+ * Point d'entrée Tailwind v4 du thème parent.
+ * Compiler : npm run build (ou npm run watch pendant le développement).
+ * Le thème enfant ne compile jamais : il redéfinit les variables en CSS classique.
+ */
+@import "tailwindcss" source(none);
+
+/* Fichiers scannés pour trouver les classes utilisées. */
+@source "../../*.php";
+@source "../../parts";
+@source "../../layouts";
+@source "../../inc";
+@source "../../assets/js";
+
+@import "./tokens.css";
+@import "./base.css";
+@import "./components.css";

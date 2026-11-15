@@ -1,0 +1,63 @@
+/*
+ * Fichier root : toutes les variables de design du thème.
+ *
+ * Tailwind en fait des variables :root ET des classes (bg-primary, text-muted,
+ * font-title, rounded-base…). Pour un client, redéfinir ces variables dans le
+ * style.css du thème enfant suffit : aucune compilation.
+ *
+ * « static » : toutes les variables sont écrites, même si aucune classe ne les utilise,
+ * pour que le thème enfant et les plugins puissent toujours s'y référer.
+ */
+@theme static {
+	/* Couleurs */
+	--color-primary: #2a5bd7;
+	--color-primary-contrast: #ffffff;
+	--color-secondary: #1d1d1f;
+	--color-accent: #f2a541;
+	--color-text: #20201f;
+	--color-muted: #6b6b6a;
+	--color-background: #ffffff;
+	--color-light: #f4f4f2;
+	--color-dark: #161616;
+	--color-border: #dededd;
+
+	/* Polices : les @font-face (woff2 auto-hébergées) se déclarent dans le thème enfant. */
+	--font-title: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+	--font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+	/* Rayons */
+	--radius-base: 10px;
+	--radius-button: 999px;
+
+	/* Espacements de section (classes py-section, py-section-sm, py-section-lg) */
+	--spacing-section: 6rem;
+	--spacing-section-sm: 3rem;
+	--spacing-section-lg: 9rem;
+}
+
+/* Variables propres au thème (pas de classes Tailwind associées). */
+:root {
+	--mrz-body-size: 1.0625rem;
+	--mrz-body-line-height: 1.6;
+	--mrz-title-weight: 700;
+	--mrz-title-line-height: 1.15;
+	--mrz-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+	--mrz-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem);
+	--mrz-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+
+	/* Valeurs par défaut ; le Customizer les réécrit en ligne. */
+	--mrz-container: 1280px;
+	--mrz-container-wide: 1600px;
+	--mrz-gutter: clamp(1.25rem, 4vw, 2.5rem);
+	--mrz-logo-height: 48px;
+	--mrz-logo-height-mobile: 40px;
+	--mrz-footer-logo-height: 48px;
+
+	--mrz-header-bg: var(--color-background);
+	--mrz-header-color: var(--color-text);
+	--mrz-header-border: var(--color-border);
+	--mrz-footer-bg: var(--color-dark);
+	--mrz-footer-color: #ffffff;
+
+	--mrz-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
