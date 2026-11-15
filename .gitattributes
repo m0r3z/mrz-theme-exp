@@ -1,0 +1,5 @@
+# Fichiers de développement exclus des zips GitHub (mises à jour des sites).
+.gitattributes export-ignore
+.gitignore export-ignore
+package.json export-ignore
+package-lock.json export-ignore

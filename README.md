@@ -239,7 +239,25 @@ npm run build
 - Le JS (`assets/js/`) et `assets/css/woocommerce.css` ne passent par aucun build.
 - **Champs ACF** : sur le site de développement, définir `define( 'MRZ_THEME_DEV', true );` dans `wp-config.php`. Les modifications des groupes `group_mrz_*` s'enregistrent alors dans `acf-json/` du thème. Sans cette constante (sites clients), elles ne s'écrivent jamais dans le parent.
 - **Version** : `Version:` dans `style.css` et `MRZ_THEME_VERSION` dans `functions.php`, toujours identiques.
-- **Mises à jour des sites** : par releases GitHub, visibles dans l'admin de chaque site et dans ManageWP. `[à venir : mise en place de Plugin Update Checker et procédure de release]`
+### Publier une mise à jour
+
+Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) (`lib/`, branché dans `inc/updater.php`).
+
+1. Monter la version dans `style.css` (`Version:`) et dans `functions.php` (`MRZ_THEME_VERSION`).
+2. `npm run build`, commiter, pousser `main`.
+3. Créer la release, avec un tag égal à la version précédée de `v` :
+
+   ```bash
+   gh release create v0.2.0 --title "0.2.0" --notes "Ce qui change dans cette version."
+   ```
+
+4. Chaque site affiche « Mise à jour disponible » dans les 12 heures, ou tout de suite depuis **Tableau de bord > Mises à jour**. La mise à jour se lance site par site ou en masse depuis ManageWP.
+
+- Le zip téléchargé est celui que GitHub génère pour la release : les fichiers listés dans `.gitattributes` (`package.json`…) en sont exclus.
+- Une release marquée « pre-release » est ignorée par les sites.
+- Sans aucune release, les sites lisent la version de `style.css` sur `main` : ne monter la version qu'au moment de publier.
+- Une copie de travail Git (site de développement) ne cherche jamais de mise à jour : elle écraserait le dépôt.
+- Le thème enfant n'est jamais mis à jour à distance.
 
 ### Organisation des fichiers
 
@@ -247,13 +265,14 @@ npm run build
 mrz-theme-exp/
 ├── functions.php        chargeur, aucune logique
 ├── inc/                 options, setup, assets, customizer, template-tags,
-│                        builder, global-sections, woocommerce
+│                        builder, global-sections, woocommerce, updater
 ├── acf-json/            groupes de champs du constructeur et des sections globales
 ├── layouts/             un template par layout
 ├── parts/               header/, mobile-menu/, content/
 ├── src/css/             tokens.css (variables), base.css, components.css, main.css (entrée)
 ├── dist/main.css        CSS compilé, commité
 ├── assets/              js/main.js, css/woocommerce.css
+├── lib/                 Plugin Update Checker (mises à jour par GitHub)
 └── AGENTS.md            règles pour l'IA
 ```
 

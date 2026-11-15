@@ -22,6 +22,7 @@ $mrz_theme_includes = array(
 	'builder',
 	'global-sections',
 	'woocommerce',
+	'updater',
 );
 
 foreach ( $mrz_theme_includes as $mrz_theme_file ) {
