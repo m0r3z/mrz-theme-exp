@@ -1,6 +1,6 @@
 # MRZ Theme Experience : règles pour l'IA
 
-Thème WordPress classique de l'Agence Double A. Lire aussi le document d'architecture (lien dans le README du dépôt, à venir).
+Thème WordPress classique de l'Agence Double A. Le guide d'utilisation est dans `README.md`.
 
 ## Principes
 - Éditeur classique partout (Gutenberg désactivé par filtres dans `inc/setup.php`).
