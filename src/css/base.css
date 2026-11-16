@@ -75,6 +75,11 @@
 		position: absolute !important;
 		width: 1px;
 		height: 1px;
+		/* Marge négative (comme dans WordPress) : un texte masqué placé en fin de page,
+		   comme la zone d'annonce du panier de WooCommerce, n'ajoute pas un pixel sous le footer. */
+		margin: -1px;
+		padding: 0;
+		border: 0;
 		overflow: hidden;
 		clip: rect(1px, 1px, 1px, 1px);
 		clip-path: inset(50%);
@@ -83,6 +88,7 @@
 	}
 
 	.skip-link:focus {
+		margin: 0;
 		clip: auto;
 		clip-path: none;
 		width: auto;
