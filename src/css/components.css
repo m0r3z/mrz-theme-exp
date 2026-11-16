@@ -227,8 +227,9 @@
 		position: relative;
 	}
 
+	/* En flex et non inline-flex : sans ligne de texte, la loupe s'aligne sur les autres icônes. */
 	.mrz-header-search__toggle {
-		display: inline-flex;
+		display: flex;
 		cursor: pointer;
 		list-style: none;
 	}
