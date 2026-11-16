@@ -26,18 +26,34 @@ function mrz_theme_enqueue_assets() {
 	wp_enqueue_style( 'mrz-theme', MRZ_THEME_URI . '/dist/main.css', array(), mrz_theme_asset_version( 'dist/main.css' ) );
 	wp_add_inline_style( 'mrz-theme', mrz_theme_customizer_css() );
 
-	// Le style.css du thème enfant est chargé automatiquement, après celui du parent.
-	if ( is_child_theme() ) {
-		wp_enqueue_style(
-			'mrz-theme-child',
-			get_stylesheet_uri(),
-			array( 'mrz-theme' ),
-			wp_get_theme()->get( 'Version' )
-		);
-	}
+	// CSS des intégrations, branchés sur les variables du thème.
+	$child_dependencies = array( 'mrz-theme' );
 
 	if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
 		wp_enqueue_style( 'mrz-theme-woocommerce', MRZ_THEME_URI . '/assets/css/woocommerce.css', array( 'mrz-theme' ), mrz_theme_asset_version( 'assets/css/woocommerce.css' ) );
+		$child_dependencies[] = 'mrz-theme-woocommerce';
+	}
+
+	if ( class_exists( 'GFForms' ) ) {
+		wp_enqueue_style( 'mrz-theme-gravity-forms', MRZ_THEME_URI . '/assets/css/gravity-forms.css', array( 'mrz-theme' ), mrz_theme_asset_version( 'assets/css/gravity-forms.css' ) );
+		$child_dependencies[] = 'mrz-theme-gravity-forms';
+	}
+
+	/*
+	 * Thème enfant, chargé en dernier pour passer devant tout le reste :
+	 * style.css (variables du site), puis chaque fichier de son dossier css/
+	 * par ordre alphabétique (header.css, footer.css…). Aucun enqueue à écrire.
+	 */
+	if ( is_child_theme() ) {
+		$child_dir = get_stylesheet_directory();
+
+		wp_enqueue_style( 'mrz-theme-child', get_stylesheet_uri(), $child_dependencies, (string) filemtime( $child_dir . '/style.css' ) );
+
+		$child_files = glob( $child_dir . '/css/*.css' );
+		foreach ( $child_files ? $child_files : array() as $child_file ) {
+			$name = basename( $child_file, '.css' );
+			wp_enqueue_style( 'mrz-theme-child-' . sanitize_key( $name ), get_stylesheet_directory_uri() . '/css/' . rawurlencode( basename( $child_file ) ), array( 'mrz-theme-child' ), (string) filemtime( $child_file ) );
+		}
 	}
 
 	wp_enqueue_script(

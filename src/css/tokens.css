@@ -37,13 +37,50 @@
 
 /* Variables propres au thème (pas de classes Tailwind associées). */
 :root {
+	/* Texte : trois tailles, à réutiliser partout (jamais de taille en dur). */
 	--mrz-body-size: 1.0625rem;
 	--mrz-body-line-height: 1.6;
+	--mrz-text-sm: 0.875rem;
+	--mrz-text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+
+	/* Titres h1 à h6 */
 	--mrz-title-weight: 700;
 	--mrz-title-line-height: 1.15;
+	--mrz-title-letter-spacing: normal;
 	--mrz-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
 	--mrz-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem);
 	--mrz-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+	--mrz-h4: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+	--mrz-h5: 1.0625rem;
+	--mrz-h6: 1rem;
+
+	/* Boutons : les mêmes partout (thème, formulaires, WooCommerce). */
+	--mrz-button-font-size: 1rem;
+	--mrz-button-font-weight: 600;
+	--mrz-button-padding: 0.85rem 1.75rem;
+	--mrz-button-border-width: 2px;
+	--mrz-button-letter-spacing: normal;
+	--mrz-button-text-transform: none;
+	--mrz-button-bg: var(--color-primary);
+	--mrz-button-color: var(--color-primary-contrast);
+
+	/* Champs de formulaire : les mêmes partout (Gravity Forms, WooCommerce, recherche, commentaires). */
+	--mrz-field-font-size: 1rem;
+	--mrz-field-padding: 0.75rem 1rem;
+	--mrz-field-bg: var(--color-background);
+	--mrz-field-color: var(--color-text);
+	--mrz-field-border: var(--color-border);
+	--mrz-field-border-focus: var(--color-primary);
+	--mrz-field-radius: var(--radius-base);
+	--mrz-label-font-size: 0.9375rem;
+	--mrz-label-font-weight: 600;
+
+	/* Menus */
+	--mrz-menu-font-size: 1rem;
+	--mrz-menu-font-weight: 500;
+
+	/* Icônes en image (SVG, PNG) : filtre pour les passer en blanc sur fond sombre. */
+	--mrz-icon-filter-light: brightness(0) invert(1);
 
 	/* Valeurs par défaut ; le Customizer les réécrit en ligne. */
 	--mrz-container: 1280px;

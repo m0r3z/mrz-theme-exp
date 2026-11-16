@@ -21,6 +21,39 @@
 		font-family: var(--font-title);
 		font-weight: var(--mrz-title-weight);
 		line-height: var(--mrz-title-line-height);
+		letter-spacing: var(--mrz-title-letter-spacing);
+		overflow-wrap: break-word;
+	}
+
+	h1 { font-size: var(--mrz-h1); }
+	h2 { font-size: var(--mrz-h2); }
+	h3 { font-size: var(--mrz-h3); }
+	h4 { font-size: var(--mrz-h4); }
+	h5 { font-size: var(--mrz-h5); }
+	h6 { font-size: var(--mrz-h6); }
+
+	small {
+		font-size: var(--mrz-text-sm);
+	}
+
+	/* Champs de formulaire : un seul style pour tout le site (:where = facile à surcharger). */
+	:where(input[type="text"], input[type="email"], input[type="url"], input[type="tel"], input[type="password"], input[type="number"], input[type="search"], input[type="date"], select, textarea) {
+		padding: var(--mrz-field-padding);
+		border: 1px solid var(--mrz-field-border);
+		border-radius: var(--mrz-field-radius);
+		background: var(--mrz-field-bg);
+		color: var(--mrz-field-color);
+		font-size: var(--mrz-field-font-size);
+		transition: border-color 0.2s var(--mrz-ease);
+	}
+
+	:where(input, select, textarea):focus {
+		border-color: var(--mrz-field-border-focus);
+	}
+
+	label {
+		font-size: var(--mrz-label-font-size);
+		font-weight: var(--mrz-label-font-weight);
 	}
 
 	a {

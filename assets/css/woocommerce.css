@@ -19,11 +19,16 @@
 .woocommerce a.button.alt,
 .woocommerce button.button.alt,
 .woocommerce input.button.alt {
-	background: var(--color-primary);
-	color: var(--color-primary-contrast);
+	padding: var(--mrz-button-padding);
+	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
 	border-radius: var(--radius-button);
-	padding: 0.85em 1.6em;
-	font-weight: 600;
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
+	font-size: var(--mrz-button-font-size);
+	font-weight: var(--mrz-button-font-weight);
+	letter-spacing: var(--mrz-button-letter-spacing);
+	text-transform: var(--mrz-button-text-transform);
+	line-height: 1.2;
 }
 
 .woocommerce a.button:hover,
@@ -31,9 +36,29 @@
 .woocommerce input.button:hover,
 .woocommerce a.button.alt:hover,
 .woocommerce button.button.alt:hover {
-	background: var(--color-primary);
-	color: var(--color-primary-contrast);
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
 	filter: brightness(1.08);
+}
+
+/* Champs : mêmes variables que tout le site. */
+.woocommerce form .form-row .input-text,
+.woocommerce form .form-row select,
+.woocommerce-page form .form-row .input-text,
+.woocommerce-page form .form-row select,
+.woocommerce .quantity input.qty,
+.woocommerce #coupon_code {
+	padding: var(--mrz-field-padding);
+	border: 1px solid var(--mrz-field-border);
+	border-radius: var(--mrz-field-radius);
+	background: var(--mrz-field-bg);
+	color: var(--mrz-field-color);
+	font-size: var(--mrz-field-font-size);
+}
+
+.woocommerce form .form-row label {
+	font-size: var(--mrz-label-font-size);
+	font-weight: var(--mrz-label-font-weight);
 }
 
 .woocommerce span.onsale {

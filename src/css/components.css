@@ -121,7 +121,6 @@
 
 	.mrz-menu--secondary {
 		gap: 1.25rem;
-		font-size: 0.9375rem;
 	}
 
 	.mrz-mobile-nav--secondary {
@@ -138,7 +137,12 @@
 		display: block;
 		padding-block: 0.5rem;
 		text-decoration: none;
-		font-weight: 500;
+		font-size: var(--mrz-menu-font-size);
+		font-weight: var(--mrz-menu-font-weight);
+	}
+
+	.mrz-menu--secondary a {
+		font-size: var(--mrz-text-sm);
 	}
 
 	.mrz-menu a:hover,
@@ -273,7 +277,7 @@
 		margin: 0;
 		padding: 0;
 		text-transform: uppercase;
-		font-size: 0.875rem;
+		font-size: var(--mrz-text-sm);
 	}
 
 	.mrz-lang a {
@@ -350,8 +354,8 @@
 		flex: 1;
 		padding-block: 0.875rem;
 		text-decoration: none;
-		font-size: 1.125rem;
-		font-weight: 500;
+		font-size: var(--mrz-text-lg);
+		font-weight: var(--mrz-menu-font-weight);
 	}
 
 	.mrz-mobile-nav .sub-menu {
@@ -383,18 +387,23 @@
 	}
 
 	/* Boutons */
-	.mrz-btn {
+	.mrz-btn,
+	:where(input[type="submit"], button[type="submit"]) {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-		padding: 0.85rem 1.75rem;
-		border: 2px solid var(--color-primary);
+		padding: var(--mrz-button-padding);
+		border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
 		border-radius: var(--radius-button);
-		background: var(--color-primary);
-		color: var(--color-primary-contrast);
-		font-weight: 600;
+		background: var(--mrz-button-bg);
+		color: var(--mrz-button-color);
+		font-size: var(--mrz-button-font-size);
+		font-weight: var(--mrz-button-font-weight);
+		letter-spacing: var(--mrz-button-letter-spacing);
+		text-transform: var(--mrz-button-text-transform);
 		line-height: 1.2;
+		cursor: pointer;
 		text-decoration: none;
 		cursor: pointer;
 		transition: background-color 0.2s var(--mrz-ease), color 0.2s var(--mrz-ease), border-color 0.2s var(--mrz-ease);
@@ -406,22 +415,18 @@
 		border-color: currentColor;
 	}
 
-	.mrz-btn:hover {
+	.mrz-btn:hover,
+	:where(input[type="submit"], button[type="submit"]):hover {
 		filter: brightness(1.08);
 	}
 
-	/* Champs de formulaire du thème (recherche, commentaires) */
+	/* Champs pleine largeur (le style vient de base.css et des variables --mrz-field-*). */
 	.mrz-input,
 	.mrz-comments input[type="text"],
 	.mrz-comments input[type="email"],
 	.mrz-comments input[type="url"],
 	.mrz-comments textarea {
 		width: 100%;
-		padding: 0.75rem 1rem;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-base);
-		background: var(--color-background);
-		color: var(--color-text);
 	}
 
 	/* Sections du constructeur */
@@ -552,7 +557,7 @@
 	}
 
 	.mrz-prose h4 {
-		font-size: 1.125rem;
+		font-size: var(--mrz-h4);
 		margin-top: 1.4em;
 	}
 

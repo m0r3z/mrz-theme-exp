@@ -1,0 +1,48 @@
+/*
+ * Gravity Forms (thème de formulaire « Gravity Forms Theme ») branché sur les
+ * variables du thème. Hors couche et un peu plus précis que le CSS de Gravity
+ * Forms, pour passer devant lui. Aucune valeur en dur : tout vient des
+ * variables --mrz-field-*, --mrz-label-* et --mrz-button-*.
+ */
+.gform_wrapper.gravity-theme .gfield input:not([type="submit"], [type="button"], [type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="image"]),
+.gform_wrapper.gravity-theme .gfield select,
+.gform_wrapper.gravity-theme .gfield textarea {
+	padding: var(--mrz-field-padding);
+	border: 1px solid var(--mrz-field-border);
+	border-radius: var(--mrz-field-radius);
+	background: var(--mrz-field-bg);
+	color: var(--mrz-field-color);
+	font-family: inherit;
+	font-size: var(--mrz-field-font-size);
+}
+
+.gform_wrapper.gravity-theme .gfield input:focus,
+.gform_wrapper.gravity-theme .gfield select:focus,
+.gform_wrapper.gravity-theme .gfield textarea:focus {
+	border-color: var(--mrz-field-border-focus);
+	outline: none;
+}
+
+.gform_wrapper.gravity-theme .gfield .gfield_label,
+.gform_wrapper.gravity-theme .gfield legend.gfield_label {
+	margin-bottom: 0.5rem;
+	font-size: var(--mrz-label-font-size);
+	font-weight: var(--mrz-label-font-weight);
+}
+
+.gform_wrapper.gravity-theme .gform_footer input.gform_button[type="submit"],
+.gform_wrapper.gravity-theme .gform_page_footer input[type="submit"],
+.gform_wrapper.gravity-theme .gform_page_footer input[type="button"] {
+	padding: var(--mrz-button-padding);
+	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
+	border-radius: var(--radius-button);
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
+	font-family: inherit;
+	font-size: var(--mrz-button-font-size);
+	font-weight: var(--mrz-button-font-weight);
+	letter-spacing: var(--mrz-button-letter-spacing);
+	text-transform: var(--mrz-button-text-transform);
+	line-height: 1.2;
+	cursor: pointer;
+}

@@ -27,7 +27,7 @@ Une section par rangée de la maquette. Pour en créer une :
 1. Ajouter le layout dans `acf-json/group_mrzchild_builder.json` de l'enfant, sur `field_mrz_builder`. Nom `mrzchild_<nom>`, clés `layout_mrzchild_<nom>` et `field_mrzchild_<nom>_<champ>`, chaque sous-champ avec `parent_layout`. Mettre à jour `modified`.
 2. Pour les réglages communs, ajouter un sous-champ `clone` de `group_mrz_section_settings` (`display: seamless`, `prefix_name: 0`).
 3. Créer `layouts/mrzchild-<nom>.php` dans l'enfant (le nom, `_` remplacés par `-`) : `mrz_theme_section_open( 'mrzchild-<nom>' )`, le contenu échappé, `mrz_theme_section_close()`.
-4. Le style de la section va dans le `style.css` de l'enfant, en CSS classique.
+4. Le style de la section va dans le fichier de sa partie, `css/<partie>.css` de l'enfant, en CSS classique et uniquement avec les variables du site (voir CSS).
 
 Une section dont le nom contient `hero`, placée en premier, active le header transparent (si l'option est cochée).
 
@@ -41,10 +41,40 @@ Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`. Form
 - Une section de l'enfant qui sert sur trois sites peut remonter dans le parent : renommer en `mrz_` et migrer le contenu des sites concernés.
 
 ## CSS
+
+### Règle d'or : un CSS minimal, entièrement fait de variables
+Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, partout : un bouton « Envoyer » de Gravity Forms, « Ajouter au panier » de WooCommerce et un bouton d'une section ont la même police, la même taille, la même graisse, le même rayon.
+- **Jamais de valeur en dur** (taille de police, graisse, couleur, rayon) dans un fichier de section ou de partie : toujours une variable. Une valeur qui manque devient une variable dans le `style.css` de l'enfant, puis sert partout.
+- **Jamais de CSS propre à une page.** Pas de règle sur `.page-id-12`, pas de bouton retouché pour un seul formulaire. Si une page semble demander un style à part, c'est une section sur mesure qui le porte, avec les variables du site.
+- **Le moins de CSS possible.** Avant d'écrire une règle, vérifier qu'une variable ne suffit pas. Ne pas redéfinir ce que le parent fait déjà (boutons, champs, titres, prose).
+- Pas de `!important` : le CSS de l'enfant est hors couche et passe déjà devant celui du parent.
+
+### Variables (parent : `src/css/tokens.css`, valeurs du site : `style.css` de l'enfant)
+| Famille | Variables |
+| --- | --- |
+| Couleurs | `--color-primary`, `--color-primary-contrast`, `--color-secondary`, `--color-accent`, `--color-text`, `--color-muted`, `--color-background`, `--color-light`, `--color-dark`, `--color-border` |
+| Polices | `--font-title`, `--font-body` |
+| Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
+| Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
+| Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
+| Champs | `--mrz-field-font-size`, `--mrz-field-padding`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
+| Menus | `--mrz-menu-font-size`, `--mrz-menu-font-weight` |
+| Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base`, `--mrz-header-padding` |
+| Icônes en image | `--mrz-icon-filter-light` (passe une icône SVG ou PNG en blanc) |
+
+Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms.css`) et de WooCommerce (`assets/css/woocommerce.css`) lisent tous ces variables.
+
+### Fichiers du thème enfant
+- `style.css` : en-tête du thème, `@font-face` des polices du site, et les variables du site dans `:root`. Rien d'autre.
+- `css/<partie>.css` : un fichier par partie du site (`header.css`, `footer.css`, `sections.css`, `formulaires.css` si besoin…). Chargés automatiquement par le parent, après `style.css`, par ordre alphabétique : aucun `wp_enqueue_style` à écrire.
+- Une section sur mesure a ses règles dans le fichier de sa partie, ciblées par sa classe `.mrz-section--mrzchild-<nom>`.
+
+### Thème parent
 - Tailwind v4 compile seulement le thème parent : `npm run build`. Le CSS compilé `dist/main.css` est commité.
-- Variables de design dans `src/css/tokens.css` (`@theme static`). Classes générées : `bg-primary`, `text-muted`, `font-title`, `rounded-base`, `py-section`…
-- Les composants sont en CSS dans `src/css/components.css`, préfixe `.mrz-`, dans `@layer components`.
-- **Thème enfant : CSS classique uniquement.** Redéfinir les variables dans `:root`. Ne jamais écrire de nouvelle classe Tailwind dans un template de l'enfant : elle n'existe pas dans `dist/main.css`.
+- Variables de design dans `src/css/tokens.css` (`@theme static` pour couleurs, polices, rayons, espacements ; `:root` pour le reste). Classes générées : `bg-primary`, `text-muted`, `font-title`, `rounded-base`, `py-section`…
+- Les composants sont en CSS dans `src/css/components.css`, préfixe `.mrz-`, dans `@layer components`. Les éléments HTML (titres, champs, boutons d'envoi) dans `src/css/base.css`.
+- Le CSS de Gravity Forms et de WooCommerce est hors couche : il passe devant le CSS du thème. Leurs réglages vont dans `assets/css/gravity-forms.css` et `assets/css/woocommerce.css`, hors couche eux aussi, toujours avec les variables.
+- **Thème enfant : CSS classique uniquement.** Ne jamais écrire de nouvelle classe Tailwind dans un template de l'enfant : elle n'existe pas dans `dist/main.css`.
 - Une classe Tailwind utilisée dans le parent doit apparaître en entier dans un fichier scanné (pas de nom construit par concaténation).
 
 ## Options
