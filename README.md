@@ -4,7 +4,7 @@ Thème WordPress classique et léger de l'Agence Double A. Il remplace Salient +
 
 - **Éditeur classique** partout (Gutenberg désactivé, CSS de blocs retirés du front).
 - **Pages construites avec ACF Pro** : un constructeur (Flexible Content `mrz_builder`) dont les sections sont faites sur mesure pour chaque site, dans le thème enfant.
-- **Un seul CSS compilé** (Tailwind v4, ~20 ko), JS vanilla sans jQuery.
+- **Un seul CSS compilé** (Tailwind v4, ~22 ko), JS vanilla sans jQuery.
 - **Retouches sans compiler** : le thème enfant redéfinit des variables CSS et ajoute du CSS classique.
 
 Ce guide s'adresse à la personne qui installe ou retouche un site. Les règles détaillées pour l'IA sont dans [AGENTS.md](AGENTS.md).
@@ -14,13 +14,14 @@ Ce guide s'adresse à la personne qui installe ou retouche un site. Les règles 
 1. [Prérequis](#prérequis)
 2. [Démarrer un site](#démarrer-un-site)
 3. [Construire une page](#construire-une-page)
-4. [Sections globales](#sections-globales)
-5. [Menu MRZ Theme](#menu-mrz-theme)
-6. [Retoucher un site à la main](#retoucher-un-site-à-la-main)
-7. [Blog, CPT et plugins](#blog-cpt-et-plugins)
-8. [Pour l'IA](#pour-lia)
-9. [Faire évoluer le thème parent](#faire-évoluer-le-thème-parent)
-10. [Limites de la V1](#limites-de-la-v1)
+4. [Réglages par page](#réglages-par-page)
+5. [Sections globales](#sections-globales)
+6. [Menu MRZ Theme](#menu-mrz-theme)
+7. [Retoucher un site à la main](#retoucher-un-site-à-la-main)
+8. [Blog, CPT et plugins](#blog-cpt-et-plugins)
+9. [Pour l'IA](#pour-lia)
+10. [Faire évoluer le thème parent](#faire-évoluer-le-thème-parent)
+11. [État et feuille de route](#état-et-feuille-de-route)
 
 ## Prérequis
 
@@ -36,7 +37,7 @@ Aucun Node n'est nécessaire sur le serveur : le CSS compilé (`dist/main.css`) 
 
 ## Démarrer un site
 
-1. Installer le thème parent `mrz-theme-exp` et un thème enfant (modèle : `mrz-theme-exp-child`). Activer **l'enfant**, jamais le parent seul.
+1. Installer le thème parent `mrz-theme-exp` (zip de la dernière release) et un thème enfant copié du modèle privé [`mrz-theme-exp-child`](https://github.com/m0r3z/mrz-theme-exp-child). Activer **l'enfant**, jamais le parent seul.
 2. Activer ACF Pro. Les groupes de champs se chargent tout seuls depuis `acf-json/` (parent et enfant) : rien à importer. Le thème enfant doit contenir `acf-json/group_mrzchild_builder.json` (fourni dans le modèle).
 3. **Apparence > Menus** : affecter les emplacements.
 
@@ -343,11 +344,18 @@ mrz-theme-exp/
 └── AGENTS.md            règles pour l'IA
 ```
 
-## Limites de la V1
+## État et feuille de route
 
-Prévu en V2, pas encore disponible :
+**Version publiée : 0.2.0 (16/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
-- animations au défilement, parallax, lightbox ;
-- styles Gravity Forms branchés sur les variables ;
+En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile, variables partagées (palette de cinq couleurs, texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
+
+À faire, chacun comme un chantier à part :
+
+- **WooCommerce** : mise en forme du panier, de la commande et du compte avec les variables ;
+- **Menus** : style des sous-menus déroulants du header ; variantes du menu mobile, dans l'enfant ;
+- **V2** : animations au défilement, parallax, lightbox, en modules chargés seulement quand ils servent ;
+- **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème ;
+- **Theme Check** : passer le plugin avant la 1.0.
 
 Pas prévu dans le parent : d'autres variantes de header ou de menu mobile, des effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.
