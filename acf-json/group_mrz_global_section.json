@@ -1,13 +1,13 @@
 {
     "key": "group_mrz_global_section",
-    "title": "Emplacement de la section",
+    "title": "Emplacement et conditions de la section",
     "fields": [
         {
             "key": "field_mrz_section_hook",
             "label": "Emplacement",
             "name": "mrz_section_hook",
             "type": "select",
-            "instructions": "Affichée sur tout le site à cet endroit. « Insertion manuelle » : seulement via le layout Section globale.",
+            "instructions": "« Insertion manuelle » : seulement via la section « Global section » d'une page.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -39,6 +39,103 @@
             "min": 0,
             "max": 100,
             "step": 1
+        },
+        {
+            "key": "field_mrz_section_display",
+            "label": "Où l'afficher",
+            "name": "mrz_section_display",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_mrz_section_hook",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "all": "Sur tout le site",
+                "include": "Seulement sur…",
+                "exclude": "Partout sauf sur…"
+            },
+            "default_value": "all",
+            "return_format": "value",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_mrz_section_post_types",
+            "label": "Types de contenus",
+            "name": "mrz_section_post_types",
+            "type": "checkbox",
+            "instructions": "Les contenus de ce type et leurs pages de liste (blog, catégories, boutique…).",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_mrz_section_hook",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_mrz_section_display",
+                        "operator": "!=",
+                        "value": "all"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {},
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0
+        },
+        {
+            "key": "field_mrz_section_posts",
+            "label": "Pages précises",
+            "name": "mrz_section_posts",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_mrz_section_hook",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_mrz_section_display",
+                        "operator": "!=",
+                        "value": "all"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [],
+            "taxonomy": [],
+            "return_format": "id",
+            "multiple": 1,
+            "allow_null": 1,
+            "ui": 1,
+            "bidirectional": 0
         }
     ],
     "location": [
@@ -59,5 +156,5 @@
     "active": true,
     "description": "Thème MRZ Theme Experience",
     "show_in_rest": 0,
-    "modified": 1794751784
+    "modified": 1794839497
 }

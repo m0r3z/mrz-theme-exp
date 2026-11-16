@@ -119,6 +119,16 @@ Le body reçoit alors `mrz-no-header` ou `mrz-no-footer`, pour adapter le CSS de
 | WooCommerce: before the product list | Au-dessus de la liste des produits |
 | WooCommerce: after a product | Sous la fiche produit |
 
+**Où l'afficher** (pour une section placée à un emplacement) :
+
+| Choix | Effet |
+| --- | --- |
+| Sur tout le site | Partout (par défaut) |
+| Seulement sur… | Uniquement sur les types de contenus et les pages choisis |
+| Partout sauf sur… | Partout, sauf sur les types de contenus et les pages choisis |
+
+Un type de contenu couvre ses contenus et ses pages de liste : « Articles » inclut le blog, les catégories et les étiquettes ; « Produits » inclut la boutique et les catégories de produits. « Pages précises » permet de viser une page, la page du blog ou la boutique.
+
 La **priorité** ordonne plusieurs sections au même emplacement (10 par défaut, plus petit = plus haut). La colonne « Where it shows » de la liste résume où chaque section apparaît. Seules les sections publiées s'affichent.
 
 ## Menu MRZ Theme
@@ -334,7 +344,6 @@ mrz-theme-exp/
 
 Prévu en V2, pas encore disponible :
 
-- conditions d'affichage des sections globales (types de contenus, pages, exclusions) : en V1, une section automatique s'affiche sur tout le site ;
 - animations au défilement, parallax, lightbox ;
 - styles Gravity Forms branchés sur les variables ;
 - traduction française de l'admin du thème (les libellés sont en anglais).
