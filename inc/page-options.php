@@ -1,7 +1,11 @@
 <?php
 /**
  * Réglages par page : meta box native « MRZ Theme » sur les contenus publics
- * (masquer le titre, le header ou le footer, forcer le header transparent).
+ * (masquer le header, forcer le header transparent ou non).
+ *
+ * Le titre n'en fait pas partie : une page n'affiche jamais son titre (le
+ * contenu porte son propre h1), un article l'affiche toujours. Le footer non
+ * plus : c'est une section globale, ses conditions décident où il s'affiche.
  *
  * Meta box WordPress classique, sans ACF : les réglages tiennent même si ACF
  * est désactivé.
@@ -18,9 +22,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function mrz_theme_page_option_keys() {
 	return array(
-		'_mrz_hide_title'         => 'checkbox',
 		'_mrz_hide_header'        => 'checkbox',
-		'_mrz_hide_footer'        => 'checkbox',
 		'_mrz_transparent_header' => 'choice',
 	);
 }
@@ -75,9 +77,7 @@ function mrz_theme_render_page_options_box( $post ) {
 	wp_nonce_field( 'mrz_theme_page_options', 'mrz_theme_page_options_nonce' );
 
 	$checkboxes = array(
-		'_mrz_hide_title'  => __( 'Hide the title', 'mrz-theme-exp' ),
 		'_mrz_hide_header' => __( 'Hide the header', 'mrz-theme-exp' ),
-		'_mrz_hide_footer' => __( 'Hide the footer', 'mrz-theme-exp' ),
 	);
 	foreach ( $checkboxes as $key => $label ) {
 		printf(
@@ -133,7 +133,7 @@ function mrz_theme_save_page_options( $post_id ) {
 add_action( 'save_post', 'mrz_theme_save_page_options' );
 
 /**
- * Classes du body : l'enfant peut adapter son CSS à une page sans header ou sans footer.
+ * Classe du body : l'enfant peut adapter son CSS à une page sans header.
  *
  * @param array $classes Classes.
  * @return array
@@ -141,9 +141,6 @@ add_action( 'save_post', 'mrz_theme_save_page_options' );
 function mrz_theme_page_options_body_classes( $classes ) {
 	if ( mrz_theme_page_option( '_mrz_hide_header' ) ) {
 		$classes[] = 'mrz-no-header';
-	}
-	if ( mrz_theme_page_option( '_mrz_hide_footer' ) ) {
-		$classes[] = 'mrz-no-footer';
 	}
 
 	return $classes;

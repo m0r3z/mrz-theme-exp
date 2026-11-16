@@ -1,6 +1,7 @@
 <?php
 /**
- * Page : constructeur ACF s'il est rempli, sinon titre + contenu classique.
+ * Page : constructeur ACF s'il est rempli, sinon contenu classique.
+ * Une page n'affiche jamais son titre : son contenu porte son propre h1.
  *
  * @package mrz-theme-exp
  */
@@ -18,9 +19,6 @@ while ( have_posts() ) {
 	}
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'mrz-container py-16' ); ?>>
-		<?php if ( ! mrz_theme_page_option( '_mrz_hide_title' ) ) : ?>
-			<h1 class="mrz-page-title mb-10"><?php the_title(); ?></h1>
-		<?php endif; ?>
 		<div class="mrz-prose"><?php the_content(); ?></div>
 	</article>
 	<?php

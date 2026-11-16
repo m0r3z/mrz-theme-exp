@@ -92,7 +92,9 @@ Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms
 - Le point de rupture mobile est un réglage : les classes `.mrz-desktop-only` et `.mrz-mobile-only` sont pilotées par du CSS en ligne, pas par Tailwind.
 
 ## Réglages par page
-Meta box native « MRZ Theme » (`inc/page-options.php`), sans ACF, sur tous les types publics. Metas `_mrz_hide_title`, `_mrz_hide_header`, `_mrz_hide_footer` (`'1'` ou absente), `_mrz_transparent_header` (`on`, `off` ou absente). Lecture : `mrz_theme_page_option( '_mrz_hide_title' )`. Classes du body : `mrz-no-header`, `mrz-no-footer`. Ne jamais écrire de CSS sur `.page-id-*` : passer par ces réglages.
+Meta box native « MRZ Theme » (`inc/page-options.php`), sans ACF, sur tous les types publics. Metas `_mrz_hide_header` (`'1'` ou absente) et `_mrz_transparent_header` (`on`, `off` ou absente). Lecture : `mrz_theme_page_option( '_mrz_hide_header' )`. Classe du body : `mrz-no-header`. Ne jamais écrire de CSS sur `.page-id-*` : passer par ces réglages.
+- **Titre** : une page n'affiche jamais son titre ; sa première section (ou son contenu) porte le `<h1>`. Toujours prévoir un `<h1>` sur une page, y compris une page faite d'un seul shortcode (panier, commande, compte). Un article affiche toujours son titre.
+- **Footer** : section globale ; on le retire d'une page par ses conditions, pas par un réglage de page.
 
 ## Sections globales
 CPT `mrz_section`. Meta `mrz_section_hook` (emplacement), `mrz_section_priority`, et conditions : `mrz_section_display` (`all`, `include`, `exclude`), `mrz_section_post_types` (types publics : un type couvre ses contenus et ses listes), `mrz_section_posts` (IDs). Test : `mrz_theme_global_section_matches()`. Hooks du thème : `mrz_before_header`, `mrz_after_header`, `mrz_before_content`, `mrz_after_content`, `mrz_footer`, `mrz_before_footer`, `mrz_after_footer`.

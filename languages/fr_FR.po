@@ -392,17 +392,9 @@ msgstr "tout le site"
 msgid "%1$s, %2$s (priority %3$d)"
 msgstr "%1$s, %2$s (priorité %3$d)"
 
-#: inc/page-options.php:78
-msgid "Hide the title"
-msgstr "Masquer le titre"
-
 #: inc/page-options.php:79
 msgid "Hide the header"
 msgstr "Masquer le header"
-
-#: inc/page-options.php:80
-msgid "Hide the footer"
-msgstr "Masquer le footer"
 
 #: inc/page-options.php:93
 msgid "Default (theme setting)"

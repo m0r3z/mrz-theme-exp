@@ -97,12 +97,11 @@ Chaque page, article ou CPT a, dans la colonne de droite de son édition, une bo
 
 | Réglage | Effet |
 | --- | --- |
-| Hide the title | Masque le titre de la page ou de l'article (pages sans constructeur, articles) |
-| Hide the header | Masque le header et le menu mobile (landing page) |
-| Hide the footer | Masque la section globale « Footer » |
+| Masquer le header | Masque le header et le menu mobile (landing page). Le body reçoit `mrz-no-header` |
 | Header | Défaut (réglage du Customizer), transparent ou non transparent, pour cette page seulement |
 
-Le body reçoit alors `mrz-no-header` ou `mrz-no-footer`, pour adapter le CSS de l'enfant sans viser une page précise.
+- **Titre** : une page n'affiche jamais son titre, son contenu porte son propre `<h1>` (en général la première section). Un article affiche toujours le sien. Les pages faites d'un seul shortcode (panier, commande, compte, mentions légales) ont donc besoin d'un `<h1>` dans leur contenu.
+- **Footer** : c'est une section globale. Pour le retirer d'une page, l'exclure dans les conditions de la section (« Partout sauf sur… »).
 
 ## Sections globales
 

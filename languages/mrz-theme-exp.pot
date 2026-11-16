@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-16T14:32:46+00:00\n"
+"POT-Creation-Date: 2026-11-16T15:09:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -70,7 +70,7 @@ msgstr ""
 #: inc/admin.php:28
 #: inc/admin.php:29
 #: inc/customizer.php:68
-#: inc/page-options.php:60
+#: inc/page-options.php:62
 msgid "MRZ Theme"
 msgstr ""
 
@@ -390,16 +390,8 @@ msgstr ""
 msgid "%1$s, %2$s (priority %3$d)"
 msgstr ""
 
-#: inc/page-options.php:78
-msgid "Hide the title"
-msgstr ""
-
-#: inc/page-options.php:79
-msgid "Hide the header"
-msgstr ""
-
 #: inc/page-options.php:80
-msgid "Hide the footer"
+msgid "Hide the header"
 msgstr ""
 
 #: inc/page-options.php:93
@@ -458,12 +450,12 @@ msgid "Latest articles"
 msgstr ""
 
 #: index.php:33
-#: parts/content/single.php:37
+#: parts/content/single.php:35
 msgid "Previous"
 msgstr ""
 
 #: index.php:34
-#: parts/content/single.php:38
+#: parts/content/single.php:36
 msgid "Next"
 msgstr ""
 
