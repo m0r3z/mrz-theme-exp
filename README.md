@@ -276,15 +276,22 @@ npm run build
 
 Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) (`lib/`, branché dans `inc/updater.php`).
 
-1. Monter la version dans `style.css` (`Version:`) et dans `functions.php` (`MRZ_THEME_VERSION`).
-2. `npm run build`, commiter, pousser `main`.
-3. Créer la release, avec un tag égal à la version précédée de `v` :
+1. **Version** : monter `Version:` dans `style.css` et `MRZ_THEME_VERSION` dans `functions.php`. Premier chiffre si un nom utilisé par les enfants casse (fonction `mrz_theme_*`, classe `.mrz-`, variable, hook, section `mrz_`), deuxième pour un ajout, troisième pour une correction.
+2. **CHANGELOG.md** : déplacer « Non publié » sous le numéro de version, avec la date. Les notes de la release reprennent ce bloc.
+3. **Build** : `npm run build`, commiter, pousser `main`.
+4. **Recette sur MRZ-Dev**, connecté en administrateur, en desktop et en mobile :
+   - la page privée **Recette du thème** (`/recette-theme/`) : titres, texte, listes, boutons sur chaque fond, ancre sous le header, formulaire, MRZ Display Post, MRZ Maps, HTML brut ;
+   - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
+   - boutique, fiche produit, ajout au panier (la pastille se met à jour), panier, commande, compte ;
+   - menu mobile (ouverture, Échap, sous-menus), recherche du header, footer ;
+   - aucune nouvelle ligne dans `wp-content/debug.log`.
+5. **Release** : un tag égal à la version précédée de `v`, les notes tirées du CHANGELOG :
 
    ```bash
-   gh release create v0.2.0 --title "0.2.0" --notes "Ce qui change dans cette version."
+   GH_TOKEN=$(gh auth token --user m0r3z) gh release create v0.2.0 --title "0.2.0" --notes-file notes.md
    ```
 
-4. Chaque site affiche « Mise à jour disponible » dans les 12 heures, ou tout de suite depuis **Tableau de bord > Mises à jour**. La mise à jour se lance site par site ou en masse depuis ManageWP.
+6. **Premier site** : lancer la mise à jour sur un site de test qui n'est pas une copie Git (`dev.local`), refaire la recette rapide, puis seulement les autres sites, depuis ManageWP. Chaque site affiche « Mise à jour disponible » dans les 12 heures, ou tout de suite depuis **Tableau de bord > Mises à jour**.
 
 - Le zip téléchargé est celui que GitHub génère pour la release : les fichiers listés dans `.gitattributes` (`package.json`…) en sont exclus.
 - Une release marquée « pre-release » est ignorée par les sites.
