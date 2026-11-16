@@ -33,6 +33,16 @@ Une section dont le nom contient `hero`, placée en premier, active le header tr
 
 Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`. Formulaires, listes MRZ Display Post et cartes MRZ Maps : shortcodes (`[gravityform]`, `[mrzdpe]`, `[mrzme]`) dans un Texte libre ou dans un champ de section.
 
+### Code d'une section sur mesure (PHP)
+- **Échapper toute sortie** : `esc_html()` pour un texte, `esc_url()` pour un lien, `esc_attr()` pour un attribut, `wp_kses_post()` pour un champ WYSIWYG. Jamais un `echo get_sub_field()` brut (sauf la section du parent `mrz_html`).
+- **Images** : `wp_get_attachment_image( $id, $taille )`, jamais une balise `<img>` écrite à la main (WordPress ajoute `srcset`, dimensions et `loading`). Un texte alternatif vide (`'alt' => ''`) pour une image décorative.
+- **Image principale d'un hero** : une vraie image (`<img>`, `object-fit: cover`) avec `'fetchpriority' => 'high'` et `'loading' => 'eager'`, pas une image de fond CSS ni le réglage « image de fond » : une image de fond se charge tard et pénalise le chargement de la page (LCP).
+- **Textes écrits dans le template** (pas dans un champ) : `__( 'Texte', 'mrz-theme-exp-child' )` ou `esc_html_e()`, pour que Polylang et les traductions les reprennent. Le contenu des champs ACF se traduit avec la page.
+- **Titres** : un seul `<h1>` par page, porté par la première section (souvent le hero) ; les autres sections commencent à `<h2>`.
+- **Liens** : `target="_blank"` toujours avec `rel="noopener"`. Un lien sans texte visible (icône) porte un texte pour les lecteurs d'écran (`<span class="screen-reader-text">`).
+- **Ouvrir et fermer la section** avec `mrz_theme_section_open( 'mrzchild-<nom>' )` et `mrz_theme_section_close()` : réglages communs, ancre et conteneur sont gérés par le parent.
+- **Variables PHP préfixées** `$mrzchild_` dans les templates (portée globale de `get_template_part`).
+
 ### Règles du constructeur
 - Préfixes : `mrz_` pour le parent, `mrzchild_` pour l'enfant. Jamais de section `mrz_` dans l'enfant.
 - La clé `field_mrz_builder` et le nom `mrz_builder` ne changent jamais.
@@ -97,7 +107,10 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Conventions WordPress, échappement de toutes les sorties, `wp_enqueue_*` pour tous les assets.
 - JS vanilla, sans jQuery, dans `assets/js/` (pas de build JS).
 - Icônes SVG dans `assets/icons/`, affichées avec `mrz_theme_icon( 'nom' )` (en ligne, `fill="currentColor"`). L'enfant remplace une icône par un fichier du même nom dans son `assets/icons/`.
-- Surcharges depuis l'enfant : mêmes chemins (`layouts/`, `parts/`).
+- Surcharges depuis l'enfant : mêmes chemins (`layouts/`, `parts/`), en dernier recours. Préférer les hooks :
+  - `mrz_header_tools_start`, `mrz_header_tools_end` : dans le header, avant et après les outils (recherche, compte, panier), pour un bouton ou un téléphone ;
+  - `mrz_mobile_menu_end` : en bas du menu mobile ;
+  - les emplacements des sections globales (`mrz_before_header`… `mrz_after_footer`).
 - Le parent ne renomme ni ne supprime ce que les enfants utilisent (fonctions `mrz_theme_*`, classes `.mrz-`, hooks, emplacements de menus, sections du constructeur). Un changement qui casse ces noms impose une version majeure et des notes de release.
 
 ## Parent ou enfant

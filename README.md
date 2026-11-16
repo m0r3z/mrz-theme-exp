@@ -205,6 +205,20 @@ Copier le fichier du parent dans l'enfant, au même chemin, puis le modifier :
 
 Une surcharge ne reçoit plus les corrections du parent : n'en faire qu'en dernier recours.
 
+Pour ajouter un élément sans copier de template, l'enfant se branche sur un hook dans son `functions.php` :
+
+| Hook | Où |
+| --- | --- |
+| `mrz_header_tools_start` | Header, avant le menu secondaire, la recherche, le compte et le panier |
+| `mrz_header_tools_end` | Header, après le panier, avant le bouton du menu mobile |
+| `mrz_mobile_menu_end` | En bas du menu mobile |
+
+```php
+add_action( 'mrz_header_tools_end', function () {
+	echo '<a class="mrz-btn mrz-btn--primary mrz-desktop-only" href="/contact/">' . esc_html__( 'Prendre rendez-vous', 'mrz-theme-exp-child' ) . '</a>';
+} );
+```
+
 ### Changer une icône
 
 Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier), `account.svg` (compte), `search.svg` (recherche). Pour en changer une, déposer un SVG du même nom dans `assets/icons/` de l'enfant : il est pris à la place, sans toucher au code. Le SVG prend la couleur du texte s'il utilise `fill="currentColor"` ; sa taille se règle en CSS sur `.mrz-icon`.
