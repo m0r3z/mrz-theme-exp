@@ -3,19 +3,22 @@
  *
  * Tailwind en fait des variables :root ET des classes (bg-primary, text-muted,
  * font-title, rounded-base…). Pour un client, redéfinir ces variables dans le
- * style.css du thème enfant suffit : aucune compilation.
+ * style.css du thème enfant suffit : aucune compilation. Sauf les couleurs de
+ * la palette : elles se règlent dans le Customizer (MRZ Theme > Couleurs).
  *
  * « static » : toutes les variables sont écrites, même si aucune classe ne les utilise,
  * pour que le thème enfant et les plugins puissent toujours s'y référer.
  */
 @theme static {
 	/*
-	 * Palette : cinq couleurs, les seules à régler dans le thème enfant.
-	 * primary, secondary : couleurs de la marque.
+	 * Palette : six couleurs, réglées dans le Customizer (MRZ Theme > Couleurs),
+	 * qui réécrit ces valeurs en ligne. Ne pas les régler dans le thème enfant.
+	 * primary, secondary, tertiary : couleurs de la marque.
 	 * dark : texte et fonds sombres. light : fonds clairs. border : traits et bordures.
 	 */
 	--color-primary: #2a5bd7;
 	--color-secondary: #1d1d1f;
+	--color-tertiary: #e0a526;
 	--color-dark: #20201f;
 	--color-light: #f4f4f2;
 	--color-border: #dededd;
@@ -24,7 +27,10 @@
 	--color-text: var(--color-dark);
 	--color-muted: color-mix(in srgb, var(--color-dark) 60%, transparent);
 	--color-background: #ffffff;
+	/* Texte sur une couleur de la marque : calculé par le Customizer (sombre ou blanc). */
 	--color-primary-contrast: #ffffff;
+	--color-secondary-contrast: #ffffff;
+	--color-tertiary-contrast: var(--color-dark);
 
 	/* Polices : les @font-face (woff2 auto-hébergées) se déclarent dans le thème enfant. */
 	--font-title: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;

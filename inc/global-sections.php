@@ -25,6 +25,7 @@ function mrz_theme_global_section_hooks() {
 		'mrz_footer'                       => __( 'Footer (the site footer)', 'mrz-theme-exp' ),
 		'mrz_before_footer'                => __( 'Before the footer', 'mrz-theme-exp' ),
 		'mrz_after_footer'                 => __( 'After the footer', 'mrz-theme-exp' ),
+		'mrz_mobile_menu_end'              => __( 'Mobile menu: below the links', 'mrz-theme-exp' ),
 		'woocommerce_before_shop_loop'     => __( 'WooCommerce: before the product list', 'mrz-theme-exp' ),
 		'woocommerce_after_single_product' => __( 'WooCommerce: after a product', 'mrz-theme-exp' ),
 	);

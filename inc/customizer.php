@@ -2,8 +2,9 @@
 /**
  * Options du Customizer et CSS qu'elles génèrent.
  *
- * Les couleurs et polices ne sont pas ici : elles vivent dans les variables CSS
- * (src/css/tokens.css, surchargées dans le style.css du thème enfant).
+ * Les couleurs de la charte sont ici (section Couleurs) : elles s'écrivent en
+ * variables CSS. Les polices et le reste du design vivent dans les variables
+ * de src/css/tokens.css, surchargées dans le style.css du thème enfant.
  *
  * @package mrz-theme-exp
  */
@@ -56,6 +57,63 @@ function mrz_theme_add_setting( $wp_customize, $name, $sanitize, $transport = 'r
 }
 
 /**
+ * Couleurs de la charte : nom (variable --color-<nom>) => libellé.
+ *
+ * @return array
+ */
+function mrz_theme_color_labels() {
+	return array(
+		'primary'   => __( 'Primary color', 'mrz-theme-exp' ),
+		'secondary' => __( 'Secondary color', 'mrz-theme-exp' ),
+		'tertiary'  => __( 'Tertiary color', 'mrz-theme-exp' ),
+		'dark'      => __( 'Dark: text and dark backgrounds', 'mrz-theme-exp' ),
+		'light'     => __( 'Light: light backgrounds', 'mrz-theme-exp' ),
+		'border'    => __( 'Borders and lines', 'mrz-theme-exp' ),
+	);
+}
+
+/**
+ * Styles du menu mobile : valeur => libellé.
+ *
+ * @return array
+ */
+function mrz_theme_mobile_menu_styles() {
+	return array(
+		'right'      => __( 'Side panel from the right', 'mrz-theme-exp' ),
+		'left'       => __( 'Side panel from the left', 'mrz-theme-exp' ),
+		'fullscreen' => __( 'Full screen', 'mrz-theme-exp' ),
+		'dropdown'   => __( 'Drops down below the header', 'mrz-theme-exp' ),
+	);
+}
+
+/**
+ * Couleur du texte posé sur une couleur : sombre sur une couleur claire, blanc sinon.
+ *
+ * @param string $hex Couleur #rrggbb.
+ * @return string Valeur CSS.
+ */
+function mrz_theme_contrast_color( $hex ) {
+	$hex = ltrim( (string) $hex, '#' );
+	if ( 3 === strlen( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+	if ( 6 !== strlen( $hex ) ) {
+		return '#ffffff';
+	}
+
+	// Luminance relative (WCAG).
+	$channels = array();
+	foreach ( str_split( $hex, 2 ) as $channel ) {
+		$value      = hexdec( $channel ) / 255;
+		$channels[] = $value <= 0.03928 ? $value / 12.92 : pow( ( $value + 0.055 ) / 1.055, 2.4 );
+	}
+	$luminance = 0.2126 * $channels[0] + 0.7152 * $channels[1] + 0.0722 * $channels[2];
+
+	// Seuil où le contraste avec le blanc et avec le noir s'équilibre.
+	return $luminance > 0.179 ? 'var(--color-dark)' : '#ffffff';
+}
+
+/**
  * Déclare le panneau MRZ Theme et ses sections.
  *
  * @param WP_Customize_Manager $wp_customize Manager.
@@ -69,6 +127,31 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'priority' => 30,
 		)
 	);
+
+	/* Couleurs de la charte : la seule source des couleurs du site. */
+	$wp_customize->add_section(
+		'mrz_colors',
+		array(
+			'title'       => __( 'Colors', 'mrz-theme-exp' ),
+			'panel'       => 'mrz_theme',
+			'priority'    => 5,
+			'description' => __( 'The site palette. Every color of the theme, the forms and WooCommerce comes from these six colors.', 'mrz-theme-exp' ),
+		)
+	);
+
+	foreach ( mrz_theme_color_labels() as $name => $label ) {
+		mrz_theme_add_setting( $wp_customize, 'color_' . $name, 'sanitize_hex_color' );
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'mrz_color_' . $name,
+				array(
+					'label'   => $label,
+					'section' => 'mrz_colors',
+				)
+			)
+		);
+	}
 
 	/* Header. */
 	$wp_customize->add_section(
@@ -190,6 +273,18 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'label'   => __( 'Sticky header on mobile', 'mrz-theme-exp' ),
 			'section' => 'mrz_mobile',
 			'type'    => 'checkbox',
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'mobile_menu_style', 'mrz_theme_sanitize_choice' );
+	$wp_customize->add_control(
+		'mrz_mobile_menu_style',
+		array(
+			'label'       => __( 'Mobile menu', 'mrz-theme-exp' ),
+			'description' => __( 'How the menu opens. Its look (background, blur, hover) is styled in the child theme.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_mobile',
+			'type'        => 'radio',
+			'choices'     => mrz_theme_mobile_menu_styles(),
 		)
 	);
 
@@ -323,6 +418,15 @@ function mrz_theme_customizer_css() {
 	$breakpoint = max( 600, absint( mrz_theme_option( 'mobile_breakpoint' ) ) );
 
 	$css  = ':root{';
+	foreach ( array_keys( mrz_theme_color_labels() ) as $name ) {
+		$color = sanitize_hex_color( mrz_theme_option( 'color_' . $name ) );
+		if ( $color ) {
+			$css .= '--color-' . $name . ':' . $color . ';';
+			if ( in_array( $name, array( 'primary', 'secondary', 'tertiary' ), true ) ) {
+				$css .= '--color-' . $name . '-contrast:' . mrz_theme_contrast_color( $color ) . ';';
+			}
+		}
+	}
 	$css .= '--mrz-logo-height:' . absint( mrz_theme_option( 'logo_height' ) ) . 'px;';
 	$css .= '--mrz-logo-height-mobile:' . absint( mrz_theme_option( 'logo_height_mobile' ) ) . 'px;';
 	$css .= '--mrz-container:' . absint( mrz_theme_option( 'container_width' ) ) . 'px;';

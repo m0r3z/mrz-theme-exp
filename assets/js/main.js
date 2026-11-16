@@ -26,7 +26,7 @@
 		}
 	}
 
-	/* Menu mobile en panneau latéral. */
+	/* Menu mobile (panneau, plein écran ou sous le header). */
 	var panel = document.getElementById( 'mrz-mobile-menu' );
 	if ( ! panel ) {
 		return;
@@ -35,6 +35,7 @@
 	var toggles = document.querySelectorAll( '[data-mrz-menu-toggle]' );
 	var lastFocus = null;
 	var closeTimer = null;
+	var isDropdown = 'dropdown' === panel.getAttribute( 'data-mrz-style' );
 
 	function setExpanded( value ) {
 		toggles.forEach( function ( toggle ) {
@@ -45,15 +46,19 @@
 	function openMenu() {
 		clearTimeout( closeTimer );
 		lastFocus = document.activeElement;
+		/* Sous le header : le menu commence au bas du header, là où il est à l'écran. */
+		if ( isDropdown && header ) {
+			panel.style.setProperty( '--mrz-menu-top', Math.max( 0, header.getBoundingClientRect().bottom ) + 'px' );
+		}
 		panel.hidden = false;
 		requestAnimationFrame( function () {
 			panel.classList.add( 'is-open' );
 		} );
 		body.classList.add( 'mrz-menu-open' );
 		setExpanded( true );
-		var closeButton = panel.querySelector( '.mrz-offcanvas__close' );
-		if ( closeButton ) {
-			closeButton.focus();
+		var firstFocus = isDropdown ? panel.querySelector( 'nav a' ) : panel.querySelector( '.mrz-offcanvas__close' );
+		if ( firstFocus ) {
+			firstFocus.focus();
 		}
 	}
 
@@ -73,7 +78,13 @@
 	}
 
 	toggles.forEach( function ( toggle ) {
-		toggle.addEventListener( 'click', openMenu );
+		toggle.addEventListener( 'click', function () {
+			if ( panel.classList.contains( 'is-open' ) ) {
+				closeMenu();
+			} else {
+				openMenu();
+			}
+		} );
 	} );
 
 	panel.querySelectorAll( '[data-mrz-close]' ).forEach( function ( element ) {

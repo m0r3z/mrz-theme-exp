@@ -62,7 +62,7 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 ### Variables (parent : `src/css/tokens.css`, valeurs du site : `style.css` de l'enfant)
 | Famille | Variables |
 | --- | --- |
-| Couleurs | **Cinq seulement**, réglées dans l'enfant : `--color-primary`, `--color-secondary`, `--color-dark` (texte, fonds sombres), `--color-light` (fonds clairs), `--color-border`. Dérivées, à utiliser mais pas à régler : `--color-text` (= dark), `--color-muted` (dark atténué), `--color-background` et `--color-primary-contrast` (blanc). Ne jamais ajouter de couleur : une charte n'en a pas quinze |
+| Couleurs | **Six**, réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary` (marque), `--color-dark` (texte, fonds sombres), `--color-light` (fonds clairs), `--color-border`. Dérivées, à utiliser mais pas à régler : `--color-text` (= dark), `--color-muted` (dark atténué), `--color-background` (blanc), `--color-primary-contrast`, `--color-secondary-contrast`, `--color-tertiary-contrast` (texte sur la couleur, sombre ou blanc, calculé). Ne jamais ajouter de couleur |
 | Polices | `--font-title`, `--font-body` |
 | Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
 | Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
@@ -114,10 +114,13 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Icônes SVG dans `assets/icons/`, affichées avec `mrz_theme_icon( 'nom' )` (en ligne, `fill="currentColor"`). L'enfant remplace une icône par un fichier du même nom dans son `assets/icons/`.
 - Surcharges depuis l'enfant : mêmes chemins (`layouts/`, `parts/`), en dernier recours. Préférer les hooks :
   - `mrz_header_tools_start`, `mrz_header_tools_end` : dans le header, avant et après les outils (recherche, compte, panier), pour un bouton ou un téléphone ;
-  - `mrz_mobile_menu_end` : en bas du menu mobile ;
+  - `mrz_mobile_menu_end` : en bas du menu mobile (aussi emplacement de section globale) ;
   - les emplacements des sections globales (`mrz_before_header`… `mrz_after_footer`).
 - Le parent ne renomme ni ne supprime ce que les enfants utilisent (fonctions `mrz_theme_*`, classes `.mrz-`, hooks, emplacements de menus, sections du constructeur). Un changement qui casse ces noms impose une version majeure et des notes de release.
 
 ## Parent ou enfant
 - Parent : comportements, accessibilité, JS, intégrations (WooCommerce, Gravity Forms, Polylang, plugins MRZ). Ne pas y ajouter de variantes d'apparence (headers, menus mobiles, effets de survol).
 - Enfant : l'apparence du site, en CSS sur les classes `.mrz-` du parent. Copier un template dans l'enfant seulement en dernier recours : la copie ne reçoit plus les corrections du parent.
+
+## Menu mobile
+Quatre styles au choix (Customizer > Header mobile, theme_mod `mrz_mobile_menu_style` : `right`, `left`, `fullscreen`, `dropdown`), sur le même balisage `parts/mobile-menu/offcanvas.php`, classe `.mrz-offcanvas--<style>`. Le parent ne pose que la position et l'ouverture. L'apparence (fond, flou, opacité, survol des liens) se fait dans `css/mobile-menu.css` de l'enfant, en ciblant `.mrz-offcanvas--<style> .mrz-offcanvas__panel`. Ne pas copier le template.

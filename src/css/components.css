@@ -297,7 +297,11 @@
 		margin-top: 2rem;
 	}
 
-	/* Menu mobile en panneau latéral */
+	/*
+	 * Menu mobile : quatre styles (Customizer > Header mobile), sur le même balisage.
+	 * Le parent ne pose que la position et l'ouverture ; l'apparence (fond, flou,
+	 * survol) se règle dans le thème enfant.
+	 */
 	.mrz-offcanvas {
 		position: fixed;
 		inset: 0;
@@ -323,7 +327,7 @@
 		background: var(--color-background);
 		color: var(--color-text);
 		transform: translateX(100%);
-		transition: transform 0.3s var(--mrz-ease);
+		transition: transform 0.3s var(--mrz-ease), opacity 0.3s var(--mrz-ease);
 	}
 
 	.mrz-offcanvas.is-open .mrz-offcanvas__overlay {
@@ -332,6 +336,47 @@
 
 	.mrz-offcanvas.is-open .mrz-offcanvas__panel {
 		transform: none;
+		opacity: 1;
+	}
+
+	/* Panneau à gauche */
+	.mrz-offcanvas--left .mrz-offcanvas__panel {
+		right: auto;
+		left: 0;
+		transform: translateX(-100%);
+	}
+
+	/* Plein écran : le panneau couvre tout, en fondu. */
+	.mrz-offcanvas--fullscreen .mrz-offcanvas__panel {
+		width: 100%;
+		transform: none;
+		opacity: 0;
+	}
+
+	/* Sous le header : le header reste visible, le burger ouvre et ferme. */
+	.mrz-offcanvas--dropdown {
+		top: var(--mrz-menu-top, 0px);
+	}
+
+	.mrz-offcanvas--dropdown .mrz-offcanvas__panel {
+		bottom: auto;
+		left: 0;
+		width: 100%;
+		max-height: 100%;
+		padding-top: 0.5rem;
+		transform: translateY(-0.75rem);
+		opacity: 0;
+	}
+
+	.mrz-offcanvas--dropdown .mrz-offcanvas__close {
+		display: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-offcanvas__overlay,
+		.mrz-offcanvas__panel {
+			transition: none;
+		}
 	}
 
 	.mrz-offcanvas__close {
@@ -468,6 +513,16 @@
 		color: var(--color-primary-contrast);
 	}
 
+	.mrz-bg--secondary {
+		background-color: var(--color-secondary);
+		color: var(--color-secondary-contrast);
+	}
+
+	.mrz-bg--tertiary {
+		background-color: var(--color-tertiary);
+		color: var(--color-tertiary-contrast);
+	}
+
 	/* Sur la couleur principale, le bouton s'inverse : tous les boutons (thème, formulaires) suivent. */
 	.mrz-bg--primary {
 		--mrz-button-bg: var(--color-primary-contrast);
@@ -579,7 +634,9 @@
 
 	.mrz-has-image .mrz-prose a:not(.mrz-btn),
 	.mrz-bg--dark .mrz-prose a:not(.mrz-btn),
-	.mrz-bg--primary .mrz-prose a:not(.mrz-btn) {
+	.mrz-bg--primary .mrz-prose a:not(.mrz-btn),
+	.mrz-bg--secondary .mrz-prose a:not(.mrz-btn),
+	.mrz-bg--tertiary .mrz-prose a:not(.mrz-btn) {
 		color: inherit;
 	}
 

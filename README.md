@@ -47,7 +47,7 @@ Aucun Node n'est nécessaire sur le serveur : le CSS compilé (`dist/main.css`) 
    | Secondary menu | Menu secondaire à droite du header, avant la recherche, le compte et le panier (2 niveaux) ; repris sous le menu principal dans le menu mobile. Vide = rien ne s'affiche |
    | Mobile menu | Menu mobile ; s'il est vide, le menu principal est repris |
 
-4. **MRZ Theme** (menu de l'admin) : logo, header, menu mobile, 404 (voir [Menu MRZ Theme](#menu-mrz-theme)).
+4. **MRZ Theme** (menu de l'admin) : couleurs, logo, header, menu mobile, 404 (voir [Menu MRZ Theme](#menu-mrz-theme)).
 5. **Le footer** : le thème n'en affiche aucun par défaut. Créer une section globale placée à l'emplacement « Footer » (voir [Sections globales](#sections-globales)). Sans elle, le site n'a pas de pied de page.
 6. Dans le `style.css` de l'enfant : couleurs et polices du client (voir [Retoucher un site à la main](#retoucher-un-site-à-la-main)).
 
@@ -80,12 +80,12 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 
 | Réglage | Choix |
 | --- | --- |
-| Fond | Aucun, clair, sombre, couleur principale, ou image de fond |
+| Fond | Aucun, clair, sombre, couleur principale, secondaire ou tertiaire, ou image de fond |
 | Espacement | Normal, compact, large, aucun |
 | Largeur | Conteneur, large, pleine largeur |
 | Ancre | Identifiant pour un lien `#ancre` dans un menu |
 
-Les couleurs des fonds suivent les variables du thème enfant (`--color-light`, `--color-dark`, `--color-primary`).
+Les couleurs des fonds sont celles de MRZ Theme > Couleurs. Le texte posé sur une couleur de la marque passe en sombre ou en blanc selon la couleur, automatiquement.
 
 ### Ajouter une section sur mesure
 
@@ -138,12 +138,13 @@ Le menu **MRZ Theme** de l'admin rassemble le thème :
 - **Theme options** ouvre le Customizer natif directement sur le panneau MRZ Theme, avec l'aperçu en direct ;
 - **Global sections** liste les [sections globales](#sections-globales).
 
-Restent à leur place native : les menus (**Apparence**), le titre, le slogan et l'icône du site (**Personnaliser > Identité du site**). Ce qui touche à l'identité visuelle (couleurs, polices, rayons) n'est pas dans le Customizer : c'est dans le CSS de l'enfant.
+Restent à leur place native : les menus (**Apparence**), le titre, le slogan et l'icône du site (**Personnaliser > Identité du site**). Les couleurs de la charte sont dans le Customizer. Le reste de l'identité visuelle (polices, tailles, rayons) est dans le CSS de l'enfant.
 
 Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 
 | Section | Réglage | Défaut |
 | --- | --- | --- |
+| MRZ Theme > Colors | Couleurs principale, secondaire et tertiaire de la marque ; sombre (texte, fonds sombres) ; clair (fonds clairs) ; bordures et traits | `#2a5bd7`, `#1d1d1f`, `#e0a526`, `#20201f`, `#f4f4f2`, `#dededd` |
 | MRZ Theme > Header | Logo (le logo natif de WordPress, déplacé ici) | |
 | | Logo du header transparent : affiché avant le défilement, remplacé par le logo principal ensuite | aucun |
 | | Hauteur du logo : desktop, mobile (px) | 48, 40 |
@@ -153,6 +154,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Recherche : icône qui déplie le formulaire de recherche (Échap ou clic ailleurs pour fermer) | non |
 | | Lien vers le compte : icône vers la page « Mon compte » de WooCommerce, à côté du panier | non |
 | MRZ Theme > Mobile header | Header sticky sur mobile | oui |
+| | Menu mobile : panneau à droite, panneau à gauche, plein écran, ou déroulé sous le header (le burger ouvre et ferme). Le parent ne pose que la position et l'ouverture ; fond, flou, survol se règlent dans l'enfant | panneau à droite |
 | | Point de rupture mobile (px) : à augmenter si le menu a beaucoup d'entrées | 1000 |
 | MRZ Theme > Page transitions | Transitions animées entre les pages, sans JavaScript ; désactivées pour les visiteurs qui limitent les animations | non |
 | | Effet : fondu ou glissement ; durée (ms) | fondu, 300 |
@@ -165,12 +167,12 @@ Toutes les retouches se font dans le **thème enfant**, en CSS classique : dans 
 
 ### Couleurs, polices, formes
 
-Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
+Les **couleurs** se règlent dans **MRZ Theme > Couleurs**, jamais dans le CSS : une charte de une à trois couleurs de marque, plus sombre, clair et bordures.
+
+Le reste se règle en redéfinissant les variables dans le `:root` du `style.css` de l'enfant :
 
 ```css
 :root {
-	--color-primary: #0b6e4f;
-	--color-secondary: #c08a2e;
 	--font-title: "Urbanist", Arial, sans-serif;
 	--radius-button: 6px;
 }
@@ -178,11 +180,6 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 
 | Variable | Rôle | Défaut |
 | --- | --- | --- |
-| `--color-primary` | Couleur principale : boutons, liens, fonds « couleur principale » | `#2a5bd7` |
-| `--color-secondary` | Couleur secondaire de la marque | `#1d1d1f` |
-| `--color-dark` | Texte courant et fonds « sombre » | `#20201f` |
-| `--color-light` | Fonds « clair » | `#f4f4f2` |
-| `--color-border` | Traits et bordures | `#dededd` |
 | `--font-title` / `--font-body` | Polices des titres / du texte | police système |
 | `--radius-base` / `--radius-button` | Arrondi des cartes et images / des boutons | `10px` / `999px` |
 | `--spacing-section`, `-sm`, `-lg` | Espacement vertical des sections : normal, compact, large | `6rem`, `3rem`, `9rem` |
@@ -194,7 +191,7 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 | `--mrz-header-padding` | Espace en haut et en bas du header | `1rem` |
 | `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` | Header | fond, texte, bordure du site |
 
-La palette s'arrête à ces cinq couleurs. Le texte atténué (`--color-muted`, dérivé de `--color-dark`), le fond de page et le texte posé sur la couleur principale (blancs) en découlent : ne pas les régler dans l'enfant. La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
+Les couleurs du Customizer s'écrivent en variables, à utiliser dans le CSS de l'enfant : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-dark`, `--color-light`, `--color-border`. En découlent, sans réglage : le texte atténué (`--color-muted`), le fond de page (blanc) et le texte posé sur chaque couleur de la marque (`--color-primary-contrast`, `-secondary-`, `-tertiary-`, sombre ou blanc selon la couleur). La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
 
 ### Polices
 
@@ -234,7 +231,7 @@ Pour ajouter un élément sans copier de template, l'enfant se branche sur un ho
 | --- | --- |
 | `mrz_header_tools_start` | Header, avant le menu secondaire, la recherche, le compte et le panier |
 | `mrz_header_tools_end` | Header, après le panier, avant le bouton du menu mobile |
-| `mrz_mobile_menu_end` | En bas du menu mobile |
+| `mrz_mobile_menu_end` | En bas du menu mobile, aussi disponible comme emplacement de section globale (« Menu mobile : sous les liens ») |
 
 ```php
 add_action( 'mrz_header_tools_end', function () {
@@ -303,7 +300,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 1. **Version** : monter `Version:` dans `style.css` et `MRZ_THEME_VERSION` dans `functions.php`. Premier chiffre si un nom utilisé par les enfants casse (fonction `mrz_theme_*`, classe `.mrz-`, variable, hook, section `mrz_`), deuxième pour un ajout, troisième pour une correction.
 2. **CHANGELOG.md** : déplacer « Non publié » sous le numéro de version, avec la date. Les notes de la release reprennent ce bloc.
 3. **Build** : `npm run build`, commiter, pousser `main`.
-4. **Recette sur MRZ-Dev**, connecté en administrateur, en desktop et en mobile :
+4. **Recette sur MRZ-Dev** (bientôt `helloworld.local`, voir plus bas), connecté en administrateur, en desktop et en mobile :
    - la page privée **Recette du thème** (`/recette-theme/`) : titres, texte, listes, boutons sur chaque fond, ancre sous le header, formulaire, MRZ Display Post, MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
    - boutique, fiche produit, ajout au panier (la pastille se met à jour), panier, commande, compte ;
@@ -347,41 +344,39 @@ mrz-theme-exp/
 
 **Version publiée : 0.2.0 (16/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
-En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile, variables partagées (palette de cinq couleurs, texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
+**Site de test :** `https://helloworld.local/`, instance de développement dédiée aux recettes (Polylang compris). Encore vide (ni ACF, ni le thème) : à installer avant la première recette. Le dépôt du thème reste dans MRZ-Dev.
+
+En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile en quatre styles, couleurs de la charte dans le Customizer (trois couleurs de marque, sombre, clair, bordures), variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
 
 À faire, chacun comme un chantier à part, dans l'ordre conseillé :
 
-1. **Fonds de section** : ajouter « Couleur secondaire » au choix du fond (aujourd'hui : aucun, clair, sombre, primaire), pour couvrir toute la palette. Pas de sélecteur de couleur libre : il casserait la règle des cinq couleurs. Petit, dans le parent.
-2. **Polylang** : passer une recette sur un site bilingue. Le sélecteur de langue existe déjà. Il faut encore vérifier :
+1. **Polylang** : passer une recette sur `helloworld.local`, en bilingue. Le sélecteur de langue existe déjà. Il faut encore vérifier :
    - les sections globales traduites, et leurs conditions sur des pages d'une seule langue ;
    - les réglages du Customizer, communs à toutes les langues ;
    - les chaînes du thème.
    
    Corriger dans le parent ce qui ne tient pas.
-3. **Menus du header** : style des sous-menus déroulants, au clavier compris. Dans le parent.
-4. **Menu mobile** :
-   - **Emplacement de section globale :** ajouter « Menu mobile » aux emplacements, branché sur le hook `mrz_mobile_menu_end` qui existe déjà, pour y mettre coordonnées, réseaux sociaux ou bouton.
-   - **Style au choix dans le Customizer :** panneau à droite (l'actuel), panneau à gauche, plein écran, ou déroulé sous le header. Ces choix se font dans le parent, et non dans l'enfant, parce qu'ils serviront sur chaque site et que chacun touche au comportement (focus, défilement bloqué, animation).
-5. **WooCommerce** : avec les variables :
+2. **Menus du header** : style des sous-menus déroulants, au clavier compris. Dans le parent.
+3. **WooCommerce** : avec les variables :
    - la liste des produits, la fiche produit et sa galerie, y compris en responsive ;
    - les boutons « Ajouter au panier », « Valider la commande » et « Commander » ;
    - le panier, la commande, et le compte client avec son menu de navigation.
    
    Ajouter une option « Description et avis à la suite, sans onglets », par les hooks WooCommerce et sans copie de template : c'est une demande fréquente. Dans le parent.
-6. **Blog** : réglage de l'article seul, avec deux choix :
+4. **Blog** : réglage de l'article seul, avec deux choix :
    - image à la une au-dessus du titre (l'actuel) ;
    - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.
    
    Mise en forme de la page des articles et des catégories. Dans le parent.
-7. **JS, en modules chargés seulement sur les pages qui s'en servent** :
+5. **JS, en modules chargés seulement sur les pages qui s'en servent** :
    - **lightbox** : sur les liens vers une image et sur les galeries natives de WordPress (`[gallery]`), qui sont aussi à mettre en forme ;
    - **carrousel** : un comportement activé par une classe (`mrz-carousel`), que les sections sur mesure de l'enfant utilisent. Une bibliothèque légère et accessible, livrée dans le thème, sans CDN.
    
    Le parent fournit le comportement, l'enfant le balisage.
-8. **V2** :
+6. **V2** :
    - animations au défilement et parallax ;
    - **méga menu** : un élément du menu qui ouvre une section globale. Il réutilise ce qui existe déjà au lieu d'ajouter un constructeur de menus.
-9. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
-10. **Theme Check** : passer le plugin avant la 1.0.
+7. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
+8. **Theme Check** : passer le plugin avant la 1.0.
 
 Pas prévu dans le parent : d'autres variantes de header et les effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, menus, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.

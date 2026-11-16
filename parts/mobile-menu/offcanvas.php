@@ -1,6 +1,7 @@
 <?php
 /**
- * Menu mobile en panneau latéral.
+ * Menu mobile : un seul balisage pour les quatre styles du Customizer
+ * (panneau à droite, à gauche, plein écran, sous le header).
  *
  * @package mrz-theme-exp
  */
@@ -8,8 +9,10 @@
 defined( 'ABSPATH' ) || exit;
 
 $mrz_location = has_nav_menu( 'mobile' ) ? 'mobile' : 'primary';
+$mrz_style    = mrz_theme_option( 'mobile_menu_style' );
+$mrz_style    = array_key_exists( $mrz_style, mrz_theme_mobile_menu_styles() ) ? $mrz_style : 'right';
 ?>
-<div id="mrz-mobile-menu" class="mrz-offcanvas" hidden>
+<div id="mrz-mobile-menu" class="mrz-offcanvas mrz-offcanvas--<?php echo esc_attr( $mrz_style ); ?>" data-mrz-style="<?php echo esc_attr( $mrz_style ); ?>" hidden>
 	<div class="mrz-offcanvas__overlay" data-mrz-close></div>
 	<div class="mrz-offcanvas__panel" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Menu', 'mrz-theme-exp' ); ?>">
 		<button type="button" class="mrz-offcanvas__close" data-mrz-close>

@@ -14,6 +14,12 @@ defined( 'ABSPATH' ) || exit;
  */
 function mrz_theme_option_defaults() {
 	return array(
+		'color_primary'       => '#2a5bd7',
+		'color_secondary'     => '#1d1d1f',
+		'color_tertiary'      => '#e0a526',
+		'color_dark'          => '#20201f',
+		'color_light'         => '#f4f4f2',
+		'color_border'        => '#dededd',
 		'header_layout'       => 'classic',
 		'header_sticky'       => true,
 		'header_transparent'  => false,
@@ -24,6 +30,7 @@ function mrz_theme_option_defaults() {
 		'logo_height_mobile'  => 40,
 		'mobile_sticky'       => true,
 		'mobile_breakpoint'   => 1000,
+		'mobile_menu_style'   => 'right',
 		'transition_enabled'  => false,
 		'transition_effect'   => 'fade',
 		'transition_duration' => 300,
