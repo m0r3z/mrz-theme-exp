@@ -349,12 +349,39 @@ mrz-theme-exp/
 
 En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile, variables partagées (palette de cinq couleurs, texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
 
-À faire, chacun comme un chantier à part :
+À faire, chacun comme un chantier à part, dans l'ordre conseillé :
 
-- **WooCommerce** : mise en forme du panier, de la commande et du compte avec les variables ;
-- **Menus** : style des sous-menus déroulants du header ; variantes du menu mobile, dans l'enfant ;
-- **V2** : animations au défilement, parallax, lightbox, en modules chargés seulement quand ils servent ;
-- **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème ;
-- **Theme Check** : passer le plugin avant la 1.0.
+1. **Fonds de section** : ajouter « Couleur secondaire » au choix du fond (aujourd'hui : aucun, clair, sombre, primaire), pour couvrir toute la palette. Pas de sélecteur de couleur libre : il casserait la règle des cinq couleurs. Petit, dans le parent.
+2. **Polylang** : passer une recette sur un site bilingue. Le sélecteur de langue existe déjà. Il faut encore vérifier :
+   - les sections globales traduites, et leurs conditions sur des pages d'une seule langue ;
+   - les réglages du Customizer, communs à toutes les langues ;
+   - les chaînes du thème.
+   
+   Corriger dans le parent ce qui ne tient pas.
+3. **Menus du header** : style des sous-menus déroulants, au clavier compris. Dans le parent.
+4. **Menu mobile** :
+   - **Emplacement de section globale :** ajouter « Menu mobile » aux emplacements, branché sur le hook `mrz_mobile_menu_end` qui existe déjà, pour y mettre coordonnées, réseaux sociaux ou bouton.
+   - **Style au choix dans le Customizer :** panneau à droite (l'actuel), panneau à gauche, plein écran, ou déroulé sous le header. Ces choix se font dans le parent, et non dans l'enfant, parce qu'ils serviront sur chaque site et que chacun touche au comportement (focus, défilement bloqué, animation).
+5. **WooCommerce** : avec les variables :
+   - la liste des produits, la fiche produit et sa galerie, y compris en responsive ;
+   - les boutons « Ajouter au panier », « Valider la commande » et « Commander » ;
+   - le panier, la commande, et le compte client avec son menu de navigation.
+   
+   Ajouter une option « Description et avis à la suite, sans onglets », par les hooks WooCommerce et sans copie de template : c'est une demande fréquente. Dans le parent.
+6. **Blog** : réglage de l'article seul, avec deux choix :
+   - image à la une au-dessus du titre (l'actuel) ;
+   - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.
+   
+   Mise en forme de la page des articles et des catégories. Dans le parent.
+7. **JS, en modules chargés seulement sur les pages qui s'en servent** :
+   - **lightbox** : sur les liens vers une image et sur les galeries natives de WordPress (`[gallery]`), qui sont aussi à mettre en forme ;
+   - **carrousel** : un comportement activé par une classe (`mrz-carousel`), que les sections sur mesure de l'enfant utilisent. Une bibliothèque légère et accessible, livrée dans le thème, sans CDN.
+   
+   Le parent fournit le comportement, l'enfant le balisage.
+8. **V2** :
+   - animations au défilement et parallax ;
+   - **méga menu** : un élément du menu qui ouvre une section globale. Il réutilise ce qui existe déjà au lieu d'ajouter un constructeur de menus.
+9. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
+10. **Theme Check** : passer le plugin avant la 1.0.
 
-Pas prévu dans le parent : d'autres variantes de header ou de menu mobile, des effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.
+Pas prévu dans le parent : d'autres variantes de header et les effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, menus, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.
