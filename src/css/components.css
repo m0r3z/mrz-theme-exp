@@ -468,10 +468,10 @@
 		color: var(--color-primary-contrast);
 	}
 
-	.mrz-bg--primary .mrz-btn--primary {
-		background: var(--color-primary-contrast);
-		color: var(--color-primary);
-		border-color: var(--color-primary-contrast);
+	/* Sur la couleur principale, le bouton s'inverse : tous les boutons (thème, formulaires) suivent. */
+	.mrz-bg--primary {
+		--mrz-button-bg: var(--color-primary-contrast);
+		--mrz-button-color: var(--color-primary);
 	}
 
 	/* Voile sombre sur les images de fond, pour la lisibilité du texte. */
@@ -577,9 +577,9 @@
 		text-underline-offset: 0.2em;
 	}
 
-	.mrz-has-image .mrz-prose a,
-	.mrz-bg--dark .mrz-prose a,
-	.mrz-bg--primary .mrz-prose a {
+	.mrz-has-image .mrz-prose a:not(.mrz-btn),
+	.mrz-bg--dark .mrz-prose a:not(.mrz-btn),
+	.mrz-bg--primary .mrz-prose a:not(.mrz-btn) {
 		color: inherit;
 	}
 
