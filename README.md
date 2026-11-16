@@ -289,8 +289,8 @@ Prévu en V2, pas encore disponible :
 
 - conditions d'affichage des sections globales (types de contenus, pages, exclusions) : en V1, une section automatique s'affiche sur tout le site ;
 - animations au défilement, parallax, lightbox des galeries ;
-- headers split et minimal, menus mobiles plein écran et déroulant ;
 - réglages par page (header transparent, masquer le titre ou le footer) ;
 - styles Gravity Forms branchés sur les variables ;
-- effets de survol des boutons ;
 - traduction française de l'admin du thème (les libellés sont en anglais).
+
+Pas prévu dans le parent : d'autres variantes de header ou de menu mobile, des effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.

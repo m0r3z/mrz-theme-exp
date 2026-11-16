@@ -51,3 +51,7 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Conventions WordPress, échappement de toutes les sorties, `wp_enqueue_*` pour tous les assets.
 - JS vanilla, sans jQuery, dans `assets/js/` (pas de build JS).
 - Surcharges depuis l'enfant : mêmes chemins (`layouts/`, `parts/`).
+
+## Parent ou enfant
+- Parent : comportements, accessibilité, JS, intégrations (WooCommerce, Gravity Forms, Polylang, plugins MRZ). Ne pas y ajouter de variantes d'apparence (headers, menus mobiles, effets de survol).
+- Enfant : l'apparence du site, en CSS sur les classes `.mrz-` du parent. Copier un template dans l'enfant seulement en dernier recours : la copie ne reçoit plus les corrections du parent.
