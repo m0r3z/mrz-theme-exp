@@ -280,16 +280,15 @@ function mrz_theme_button( $link, $style = 'primary' ) {
 }
 
 /**
- * Copyright du footer avec les balises {year} et {site}.
+ * Remplace les balises {year} et {site} dans un texte (copyright d'un footer…).
  *
+ * @param string $text Texte.
  * @return string
  */
-function mrz_theme_copyright() {
-	$text = (string) mrz_theme_option( 'footer_copyright' );
-
+function mrz_theme_text_tags( $text ) {
 	return str_replace(
 		array( '{year}', '{site}' ),
 		array( wp_date( 'Y' ), get_bloginfo( 'name' ) ),
-		$text
+		(string) $text
 	);
 }

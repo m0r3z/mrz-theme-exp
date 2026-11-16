@@ -52,7 +52,12 @@ Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`. Form
 - Le point de rupture mobile est un réglage : les classes `.mrz-desktop-only` et `.mrz-mobile-only` sont pilotées par du CSS en ligne, pas par Tailwind.
 
 ## Sections globales
-CPT `mrz_section`. Meta `mrz_section_hook` (emplacement) et `mrz_section_priority`. Hooks du thème : `mrz_before_header`, `mrz_after_header`, `mrz_before_content`, `mrz_after_content`, `mrz_before_footer`, `mrz_after_footer`.
+CPT `mrz_section`. Meta `mrz_section_hook` (emplacement) et `mrz_section_priority`. Hooks du thème : `mrz_before_header`, `mrz_after_header`, `mrz_before_content`, `mrz_after_content`, `mrz_footer`, `mrz_before_footer`, `mrz_after_footer`.
+
+### Footer
+- Le parent n'a pas de footer par défaut (ni widgets, ni menu de footer, ni copyright). Le footer d'un site est une section globale à l'emplacement `mrz_footer`, que `footer.php` enveloppe dans `<footer class="mrz-footer">`.
+- Le modèle d'enfant fournit la section `mrzchild_footer` : logo, réseaux sociaux (icône image + lien + nom), lien de contact, colonnes (titre + liste de liens en WYSIWYG), ligne du bas (WYSIWYG, balises `{year}` et `{site}` via `mrz_theme_text_tags()`).
+- Les liens du footer sont écrits dans la section, pas dans des menus WordPress : une section globale se traduit en une fois avec Polylang (type « Global sections » à cocher dans ses réglages), au lieu d'un menu par emplacement et par langue.
 
 ## WooCommerce
 Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.php` + `assets/css/woocommerce.css`. Panier et commande : pages en shortcodes classiques `[woocommerce_cart]` et `[woocommerce_checkout]`, pas en blocs.

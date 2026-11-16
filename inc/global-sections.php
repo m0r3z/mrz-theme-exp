@@ -22,6 +22,7 @@ function mrz_theme_global_section_hooks() {
 		'mrz_after_header'                 => __( 'After the header', 'mrz-theme-exp' ),
 		'mrz_before_content'               => __( 'Before the content', 'mrz-theme-exp' ),
 		'mrz_after_content'                => __( 'After the content', 'mrz-theme-exp' ),
+		'mrz_footer'                       => __( 'Footer (the site footer)', 'mrz-theme-exp' ),
 		'mrz_before_footer'                => __( 'Before the footer', 'mrz-theme-exp' ),
 		'mrz_after_footer'                 => __( 'After the footer', 'mrz-theme-exp' ),
 		'woocommerce_before_shop_loop'     => __( 'WooCommerce: before the product list', 'mrz-theme-exp' ),

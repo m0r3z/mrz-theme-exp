@@ -12,9 +12,6 @@
 	height: var(--mrz-logo-height);
 }
 
-.woocommerce-page .mrz-logo--footer .mrz-logo__img {
-	height: var(--mrz-footer-logo-height);
-}
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,

@@ -292,17 +292,6 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'type'        => 'dropdown-pages',
 		)
 	);
-
-	mrz_theme_add_setting( $wp_customize, 'footer_copyright', 'wp_kses_post' );
-	$wp_customize->add_control(
-		'mrz_footer_copyright',
-		array(
-			'label'       => __( 'Footer copyright', 'mrz-theme-exp' ),
-			'description' => __( 'Available tags: {year}, {site}.', 'mrz-theme-exp' ),
-			'section'     => 'mrz_general',
-			'type'        => 'text',
-		)
-	);
 }
 add_action( 'customize_register', 'mrz_theme_customize_register' );
 

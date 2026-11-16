@@ -83,10 +83,6 @@
 		object-position: left center;
 	}
 
-	.mrz-logo--footer .mrz-logo__img {
-		height: var(--mrz-footer-logo-height);
-	}
-
 	.mrz-logo__text {
 		font-family: var(--font-title);
 		font-weight: var(--mrz-title-weight);
@@ -666,46 +662,5 @@
 
 	.mrz-comments .comment-form > p + p {
 		margin-top: 1rem;
-	}
-
-	/* Footer */
-	.mrz-footer {
-		background: var(--mrz-footer-bg);
-		color: var(--mrz-footer-color);
-	}
-
-	.mrz-footer a {
-		text-decoration: none;
-	}
-
-	.mrz-footer a:hover {
-		opacity: 0.75;
-	}
-
-	.mrz-widget__title {
-		margin-bottom: 1rem;
-		font-size: 1rem;
-	}
-
-	.mrz-widget ul {
-		list-style: none;
-		padding: 0;
-	}
-
-	.mrz-widget li + li {
-		margin-top: 0.5rem;
-	}
-
-	.mrz-footer__bottom {
-		border-top: 1px solid rgb(255 255 255 / 0.12);
-	}
-
-	.mrz-footer__menu {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1.5rem;
-		list-style: none;
-		margin: 0;
-		padding: 0;
 	}
 }

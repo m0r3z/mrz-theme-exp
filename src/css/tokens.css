@@ -51,13 +51,10 @@
 	--mrz-gutter: clamp(1.25rem, 4vw, 2.5rem);
 	--mrz-logo-height: 48px;
 	--mrz-logo-height-mobile: 40px;
-	--mrz-footer-logo-height: 48px;
 
 	--mrz-header-bg: var(--color-background);
 	--mrz-header-color: var(--color-text);
 	--mrz-header-border: var(--color-border);
-	--mrz-footer-bg: var(--color-dark);
-	--mrz-footer-color: #ffffff;
 
 	--mrz-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

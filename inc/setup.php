@@ -44,7 +44,6 @@ function mrz_theme_setup() {
 			'primary'   => __( 'Primary menu', 'mrz-theme-exp' ),
 			'secondary' => __( 'Secondary menu (header, right)', 'mrz-theme-exp' ),
 			'mobile'    => __( 'Mobile menu (falls back to primary)', 'mrz-theme-exp' ),
-			'footer'    => __( 'Footer menu', 'mrz-theme-exp' ),
 		)
 	);
 }
@@ -57,26 +56,6 @@ function mrz_theme_content_width() {
 	$GLOBALS['content_width'] = 768;
 }
 add_action( 'after_setup_theme', 'mrz_theme_content_width', 0 );
-
-/**
- * Trois colonnes de widgets dans le footer.
- */
-function mrz_theme_widgets_init() {
-	for ( $column = 1; $column <= 3; $column++ ) {
-		register_sidebar(
-			array(
-				/* translators: %d: footer column number. */
-				'name'          => sprintf( __( 'Footer column %d', 'mrz-theme-exp' ), $column ),
-				'id'            => 'footer-' . $column,
-				'before_widget' => '<div id="%1$s" class="mrz-widget %2$s">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="mrz-widget__title">',
-				'after_title'   => '</h2>',
-			)
-		);
-	}
-}
-add_action( 'widgets_init', 'mrz_theme_widgets_init' );
 
 /*
  * Éditeur classique partout : le contenu des pages passe par le constructeur ACF,

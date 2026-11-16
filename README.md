@@ -45,10 +45,9 @@ Aucun Node n'est nécessaire sur le serveur : le CSS compilé (`dist/main.css`) 
    | Primary menu | Menu du header (3 niveaux) |
    | Secondary menu | Menu secondaire à droite du header, avant la recherche, le compte et le panier (2 niveaux) ; repris sous le menu principal dans le menu mobile. Vide = rien ne s'affiche |
    | Mobile menu | Menu mobile ; s'il est vide, le menu principal est repris |
-   | Footer menu | Liens du bas de page (1 niveau) |
 
-4. **Apparence > Widgets** : jusqu'à trois colonnes dans le footer (Footer column 1 à 3), à côté du logo et du slogan.
-5. **MRZ Theme** (menu de l'admin) : logo, header, menu mobile, 404, copyright (voir [Menu MRZ Theme](#menu-mrz-theme)).
+4. **MRZ Theme** (menu de l'admin) : logo, header, menu mobile, 404 (voir [Menu MRZ Theme](#menu-mrz-theme)).
+5. **Le footer** : le thème n'en affiche aucun par défaut. Créer une section globale placée à l'emplacement « Footer » (voir [Sections globales](#sections-globales)). Sans elle, le site n'a pas de pied de page.
 6. Dans le `style.css` de l'enfant : couleurs et polices du client (voir [Retoucher un site à la main](#retoucher-un-site-à-la-main)).
 
 ## Construire une page
@@ -95,14 +94,15 @@ Une section du site = un layout dans `acf-json/group_mrzchild_builder.json` de l
 
 **MRZ Theme > Global sections.** Une section globale se construit comme une page (même constructeur) et s'affiche :
 
-- **automatiquement sur tout le site**, à l'emplacement choisi, ou
+- **automatiquement sur tout le site**, à l'emplacement choisi (c'est ainsi qu'on fait le footer), ou
 - **à la main**, avec la section « Global section » dans une page (choisir alors « Manual insertion only »).
 
 | Emplacement | Position |
 | --- | --- |
 | Before the header / After the header | Autour du header |
 | Before the content / After the content | Au début ou à la fin du contenu principal |
-| Before the footer / After the footer | Autour du footer |
+| Footer (the site footer) | **Le footer du site**, dans la balise `<footer>`. Le thème n'a pas d'autre footer |
+| Before the footer / After the footer | Avant ou après le footer |
 | WooCommerce: before the product list | Au-dessus de la liste des produits |
 | WooCommerce: after a product | Sous la fiche produit |
 
@@ -115,7 +115,7 @@ Le menu **MRZ Theme** de l'admin rassemble le thème :
 - **Theme options** ouvre le Customizer natif directement sur le panneau MRZ Theme, avec l'aperçu en direct ;
 - **Global sections** liste les [sections globales](#sections-globales).
 
-Restent à leur place native : les menus et les widgets (**Apparence**), le titre, le slogan et l'icône du site (**Personnaliser > Identité du site**). Ce qui touche à l'identité visuelle (couleurs, polices, rayons) n'est pas dans le Customizer : c'est dans le CSS de l'enfant.
+Restent à leur place native : les menus (**Apparence**), le titre, le slogan et l'icône du site (**Personnaliser > Identité du site**). Ce qui touche à l'identité visuelle (couleurs, polices, rayons) n'est pas dans le Customizer : c'est dans le CSS de l'enfant.
 
 Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 
@@ -135,7 +135,6 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Effet : fondu ou glissement ; durée (ms) | fondu, 300 |
 | MRZ Theme > General | Largeur du contenu (px) | 1280 |
 | | Page 404 : page affichée pour une URL inexistante, avec un vrai statut 404 | page par défaut du thème |
-| | Copyright du footer, balises `{year}` et `{site}` | `© {year} {site}` |
 
 ## Retoucher un site à la main
 
@@ -169,8 +168,6 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 | `--mrz-h1`, `--mrz-h2`, `--mrz-h3` | Tailles des titres | valeurs fluides |
 | `--mrz-body-size`, `--mrz-body-line-height` | Taille et interligne du texte | `1.0625rem`, `1.6` |
 | `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` | Header | fond, texte, bordure du site |
-| `--mrz-footer-bg`, `--mrz-footer-color` | Footer | `--color-dark`, blanc |
-| `--mrz-footer-logo-height` | Hauteur du logo du footer | `48px` |
 
 La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
 
@@ -183,8 +180,8 @@ Les polices sont auto-hébergées (performance, RGPD) : déposer les fichiers `w
 Écrire sous les variables, avec les classes `.mrz-` du thème :
 
 ```css
-.mrz-footer .mrz-logo__img {
-	filter: brightness(0) invert(1);
+.mrz-header .mrz-menu a {
+	text-transform: uppercase;
 }
 ```
 

@@ -29,7 +29,6 @@ function mrz_theme_option_defaults() {
 		'transition_duration' => 300,
 		'container_width'     => 1280,
 		'page_404'            => 0,
-		'footer_copyright'    => '© {year} {site}',
 	);
 }
 
