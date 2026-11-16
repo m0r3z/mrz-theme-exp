@@ -98,7 +98,6 @@ function mrz_theme_customize_register( $wp_customize ) {
 	$logo_sizes = array(
 		'logo_height'        => __( 'Logo height on desktop (px)', 'mrz-theme-exp' ),
 		'logo_height_mobile' => __( 'Logo height on mobile (px)', 'mrz-theme-exp' ),
-		'footer_logo_height' => __( 'Footer logo height (px)', 'mrz-theme-exp' ),
 	);
 	foreach ( $logo_sizes as $name => $label ) {
 		mrz_theme_add_setting( $wp_customize, $name, 'absint' );
@@ -315,7 +314,6 @@ function mrz_theme_customizer_css() {
 	$css  = ':root{';
 	$css .= '--mrz-logo-height:' . absint( mrz_theme_option( 'logo_height' ) ) . 'px;';
 	$css .= '--mrz-logo-height-mobile:' . absint( mrz_theme_option( 'logo_height_mobile' ) ) . 'px;';
-	$css .= '--mrz-footer-logo-height:' . absint( mrz_theme_option( 'footer_logo_height' ) ) . 'px;';
 	$css .= '--mrz-container:' . absint( mrz_theme_option( 'container_width' ) ) . 'px;';
 	$css .= '}';
 

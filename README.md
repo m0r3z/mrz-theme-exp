@@ -119,7 +119,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | --- | --- | --- |
 | MRZ Theme > Header | Logo (le logo natif de WordPress, déplacé ici) | |
 | | Logo du header transparent : affiché avant le défilement, remplacé par le logo principal ensuite | aucun |
-| | Hauteur du logo : desktop, mobile, footer (px) | 48, 40, 48 |
+| | Hauteur du logo : desktop, mobile (px) | 48, 40 |
 | | Disposition : classique (logo à gauche, menu à droite) ou centrée (logo au-dessus, menu dessous) | classique |
 | | Header sticky | oui |
 | | Header transparent quand applicable (pages qui commencent par un Hero) | non |
@@ -164,8 +164,9 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 | `--mrz-body-size`, `--mrz-body-line-height` | Taille et interligne du texte | `1.0625rem`, `1.6` |
 | `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` | Header | fond, texte, bordure du site |
 | `--mrz-footer-bg`, `--mrz-footer-color` | Footer | `--color-dark`, blanc |
+| `--mrz-footer-logo-height` | Hauteur du logo du footer | `48px` |
 
-La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur des logos se règlent dans MRZ Theme, pas en CSS.
+La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
 
 ### Polices
 

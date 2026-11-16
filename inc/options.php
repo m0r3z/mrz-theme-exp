@@ -20,7 +20,6 @@ function mrz_theme_option_defaults() {
 		'logo_transparent'    => 0,
 		'logo_height'         => 48,
 		'logo_height_mobile'  => 40,
-		'footer_logo_height'  => 48,
 		'mobile_sticky'       => true,
 		'mobile_breakpoint'   => 1000,
 		'transition_enabled'  => false,
