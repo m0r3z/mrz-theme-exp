@@ -152,6 +152,17 @@ function mrz_theme_customize_register( $wp_customize ) {
 		)
 	);
 
+	mrz_theme_add_setting( $wp_customize, 'header_account', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_header_account',
+		array(
+			'label'       => __( 'Account link', 'mrz-theme-exp' ),
+			'description' => __( 'Icon linking to the WooCommerce "My account" page, next to the cart. Requires WooCommerce.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_header',
+			'type'        => 'checkbox',
+		)
+	);
+
 	/* Menu mobile. */
 	$wp_customize->add_section(
 		'mrz_mobile',

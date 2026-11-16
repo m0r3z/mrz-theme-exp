@@ -123,6 +123,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Disposition : classique (logo à gauche, menu à droite) ou centrée (logo au-dessus, menu dessous) | classique |
 | | Header sticky | oui |
 | | Header transparent quand applicable (pages qui commencent par un Hero) | non |
+| | Lien vers le compte : icône vers la page « Mon compte » de WooCommerce, à côté du panier | non |
 | MRZ Theme > Mobile header | Header sticky sur mobile | oui |
 | | Point de rupture mobile (px) : à augmenter si le menu a beaucoup d'entrées | 1000 |
 | MRZ Theme > Page transitions | Transitions animées entre les pages, sans JavaScript ; désactivées pour les visiteurs qui limitent les animations | non |
@@ -200,12 +201,16 @@ Copier le fichier du parent dans l'enfant, au même chemin, puis le modifier :
 
 Une surcharge ne reçoit plus les corrections du parent : n'en faire qu'en dernier recours.
 
+### Changer une icône
+
+Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier), `account.svg` (compte), `search.svg`. Pour en changer une, déposer un SVG du même nom dans `assets/icons/` de l'enfant : il est pris à la place, sans toucher au code. Le SVG prend la couleur du texte s'il utilise `fill="currentColor"` ; sa taille se règle en CSS sur `.mrz-icon`.
+
 ## Blog, CPT et plugins
 
 - **Blog et archives** : grille de cartes avec image, date et catégories, pagination, titres d'archive sans préfixe (« Actualités » plutôt que « Catégorie : Actualités »).
 - **Article seul** : image à la une, contenu, navigation entre articles, commentaires.
 - **CPT** : affichés comme les articles. Pour un rendu propre à un CPT, créer `parts/content/single-{post_type}.php` (et `content-{post_type}.php` pour sa carte) dans l'enfant.
-- **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème et ne se chargent que sur les pages WooCommerce. Icône du panier dans le header, avec le nombre d'articles. Les pages Panier et Commande utilisent les shortcodes `[woocommerce_cart]` et `[woocommerce_checkout]`, pas les blocs.
+- **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème et ne se chargent que sur les pages WooCommerce. Icône du panier dans le header, avec le nombre d'articles, et icône du compte en option (MRZ Theme > Header). Les pages Panier et Commande utilisent les shortcodes `[woocommerce_cart]` et `[woocommerce_checkout]`, pas les blocs.
 - **Polylang** : sélecteur de langue dans le header et le menu mobile, dès que Polylang est actif.
 - **Gravity Forms** : layout Formulaire.
 - **MRZ Display Post** et **MRZ Maps** : layouts Liste de posts et Carte.
@@ -279,7 +284,7 @@ mrz-theme-exp/
 ├── parts/               header/, mobile-menu/, content/
 ├── src/css/             tokens.css (variables), base.css, components.css, main.css (entrée)
 ├── dist/main.css        CSS compilé, commité
-├── assets/              js/main.js, css/woocommerce.css
+├── assets/              js/main.js, css/woocommerce.css, icons/ (SVG du header)
 ├── lib/                 Plugin Update Checker (mises à jour par GitHub)
 └── AGENTS.md            règles pour l'IA
 ```

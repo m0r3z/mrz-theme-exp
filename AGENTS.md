@@ -50,6 +50,7 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Préfixe `mrz_theme_` (fonctions), `mrz_` (theme_mods, CSS), textdomain `mrz-theme-exp`, chaînes source en anglais.
 - Conventions WordPress, échappement de toutes les sorties, `wp_enqueue_*` pour tous les assets.
 - JS vanilla, sans jQuery, dans `assets/js/` (pas de build JS).
+- Icônes SVG dans `assets/icons/`, affichées avec `mrz_theme_icon( 'nom' )` (en ligne, `fill="currentColor"`). L'enfant remplace une icône par un fichier du même nom dans son `assets/icons/`.
 - Surcharges depuis l'enfant : mêmes chemins (`layouts/`, `parts/`).
 
 ## Parent ou enfant

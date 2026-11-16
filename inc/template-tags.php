@@ -80,6 +80,7 @@ function mrz_theme_primary_nav( $extra_class = '' ) {
 function mrz_theme_header_tools() {
 	echo '<div class="mrz-header__tools">';
 	mrz_theme_language_switcher( 'mrz-desktop-only' );
+	mrz_theme_account_link();
 	mrz_theme_cart_link();
 	?>
 	<button type="button" class="mrz-burger mrz-mobile-only" data-mrz-menu-toggle aria-controls="mrz-mobile-menu" aria-expanded="false">
@@ -114,6 +115,41 @@ function mrz_theme_language_switcher( $extra_class = '' ) {
 }
 
 /**
+ * Affiche une icône SVG de assets/icons/, en ligne pour hériter de la couleur du texte.
+ *
+ * get_theme_file_path() cherche d'abord dans le thème enfant : pour changer une
+ * icône sur un site, déposer un fichier du même nom dans assets/icons/ de l'enfant.
+ *
+ * @param string $name Nom du fichier sans extension (cart, account, search).
+ */
+function mrz_theme_icon( $name ) {
+	static $cache = array();
+
+	if ( ! isset( $cache[ $name ] ) ) {
+		$file           = get_theme_file_path( 'assets/icons/' . sanitize_file_name( $name ) . '.svg' );
+		$svg            = is_readable( $file ) ? (string) file_get_contents( $file ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- fichier local du thème.
+		$cache[ $name ] = preg_replace( '/<svg\b/', '<svg class="mrz-icon" aria-hidden="true" focusable="false"', $svg, 1 );
+	}
+
+	echo $cache[ $name ]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG fourni par le thème.
+}
+
+/**
+ * Lien vers le compte client WooCommerce, si l'option est cochée.
+ */
+function mrz_theme_account_link() {
+	if ( ! mrz_theme_option( 'header_account' ) || ! function_exists( 'wc_get_page_permalink' ) ) {
+		return;
+	}
+	?>
+	<a class="mrz-account" href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>">
+		<?php mrz_theme_icon( 'account' ); ?>
+		<span class="screen-reader-text"><?php esc_html_e( 'My account', 'mrz-theme-exp' ); ?></span>
+	</a>
+	<?php
+}
+
+/**
  * Lien vers le panier WooCommerce avec le nombre d'articles.
  */
 function mrz_theme_cart_link() {
@@ -122,7 +158,7 @@ function mrz_theme_cart_link() {
 	}
 	?>
 	<a class="mrz-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
-		<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 7h12l-1 13H7L6 7Zm3 0V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+		<?php mrz_theme_icon( 'cart' ); ?>
 		<span class="screen-reader-text"><?php esc_html_e( 'Cart', 'mrz-theme-exp' ); ?></span>
 		<?php echo mrz_theme_cart_count(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML échappé dans la fonction. ?>
 	</a>

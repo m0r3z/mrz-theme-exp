@@ -196,9 +196,16 @@
 		cursor: pointer;
 	}
 
+	.mrz-icon {
+		width: 1.375rem;
+		height: 1.375rem;
+	}
+
+	.mrz-account,
 	.mrz-cart {
 		position: relative;
 		display: inline-flex;
+		color: inherit;
 		text-decoration: none;
 	}
 
