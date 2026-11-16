@@ -43,6 +43,7 @@ Aucun Node n'est nécessaire sur le serveur : le CSS compilé (`dist/main.css`) 
    | Emplacement | Rôle |
    | --- | --- |
    | Primary menu | Menu du header (3 niveaux) |
+   | Secondary menu | Menu secondaire à droite du header, avant la recherche, le compte et le panier (2 niveaux) ; repris sous le menu principal dans le menu mobile. Vide = rien ne s'affiche |
    | Mobile menu | Menu mobile ; s'il est vide, le menu principal est repris |
    | Footer menu | Liens du bas de page (1 niveau) |
 

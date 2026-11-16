@@ -75,10 +75,32 @@ function mrz_theme_primary_nav( $extra_class = '' ) {
 }
 
 /**
- * Outils du header : langues, panier, bouton du menu mobile.
+ * Menu secondaire du header (à droite), s'il est affecté dans Apparence > Menus.
+ */
+function mrz_theme_secondary_nav() {
+	if ( ! has_nav_menu( 'secondary' ) ) {
+		return;
+	}
+
+	echo '<nav class="mrz-nav mrz-nav--secondary mrz-desktop-only" aria-label="' . esc_attr__( 'Secondary menu', 'mrz-theme-exp' ) . '">';
+	wp_nav_menu(
+		array(
+			'theme_location' => 'secondary',
+			'container'      => false,
+			'menu_class'     => 'mrz-menu mrz-menu--secondary',
+			'depth'          => 2,
+			'fallback_cb'    => false,
+		)
+	);
+	echo '</nav>';
+}
+
+/**
+ * Outils du header : menu secondaire, langues, recherche, compte, panier, bouton du menu mobile.
  */
 function mrz_theme_header_tools() {
 	echo '<div class="mrz-header__tools">';
+	mrz_theme_secondary_nav();
 	mrz_theme_language_switcher( 'mrz-desktop-only' );
 	mrz_theme_header_search();
 	mrz_theme_account_link();

@@ -31,6 +31,21 @@ $mrz_location = has_nav_menu( 'mobile' ) ? 'mobile' : 'primary';
 				?>
 			</nav>
 		<?php endif; ?>
+		<?php if ( has_nav_menu( 'secondary' ) ) : ?>
+			<nav aria-label="<?php esc_attr_e( 'Secondary menu', 'mrz-theme-exp' ); ?>">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'secondary',
+						'container'      => false,
+						'menu_class'     => 'mrz-mobile-nav mrz-mobile-nav--secondary',
+						'depth'          => 2,
+						'fallback_cb'    => false,
+					)
+				);
+				?>
+			</nav>
+		<?php endif; ?>
 		<?php mrz_theme_language_switcher( 'mrz-lang--mobile' ); ?>
 	</div>
 </div>

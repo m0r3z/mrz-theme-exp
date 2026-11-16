@@ -119,6 +119,17 @@
 		padding-bottom: 1rem;
 	}
 
+	.mrz-menu--secondary {
+		gap: 1.25rem;
+		font-size: 0.9375rem;
+	}
+
+	.mrz-mobile-nav--secondary {
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-border);
+	}
+
 	.mrz-nav--centered .mrz-menu {
 		justify-content: center;
 	}

@@ -41,9 +41,10 @@ function mrz_theme_setup() {
 
 	register_nav_menus(
 		array(
-			'primary' => __( 'Primary menu', 'mrz-theme-exp' ),
-			'mobile'  => __( 'Mobile menu (falls back to primary)', 'mrz-theme-exp' ),
-			'footer'  => __( 'Footer menu', 'mrz-theme-exp' ),
+			'primary'   => __( 'Primary menu', 'mrz-theme-exp' ),
+			'secondary' => __( 'Secondary menu (header, right)', 'mrz-theme-exp' ),
+			'mobile'    => __( 'Mobile menu (falls back to primary)', 'mrz-theme-exp' ),
+			'footer'    => __( 'Footer menu', 'mrz-theme-exp' ),
 		)
 	);
 }
