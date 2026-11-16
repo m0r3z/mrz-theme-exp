@@ -14,6 +14,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Menu d'admin « MRZ Theme » qui ouvre le Customizer et contient les sections globales ; logos dans la section Header.
 - Header : recherche, lien vers le compte (options), menu secondaire, icônes SVG remplaçables depuis l'enfant, variable `--mrz-header-padding`, hooks `mrz_header_tools_start`, `mrz_header_tools_end`, `mrz_mobile_menu_end`.
 - Variables partagées : boutons (`--mrz-button-*`), champs (`--mrz-field-*`, `--mrz-label-*`), titres h1 à h6, tailles de texte, menus (`--mrz-menu-*`).
+- Traduction française de l'admin du thème (`languages/fr_FR`).
 - Gravity Forms branché sur les variables (`assets/css/gravity-forms.css`).
 - Fichiers `css/*.css` de l'enfant chargés automatiquement après son `style.css`.
 - Mises à jour par les releases GitHub (Plugin Update Checker v6.0).

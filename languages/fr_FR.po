@@ -1,0 +1,490 @@
+# Copyright (C) 2026 Morez Al Bakouni
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: MRZ Theme Experience 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/m0r3z/mrz-theme-exp/issues\n"
+"Last-Translator: Morez\n"
+"Language-Team: Français\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-16T14:32:46+00:00\n"
+"PO-Revision-Date: 2026-11-16 15:40+0400\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: mrz-theme-exp\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "MRZ Theme Experience"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/m0r3z/mrz-theme-exp"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Thème classique ultra léger pour les sites de l'Agence Double A : éditeur classique, constructeur ACF Flexible Content, Tailwind CSS v4."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Morez Al Bakouni"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://doublea.io"
+msgstr ""
+
+#: 404.php:23
+msgid "Page not found"
+msgstr "Page introuvable"
+
+#: 404.php:24
+msgid "The page you are looking for does not exist or has moved."
+msgstr "La page que vous cherchez n'existe pas ou a été déplacée."
+
+#: 404.php:26
+msgid "Back to home"
+msgstr "Retour à l'accueil"
+
+#. translators: %d: number of comments.
+#: comments.php:19
+#, php-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d commentaire"
+msgstr[1] "%d commentaires"
+
+#: comments.php:37
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "Aller au contenu"
+
+#: inc/admin.php:28
+#: inc/admin.php:29
+#: inc/customizer.php:68
+#: inc/page-options.php:60
+msgid "MRZ Theme"
+msgstr "MRZ Thème"
+
+#: inc/admin.php:39
+#: inc/admin.php:40
+msgid "Theme options"
+msgstr "Options du thème"
+
+#: inc/assets.php:74
+msgid "Open submenu"
+msgstr "Ouvrir le sous-menu"
+
+#: inc/builder-sections.php:29
+msgid "Section settings"
+msgstr "Réglages de la section"
+
+#: inc/builder-sections.php:36
+msgid "Background"
+msgstr "Fond"
+
+#: inc/builder-sections.php:39
+#: inc/builder-sections.php:56
+msgid "None"
+msgstr "Aucun"
+
+#: inc/builder-sections.php:40
+msgid "Light"
+msgstr "Clair"
+
+#: inc/builder-sections.php:41
+msgid "Dark"
+msgstr "Sombre"
+
+#: inc/builder-sections.php:42
+msgid "Primary color"
+msgstr "Couleur principale"
+
+#: inc/builder-sections.php:50
+msgid "Spacing"
+msgstr "Espacement"
+
+#: inc/builder-sections.php:53
+msgid "Normal"
+msgstr "Normal"
+
+#: inc/builder-sections.php:54
+msgid "Compact"
+msgstr "Compact"
+
+#: inc/builder-sections.php:55
+msgid "Large"
+msgstr "Large"
+
+#: inc/builder-sections.php:64
+msgid "Width"
+msgstr "Largeur"
+
+#: inc/builder-sections.php:67
+msgid "Container"
+msgstr "Conteneur"
+
+#: inc/builder-sections.php:68
+msgid "Wide"
+msgstr "Large"
+
+#: inc/builder-sections.php:69
+msgid "Full width"
+msgstr "Pleine largeur"
+
+#: inc/builder-sections.php:77
+msgid "Anchor"
+msgstr "Ancre"
+
+#: inc/builder-sections.php:84
+msgid "Background image"
+msgstr "Image de fond"
+
+#: inc/builder-sections.php:105
+msgid "Section settings (to clone)"
+msgstr "Réglages de section (à cloner)"
+
+#: inc/builder-sections.php:124
+msgid "Free text"
+msgstr "Texte libre"
+
+#: inc/builder-sections.php:130
+msgid "Title"
+msgstr "Titre"
+
+#: inc/builder-sections.php:136
+msgid "Text"
+msgstr "Texte"
+
+#: inc/builder-sections.php:148
+msgid "Raw HTML"
+msgstr "HTML brut"
+
+#: inc/builder-sections.php:154
+msgid "HTML code"
+msgstr "Code HTML"
+
+#: inc/builder-sections.php:156
+msgid "Displayed as is, scripts included. Reserved for administrators."
+msgstr "Affiché tel quel, scripts compris. Réservé aux administrateurs."
+
+#: inc/builder-sections.php:165
+#: inc/builder-sections.php:171
+#: inc/global-sections.php:42
+msgid "Global section"
+msgstr "Section globale"
+
+#: inc/builder.php:23
+msgid "MRZ Theme Experience requires Advanced Custom Fields Pro. Without it, pages only display their classic content."
+msgstr "MRZ Theme Experience a besoin d'Advanced Custom Fields Pro. Sans lui, les pages n'affichent que leur contenu classique."
+
+#: inc/customizer.php:77
+#: inc/page-options.php:97
+msgid "Header"
+msgstr "Header"
+
+#: inc/customizer.php:89
+msgid "Logo for the transparent header"
+msgstr "Logo du header transparent"
+
+#: inc/customizer.php:90
+msgid "Shown before scrolling when the header is transparent. Replaced by the main logo on scroll."
+msgstr "Affiché avant le défilement quand le header est transparent. Remplacé par le logo principal au défilement."
+
+#: inc/customizer.php:99
+msgid "Logo height on desktop (px)"
+msgstr "Hauteur du logo sur ordinateur (px)"
+
+#: inc/customizer.php:100
+msgid "Logo height on mobile (px)"
+msgstr "Hauteur du logo sur mobile (px)"
+
+#: inc/customizer.php:124
+msgid "Header layout"
+msgstr "Disposition du header"
+
+#: inc/customizer.php:128
+msgid "Classic: logo left, menu right"
+msgstr "Classique : logo à gauche, menu à droite"
+
+#: inc/customizer.php:129
+msgid "Centered: logo above, menu below"
+msgstr "Centrée : logo au-dessus, menu en dessous"
+
+#: inc/customizer.php:138
+msgid "Sticky header"
+msgstr "Header fixe au défilement"
+
+#: inc/customizer.php:148
+msgid "Transparent header when applicable"
+msgstr "Header transparent quand c'est possible"
+
+#: inc/customizer.php:149
+msgid "The header is transparent over the page until the user scrolls, on pages that start with a hero section (a section whose name contains \"hero\")."
+msgstr "Le header est transparent par-dessus la page jusqu'au défilement, sur les pages qui commencent par une section hero (une section dont le nom contient « hero »)."
+
+#: inc/customizer.php:159
+#: inc/template-tags.php:183
+#: searchform.php:13
+#: searchform.php:15
+msgid "Search"
+msgstr "Recherche"
+
+#: inc/customizer.php:160
+msgid "Search icon in the header, opening the search form."
+msgstr "Icône de recherche dans le header, qui ouvre le formulaire de recherche."
+
+#: inc/customizer.php:170
+msgid "Account link"
+msgstr "Lien vers le compte"
+
+#: inc/customizer.php:171
+msgid "Icon linking to the WooCommerce \"My account\" page, next to the cart. Requires WooCommerce."
+msgstr "Icône vers la page « Mon compte » de WooCommerce, à côté du panier. Nécessite WooCommerce."
+
+#: inc/customizer.php:181
+msgid "Mobile header"
+msgstr "Header mobile"
+
+#: inc/customizer.php:190
+msgid "Sticky header on mobile"
+msgstr "Header fixe sur mobile"
+
+#: inc/customizer.php:200
+msgid "Mobile breakpoint (px)"
+msgstr "Point de rupture mobile (px)"
+
+#: inc/customizer.php:201
+msgid "Below this width, the menu collapses into the mobile menu. Raise it when the menu has many items."
+msgstr "Sous cette largeur, le menu passe en menu mobile. À augmenter quand le menu a beaucoup d'entrées."
+
+#: inc/customizer.php:216
+msgid "Page transitions"
+msgstr "Transitions de page"
+
+#: inc/customizer.php:218
+msgid "Uses the browser View Transitions API: no JavaScript. Browsers without support simply load the page normally."
+msgstr "Utilise la View Transitions API du navigateur, sans JavaScript. Les navigateurs qui ne la gèrent pas chargent simplement la page."
+
+#: inc/customizer.php:226
+msgid "Animated page transitions"
+msgstr "Transitions animées entre les pages"
+
+#: inc/customizer.php:236
+msgid "Transition effect"
+msgstr "Effet de transition"
+
+#: inc/customizer.php:240
+msgid "Fade"
+msgstr "Fondu"
+
+#: inc/customizer.php:241
+msgid "Slide up"
+msgstr "Glissement vers le haut"
+
+#: inc/customizer.php:250
+msgid "Duration (ms)"
+msgstr "Durée (ms)"
+
+#: inc/customizer.php:265
+msgid "General"
+msgstr "Général"
+
+#: inc/customizer.php:274
+msgid "Content width (px)"
+msgstr "Largeur du contenu (px)"
+
+#: inc/customizer.php:289
+msgid "404 page"
+msgstr "Page 404"
+
+#: inc/customizer.php:290
+msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
+msgstr "Page affichée quand une adresse n'existe pas. Le vrai statut 404 est conservé pour les moteurs de recherche."
+
+#: inc/global-sections.php:21
+msgid "Before the header"
+msgstr "Avant le header"
+
+#: inc/global-sections.php:22
+msgid "After the header"
+msgstr "Après le header"
+
+#: inc/global-sections.php:23
+msgid "Before the content"
+msgstr "Avant le contenu"
+
+#: inc/global-sections.php:24
+msgid "After the content"
+msgstr "Après le contenu"
+
+#: inc/global-sections.php:25
+msgid "Footer (the site footer)"
+msgstr "Footer (le pied de page du site)"
+
+#: inc/global-sections.php:26
+msgid "Before the footer"
+msgstr "Avant le footer"
+
+#: inc/global-sections.php:27
+msgid "After the footer"
+msgstr "Après le footer"
+
+#: inc/global-sections.php:28
+msgid "WooCommerce: before the product list"
+msgstr "WooCommerce : avant la liste des produits"
+
+#: inc/global-sections.php:29
+msgid "WooCommerce: after a product"
+msgstr "WooCommerce : après un produit"
+
+#: inc/global-sections.php:41
+#: inc/global-sections.php:45
+msgid "Global sections"
+msgstr "Sections globales"
+
+#: inc/global-sections.php:43
+msgid "Add a global section"
+msgstr "Ajouter une section globale"
+
+#: inc/global-sections.php:44
+msgid "Edit the global section"
+msgstr "Modifier la section globale"
+
+#: inc/global-sections.php:234
+#: inc/global-sections.php:298
+msgid "Manual insertion only"
+msgstr "Insertion manuelle seulement"
+
+#: inc/global-sections.php:250
+msgid "Where it shows"
+msgstr "Où elle s'affiche"
+
+#. translators: %s: list of content types or pages.
+#: inc/global-sections.php:287
+#, php-format
+msgid "only on %s"
+msgstr "seulement sur %s"
+
+#. translators: %s: list of content types or pages.
+#: inc/global-sections.php:290
+#, php-format
+msgid "everywhere except %s"
+msgstr "partout sauf sur %s"
+
+#: inc/global-sections.php:292
+msgid "whole site"
+msgstr "tout le site"
+
+#. translators: 1: location, 2: where it shows, 3: priority.
+#: inc/global-sections.php:296
+#, php-format
+msgid "%1$s, %2$s (priority %3$d)"
+msgstr "%1$s, %2$s (priorité %3$d)"
+
+#: inc/page-options.php:78
+msgid "Hide the title"
+msgstr "Masquer le titre"
+
+#: inc/page-options.php:79
+msgid "Hide the header"
+msgstr "Masquer le header"
+
+#: inc/page-options.php:80
+msgid "Hide the footer"
+msgstr "Masquer le footer"
+
+#: inc/page-options.php:93
+msgid "Default (theme setting)"
+msgstr "Par défaut (réglage du thème)"
+
+#: inc/page-options.php:94
+msgid "Transparent"
+msgstr "Transparent"
+
+#: inc/page-options.php:95
+msgid "Not transparent"
+msgstr "Non transparent"
+
+#: inc/setup.php:44
+msgid "Primary menu"
+msgstr "Menu principal"
+
+#: inc/setup.php:45
+msgid "Secondary menu (header, right)"
+msgstr "Menu secondaire (header, à droite)"
+
+#: inc/setup.php:46
+msgid "Mobile menu (falls back to primary)"
+msgstr "Menu mobile (à défaut, le menu principal)"
+
+#: inc/template-tags.php:64
+msgid "Main menu"
+msgstr "Menu principal"
+
+#: inc/template-tags.php:85
+#: parts/mobile-menu/offcanvas.php:35
+msgid "Secondary menu"
+msgstr "Menu secondaire"
+
+#: inc/template-tags.php:121
+msgid "Open menu"
+msgstr "Ouvrir le menu"
+
+#: inc/template-tags.php:200
+msgid "My account"
+msgstr "Mon compte"
+
+#: inc/template-tags.php:215
+msgid "Cart"
+msgstr "Panier"
+
+#. translators: %s: search query.
+#: inc/template-tags.php:261
+#, php-format
+msgid "Search results for \"%s\""
+msgstr "Résultats de recherche pour « %s »"
+
+#: inc/template-tags.php:267
+msgid "Latest articles"
+msgstr "Derniers articles"
+
+#: index.php:33
+#: parts/content/single.php:37
+msgid "Previous"
+msgstr "Précédent"
+
+#: index.php:34
+#: parts/content/single.php:38
+msgid "Next"
+msgstr "Suivant"
+
+#: parts/content/none.php:11
+msgid "Nothing was found here."
+msgstr "Aucun résultat ici."
+
+#: parts/mobile-menu/offcanvas.php:14
+msgid "Menu"
+msgstr "Menu"
+
+#: parts/mobile-menu/offcanvas.php:16
+msgid "Close menu"
+msgstr "Fermer le menu"
+
+#: parts/mobile-menu/offcanvas.php:20
+msgid "Mobile menu"
+msgstr "Menu mobile"
+
+#: searchform.php:14
+msgid "Search…"
+msgstr "Rechercher…"

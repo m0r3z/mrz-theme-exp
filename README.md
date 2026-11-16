@@ -293,6 +293,7 @@ npm run build
 - **Recompiler avant chaque commit** qui touche un template PHP ou `src/css/` : Tailwind ne garde que les classes trouvées dans les fichiers. `dist/main.css` est commité.
 - Une classe Tailwind s'écrit en entier dans le code (pas `'md:grid-cols-' . $n`), sinon Tailwind ne la voit pas.
 - Le JS (`assets/js/`) et `assets/css/woocommerce.css` ne passent par aucun build.
+- **Traductions** : chaînes source en anglais, traduction française dans `languages/fr_FR.po` et `fr_FR.mo`. Après un ajout ou une modification de chaîne : régénérer le `.pot` (`wp i18n make-pot . languages/mrz-theme-exp.pot --exclude=node_modules,lib,dist,src --skip-js`), compléter `fr_FR.po`, puis `wp i18n make-mo languages/fr_FR.po languages/`.
 - **Champs ACF** : sur le site de développement, définir `define( 'MRZ_THEME_DEV', true );` dans `wp-config.php`. Les modifications des groupes du parent (`group_mrz_*`) s'enregistrent alors dans `acf-json/` du thème. Sans cette constante (sites clients), elles ne s'écrivent jamais dans le parent.
 - **Version** : `Version:` dans `style.css` et `MRZ_THEME_VERSION` dans `functions.php`, toujours identiques.
 ### Publier une mise à jour
@@ -346,6 +347,5 @@ Prévu en V2, pas encore disponible :
 
 - animations au défilement, parallax, lightbox ;
 - styles Gravity Forms branchés sur les variables ;
-- traduction française de l'admin du thème (les libellés sont en anglais).
 
 Pas prévu dans le parent : d'autres variantes de header ou de menu mobile, des effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.
