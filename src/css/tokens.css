@@ -11,14 +11,15 @@
  */
 @theme static {
 	/*
-	 * Palette : six couleurs, réglées dans le Customizer (MRZ Theme > Couleurs),
+	 * Palette : sept couleurs, réglées dans le Customizer (MRZ Theme > Couleurs),
 	 * qui réécrit ces valeurs en ligne. Ne pas les régler dans le thème enfant.
-	 * primary, secondary, tertiary : couleurs de la marque.
+	 * primary, secondary, tertiary, quaternary : couleurs de la marque.
 	 * dark : texte et fonds sombres. light : fonds clairs. border : traits et bordures.
 	 */
 	--color-primary: #2a5bd7;
 	--color-secondary: #1d1d1f;
 	--color-tertiary: #e0a526;
+	--color-quaternary: #8a5cc2;
 	--color-dark: #20201f;
 	--color-light: #f4f4f2;
 	--color-border: #dededd;
@@ -31,6 +32,7 @@
 	--color-primary-contrast: #ffffff;
 	--color-secondary-contrast: #ffffff;
 	--color-tertiary-contrast: var(--color-dark);
+	--color-quaternary-contrast: #ffffff;
 
 	/* Polices : les @font-face (woff2 auto-hébergées) se déclarent dans le thème enfant. */
 	--font-title: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -93,8 +95,13 @@
 	--mrz-menu-text-transform: none;
 	--mrz-menu-letter-spacing: normal;
 
-	/* Icônes en image (SVG, PNG) : filtre pour les passer en blanc sur fond sombre. */
-	--mrz-icon-filter-light: brightness(0) invert(1);
+	/*
+	 * Icônes en image (SVG ou PNG noirs) : filter: var(--mrz-icon-filter).
+	 * Filtres SVG imprimés par le thème, un par couleur de la palette :
+	 * url(#mrz-icon-primary), -secondary, -tertiary, -quaternary, -dark, -light, -border, -white.
+	 */
+	--mrz-icon-filter: url(#mrz-icon-primary);
+	--mrz-icon-filter-light: url(#mrz-icon-white);
 
 	/* Valeurs par défaut ; le Customizer les réécrit en ligne. */
 	--mrz-container: 1280px;

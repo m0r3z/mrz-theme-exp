@@ -80,7 +80,7 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 
 | Réglage | Choix |
 | --- | --- |
-| Fond | Aucun, clair, sombre, couleur principale, secondaire ou tertiaire, ou image de fond |
+| Fond | Aucun, clair, sombre, l'une des quatre couleurs de la marque, ou image de fond |
 | Espacement | Normal, compact, large, aucun |
 | Largeur | Conteneur, large, pleine largeur |
 | Ancre | Identifiant pour un lien `#ancre` dans un menu |
@@ -144,7 +144,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 
 | Section | Réglage | Défaut |
 | --- | --- | --- |
-| MRZ Theme > Colors | Couleurs principale, secondaire et tertiaire de la marque ; sombre (texte, fonds sombres) ; clair (fonds clairs) ; bordures et traits | `#2a5bd7`, `#1d1d1f`, `#e0a526`, `#20201f`, `#f4f4f2`, `#dededd` |
+| MRZ Theme > Colors | Couleurs principale, secondaire, tertiaire et quaternaire de la marque ; sombre (texte, fonds sombres) ; clair (fonds clairs) ; bordures et traits | `#2a5bd7`, `#1d1d1f`, `#e0a526`, `#8a5cc2`, `#20201f`, `#f4f4f2`, `#dededd` |
 | MRZ Theme > Header | Logo (le logo natif de WordPress, déplacé ici) | |
 | | Logo du header transparent : affiché avant le défilement, remplacé par le logo principal ensuite | aucun |
 | | Hauteur du logo : desktop, mobile (px) | 48, 40 |
@@ -167,7 +167,7 @@ Toutes les retouches se font dans le **thème enfant**, en CSS classique : dans 
 
 ### Couleurs, polices, formes
 
-Les **couleurs** se règlent dans **MRZ Theme > Couleurs**, jamais dans le CSS : une charte de une à trois couleurs de marque, plus sombre, clair et bordures.
+Les **couleurs** se règlent dans **MRZ Theme > Couleurs**, jamais dans le CSS : une charte de une à quatre couleurs de marque, plus sombre, clair et bordures.
 
 Le reste se règle en redéfinissant les variables dans le `:root` du `style.css` de l'enfant :
 
@@ -190,8 +190,9 @@ Le reste se règle en redéfinissant les variables dans le `:root` du `style.css
 | `--mrz-gutter` | Marges latérales du contenu, du header et des sections | de 20 à 40 px selon l'écran |
 | `--mrz-header-padding` | Espace en haut et en bas du header | `1rem` |
 | `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` | Header | fond, texte, bordure du site |
+| `--mrz-icon-filter`, `--mrz-icon-filter-light` | Couleur des icônes noires en image (SVG, PNG) : `filter: var(--mrz-icon-filter)`. Valeurs possibles : `url(#mrz-icon-primary)`, `-secondary`, `-tertiary`, `-quaternary`, `-dark`, `-light`, `-border`, `-white` | principale, blanc |
 
-Les couleurs du Customizer s'écrivent en variables, à utiliser dans le CSS de l'enfant : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-dark`, `--color-light`, `--color-border`. En découlent, sans réglage : le texte atténué (`--color-muted`), le fond de page (blanc) et le texte posé sur chaque couleur de la marque (`--color-primary-contrast`, `-secondary-`, `-tertiary-`, sombre ou blanc selon la couleur). La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
+Les couleurs du Customizer s'écrivent en variables, à utiliser dans le CSS de l'enfant : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-quaternary`, `--color-dark`, `--color-light`, `--color-border`. En découlent, sans réglage : le texte atténué (`--color-muted`), le fond de page (blanc) et le texte posé sur chaque couleur de la marque (`--color-primary-contrast`, `-secondary-`, `-tertiary-`, `-quaternary-`, sombre ou blanc selon la couleur). La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
 
 ### Polices
 
@@ -344,9 +345,11 @@ mrz-theme-exp/
 
 **Version publiée : 0.2.0 (16/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
+**Aucun site en production** : le thème n'est installé que sur MRZ-Dev, et bientôt sur HelloWorld. Tant que c'est le cas, un changement cassant ne demande aucune migration.
+
 **Site de test :** `https://helloworld.local/`, instance de développement dédiée aux recettes (Polylang compris). Encore vide (ni ACF, ni le thème) : à installer avant la première recette. Le dépôt du thème reste dans MRZ-Dev.
 
-En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile en quatre styles, couleurs de la charte dans le Customizer (trois couleurs de marque, sombre, clair, bordures), variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
+En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile en quatre styles, couleurs de la charte dans le Customizer (quatre couleurs de marque, sombre, clair, bordures) et filtres d'icônes qui les suivent, variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
 
 À faire, chacun comme un chantier à part, dans l'ordre conseillé :
 

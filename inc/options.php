@@ -17,6 +17,7 @@ function mrz_theme_option_defaults() {
 		'color_primary'       => '#2a5bd7',
 		'color_secondary'     => '#1d1d1f',
 		'color_tertiary'      => '#e0a526',
+		'color_quaternary'    => '#8a5cc2',
 		'color_dark'          => '#20201f',
 		'color_light'         => '#f4f4f2',
 		'color_border'        => '#dededd',

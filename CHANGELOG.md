@@ -5,13 +5,14 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
-- Couleurs dans le Customizer (MRZ Theme > Couleurs) : principale, secondaire, **tertiaire** (nouvelle), sombre, clair, bordures. Le texte posé sur une couleur de la marque (`--color-*-contrast`) est calculé : sombre ou blanc selon la couleur.
-- Fonds de section « Couleur secondaire » et « Couleur tertiaire ».
+- Couleurs dans le Customizer (MRZ Theme > Couleurs) : principale, secondaire, **tertiaire** et **quaternaire** (nouvelles), sombre, clair, bordures. Le texte posé sur une couleur de la marque (`--color-*-contrast`) est calculé : sombre ou blanc selon la couleur.
+- Fonds de section « Couleur secondaire », « Couleur tertiaire » et « Couleur quaternaire ».
+- Filtres d'icônes : un filtre SVG par couleur de la palette (`url(#mrz-icon-primary)`…, plus `white`), qui colore exactement une icône noire et suit le Customizer. `--mrz-icon-filter` (principale) et `--mrz-icon-filter-light` (blanc).
 - Menu mobile : quatre styles au choix (panneau à droite, à gauche, plein écran, déroulé sous le header).
 - Emplacement de section globale « Menu mobile : sous les liens » (`mrz_mobile_menu_end`).
 
 ### Modifié
-- Les couleurs ne se règlent plus dans le `style.css` de l'enfant : une valeur `--color-*` laissée dans l'enfant passerait devant le Customizer. À la mise à jour d'un site, reporter ses couleurs dans MRZ Theme > Couleurs puis les retirer de l'enfant.
+- Les couleurs ne se règlent plus dans le `style.css` de l'enfant : une valeur `--color-*` laissée dans l'enfant passerait devant le Customizer.
 - Une page n'affiche plus jamais son titre (son contenu porte le `<h1>`) ; un article affiche toujours le sien. Réglages « Masquer le titre » et « Masquer le footer » retirés de la meta box : le footer se retire d'une page par les conditions de sa section globale.
 
 ## [0.2.0] - 2026-11-16

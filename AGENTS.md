@@ -62,7 +62,7 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 ### Variables (parent : `src/css/tokens.css`, valeurs du site : `style.css` de l'enfant)
 | Famille | Variables |
 | --- | --- |
-| Couleurs | **Six**, réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary` (marque), `--color-dark` (texte, fonds sombres), `--color-light` (fonds clairs), `--color-border`. Dérivées, à utiliser mais pas à régler : `--color-text` (= dark), `--color-muted` (dark atténué), `--color-background` (blanc), `--color-primary-contrast`, `--color-secondary-contrast`, `--color-tertiary-contrast` (texte sur la couleur, sombre ou blanc, calculé). Ne jamais ajouter de couleur |
+| Couleurs | **Sept**, réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-quaternary` (marque), `--color-dark` (texte, fonds sombres), `--color-light` (fonds clairs), `--color-border`. Dérivées, à utiliser mais pas à régler : `--color-text` (= dark), `--color-muted` (dark atténué), `--color-background` (blanc), `--color-primary-contrast`, `--color-secondary-contrast`, `--color-tertiary-contrast`, `--color-quaternary-contrast` (texte sur la couleur, sombre ou blanc, calculé). Ne jamais ajouter de couleur |
 | Polices | `--font-title`, `--font-body` |
 | Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
 | Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
@@ -70,7 +70,7 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 | Champs | `--mrz-field-font-size`, `--mrz-field-padding`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
 | Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` |
 | Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base`, `--mrz-header-padding` |
-| Icônes en image | `--mrz-icon-filter-light` (passe une icône SVG ou PNG en blanc) |
+| Icônes en image | Les SVG fournis sont noirs. `filter: var(--mrz-icon-filter)` (couleur principale par défaut) ou `var(--mrz-icon-filter-light)` (blanc par défaut). Pour une autre couleur : `url(#mrz-icon-<couleur>)` (primary, secondary, tertiary, quaternary, dark, light, border, white), filtres SVG imprimés par le thème qui suivent le Customizer. Jamais de chaîne `invert() sepia() hue-rotate()…` en dur : elle ne suit pas un changement de couleur |
 
 Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms.css`) et de WooCommerce (`assets/css/woocommerce.css`) lisent tous ces variables.
 

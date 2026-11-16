@@ -65,12 +65,48 @@ function mrz_theme_color_labels() {
 	return array(
 		'primary'   => __( 'Primary color', 'mrz-theme-exp' ),
 		'secondary' => __( 'Secondary color', 'mrz-theme-exp' ),
-		'tertiary'  => __( 'Tertiary color', 'mrz-theme-exp' ),
+		'tertiary'   => __( 'Tertiary color', 'mrz-theme-exp' ),
+		'quaternary' => __( 'Quaternary color', 'mrz-theme-exp' ),
 		'dark'      => __( 'Dark: text and dark backgrounds', 'mrz-theme-exp' ),
 		'light'     => __( 'Light: light backgrounds', 'mrz-theme-exp' ),
 		'border'    => __( 'Borders and lines', 'mrz-theme-exp' ),
 	);
 }
+
+/**
+ * Couleurs de la marque : celles qui reçoivent une variable de contraste et un fond de section.
+ *
+ * @return array
+ */
+function mrz_theme_brand_colors() {
+	return array( 'primary', 'secondary', 'tertiary', 'quaternary' );
+}
+
+/**
+ * Filtres SVG des icônes : un par couleur de la palette, plus le blanc.
+ *
+ * Une icône noire (SVG ou PNG en <img>) prend exactement la couleur du filtre :
+ * filter: url(#mrz-icon-primary). Les filtres suivent le Customizer, sans
+ * générateur de filtres CSS à relancer quand une couleur change.
+ */
+function mrz_theme_print_icon_filters() {
+	$colors = array();
+	foreach ( array_keys( mrz_theme_color_labels() ) as $name ) {
+		$colors[ $name ] = sanitize_hex_color( mrz_theme_option( 'color_' . $name ) );
+	}
+	$colors['white'] = '#ffffff';
+
+	echo '<svg class="mrz-icon-filters" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">';
+	foreach ( array_filter( $colors ) as $name => $color ) {
+		printf(
+			'<filter id="mrz-icon-%1$s" color-interpolation-filters="sRGB"><feFlood flood-color="%2$s"/><feComposite in2="SourceAlpha" operator="in"/></filter>',
+			esc_attr( $name ),
+			esc_attr( $color )
+		);
+	}
+	echo '</svg>';
+}
+add_action( 'wp_body_open', 'mrz_theme_print_icon_filters' );
 
 /**
  * Styles du menu mobile : valeur => libellé.
@@ -135,7 +171,7 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'title'       => __( 'Colors', 'mrz-theme-exp' ),
 			'panel'       => 'mrz_theme',
 			'priority'    => 5,
-			'description' => __( 'The site palette. Every color of the theme, the forms and WooCommerce comes from these six colors.', 'mrz-theme-exp' ),
+			'description' => __( 'The site palette. Every color of the theme, the forms and WooCommerce comes from these seven colors.', 'mrz-theme-exp' ),
 		)
 	);
 
@@ -422,7 +458,7 @@ function mrz_theme_customizer_css() {
 		$color = sanitize_hex_color( mrz_theme_option( 'color_' . $name ) );
 		if ( $color ) {
 			$css .= '--color-' . $name . ':' . $color . ';';
-			if ( in_array( $name, array( 'primary', 'secondary', 'tertiary' ), true ) ) {
+			if ( in_array( $name, mrz_theme_brand_colors(), true ) ) {
 				$css .= '--color-' . $name . '-contrast:' . mrz_theme_contrast_color( $color ) . ';';
 			}
 		}

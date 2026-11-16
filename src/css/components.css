@@ -523,6 +523,11 @@
 		color: var(--color-tertiary-contrast);
 	}
 
+	.mrz-bg--quaternary {
+		background-color: var(--color-quaternary);
+		color: var(--color-quaternary-contrast);
+	}
+
 	/* Sur la couleur principale, le bouton s'inverse : tous les boutons (thème, formulaires) suivent. */
 	.mrz-bg--primary {
 		--mrz-button-bg: var(--color-primary-contrast);
@@ -636,7 +641,8 @@
 	.mrz-bg--dark .mrz-prose a:not(.mrz-btn),
 	.mrz-bg--primary .mrz-prose a:not(.mrz-btn),
 	.mrz-bg--secondary .mrz-prose a:not(.mrz-btn),
-	.mrz-bg--tertiary .mrz-prose a:not(.mrz-btn) {
+	.mrz-bg--tertiary .mrz-prose a:not(.mrz-btn),
+	.mrz-bg--quaternary .mrz-prose a:not(.mrz-btn) {
 		color: inherit;
 	}
 
