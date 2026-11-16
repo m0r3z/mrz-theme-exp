@@ -506,8 +506,8 @@
 		opacity: 0.85;
 	}
 
-	/* Une section hero sous un header transparent laisse la place au header. */
-	.mrz-header-transparent .mrz-main > .mrz-section:first-child {
+	/* Sous un header transparent, le premier bloc de la page laisse la place au header. */
+	.mrz-header-transparent .mrz-main > :first-child {
 		padding-top: calc(var(--spacing-section) + var(--mrz-logo-height) + 2 * var(--mrz-header-padding));
 	}
 

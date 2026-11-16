@@ -17,6 +17,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Gravity Forms branché sur les variables (`assets/css/gravity-forms.css`).
 - Fichiers `css/*.css` de l'enfant chargés automatiquement après son `style.css`.
 - Mises à jour par les releases GitHub (Plugin Update Checker v6.0).
+- Réglages par page (meta box MRZ Theme) : masquer le titre, le header ou le footer, forcer le header transparent ou non.
 
 ### Corrigé
 - Logo trop grand sur les pages WooCommerce.

@@ -17,7 +17,7 @@ do_action( 'mrz_after_content' );
 <?php
 do_action( 'mrz_before_footer' );
 
-if ( has_action( 'mrz_footer' ) ) {
+if ( has_action( 'mrz_footer' ) && ! mrz_theme_page_option( '_mrz_hide_footer' ) ) {
 	echo '<footer class="mrz-footer">';
 	do_action( 'mrz_footer' );
 	echo '</footer>';

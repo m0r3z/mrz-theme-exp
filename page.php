@@ -18,7 +18,9 @@ while ( have_posts() ) {
 	}
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'mrz-container py-16' ); ?>>
-		<h1 class="mrz-page-title mb-10"><?php the_title(); ?></h1>
+		<?php if ( ! mrz_theme_page_option( '_mrz_hide_title' ) ) : ?>
+			<h1 class="mrz-page-title mb-10"><?php the_title(); ?></h1>
+		<?php endif; ?>
 		<div class="mrz-prose"><?php the_content(); ?></div>
 	</article>
 	<?php

@@ -109,7 +109,17 @@ add_filter( 'body_class', 'mrz_theme_body_classes' );
  * @return bool
  */
 function mrz_theme_is_transparent_header() {
-	if ( ! mrz_theme_option( 'header_transparent' ) || ! is_singular() ) {
+	if ( ! is_singular() || mrz_theme_page_option( '_mrz_hide_header' ) ) {
+		return false;
+	}
+
+	// Réglage de la page (meta box MRZ Theme) : il passe avant l'option du Customizer.
+	$page_setting = mrz_theme_page_option( '_mrz_transparent_header' );
+	if ( 'on' === $page_setting || 'off' === $page_setting ) {
+		return 'on' === $page_setting;
+	}
+
+	if ( ! mrz_theme_option( 'header_transparent' ) ) {
 		return false;
 	}
 

@@ -91,6 +91,9 @@ Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms
 - Customizer natif, panneau « MRZ Theme » (le logo natif y est déplacé, section Header), ouvert par le menu d'admin « MRZ Theme » (`inc/admin.php`), qui porte aussi les sections globales. Pas de page d'options sur mesure : garder les écrans natifs de WordPress. Lecture : `mrz_theme_option( 'nom' )`, valeurs par défaut dans `inc/options.php`.
 - Le point de rupture mobile est un réglage : les classes `.mrz-desktop-only` et `.mrz-mobile-only` sont pilotées par du CSS en ligne, pas par Tailwind.
 
+## Réglages par page
+Meta box native « MRZ Theme » (`inc/page-options.php`), sans ACF, sur tous les types publics. Metas `_mrz_hide_title`, `_mrz_hide_header`, `_mrz_hide_footer` (`'1'` ou absente), `_mrz_transparent_header` (`on`, `off` ou absente). Lecture : `mrz_theme_page_option( '_mrz_hide_title' )`. Classes du body : `mrz-no-header`, `mrz-no-footer`. Ne jamais écrire de CSS sur `.page-id-*` : passer par ces réglages.
+
 ## Sections globales
 CPT `mrz_section`. Meta `mrz_section_hook` (emplacement) et `mrz_section_priority`. Hooks du thème : `mrz_before_header`, `mrz_after_header`, `mrz_before_content`, `mrz_after_content`, `mrz_footer`, `mrz_before_footer`, `mrz_after_footer`.
 

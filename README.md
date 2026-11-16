@@ -90,6 +90,19 @@ Les couleurs des fonds suivent les variables du thème enfant (`--color-light`, 
 
 Une section du site = un layout dans `acf-json/group_mrzchild_builder.json` de l'enfant (préfixe `mrzchild_`), son template `layouts/mrzchild-<nom>.php` et son CSS dans `css/<partie>.css` de l'enfant. La recette détaillée est dans [AGENTS.md](AGENTS.md). Une mise à jour du parent ne touche jamais ces sections.
 
+## Réglages par page
+
+Chaque page, article ou CPT a, dans la colonne de droite de son édition, une boîte **MRZ Theme** :
+
+| Réglage | Effet |
+| --- | --- |
+| Hide the title | Masque le titre de la page ou de l'article (pages sans constructeur, articles) |
+| Hide the header | Masque le header et le menu mobile (landing page) |
+| Hide the footer | Masque la section globale « Footer » |
+| Header | Défaut (réglage du Customizer), transparent ou non transparent, pour cette page seulement |
+
+Le body reçoit alors `mrz-no-header` ou `mrz-no-footer`, pour adapter le CSS de l'enfant sans viser une page précise.
+
 ## Sections globales
 
 **MRZ Theme > Global sections.** Une section globale se construit comme une page (même constructeur) et s'affiche :
@@ -323,7 +336,6 @@ Prévu en V2, pas encore disponible :
 
 - conditions d'affichage des sections globales (types de contenus, pages, exclusions) : en V1, une section automatique s'affiche sur tout le site ;
 - animations au défilement, parallax, lightbox ;
-- réglages par page (header transparent, masquer le titre ou le footer) ;
 - styles Gravity Forms branchés sur les variables ;
 - traduction française de l'admin du thème (les libellés sont en anglais).
 

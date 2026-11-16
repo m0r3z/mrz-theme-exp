@@ -17,6 +17,7 @@ $mrz_theme_includes = array(
 	'options',
 	'admin',
 	'setup',
+	'page-options',
 	'assets',
 	'customizer',
 	'template-tags',

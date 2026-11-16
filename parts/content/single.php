@@ -10,7 +10,9 @@ defined( 'ABSPATH' ) || exit;
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'mrz-container py-16' ); ?>>
 	<header class="mx-auto mb-10 max-w-3xl">
 		<p class="mb-3 text-sm text-muted"><?php mrz_theme_posted_on(); ?></p>
-		<h1 class="mrz-page-title"><?php the_title(); ?></h1>
+		<?php if ( ! mrz_theme_page_option( '_mrz_hide_title' ) ) : ?>
+			<h1 class="mrz-page-title"><?php the_title(); ?></h1>
+		<?php endif; ?>
 	</header>
 
 	<?php if ( has_post_thumbnail() ) : ?>
