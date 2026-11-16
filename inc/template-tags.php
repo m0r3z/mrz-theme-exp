@@ -100,11 +100,22 @@ function mrz_theme_secondary_nav() {
  */
 function mrz_theme_header_tools() {
 	echo '<div class="mrz-header__tools">';
+
+	/**
+	 * Début des outils du header : un bouton, un téléphone… sans copier le template.
+	 */
+	do_action( 'mrz_header_tools_start' );
+
 	mrz_theme_secondary_nav();
 	mrz_theme_language_switcher( 'mrz-desktop-only' );
 	mrz_theme_header_search();
 	mrz_theme_account_link();
 	mrz_theme_cart_link();
+
+	/**
+	 * Fin des outils du header, juste avant le bouton du menu mobile.
+	 */
+	do_action( 'mrz_header_tools_end' );
 	?>
 	<button type="button" class="mrz-burger mrz-mobile-only" data-mrz-menu-toggle aria-controls="mrz-mobile-menu" aria-expanded="false">
 		<span class="screen-reader-text"><?php esc_html_e( 'Open menu', 'mrz-theme-exp' ); ?></span>

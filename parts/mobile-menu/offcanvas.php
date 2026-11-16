@@ -47,5 +47,6 @@ $mrz_location = has_nav_menu( 'mobile' ) ? 'mobile' : 'primary';
 			</nav>
 		<?php endif; ?>
 		<?php mrz_theme_language_switcher( 'mrz-lang--mobile' ); ?>
+		<?php do_action( 'mrz_mobile_menu_end' ); // Fin du menu mobile : un bouton, des coordonnées… ?>
 	</div>
 </div>
