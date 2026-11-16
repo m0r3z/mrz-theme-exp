@@ -321,6 +321,8 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 - Une release marquée « pre-release » est ignorée par les sites.
 - Sans aucune release, les sites lisent la version de `style.css` sur `main` : ne monter la version qu'au moment de publier.
 - Une copie de travail Git (site de développement) ne cherche jamais de mise à jour : elle écraserait le dépôt.
+- La mise à jour n'est détectée que sur un site où le thème est actif (directement ou par son enfant) : le contrôle est chargé par son `functions.php`. Pour tester sur un site de démo, activer le thème le temps du test.
+- Première mise à jour testée le 16/11/2026 sur `dev.local` : 0.1.0 → 0.2.0 par le système de mise à jour de WordPress, nom du dossier conservé, fichiers de développement absents.
 - Le thème enfant n'est jamais mis à jour à distance.
 
 ### Organisation des fichiers
