@@ -54,7 +54,7 @@
 		top: 0;
 		background: transparent;
 		border-color: transparent;
-		color: #ffffff;
+		color: var(--color-light);
 	}
 
 	.admin-bar.mrz-header-transparent .mrz-header {
@@ -500,33 +500,50 @@
 		padding-block: var(--spacing-section-lg);
 	}
 
+	/*
+	 * Fonds de section : chacun redéfinit le fond et le texte qui va dessus
+	 * (Sombre ou Clair, calculé par le Customizer). Tout ce qui est dedans suit :
+	 * texte atténué, champs de formulaire, liens. Aucune couleur en dur.
+	 */
 	.mrz-bg--light {
-		background-color: var(--color-light);
+		--color-background: var(--color-light);
+		--color-text: var(--color-light-contrast);
 	}
 
 	.mrz-bg--dark {
-		background-color: var(--color-dark);
-		color: #ffffff;
+		--color-background: var(--color-dark);
+		--color-text: var(--color-dark-contrast);
 	}
 
 	.mrz-bg--primary {
-		background-color: var(--color-primary);
-		color: var(--color-primary-contrast);
+		--color-background: var(--color-primary);
+		--color-text: var(--color-primary-contrast);
 	}
 
 	.mrz-bg--secondary {
-		background-color: var(--color-secondary);
-		color: var(--color-secondary-contrast);
+		--color-background: var(--color-secondary);
+		--color-text: var(--color-secondary-contrast);
 	}
 
 	.mrz-bg--tertiary {
-		background-color: var(--color-tertiary);
-		color: var(--color-tertiary-contrast);
+		--color-background: var(--color-tertiary);
+		--color-text: var(--color-tertiary-contrast);
 	}
 
 	.mrz-bg--quaternary {
-		background-color: var(--color-quaternary);
-		color: var(--color-quaternary-contrast);
+		--color-background: var(--color-quaternary);
+		--color-text: var(--color-quaternary-contrast);
+	}
+
+	.mrz-bg--light,
+	.mrz-bg--dark,
+	.mrz-bg--primary,
+	.mrz-bg--secondary,
+	.mrz-bg--tertiary,
+	.mrz-bg--quaternary {
+		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
+		background-color: var(--color-background);
+		color: var(--color-text);
 	}
 
 	/* Sur la couleur principale, le bouton s'inverse : tous les boutons (thème, formulaires) suivent. */
@@ -535,9 +552,11 @@
 		--mrz-button-color: var(--color-primary);
 	}
 
-	/* Voile sombre sur les images de fond, pour la lisibilité du texte. */
+	/* Voile sombre sur les images de fond : le texte prend Clair. */
 	.mrz-has-image {
-		color: #ffffff;
+		--color-text: var(--color-light);
+		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
+		color: var(--color-text);
 	}
 
 	.mrz-has-image::before {

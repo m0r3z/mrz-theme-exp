@@ -21,6 +21,7 @@ function mrz_theme_option_defaults() {
 		'color_dark'          => '#20201f',
 		'color_light'         => '#f4f4f2',
 		'color_border'        => '#dededd',
+		'color_background'    => '',
 		'header_layout'       => 'classic',
 		'header_sticky'       => true,
 		'header_transparent'  => false,

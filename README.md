@@ -144,7 +144,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 
 | Section | Réglage | Défaut |
 | --- | --- | --- |
-| MRZ Theme > Colors | Couleurs principale, secondaire, tertiaire et quaternaire de la marque ; sombre (texte, fonds sombres) ; clair (fonds clairs) ; bordures et traits | `#2a5bd7`, `#1d1d1f`, `#e0a526`, `#8a5cc2`, `#20201f`, `#f4f4f2`, `#dededd` |
+| MRZ Theme > Colors | Couleurs principale, secondaire, tertiaire et quaternaire de la marque ; sombre (texte sur fond clair, sections « Sombre ») ; clair (texte sur fond sombre, sections « Clair ») ; bordures et traits ; fond du site (vide = blanc). Le texte suit le fond : sur un fond sombre, il passe en Clair | `#2a5bd7`, `#1d1d1f`, `#e0a526`, `#8a5cc2`, `#20201f`, `#f4f4f2`, `#dededd`, vide |
 | MRZ Theme > Header | Logo (le logo natif de WordPress, déplacé ici) | |
 | | Logo du header transparent : affiché avant le défilement, remplacé par le logo principal ensuite | aucun |
 | | Hauteur du logo : desktop, mobile (px) | 48, 40 |
@@ -181,6 +181,7 @@ Le reste se règle en redéfinissant les variables dans le `:root` du `style.css
 | Variable | Rôle | Défaut |
 | --- | --- | --- |
 | `--font-title` / `--font-body` | Polices des titres / du texte | police système |
+| `--font-accent` | Troisième police, facultative (mono, manuscrite…) | police du texte |
 | `--radius-base` / `--radius-button` | Arrondi des cartes et images / des boutons | `10px` / `999px` |
 | `--spacing-section`, `-sm`, `-lg` | Espacement vertical des sections : normal, compact, large | `6rem`, `3rem`, `9rem` |
 | `--mrz-h1` à `--mrz-h6` | Tailles des titres | valeurs fluides |
@@ -306,6 +307,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
    - boutique, fiche produit, ajout au panier (la pastille se met à jour), panier, commande, compte ;
    - menu mobile (ouverture, Échap, sous-menus), recherche du header, footer ;
+   - **site sombre** : dans le Customizer, régler « Fond du site » sur une couleur sombre et repasser la page Recette en aperçu, sans publier (texte de chaque fond de section, formulaire dans une section claire, header transparent, image de fond) ;
    - aucune nouvelle ligne dans `wp-content/debug.log`.
 5. **Release** : un tag égal à la version précédée de `v`, les notes tirées du CHANGELOG :
 

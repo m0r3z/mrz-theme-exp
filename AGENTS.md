@@ -62,8 +62,8 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 ### Variables (parent : `src/css/tokens.css`, valeurs du site : `style.css` de l'enfant)
 | Famille | Variables |
 | --- | --- |
-| Couleurs | **Sept**, réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-quaternary` (marque), `--color-dark` (texte, fonds sombres), `--color-light` (fonds clairs), `--color-border`. Dérivées, à utiliser mais pas à régler : `--color-text` (= dark), `--color-muted` (dark atténué), `--color-background` (blanc), `--color-primary-contrast`, `--color-secondary-contrast`, `--color-tertiary-contrast`, `--color-quaternary-contrast` (texte sur la couleur, sombre ou blanc, calculé). Ne jamais ajouter de couleur |
-| Polices | `--font-title`, `--font-body` |
+| Couleurs | Réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-quaternary` (marque), `--color-dark` (texte sur fond clair, sections « Sombre »), `--color-light` (texte sur fond sombre, sections « Clair »), `--color-border`, `--color-background` (fond du site, blanc si vide). Dérivées, à utiliser mais pas à régler : `--color-text`, `--color-muted`, `--color-*-contrast`. Ne jamais ajouter de couleur |
+| Polices | `--font-title`, `--font-body`, `--font-accent` (troisième police facultative : mono, manuscrite… ; la police du texte par défaut). Jamais de `--mrzchild-font-*` |
 | Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
 | Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
 | Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
@@ -73,6 +73,12 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 | Icônes en image | Les SVG fournis sont noirs. `filter: var(--mrz-icon-filter)` (couleur principale par défaut) ou `var(--mrz-icon-filter-light)` (blanc par défaut). Pour une autre couleur : `url(#mrz-icon-<couleur>)` (primary, secondary, tertiary, quaternary, dark, light, border, white), filtres SVG imprimés par le thème qui suivent le Customizer. Jamais de chaîne `invert() sepia() hue-rotate()…` en dur : elle ne suit pas un changement de couleur |
 
 Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms.css`) et de WooCommerce (`assets/css/woocommerce.css`) lisent tous ces variables.
+
+### Site clair ou sombre : le texte suit le fond
+- Le thème marche aussi bien sur un site clair que sombre. Le fond du site se règle dans le Customizer (« Fond du site ») ; `--color-text` y prend Sombre ou Clair, celle qui contraste le plus.
+- Chaque fond de section (`.mrz-bg--light`, `--dark`, `--primary`…) redéfinit `--color-background`, `--color-text` et `--color-muted` pour tout ce qu'il contient. Les champs de formulaire suivent la section (`--mrz-field-bg`, `--mrz-field-color` et `--mrz-field-border` ne sont pas définies par défaut : ne les définir que pour fixer les champs sur tout le site).
+- Dans le CSS de l'enfant : **toujours `var(--color-text)`, `var(--color-muted)`, `var(--color-background)`**, jamais `var(--color-dark)` ni un blanc pour colorer du texte. Ainsi, un bloc reste lisible quel que soit le fond où on le pose.
+- Une carte qui change de fond dans une section : lui donner le même jeu de variables (`--color-background`, `--color-text`, `--color-muted`) plutôt que des couleurs.
 
 ### Fichiers du thème enfant
 - `style.css` : en-tête du thème, `@font-face` des polices du site, et les variables du site dans `:root`. Rien d'autre.
@@ -101,8 +107,21 @@ CPT `mrz_section`. Meta `mrz_section_hook` (emplacement), `mrz_section_priority`
 
 ### Footer
 - Le parent n'a pas de footer par défaut (ni widgets, ni menu de footer, ni copyright). Le footer d'un site est une section globale à l'emplacement `mrz_footer`, que `footer.php` enveloppe dans `<footer class="mrz-footer">`.
-- Le modèle d'enfant fournit la section `mrzchild_footer` : logo, réseaux sociaux (icône image + lien + nom), lien de contact, colonnes (titre + liste de liens en WYSIWYG), ligne du bas (WYSIWYG, balises `{year}` et `{site}` via `mrz_theme_text_tags()`).
+- Le modèle d'enfant fournit la section `mrzchild_footer` : logo centré, phrase et bouton, colonnes (titre + liste de liens en WYSIWYG), ligne du bas (WYSIWYG, balises `{year}` et `{site}` via `mrz_theme_text_tags()`). Fond et espacement par les réglages de la section.
 - Les liens du footer sont écrits dans la section, pas dans des menus WordPress : une section globale se traduit en une fois avec Polylang (type « Global sections » à cocher dans ses réglages), au lieu d'un menu par emplacement et par langue.
+
+## Plugins MRZ : obligatoires
+- **Toute liste de contenus** (articles, CPT, projets, équipe, références, derniers articles sur l'accueil) passe par **MRZ Display Post** (`[mrzdpe]`). **Toute carte** passe par **MRZ Maps** (`[mrzme]`). Jamais de requête `WP_Query` ni de filtre JS maison dans une section sur mesure pour ça.
+- Plugin absent du site : l'installer, ou le signaler à Aurélien **avant** de coder quoi que ce soit.
+- Il manque une fonction au plugin (filtre par taxonomie, gabarit de carte, tri manuel…) : la noter comme évolution du plugin dans le compte rendu, sans recoder la liste dans le thème.
+- Un type de contenu propre au site (projets, équipe) se déclare quand même dans l'enfant ; c'est son affichage en liste qui passe par MRZ Display Post.
+- Noter les plugins MRZ utilisés dans la fiche du site (`AGENTS.md` de l'enfant).
+
+## Ce qui manque au parent
+Ne jamais modifier le parent installé sur un site, même pour le dépanner : la prochaine mise à jour l'écrase. Contourner le moins possible dans l'enfant, et lister le manque dans le compte rendu (« Manques du parent ») : il sera corrigé dans le dépôt du parent.
+
+## Gravity Forms
+Le thème CSS de Gravity Forms (`theme.min.css`) est désactivé par le parent (filtre `gform_disable_form_theme_css`) : les formulaires prennent les variables du thème (`assets/css/gravity-forms.css`). Ne pas renforcer les sélecteurs dans l'enfant pour passer devant Gravity Forms.
 
 ## WooCommerce
 Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.php` + `assets/css/woocommerce.css`. Panier et commande : pages en shortcodes classiques `[woocommerce_cart]` et `[woocommerce_checkout]`, pas en blocs.

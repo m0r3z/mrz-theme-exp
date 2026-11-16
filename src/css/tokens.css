@@ -11,10 +11,11 @@
  */
 @theme static {
 	/*
-	 * Palette : sept couleurs, réglées dans le Customizer (MRZ Theme > Couleurs),
-	 * qui réécrit ces valeurs en ligne. Ne pas les régler dans le thème enfant.
+	 * Palette réglée dans le Customizer (MRZ Theme > Couleurs), qui réécrit ces
+	 * valeurs en ligne. Ne pas les régler dans le thème enfant.
 	 * primary, secondary, tertiary, quaternary : couleurs de la marque.
-	 * dark : texte et fonds sombres. light : fonds clairs. border : traits et bordures.
+	 * dark : texte sur fond clair, sections « Sombre ». light : texte sur fond sombre,
+	 * sections « Clair ». border : traits et bordures. background : fond du site.
 	 */
 	--color-primary: #2a5bd7;
 	--color-secondary: #1d1d1f;
@@ -24,19 +25,27 @@
 	--color-light: #f4f4f2;
 	--color-border: #dededd;
 
-	/* Couleurs dérivées de la palette : ne pas les régler dans l'enfant. */
-	--color-text: var(--color-dark);
-	--color-muted: color-mix(in srgb, var(--color-dark) 60%, transparent);
+	/*
+	 * Couleurs dérivées : ne pas les régler dans l'enfant.
+	 * Le texte suit le fond : le Customizer écrit Sombre ou Clair selon le fond du
+	 * site, et chaque fond de section (.mrz-bg--*) redéfinit fond, texte et texte atténué.
+	 */
 	--color-background: #ffffff;
-	/* Texte sur une couleur de la marque : calculé par le Customizer (sombre ou blanc). */
-	--color-primary-contrast: #ffffff;
-	--color-secondary-contrast: #ffffff;
+	--color-text: var(--color-dark);
+	--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
+	/* Texte posé sur chaque couleur : Sombre ou Clair, calculé par le Customizer. */
+	--color-primary-contrast: var(--color-light);
+	--color-secondary-contrast: var(--color-light);
 	--color-tertiary-contrast: var(--color-dark);
-	--color-quaternary-contrast: #ffffff;
+	--color-quaternary-contrast: var(--color-light);
+	--color-dark-contrast: var(--color-light);
+	--color-light-contrast: var(--color-dark);
 
 	/* Polices : les @font-face (woff2 auto-hébergées) se déclarent dans le thème enfant. */
 	--font-title: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 	--font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+	/* Troisième police, facultative (mono, manuscrite…) : la police du texte par défaut. */
+	--font-accent: var(--font-body);
 
 	/* Rayons */
 	--radius-base: 10px;
@@ -77,12 +86,13 @@
 	--mrz-button-bg: var(--color-primary);
 	--mrz-button-color: var(--color-primary-contrast);
 
-	/* Champs de formulaire : les mêmes partout (Gravity Forms, WooCommerce, recherche, commentaires). */
+	/*
+	 * Champs de formulaire : les mêmes partout (Gravity Forms, WooCommerce, recherche, commentaires).
+	 * Fond, texte et bordure suivent la section où se trouve le champ. Pour les fixer,
+	 * définir --mrz-field-bg, --mrz-field-color ou --mrz-field-border dans l'enfant.
+	 */
 	--mrz-field-font-size: 1rem;
 	--mrz-field-padding: 0.75rem 1rem;
-	--mrz-field-bg: var(--color-background);
-	--mrz-field-color: var(--color-text);
-	--mrz-field-border: var(--color-border);
 	--mrz-field-border-focus: var(--color-primary);
 	--mrz-field-radius: var(--radius-base);
 	--mrz-label-font-size: 0.9375rem;

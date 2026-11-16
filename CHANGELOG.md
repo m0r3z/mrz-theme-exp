@@ -5,15 +5,27 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
-- Couleurs dans le Customizer (MRZ Theme > Couleurs) : principale, secondaire, **tertiaire** et **quaternaire** (nouvelles), sombre, clair, bordures. Le texte posé sur une couleur de la marque (`--color-*-contrast`) est calculé : sombre ou blanc selon la couleur.
+- Fond du site dans le Customizer (MRZ Theme > Couleurs, vide = blanc) : le thème marche sur un site sombre. Le texte prend Sombre ou Clair, celle qui contraste le plus avec le fond.
+- Chaque fond de section redéfinit `--color-background`, `--color-text` et `--color-muted` pour son contenu ; les champs de formulaire suivent la section.
+- `--font-accent` : troisième police facultative (la police du texte par défaut).
+- Règles pour l'IA : plugins MRZ obligatoires pour les listes et les cartes, interdiction de modifier le parent installé sur un site.
+- Couleurs dans le Customizer (MRZ Theme > Couleurs) : principale, secondaire, **tertiaire** et **quaternaire** (nouvelles), sombre, clair, bordures. Le texte posé sur une couleur de la marque (`--color-*-contrast`) est calculé : Sombre ou Clair selon la couleur.
 - Fonds de section « Couleur secondaire », « Couleur tertiaire » et « Couleur quaternaire ».
 - Filtres d'icônes : un filtre SVG par couleur de la palette (`url(#mrz-icon-primary)`…, plus `white`), qui colore exactement une icône noire et suit le Customizer. `--mrz-icon-filter` (principale) et `--mrz-icon-filter-light` (blanc).
 - Menu mobile : quatre styles au choix (panneau à droite, à gauche, plein écran, déroulé sous le header).
 - Emplacement de section globale « Menu mobile : sous les liens » (`mrz_mobile_menu_end`).
 
 ### Modifié
+- Plus aucun blanc en dur : le texte sur une couleur, sur une image de fond et dans le header transparent prend « Clair » (une charte crème reste crème). Libellés des couleurs Sombre et Clair revus.
+- Gravity Forms : son thème CSS (`theme.min.css`) est désactivé ; il se chargeait après l'enfant et passait devant lui. Les champs prennent le style du thème.
+- `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border` ne sont plus définies par défaut : les champs suivent la section. Les définir dans l'enfant pour les fixer sur tout le site.
 - Les couleurs ne se règlent plus dans le `style.css` de l'enfant : une valeur `--color-*` laissée dans l'enfant passerait devant le Customizer.
 - Une page n'affiche plus jamais son titre (son contenu porte le `<h1>`) ; un article affiche toujours le sien. Réglages « Masquer le titre » et « Masquer le footer » retirés de la meta box : le footer se retire d'une page par les conditions de sa section globale.
+
+### Corrigé
+- Section Texte libre : un formulaire Gravity Forms inséré par shortcode perdait ses champs (`wp_kses_post()` retirait les `<input>` et les `<select>`).
+- La loupe du header est alignée sur les autres icônes, à la même taille.
+- Un texte masqué en fin de page (zone d'annonce du panier de WooCommerce) n'ajoute plus une ligne blanche sous le footer.
 
 ## [0.2.0] - 2026-11-16
 

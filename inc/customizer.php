@@ -63,23 +63,37 @@ function mrz_theme_add_setting( $wp_customize, $name, $sanitize, $transport = 'r
  */
 function mrz_theme_color_labels() {
 	return array(
-		'primary'   => __( 'Primary color', 'mrz-theme-exp' ),
-		'secondary' => __( 'Secondary color', 'mrz-theme-exp' ),
+		'primary'    => __( 'Primary color', 'mrz-theme-exp' ),
+		'secondary'  => __( 'Secondary color', 'mrz-theme-exp' ),
 		'tertiary'   => __( 'Tertiary color', 'mrz-theme-exp' ),
 		'quaternary' => __( 'Quaternary color', 'mrz-theme-exp' ),
-		'dark'      => __( 'Dark: text and dark backgrounds', 'mrz-theme-exp' ),
-		'light'     => __( 'Light: light backgrounds', 'mrz-theme-exp' ),
-		'border'    => __( 'Borders and lines', 'mrz-theme-exp' ),
+		'dark'       => __( 'Dark', 'mrz-theme-exp' ),
+		'light'      => __( 'Light', 'mrz-theme-exp' ),
+		'border'     => __( 'Borders and lines', 'mrz-theme-exp' ),
+		'background' => __( 'Site background', 'mrz-theme-exp' ),
 	);
 }
 
 /**
- * Couleurs de la marque : celles qui reçoivent une variable de contraste et un fond de section.
+ * Aide de chaque couleur dans le Customizer.
+ *
+ * @return array
+ */
+function mrz_theme_color_descriptions() {
+	return array(
+		'dark'       => __( 'Text on light backgrounds, "Dark" sections.', 'mrz-theme-exp' ),
+		'light'      => __( 'Text on dark backgrounds, "Light" sections.', 'mrz-theme-exp' ),
+		'background' => __( 'Empty: white. The text takes Dark or Light, whichever reads best on it.', 'mrz-theme-exp' ),
+	);
+}
+
+/**
+ * Couleurs de fond possibles : celles qui reçoivent une variable de contraste (--color-<nom>-contrast).
  *
  * @return array
  */
 function mrz_theme_brand_colors() {
-	return array( 'primary', 'secondary', 'tertiary', 'quaternary' );
+	return array( 'primary', 'secondary', 'tertiary', 'quaternary', 'dark', 'light' );
 }
 
 /**
@@ -123,30 +137,49 @@ function mrz_theme_mobile_menu_styles() {
 }
 
 /**
- * Couleur du texte posé sur une couleur : sombre sur une couleur claire, blanc sinon.
+ * Luminance relative d'une couleur (WCAG).
  *
- * @param string $hex Couleur #rrggbb.
- * @return string Valeur CSS.
+ * @param string $hex Couleur #rgb ou #rrggbb.
+ * @return float|null Entre 0 (noir) et 1 (blanc), null si la couleur est invalide.
  */
-function mrz_theme_contrast_color( $hex ) {
+function mrz_theme_luminance( $hex ) {
 	$hex = ltrim( (string) $hex, '#' );
 	if ( 3 === strlen( $hex ) ) {
 		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
 	}
-	if ( 6 !== strlen( $hex ) ) {
-		return '#ffffff';
+	if ( 6 !== strlen( $hex ) || ! ctype_xdigit( $hex ) ) {
+		return null;
 	}
 
-	// Luminance relative (WCAG).
 	$channels = array();
 	foreach ( str_split( $hex, 2 ) as $channel ) {
 		$value      = hexdec( $channel ) / 255;
 		$channels[] = $value <= 0.03928 ? $value / 12.92 : pow( ( $value + 0.055 ) / 1.055, 2.4 );
 	}
-	$luminance = 0.2126 * $channels[0] + 0.7152 * $channels[1] + 0.0722 * $channels[2];
 
-	// Seuil où le contraste avec le blanc et avec le noir s'équilibre.
-	return $luminance > 0.179 ? 'var(--color-dark)' : '#ffffff';
+	return 0.2126 * $channels[0] + 0.7152 * $channels[1] + 0.0722 * $channels[2];
+}
+
+/**
+ * Couleur du texte posé sur une couleur : « Sombre » ou « Clair » de la palette,
+ * celle qui contraste le plus (jamais un blanc en dur : une charte crème reste crème).
+ *
+ * @param string $hex Couleur de fond.
+ * @return string Valeur CSS.
+ */
+function mrz_theme_contrast_color( $hex ) {
+	$background = mrz_theme_luminance( $hex );
+	$dark       = mrz_theme_luminance( mrz_theme_option( 'color_dark' ) );
+	$light      = mrz_theme_luminance( mrz_theme_option( 'color_light' ) );
+	if ( null === $background || null === $dark || null === $light ) {
+		return 'var(--color-dark)';
+	}
+
+	$ratio = function ( $a, $b ) {
+		return ( max( $a, $b ) + 0.05 ) / ( min( $a, $b ) + 0.05 );
+	};
+
+	return $ratio( $background, $dark ) >= $ratio( $background, $light ) ? 'var(--color-dark)' : 'var(--color-light)';
 }
 
 /**
@@ -171,10 +204,11 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'title'       => __( 'Colors', 'mrz-theme-exp' ),
 			'panel'       => 'mrz_theme',
 			'priority'    => 5,
-			'description' => __( 'The site palette. Every color of the theme, the forms and WooCommerce comes from these seven colors.', 'mrz-theme-exp' ),
+			'description' => __( 'The site palette. Every color of the theme, the forms and WooCommerce comes from it.', 'mrz-theme-exp' ),
 		)
 	);
 
+	$descriptions = mrz_theme_color_descriptions();
 	foreach ( mrz_theme_color_labels() as $name => $label ) {
 		mrz_theme_add_setting( $wp_customize, 'color_' . $name, 'sanitize_hex_color' );
 		$wp_customize->add_control(
@@ -182,8 +216,9 @@ function mrz_theme_customize_register( $wp_customize ) {
 				$wp_customize,
 				'mrz_color_' . $name,
 				array(
-					'label'   => $label,
-					'section' => 'mrz_colors',
+					'label'       => $label,
+					'description' => $descriptions[ $name ] ?? '',
+					'section'     => 'mrz_colors',
 				)
 			)
 		);
@@ -460,6 +495,10 @@ function mrz_theme_customizer_css() {
 			$css .= '--color-' . $name . ':' . $color . ';';
 			if ( in_array( $name, mrz_theme_brand_colors(), true ) ) {
 				$css .= '--color-' . $name . '-contrast:' . mrz_theme_contrast_color( $color ) . ';';
+			}
+			// Fond du site réglé : le texte prend Sombre ou Clair, selon ce fond.
+			if ( 'background' === $name ) {
+				$css .= '--color-text:' . mrz_theme_contrast_color( $color ) . ';';
 			}
 		}
 	}

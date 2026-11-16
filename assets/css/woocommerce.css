@@ -49,10 +49,10 @@
 .woocommerce .quantity input.qty,
 .woocommerce #coupon_code {
 	padding: var(--mrz-field-padding);
-	border: 1px solid var(--mrz-field-border);
+	border: 1px solid var(--mrz-field-border, var(--color-border));
 	border-radius: var(--mrz-field-radius);
-	background: var(--mrz-field-bg);
-	color: var(--mrz-field-color);
+	background: var(--mrz-field-bg, var(--color-background));
+	color: var(--mrz-field-color, var(--color-text));
 	font-size: var(--mrz-field-font-size);
 }
 
