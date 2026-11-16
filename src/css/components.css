@@ -78,6 +78,9 @@
 	.mrz-logo__img {
 		height: var(--mrz-logo-height);
 		width: auto;
+		/* Quand max-width: 100% réduit la largeur (colonne étroite), le logo garde son ratio. */
+		object-fit: contain;
+		object-position: left center;
 	}
 
 	.mrz-logo--footer .mrz-logo__img {

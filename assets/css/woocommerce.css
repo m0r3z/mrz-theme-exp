@@ -2,6 +2,19 @@
  * WooCommerce : couleurs et rayons branchés sur les variables du thème.
  * Chargé uniquement sur les pages WooCommerce. CSS classique, sans compilation.
  */
+
+/*
+ * Logo : WooCommerce impose « .woocommerce-page img { height: auto } » hors couche,
+ * qui passe devant le CSS du thème (rangé dans @layer). On rétablit la hauteur réglée.
+ * Sur mobile, la règle en ligne du Customizer, plus précise, reste prioritaire.
+ */
+.woocommerce-page .mrz-logo__img {
+	height: var(--mrz-logo-height);
+}
+
+.woocommerce-page .mrz-logo--footer .mrz-logo__img {
+	height: var(--mrz-footer-logo-height);
+}
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,
