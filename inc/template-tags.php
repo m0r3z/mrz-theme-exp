@@ -80,6 +80,7 @@ function mrz_theme_primary_nav( $extra_class = '' ) {
 function mrz_theme_header_tools() {
 	echo '<div class="mrz-header__tools">';
 	mrz_theme_language_switcher( 'mrz-desktop-only' );
+	mrz_theme_header_search();
 	mrz_theme_account_link();
 	mrz_theme_cart_link();
 	?>
@@ -132,6 +133,25 @@ function mrz_theme_icon( $name ) {
 	}
 
 	echo $cache[ $name ]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG fourni par le thème.
+}
+
+/**
+ * Recherche du header, si l'option est cochée : une icône qui déplie le
+ * formulaire de recherche natif (details/summary, sans JS pour l'ouvrir).
+ */
+function mrz_theme_header_search() {
+	if ( ! mrz_theme_option( 'header_search' ) ) {
+		return;
+	}
+	?>
+	<details class="mrz-header-search">
+		<summary class="mrz-header-search__toggle">
+			<?php mrz_theme_icon( 'search' ); ?>
+			<span class="screen-reader-text"><?php esc_html_e( 'Search', 'mrz-theme-exp' ); ?></span>
+		</summary>
+		<div class="mrz-header-search__panel"><?php get_search_form(); ?></div>
+	</details>
+	<?php
 }
 
 /**

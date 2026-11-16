@@ -113,3 +113,31 @@
 		} );
 	} );
 }() );
+
+/* Recherche du header : focus sur le champ à l'ouverture, fermeture par Échap ou clic ailleurs. */
+( function () {
+	var search = document.querySelector( '.mrz-header-search' );
+	if ( ! search ) {
+		return;
+	}
+
+	search.addEventListener( 'toggle', function () {
+		var input = search.querySelector( 'input[type="search"]' );
+		if ( search.open && input ) {
+			input.focus();
+		}
+	} );
+
+	document.addEventListener( 'keydown', function ( event ) {
+		if ( 'Escape' === event.key && search.open ) {
+			search.open = false;
+			search.querySelector( 'summary' ).focus();
+		}
+	} );
+
+	document.addEventListener( 'click', function ( event ) {
+		if ( search.open && ! search.contains( event.target ) ) {
+			search.open = false;
+		}
+	} );
+}() );

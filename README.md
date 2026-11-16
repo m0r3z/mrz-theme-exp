@@ -123,6 +123,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Disposition : classique (logo à gauche, menu à droite) ou centrée (logo au-dessus, menu dessous) | classique |
 | | Header sticky | oui |
 | | Header transparent quand applicable (pages qui commencent par un Hero) | non |
+| | Recherche : icône qui déplie le formulaire de recherche (Échap ou clic ailleurs pour fermer) | non |
 | | Lien vers le compte : icône vers la page « Mon compte » de WooCommerce, à côté du panier | non |
 | MRZ Theme > Mobile header | Header sticky sur mobile | oui |
 | | Point de rupture mobile (px) : à augmenter si le menu a beaucoup d'entrées | 1000 |
@@ -203,7 +204,7 @@ Une surcharge ne reçoit plus les corrections du parent : n'en faire qu'en derni
 
 ### Changer une icône
 
-Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier), `account.svg` (compte), `search.svg`. Pour en changer une, déposer un SVG du même nom dans `assets/icons/` de l'enfant : il est pris à la place, sans toucher au code. Le SVG prend la couleur du texte s'il utilise `fill="currentColor"` ; sa taille se règle en CSS sur `.mrz-icon`.
+Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier), `account.svg` (compte), `search.svg` (recherche). Pour en changer une, déposer un SVG du même nom dans `assets/icons/` de l'enfant : il est pris à la place, sans toucher au code. Le SVG prend la couleur du texte s'il utilise `fill="currentColor"` ; sa taille se règle en CSS sur `.mrz-icon`.
 
 ## Blog, CPT et plugins
 

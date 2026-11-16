@@ -152,6 +152,17 @@ function mrz_theme_customize_register( $wp_customize ) {
 		)
 	);
 
+	mrz_theme_add_setting( $wp_customize, 'header_search', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_header_search',
+		array(
+			'label'       => __( 'Search', 'mrz-theme-exp' ),
+			'description' => __( 'Search icon in the header, opening the search form.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_header',
+			'type'        => 'checkbox',
+		)
+	);
+
 	mrz_theme_add_setting( $wp_customize, 'header_account', 'mrz_theme_sanitize_checkbox' );
 	$wp_customize->add_control(
 		'mrz_header_account',

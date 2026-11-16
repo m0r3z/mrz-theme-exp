@@ -17,6 +17,7 @@ function mrz_theme_option_defaults() {
 		'header_layout'       => 'classic',
 		'header_sticky'       => true,
 		'header_transparent'  => false,
+		'header_search'       => false,
 		'header_account'      => false,
 		'logo_transparent'    => 0,
 		'logo_height'         => 48,
