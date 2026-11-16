@@ -1,13 +1,13 @@
 <?php
 /**
- * Layout Texte libre.
+ * Section du parent « Texte libre » : titre et texte de l’éditeur classique.
  *
  * @package mrz-theme-exp
  */
 
 defined( 'ABSPATH' ) || exit;
 
-mrz_theme_section_open( 'text' );
+mrz_theme_section_open( 'mrz-text' );
 ?>
 <div class="mrz-prose mx-auto max-w-3xl">
 	<?php if ( get_sub_field( 'title' ) ) : ?>

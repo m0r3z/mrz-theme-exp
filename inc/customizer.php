@@ -146,7 +146,7 @@ function mrz_theme_customize_register( $wp_customize ) {
 		'mrz_header_transparent',
 		array(
 			'label'       => __( 'Transparent header when applicable', 'mrz-theme-exp' ),
-			'description' => __( 'The header is transparent over the page until the user scrolls, on pages that start with a Hero section.', 'mrz-theme-exp' ),
+			'description' => __( 'The header is transparent over the page until the user scrolls, on pages that start with a hero section (a section whose name contains "hero").', 'mrz-theme-exp' ),
 			'section'     => 'mrz_header',
 			'type'        => 'checkbox',
 		)

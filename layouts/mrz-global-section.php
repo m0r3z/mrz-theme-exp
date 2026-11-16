@@ -1,6 +1,6 @@
 <?php
 /**
- * Layout Section globale : insère une section globale à cet endroit.
+ * Section du parent « Section globale » : insère une section globale à cet endroit.
  *
  * @package mrz-theme-exp
  */

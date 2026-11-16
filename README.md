@@ -3,7 +3,7 @@
 Thème WordPress classique et léger de l'Agence Double A. Il remplace Salient + WPBakery sur les nouveaux projets.
 
 - **Éditeur classique** partout (Gutenberg désactivé, CSS de blocs retirés du front).
-- **Pages construites avec ACF Pro** : un champ Flexible Content « Constructeur » (`mrz_builder`), une section par layout.
+- **Pages construites avec ACF Pro** : un constructeur (Flexible Content `mrz_builder`) dont les sections sont faites sur mesure pour chaque site, dans le thème enfant.
 - **Un seul CSS compilé** (Tailwind v4, ~20 ko), JS vanilla sans jQuery.
 - **Retouches sans compiler** : le thème enfant redéfinit des variables CSS et ajoute du CSS classique.
 
@@ -37,7 +37,7 @@ Aucun Node n'est nécessaire sur le serveur : le CSS compilé (`dist/main.css`) 
 ## Démarrer un site
 
 1. Installer le thème parent `mrz-theme-exp` et un thème enfant (modèle : `mrz-theme-exp-child`). Activer **l'enfant**, jamais le parent seul.
-2. Activer ACF Pro. Les groupes de champs du thème se chargent tout seuls depuis `acf-json/` : rien à importer.
+2. Activer ACF Pro. Les groupes de champs se chargent tout seuls depuis `acf-json/` (parent et enfant) : rien à importer. Le thème enfant doit contenir `acf-json/group_mrzchild_builder.json` (fourni dans le modèle).
 3. **Apparence > Menus** : affecter les emplacements.
 
    | Emplacement | Rôle |
@@ -59,25 +59,24 @@ Le constructeur apparaît sous le titre des **pages** et des **sections globales
 - Une page sans section affiche son titre et son contenu classique.
 - Repliée, une section affiche son type et son titre (ou le début de son texte) : la page se lit d'un coup d'œil.
 
-### Les layouts
+### Les sections
 
-| Layout | Contenu | À savoir |
+Le menu « Ajouter une section » réunit deux sources :
+
+- **les sections du site**, faites sur mesure à partir de la maquette (une par rangée : bannière, services, témoignages…). Elles vivent dans le thème enfant et n'existent que sur ce site ;
+- **les sections du parent**, présentes sur tous les sites et mises à jour avec le thème :
+
+| Section | Contenu | À savoir |
 | --- | --- | --- |
-| Hero | Titre, sous-titre, image de fond, hauteur (auto, large, plein écran), alignement, boutons | Placé en premier, il active le header transparent si l'option est cochée |
-| Texte + image | Titre, texte, bouton, image à gauche ou à droite | |
-| Grille de cartes | Titre, intro, 2 à 4 colonnes, cartes (image, titre, lien, texte) | Toute la carte est cliquable si elle a un lien |
-| Galerie | Titre, colonnes, images | Les images ouvrent leur version pleine taille ; lightbox en V2 |
-| CTA | Titre, texte, bouton | |
-| FAQ | Titre, questions et réponses | Accordéon natif, sans JavaScript |
-| Texte | Titre, texte libre | |
-| Formulaire | Titre, intro, formulaire Gravity Forms | La liste des formulaires du site s'affiche toute seule |
-| Liste de posts | Titre, intro, liste MRZ Display Post | |
-| Carte | Titre, intro, carte MRZ Maps | |
-| Section globale | Une section globale existante | Pour réutiliser un bloc à un endroit précis |
+| Free text (Texte libre) | Titre, texte de l'éditeur classique | Pour un formulaire, une liste MRZ Display Post ou une carte MRZ Maps : y coller le shortcode |
+| Raw HTML (HTML brut) | Code HTML | Affiché tel quel, scripts compris. Visible seulement pour les administrateurs |
+| Global section | Une section globale existante | Pour réutiliser un bloc à un endroit précis |
+
+Une section sur mesure dont le nom contient `hero`, placée en premier, active le header transparent si l'option est cochée.
 
 ### Réglages communs
 
-Chaque layout (sauf Section globale) a un onglet de réglages :
+Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de réglages :
 
 | Réglage | Choix |
 | --- | --- |
@@ -88,12 +87,16 @@ Chaque layout (sauf Section globale) a un onglet de réglages :
 
 Les couleurs des fonds suivent les variables du thème enfant (`--color-light`, `--color-dark`, `--color-primary`).
 
+### Ajouter une section sur mesure
+
+Une section du site = un layout dans `acf-json/group_mrzchild_builder.json` de l'enfant (préfixe `mrzchild_`), son template `layouts/mrzchild-<nom>.php` et son CSS dans le `style.css` de l'enfant. La recette détaillée est dans [AGENTS.md](AGENTS.md). Une mise à jour du parent ne touche jamais ces sections.
+
 ## Sections globales
 
 **MRZ Theme > Global sections.** Une section globale se construit comme une page (même constructeur) et s'affiche :
 
 - **automatiquement sur tout le site**, à l'emplacement choisi, ou
-- **à la main**, avec le layout « Section globale » dans une page (choisir alors « Manual insertion only »).
+- **à la main**, avec la section « Global section » dans une page (choisir alors « Manual insertion only »).
 
 | Emplacement | Position |
 | --- | --- |
@@ -123,7 +126,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Hauteur du logo : desktop, mobile (px) | 48, 40 |
 | | Disposition : classique (logo à gauche, menu à droite) ou centrée (logo au-dessus, menu dessous) | classique |
 | | Header sticky | oui |
-| | Header transparent quand applicable (pages qui commencent par un Hero) | non |
+| | Header transparent quand applicable (pages qui commencent par une section hero) | non |
 | | Recherche : icône qui déplie le formulaire de recherche (Échap ou clic ailleurs pour fermer) | non |
 | | Lien vers le compte : icône vers la page « Mon compte » de WooCommerce, à côté du panier | non |
 | MRZ Theme > Mobile header | Header sticky sur mobile | oui |
@@ -195,7 +198,7 @@ Copier le fichier du parent dans l'enfant, au même chemin, puis le modifier :
 
 | Pour changer | Copier |
 | --- | --- |
-| Un layout du constructeur | `layouts/{layout}.php` (tirets : `text-image.php`) |
+| Une section du parent | `layouts/mrz-<nom>.php` (ex. `mrz-text.php`) |
 | Le header | `parts/header/header-classic.php` ou `header-centered.php` |
 | Le menu mobile | `parts/mobile-menu/offcanvas.php` |
 | La carte d'un article dans les listes | `parts/content/content.php`, ou `content-{post_type}.php` pour un seul type |
@@ -214,29 +217,31 @@ Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier),
 - **CPT** : affichés comme les articles. Pour un rendu propre à un CPT, créer `parts/content/single-{post_type}.php` (et `content-{post_type}.php` pour sa carte) dans l'enfant.
 - **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème et ne se chargent que sur les pages WooCommerce. Icône du panier dans le header, avec le nombre d'articles, et icône du compte en option (MRZ Theme > Header). Les pages Panier et Commande utilisent les shortcodes `[woocommerce_cart]` et `[woocommerce_checkout]`, pas les blocs.
 - **Polylang** : sélecteur de langue dans le header et le menu mobile, dès que Polylang est actif.
-- **Gravity Forms** : layout Formulaire.
-- **MRZ Display Post** et **MRZ Maps** : layouts Liste de posts et Carte.
+- **Gravity Forms**, **MRZ Display Post**, **MRZ Maps** : leurs shortcodes (`[gravityform]`, `[mrzdpe]`, `[mrzme]`), dans un Texte libre, un champ de section ou un widget.
 
 ## Pour l'IA
 
-L'IA construit les pages en écrivant des données dans le champ `mrz_builder`, jamais du HTML :
+L'IA construit chaque site à partir de sa maquette : une section sur mesure par rangée (champs ACF, template, CSS) dans le thème enfant, puis les pages en remplissant le constructeur, jamais en HTML :
 
 ```php
 update_field(
-	'mrz_builder',
+	'field_mrz_builder',
 	array(
 		array(
-			'acf_fc_layout' => 'hero',
+			'acf_fc_layout' => 'mrzchild_hero',
 			'title'         => 'Titre de la page',
-			'height'        => 'large',
 			'settings'      => array( 'background' => 'dark' ),
+		),
+		array(
+			'acf_fc_layout' => 'mrz_text',
+			'content'       => '<p>Texte libre.</p>',
 		),
 	),
 	$post_id
 );
 ```
 
-Les noms des layouts, de leurs champs et de leurs valeurs, ainsi que les conventions de code, sont dans [AGENTS.md](AGENTS.md). Tout ce que l'IA construit reste visible et modifiable dans l'admin.
+La recette d'une section, les noms des champs et les règles du constructeur sont dans [AGENTS.md](AGENTS.md). Tout ce que l'IA construit reste visible et modifiable dans l'admin.
 
 ## Faire évoluer le thème parent
 
@@ -252,7 +257,7 @@ npm run build
 - **Recompiler avant chaque commit** qui touche un template PHP ou `src/css/` : Tailwind ne garde que les classes trouvées dans les fichiers. `dist/main.css` est commité.
 - Une classe Tailwind s'écrit en entier dans le code (pas `'md:grid-cols-' . $n`), sinon Tailwind ne la voit pas.
 - Le JS (`assets/js/`) et `assets/css/woocommerce.css` ne passent par aucun build.
-- **Champs ACF** : sur le site de développement, définir `define( 'MRZ_THEME_DEV', true );` dans `wp-config.php`. Les modifications des groupes `group_mrz_*` s'enregistrent alors dans `acf-json/` du thème. Sans cette constante (sites clients), elles ne s'écrivent jamais dans le parent.
+- **Champs ACF** : sur le site de développement, définir `define( 'MRZ_THEME_DEV', true );` dans `wp-config.php`. Les modifications des groupes du parent (`group_mrz_*`) s'enregistrent alors dans `acf-json/` du thème. Sans cette constante (sites clients), elles ne s'écrivent jamais dans le parent.
 - **Version** : `Version:` dans `style.css` et `MRZ_THEME_VERSION` dans `functions.php`, toujours identiques.
 ### Publier une mise à jour
 
@@ -280,9 +285,10 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 mrz-theme-exp/
 ├── functions.php        chargeur, aucune logique
 ├── inc/                 options, setup, assets, customizer, template-tags,
-│                        builder, global-sections, woocommerce, updater, admin
-├── acf-json/            groupes de champs du constructeur et des sections globales
-├── layouts/             un template par layout
+│                        builder (moteur), builder-sections (sections du parent),
+│                        global-sections, woocommerce, updater, admin
+├── acf-json/            groupe de champs des sections globales (emplacement)
+├── layouts/             templates des sections du parent (mrz-text, mrz-html, mrz-global-section)
 ├── parts/               header/, mobile-menu/, content/
 ├── src/css/             tokens.css (variables), base.css, components.css, main.css (entrée)
 ├── dist/main.css        CSS compilé, commité
@@ -296,7 +302,7 @@ mrz-theme-exp/
 Prévu en V2, pas encore disponible :
 
 - conditions d'affichage des sections globales (types de contenus, pages, exclusions) : en V1, une section automatique s'affiche sur tout le site ;
-- animations au défilement, parallax, lightbox des galeries ;
+- animations au défilement, parallax, lightbox ;
 - réglages par page (header transparent, masquer le titre ou le footer) ;
 - styles Gravity Forms branchés sur les variables ;
 - traduction française de l'admin du thème (les libellés sont en anglais).

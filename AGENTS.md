@@ -4,30 +4,41 @@ Thème WordPress classique de l'Agence Double A. Le guide d'utilisation est dans
 
 ## Principes
 - Éditeur classique partout (Gutenberg désactivé par filtres dans `inc/setup.php`).
-- Les pages se construisent avec le champ ACF Flexible Content `mrz_builder` (groupe `group_mrz_builder`, dans `acf-json/`).
+- Les pages et les sections globales se construisent avec le champ ACF Flexible Content `mrz_builder` (clé `field_mrz_builder`). Son groupe, `group_mrzchild_builder`, appartient au **thème enfant** (`acf-json/` de l'enfant) : chaque site a ses propres sections.
 - Le texte (blog, pages simples) passe par `the_content()` et la classe `.mrz-prose`.
 - ACF Pro est obligatoire. Sans lui, les pages affichent seulement leur contenu classique.
 
 ## Construire une page
-Remplir `mrz_builder` avec `update_field( 'mrz_builder', $rows, $post_id )`. Chaque ligne porte `acf_fc_layout` :
+Remplir `mrz_builder` avec `update_field( 'field_mrz_builder', $rows, $post_id )`. Chaque ligne porte `acf_fc_layout`.
 
-| Layout | Champs | Note |
+### Sections du parent (injectées sur tous les sites)
+Déclarées en PHP dans `inc/builder-sections.php`, ajoutées au constructeur de l'enfant au chargement.
+
+| Section | Champs | Note |
 | --- | --- | --- |
-| `hero` | title, subtitle, image (ID), height (auto, large, full), align (center, left), buttons[] (link, style primary/outline) | En premier : active le header transparent si l'option est cochée |
-| `text_image` | title, content (HTML), button (link), image_position (right, left), image (ID) | |
-| `cards` | title, columns (2, 3, 4), intro, items[] (image, title, link, text) | |
-| `gallery` | title, columns, images (IDs) | Liens `data-mrz-lightbox` pour la lightbox V2 |
-| `cta` | title, text, button (link) | |
-| `faq` | title, items[] (question, answer HTML) | Accordéon `details`, sans JS |
-| `text` | title, content (HTML) | |
-| `form` | title, form_id (ID Gravity Forms), intro | |
-| `posts` | title, list_id (liste MRZ Display Post), intro | Shortcode `[mrzdpe]` |
-| `map` | title, map_id (carte MRZ Maps), intro | Shortcode `[mrzme]` |
-| `global_section` | section (ID `mrz_section`) | |
+| `mrz_text` | title, content (HTML), settings | Texte libre |
+| `mrz_html` | code | Affiché tel quel, scripts compris ; champ visible seulement avec le droit `unfiltered_html` |
+| `mrz_global_section` | section (ID `mrz_section`) | |
 
-Tous les layouts sauf `global_section` ont un groupe `settings` : background (none, light, dark, primary), spacing (normal, compact, large, none), width (container, wide, full), anchor, background_image (ID).
+`settings` : background (none, light, dark, primary), spacing (normal, compact, large, none), width (container, wide, full), anchor, background_image (ID). Lu par `mrz_theme_section_open()`.
 
-Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`.
+### Sections sur mesure (thème enfant)
+Une section par rangée de la maquette. Pour en créer une :
+1. Ajouter le layout dans `acf-json/group_mrzchild_builder.json` de l'enfant, sur `field_mrz_builder`. Nom `mrzchild_<nom>`, clés `layout_mrzchild_<nom>` et `field_mrzchild_<nom>_<champ>`, chaque sous-champ avec `parent_layout`. Mettre à jour `modified`.
+2. Pour les réglages communs, ajouter un sous-champ `clone` de `group_mrz_section_settings` (`display: seamless`, `prefix_name: 0`).
+3. Créer `layouts/mrzchild-<nom>.php` dans l'enfant (le nom, `_` remplacés par `-`) : `mrz_theme_section_open( 'mrzchild-<nom>' )`, le contenu échappé, `mrz_theme_section_close()`.
+4. Le style de la section va dans le `style.css` de l'enfant, en CSS classique.
+
+Une section dont le nom contient `hero`, placée en premier, active le header transparent (si l'option est cochée).
+
+Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`. Formulaires, listes MRZ Display Post et cartes MRZ Maps : shortcodes (`[gravityform]`, `[mrzdpe]`, `[mrzme]`) dans un Texte libre ou dans un champ de section.
+
+### Règles du constructeur
+- Préfixes : `mrz_` pour le parent, `mrzchild_` pour l'enfant. Jamais de section `mrz_` dans l'enfant.
+- La clé `field_mrz_builder` et le nom `mrz_builder` ne changent jamais.
+- Une section du parent n'est jamais renommée (nom, clés de layout et de champs) : le contenu des pages y est rattaché.
+- Une section du parent n'est jamais supprimée : la retirer du menu, garder son template pour les pages qui l'utilisent.
+- Une section de l'enfant qui sert sur trois sites peut remonter dans le parent : renommer en `mrz_` et migrer le contenu des sites concernés.
 
 ## CSS
 - Tailwind v4 compile seulement le thème parent : `npm run build`. Le CSS compilé `dist/main.css` est commité.
@@ -52,6 +63,7 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - JS vanilla, sans jQuery, dans `assets/js/` (pas de build JS).
 - Icônes SVG dans `assets/icons/`, affichées avec `mrz_theme_icon( 'nom' )` (en ligne, `fill="currentColor"`). L'enfant remplace une icône par un fichier du même nom dans son `assets/icons/`.
 - Surcharges depuis l'enfant : mêmes chemins (`layouts/`, `parts/`).
+- Le parent ne renomme ni ne supprime ce que les enfants utilisent (fonctions `mrz_theme_*`, classes `.mrz-`, hooks, emplacements de menus, sections du constructeur). Un changement qui casse ces noms impose une version majeure et des notes de release.
 
 ## Parent ou enfant
 - Parent : comportements, accessibilité, JS, intégrations (WooCommerce, Gravity Forms, Polylang, plugins MRZ). Ne pas y ajouter de variantes d'apparence (headers, menus mobiles, effets de survol).

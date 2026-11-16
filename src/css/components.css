@@ -495,27 +495,12 @@
 		opacity: 0.85;
 	}
 
-	/* Hero */
-	.mrz-hero__inner {
-		max-width: 52rem;
-	}
-
-	.mrz-hero__title {
-		font-size: var(--mrz-h1);
-	}
-
-	.mrz-hero__subtitle {
-		margin-top: 1.25rem;
-		font-size: 1.25rem;
-		opacity: 0.9;
-	}
-
-	/* Le hero sous un header transparent laisse la place au header. */
-	.mrz-header-transparent .mrz-main > .mrz-section--hero:first-child {
+	/* Une section hero sous un header transparent laisse la place au header. */
+	.mrz-header-transparent .mrz-main > .mrz-section:first-child {
 		padding-top: calc(var(--spacing-section) + var(--mrz-logo-height) + 2rem);
 	}
 
-	/* Cartes (articles, layout Cartes) */
+	/* Cartes des articles */
 	.mrz-card {
 		position: relative;
 		display: flex;
@@ -550,47 +535,6 @@
 		z-index: 1;
 	}
 
-	/* Galerie */
-	.mrz-gallery__item {
-		display: block;
-		overflow: hidden;
-		border-radius: var(--radius-base);
-	}
-
-	/* FAQ */
-	.mrz-faq__item {
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	.mrz-faq__question {
-		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
-		padding-block: 1.25rem;
-		font-weight: 600;
-		font-size: 1.125rem;
-		cursor: pointer;
-		list-style: none;
-	}
-
-	.mrz-faq__question::-webkit-details-marker {
-		display: none;
-	}
-
-	.mrz-faq__question::after {
-		content: "+";
-		font-size: 1.5rem;
-		line-height: 1;
-		transition: transform 0.2s var(--mrz-ease);
-	}
-
-	.mrz-faq__item[open] .mrz-faq__question::after {
-		transform: rotate(45deg);
-	}
-
-	.mrz-faq__answer {
-		padding-bottom: 1.25rem;
-	}
 
 	/* Texte riche (contenu de l'éditeur classique et des champs WYSIWYG) */
 	.mrz-prose > * + * {

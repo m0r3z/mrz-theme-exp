@@ -21,6 +21,7 @@ $mrz_theme_includes = array(
 	'customizer',
 	'template-tags',
 	'builder',
+	'builder-sections',
 	'global-sections',
 	'woocommerce',
 	'updater',

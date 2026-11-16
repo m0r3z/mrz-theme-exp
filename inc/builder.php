@@ -1,9 +1,11 @@
 <?php
 /**
- * Constructeur de pages : champ ACF Flexible Content « mrz_builder ».
+ * Moteur du constructeur de pages : champ ACF Flexible Content « mrz_builder ».
  *
- * Chaque layout a son template dans layouts/{layout}.php, surchargeable
- * depuis le thème enfant.
+ * Le groupe de champs du constructeur appartient au thème enfant (sections sur
+ * mesure, préfixe mrzchild_). Le parent y injecte ses propres sections
+ * (inc/builder-sections.php) et affiche chaque section avec layouts/{nom}.php,
+ * cherché d'abord dans l'enfant.
  *
  * @package mrz-theme-exp
  */
@@ -36,9 +38,10 @@ function mrz_theme_acf_load_paths( $paths ) {
 add_filter( 'acf/settings/load_json', 'mrz_theme_acf_load_paths' );
 
 /**
- * En développement seulement (constante MRZ_THEME_DEV), les groupes du thème
- * s'enregistrent dans son dossier acf-json/. Sur un site client, ils ne
- * s'écrivent jamais dans le thème parent.
+ * En développement seulement (constante MRZ_THEME_DEV), les groupes du parent
+ * (group_mrz_*) s'enregistrent dans son dossier acf-json/. Sur un site client,
+ * ils ne s'écrivent jamais dans le thème parent. Les groupes de l'enfant
+ * (group_mrzchild_*) suivent le chemin par défaut d'ACF : acf-json/ de l'enfant.
  *
  * @param array $paths Chemins d'enregistrement.
  * @param array $post  Groupe de champs.
@@ -64,7 +67,7 @@ add_filter( 'acf/json/save_paths', 'mrz_theme_acf_save_paths', 10, 2 );
 function mrz_theme_layout_title( $title, $field, $layout ) {
 	$label = get_sub_field( 'title' );
 
-	if ( ! $label && 'global_section' === $layout['name'] ) {
+	if ( ! $label && 'mrz_global_section' === $layout['name'] ) {
 		$section_id = (int) get_sub_field( 'section' );
 		$label      = $section_id ? get_the_title( $section_id ) : '';
 	}
@@ -76,25 +79,6 @@ function mrz_theme_layout_title( $title, $field, $layout ) {
 	return $label ? $title . ' : <em>' . esc_html( $label ) . '</em>' : $title;
 }
 add_filter( 'acf/fields/flexible_content/layout_title/name=mrz_builder', 'mrz_theme_layout_title', 10, 3 );
-
-/**
- * Liste des formulaires Gravity Forms dans le layout « Formulaire ».
- *
- * @param array $field Champ select.
- * @return array
- */
-function mrz_theme_load_form_choices( $field ) {
-	$field['choices'] = array();
-
-	if ( class_exists( 'GFAPI' ) ) {
-		foreach ( GFAPI::get_forms() as $form ) {
-			$field['choices'][ $form['id'] ] = $form['title'];
-		}
-	}
-
-	return $field;
-}
-add_filter( 'acf/load_field/key=field_mrzb_form_form_id', 'mrz_theme_load_form_choices' );
 
 /**
  * La page a-t-elle des sections dans le constructeur ?
@@ -197,3 +181,4 @@ function mrz_theme_section_heading( $title, $intro = '' ) {
 	}
 	echo '</header>';
 }
+

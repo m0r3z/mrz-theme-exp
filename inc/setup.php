@@ -124,7 +124,8 @@ add_filter( 'body_class', 'mrz_theme_body_classes' );
 
 /**
  * Header transparent : seulement si l'option est active et que la page
- * commence par un hero (comme le « when applicable » de Salient).
+ * commence par une section de type hero (comme le « when applicable » de Salient) :
+ * une section dont le nom contient « hero », par exemple mrzchild_hero.
  *
  * @return bool
  */
@@ -136,7 +137,7 @@ function mrz_theme_is_transparent_header() {
 	// ACF stocke la liste des layouts dans la meta du champ flexible.
 	$layouts = get_post_meta( get_queried_object_id(), 'mrz_builder', true );
 
-	return is_array( $layouts ) && isset( $layouts[0] ) && 'hero' === $layouts[0];
+	return is_array( $layouts ) && isset( $layouts[0] ) && str_contains( (string) $layouts[0], 'hero' );
 }
 
 /**
