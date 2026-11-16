@@ -52,6 +52,7 @@
 	--mrz-logo-height: 48px;
 	--mrz-logo-height-mobile: 40px;
 
+	--mrz-header-padding: 1rem; /* espace en haut et en bas du header */
 	--mrz-header-bg: var(--color-background);
 	--mrz-header-color: var(--color-text);
 	--mrz-header-border: var(--color-border);

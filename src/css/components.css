@@ -34,6 +34,10 @@
 		transition: background-color 0.3s var(--mrz-ease), color 0.3s var(--mrz-ease), border-color 0.3s var(--mrz-ease);
 	}
 
+	.mrz-header__bar {
+		padding-block: var(--mrz-header-padding);
+	}
+
 	.mrz-header-sticky .mrz-header {
 		position: sticky;
 		top: 0;
@@ -493,7 +497,7 @@
 
 	/* Une section hero sous un header transparent laisse la place au header. */
 	.mrz-header-transparent .mrz-main > .mrz-section:first-child {
-		padding-top: calc(var(--spacing-section) + var(--mrz-logo-height) + 2rem);
+		padding-top: calc(var(--spacing-section) + var(--mrz-logo-height) + 2 * var(--mrz-header-padding));
 	}
 
 	/* Cartes des articles */

@@ -167,6 +167,8 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 | `--spacing-section`, `-sm`, `-lg` | Espacement vertical des sections : normal, compact, large | `6rem`, `3rem`, `9rem` |
 | `--mrz-h1`, `--mrz-h2`, `--mrz-h3` | Tailles des titres | valeurs fluides |
 | `--mrz-body-size`, `--mrz-body-line-height` | Taille et interligne du texte | `1.0625rem`, `1.6` |
+| `--mrz-gutter` | Marges latérales du contenu, du header et des sections | de 20 à 40 px selon l'écran |
+| `--mrz-header-padding` | Espace en haut et en bas du header | `1rem` |
 | `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` | Header | fond, texte, bordure du site |
 
 La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.

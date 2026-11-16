@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <header class="mrz-header mrz-header--classic">
-	<div class="mrz-container flex items-center justify-between gap-8 py-4">
+	<div class="mrz-container mrz-header__bar flex items-center justify-between gap-8">
 		<?php mrz_theme_logo(); ?>
 		<div class="flex items-center gap-6">
 			<?php mrz_theme_primary_nav(); ?>
