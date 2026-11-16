@@ -15,6 +15,15 @@
 		};
 		onScroll();
 		window.addEventListener( 'scroll', onScroll, { passive: true } );
+
+		/* Hauteur du header en variable CSS : les ancres s'arrêtent sous un header sticky. */
+		var setHeaderHeight = function () {
+			document.documentElement.style.setProperty( '--mrz-header-height', header.offsetHeight + 'px' );
+		};
+		setHeaderHeight();
+		if ( 'ResizeObserver' in window ) {
+			new ResizeObserver( setHeaderHeight ).observe( header );
+		}
 	}
 
 	/* Menu mobile en panneau latéral. */

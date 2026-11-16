@@ -328,11 +328,19 @@ function mrz_theme_customizer_css() {
 	$css .= '--mrz-container:' . absint( mrz_theme_option( 'container_width' ) ) . 'px;';
 	$css .= '}';
 
+	/*
+	 * Header sticky ou transparent : un lien vers une ancre s'arrête sous le header
+	 * (hauteur mesurée par main.js) et sous la barre d'admin. Écrit ici, hors couche,
+	 * pour passer devant la règle de la barre d'admin de WordPress.
+	 */
+	$css .= 'html:has(> body.mrz-header-sticky),html:has(> body.mrz-header-transparent){scroll-padding-top:calc(var(--mrz-header-height,0px) + var(--wp-admin--admin-bar--height,0px) + 1rem)}';
+
 	$css .= '@media (min-width:' . ( $breakpoint + 1 ) . 'px){.mrz-mobile-only{display:none}}';
 	$css .= '@media (max-width:' . $breakpoint . 'px){';
 	$css .= '.mrz-desktop-only{display:none}';
 	$css .= '.mrz-header .mrz-logo img{height:var(--mrz-logo-height-mobile)}';
 	$css .= '.mrz-mobile-static:not(.mrz-header-transparent) .mrz-header{position:relative}';
+	$css .= 'html:has(> body.mrz-mobile-static:not(.mrz-header-transparent)){scroll-padding-top:var(--wp-admin--admin-bar--height,0px)}';
 	$css .= '}';
 
 	if ( mrz_theme_option( 'transition_enabled' ) ) {
