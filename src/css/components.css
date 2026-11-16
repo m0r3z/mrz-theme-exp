@@ -137,8 +137,11 @@
 		display: block;
 		padding-block: 0.5rem;
 		text-decoration: none;
+		font-family: var(--mrz-menu-font-family);
 		font-size: var(--mrz-menu-font-size);
 		font-weight: var(--mrz-menu-font-weight);
+		text-transform: var(--mrz-menu-text-transform);
+		letter-spacing: var(--mrz-menu-letter-spacing);
 	}
 
 	.mrz-menu--secondary a {
@@ -354,8 +357,11 @@
 		flex: 1;
 		padding-block: 0.875rem;
 		text-decoration: none;
+		font-family: var(--mrz-menu-font-family);
 		font-size: var(--mrz-text-lg);
 		font-weight: var(--mrz-menu-font-weight);
+		text-transform: var(--mrz-menu-text-transform);
+		letter-spacing: var(--mrz-menu-letter-spacing);
 	}
 
 	.mrz-mobile-nav .sub-menu {
@@ -618,8 +624,15 @@
 
 	.mrz-prose .mrz-btn {
 		margin-top: 0.5em;
-		color: var(--color-primary-contrast);
 		text-decoration: none;
+	}
+
+	.mrz-prose .mrz-btn--primary {
+		color: var(--mrz-button-color);
+	}
+
+	.mrz-prose .mrz-btn--outline {
+		color: inherit;
 	}
 
 	/* Pagination et navigation d'articles */

@@ -52,13 +52,13 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 ### Variables (parent : `src/css/tokens.css`, valeurs du site : `style.css` de l'enfant)
 | Famille | Variables |
 | --- | --- |
-| Couleurs | `--color-primary`, `--color-primary-contrast`, `--color-secondary`, `--color-accent`, `--color-text`, `--color-muted`, `--color-background`, `--color-light`, `--color-dark`, `--color-border` |
+| Couleurs | **Cinq seulement**, réglées dans l'enfant : `--color-primary`, `--color-secondary`, `--color-dark` (texte, fonds sombres), `--color-light` (fonds clairs), `--color-border`. Dérivées, à utiliser mais pas à régler : `--color-text` (= dark), `--color-muted` (dark atténué), `--color-background` et `--color-primary-contrast` (blanc). Ne jamais ajouter de couleur : une charte n'en a pas quinze |
 | Polices | `--font-title`, `--font-body` |
 | Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
 | Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
 | Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
 | Champs | `--mrz-field-font-size`, `--mrz-field-padding`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
-| Menus | `--mrz-menu-font-size`, `--mrz-menu-font-weight` |
+| Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` |
 | Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base`, `--mrz-header-padding` |
 | Icônes en image | `--mrz-icon-filter-light` (passe une icône SVG ou PNG en blanc) |
 

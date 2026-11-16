@@ -62,8 +62,8 @@
 }
 
 .woocommerce span.onsale {
-	background: var(--color-accent);
-	color: var(--color-dark);
+	background: var(--color-primary);
+	color: var(--color-primary-contrast);
 }
 
 .woocommerce ul.products li.product .price,

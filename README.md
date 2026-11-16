@@ -147,7 +147,7 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 ```css
 :root {
 	--color-primary: #0b6e4f;
-	--color-primary-contrast: #ffffff;
+	--color-secondary: #c08a2e;
 	--font-title: "Urbanist", Arial, sans-serif;
 	--radius-button: 6px;
 }
@@ -155,23 +155,23 @@ Redéfinir les variables dans le `:root` du `style.css` de l'enfant :
 
 | Variable | Rôle | Défaut |
 | --- | --- | --- |
-| `--color-primary` / `--color-primary-contrast` | Couleur principale (boutons, fonds « couleur principale ») et texte posé dessus | `#2a5bd7` / `#ffffff` |
-| `--color-secondary` | Couleur secondaire | `#1d1d1f` |
-| `--color-accent` | Couleur d'accent | `#f2a541` |
-| `--color-text` / `--color-muted` | Texte courant / texte atténué | `#20201f` / `#6b6b6a` |
-| `--color-background` | Fond du site | `#ffffff` |
-| `--color-light` / `--color-dark` | Fonds « clair » et « sombre » des sections | `#f4f4f2` / `#161616` |
-| `--color-border` | Bordures | `#dededd` |
+| `--color-primary` | Couleur principale : boutons, liens, fonds « couleur principale » | `#2a5bd7` |
+| `--color-secondary` | Couleur secondaire de la marque | `#1d1d1f` |
+| `--color-dark` | Texte courant et fonds « sombre » | `#20201f` |
+| `--color-light` | Fonds « clair » | `#f4f4f2` |
+| `--color-border` | Traits et bordures | `#dededd` |
 | `--font-title` / `--font-body` | Polices des titres / du texte | police système |
 | `--radius-base` / `--radius-button` | Arrondi des cartes et images / des boutons | `10px` / `999px` |
 | `--spacing-section`, `-sm`, `-lg` | Espacement vertical des sections : normal, compact, large | `6rem`, `3rem`, `9rem` |
-| `--mrz-h1`, `--mrz-h2`, `--mrz-h3` | Tailles des titres | valeurs fluides |
+| `--mrz-h1` à `--mrz-h6` | Tailles des titres | valeurs fluides |
+| `--mrz-button-*`, `--mrz-field-*`, `--mrz-label-*` | Boutons, champs et libellés, les mêmes partout (thème, Gravity Forms, WooCommerce) | voir `tokens.css` |
+| `--mrz-menu-font-family`, `-font-size`, `-font-weight`, `-text-transform`, `-letter-spacing` | Police, taille, graisse, casse et espacement des menus | police du texte, `1rem`, `500`, aucune, aucun |
 | `--mrz-body-size`, `--mrz-body-line-height` | Taille et interligne du texte | `1.0625rem`, `1.6` |
 | `--mrz-gutter` | Marges latérales du contenu, du header et des sections | de 20 à 40 px selon l'écran |
 | `--mrz-header-padding` | Espace en haut et en bas du header | `1rem` |
 | `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` | Header | fond, texte, bordure du site |
 
-La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
+La palette s'arrête à ces cinq couleurs. Le texte atténué (`--color-muted`, dérivé de `--color-dark`), le fond de page et le texte posé sur la couleur principale (blancs) en découlent : ne pas les régler dans l'enfant. La liste complète est dans `src/css/tokens.css` du parent. La largeur du site et la hauteur du logo du header se règlent dans MRZ Theme, pas en CSS.
 
 ### Polices
 

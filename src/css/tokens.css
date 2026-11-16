@@ -9,17 +9,22 @@
  * pour que le thème enfant et les plugins puissent toujours s'y référer.
  */
 @theme static {
-	/* Couleurs */
+	/*
+	 * Palette : cinq couleurs, les seules à régler dans le thème enfant.
+	 * primary, secondary : couleurs de la marque.
+	 * dark : texte et fonds sombres. light : fonds clairs. border : traits et bordures.
+	 */
 	--color-primary: #2a5bd7;
-	--color-primary-contrast: #ffffff;
 	--color-secondary: #1d1d1f;
-	--color-accent: #f2a541;
-	--color-text: #20201f;
-	--color-muted: #6b6b6a;
-	--color-background: #ffffff;
+	--color-dark: #20201f;
 	--color-light: #f4f4f2;
-	--color-dark: #161616;
 	--color-border: #dededd;
+
+	/* Couleurs dérivées de la palette : ne pas les régler dans l'enfant. */
+	--color-text: var(--color-dark);
+	--color-muted: color-mix(in srgb, var(--color-dark) 60%, transparent);
+	--color-background: #ffffff;
+	--color-primary-contrast: #ffffff;
 
 	/* Polices : les @font-face (woff2 auto-hébergées) se déclarent dans le thème enfant. */
 	--font-title: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -75,9 +80,12 @@
 	--mrz-label-font-size: 0.9375rem;
 	--mrz-label-font-weight: 600;
 
-	/* Menus */
+	/* Menus (header et menu mobile) */
+	--mrz-menu-font-family: var(--font-body);
 	--mrz-menu-font-size: 1rem;
 	--mrz-menu-font-weight: 500;
+	--mrz-menu-text-transform: none;
+	--mrz-menu-letter-spacing: normal;
 
 	/* Icônes en image (SVG, PNG) : filtre pour les passer en blanc sur fond sombre. */
 	--mrz-icon-filter-light: brightness(0) invert(1);
