@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.7.1] - 2026-11-17
+
 ### Retiré
 - Titre `h1` automatique des pages Panier, Commande et Mon compte (ajouté en 0.4.1), et titre de la page Boutique de WooCommerce. Les catégories de produits gardent leur titre.
 
