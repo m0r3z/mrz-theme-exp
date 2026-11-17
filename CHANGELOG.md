@@ -13,7 +13,7 @@ Boutique WooCommerce : réglages dans le Customizer, panneau du panier, ajout sa
 - **Panneau du panier** (`<dialog>` à droite) ouvert par l'icône du panier et après un ajout : articles, suppression sans quitter la page, total, « Voir le panier » et « Commander », bouton « Continuer les achats » quand il est vide. Contenu chargé à l'ouverture (compatible avec le cache de page). Sans JavaScript, l'icône mène toujours au panier.
 - Fiche produit : **ajout au panier sans rechargement** (tous types de produits, champs des plugins compris) ; **notification** discrète en bas d'écran pour l'ajout (mode page) et les erreurs.
 - Fiche produit : description, informations complémentaires et avis en **accordéons** (ceux de la section Accordéon, variables `--mrz-accordion-*`), à côté des images sous le bouton d'ajout, ou sous les images.
-- Boutons **+ et −** autour de la quantité (fiche produit, panier).
+- Boutons **+ et −** autour de la quantité (fiche produit ; panier en shortcode, le bloc Panier a les siens).
 - Badge promo en pourcentage (« -20 % »), ou aucun badge.
 - Module `assets/js/shop.js`, chargé seulement là où il sert. Variables `--mrz-shop-columns-mobile`, `--mrz-shop-gap`, `--mrz-minicart-*`, `--mrz-product-thumbs`.
 
