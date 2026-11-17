@@ -48,9 +48,19 @@ $mrz_list = static function ( $items, $repeat, $separator, $hidden ) {
 		foreach ( $items as $item ) {
 			$copy = $hidden || $round > 0;
 			echo '<li class="mrz-marquee__item"' . ( $copy ? ' aria-hidden="true"' : '' ) . '>';
-			$content = ! empty( $item['image'] )
-				? wp_get_attachment_image( (int) $item['image'], 'medium', false, array( 'class' => 'mrz-marquee__logo', 'loading' => 'lazy' ) )
-				: '<span class="mrz-marquee__text">' . esc_html( $item['text'] ) . '</span>';
+			if ( ! empty( $item['image'] ) ) {
+				// Logo : le texte de l'élément sert d'alternative (sinon celle de la médiathèque).
+				$attributes = array(
+					'class'   => 'mrz-marquee__logo',
+					'loading' => 'lazy',
+				);
+				if ( ! empty( $item['text'] ) ) {
+					$attributes['alt'] = $item['text'];
+				}
+				$content = wp_get_attachment_image( (int) $item['image'], 'medium', false, $attributes );
+			} else {
+				$content = '<span class="mrz-marquee__text">' . esc_html( $item['text'] ) . '</span>';
+			}
 			if ( ! empty( $item['link']['url'] ) ) {
 				$target  = ! empty( $item['link']['target'] ) ? $item['link']['target'] : '_self';
 				$content = sprintf(

@@ -6,7 +6,7 @@
  * Image : affichée en entier ; si elle est plus grande que l'écran, un clic (ou le bouton
  * loupe) la montre en taille réelle, on s'y déplace en faisant défiler.
  * Vidéo : lecteur chargé seulement à l'ouverture (youtube-nocookie, Vimeo sans traceurs).
- * Clavier : flèches, Échap ; focus rendu au lien à la fermeture. Glissé au doigt.
+ * Clavier : flèches, Échap ; focus rendu au lien de l'image affichée à la fermeture. Glissé au doigt.
  * Chargé seulement sur les pages qui en ont besoin (inc/lightbox.php).
  */
 ( function () {
@@ -153,6 +153,10 @@
 			}
 			startX = null;
 		} );
+		// Geste repris par le navigateur (défilement, pincement) : on oublie le départ.
+		stage.addEventListener( 'pointercancel', function () {
+			startX = null;
+		} );
 	}
 
 	/* Taille réelle possible seulement si l'image est réduite pour tenir dans l'écran. */
@@ -235,10 +239,11 @@
 		if ( ! opener ) {
 			return; // Déjà fait.
 		}
-		// Arrête une vidéo en cours et rend le focus au lien d'origine.
+		// Arrête une vidéo en cours et rend le focus au lien de l'image affichée
+		// (après précédent ou suivant, ce n'est plus celui qui a ouvert).
 		stage.textContent = '';
 		document.documentElement.classList.remove( 'mrz-lightbox-open' );
-		var link = opener;
+		var link = items[ current ] ? items[ current ].link : opener;
 		opener = null;
 		link.focus();
 	}

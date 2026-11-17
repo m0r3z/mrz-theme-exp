@@ -3,6 +3,7 @@
  * La valeur finale est déjà dans la page ; ce script la fait monter de 0 quand la carte
  * arrive à l'écran. Il garde le reste du texte (« 13 M€ », « +50 », « 98 % ») et le
  * séparateur des milliers. Rien si le visiteur limite les animations.
+ * Les lecteurs d'écran ne lisent que la valeur finale.
  * Chargé seulement par les Cartes en style « Chiffres clés » avec le compteur.
  */
 ( function () {
@@ -84,9 +85,26 @@
 		} );
 	}, { threshold: 0.6 } );
 
+	/*
+	 * Lecteurs d'écran : ils lisent la valeur finale, jamais les valeurs intermédiaires.
+	 * Le contenu animé passe en aria-hidden, la valeur finale est copiée en texte masqué.
+	 */
+	function shield( element ) {
+		var visible = document.createElement( 'span' );
+		visible.setAttribute( 'aria-hidden', 'true' );
+		while ( element.firstChild ) {
+			visible.appendChild( element.firstChild );
+		}
+		var spoken = document.createElement( 'span' );
+		spoken.className = 'screen-reader-text';
+		spoken.textContent = visible.textContent;
+		element.append( visible, spoken );
+	}
+
 	document.querySelectorAll( '[data-mrz-count]' ).forEach( function ( element ) {
 		var item = prepare( element );
 		if ( item ) {
+			shield( element );
 			element.mrzCount = item;
 			observer.observe( element );
 		}

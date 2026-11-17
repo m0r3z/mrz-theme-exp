@@ -915,7 +915,7 @@ function mrz_theme_parent_layouts() {
 					'key'          => 'field_mrz_marquee_items',
 					'name'         => 'items',
 					'label'        => __( 'Items', 'mrz-theme-exp' ),
-					'instructions' => __( 'A text, or an image (logo). A logo needs its alternative text.', 'mrz-theme-exp' ),
+					'instructions' => __( 'A text, or an image (logo). With a logo, the text becomes its alternative text (the logo name); left empty, the media library alternative text is used.', 'mrz-theme-exp' ),
 					'type'         => 'repeater',
 					'layout'       => 'table',
 					'button_label' => __( 'Add an item', 'mrz-theme-exp' ),
