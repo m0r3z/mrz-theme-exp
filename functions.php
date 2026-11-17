@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MRZ_THEME_VERSION', '0.5.0' );
+define( 'MRZ_THEME_VERSION', '0.5.1' );
 define( 'MRZ_THEME_DIR', get_template_directory() );
 define( 'MRZ_THEME_URI', get_template_directory_uri() );
 

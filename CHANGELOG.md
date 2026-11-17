@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.5.1] - 2026-11-17
+
 ### Ajouté
 - Mega menu : une section globale placée au deuxième niveau forme une colonne (image, texte, bouton, Cartes). Elle n'apparaît que dans le mega menu du header ; ses titres y deviennent des paragraphes et ses images ne prennent pas la priorité de chargement.
 - `--mrz-megamenu-column-min`.
