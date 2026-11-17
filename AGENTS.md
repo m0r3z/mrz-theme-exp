@@ -176,7 +176,7 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Enfant : l'apparence du site, en CSS sur les classes `.mrz-` du parent. Copier un template dans l'enfant seulement en dernier recours : la copie ne reçoit plus les corrections du parent.
 
 ## Carrousel
-Pour tout ce qui défile (logos, témoignages, cartes) : jamais de bibliothèque ni de carrousel maison dans l'enfant.
+Pour tout ce qui défile (cartes, témoignages, logos) : jamais de bibliothèque ni de carrousel maison dans l'enfant.
 ```php
 mrz_theme_carousel_open( array( 'label' => $mrzchild_title, 'autoplay' => 0, 'dots' => true ) );
 foreach ( $mrzchild_items as $mrzchild_item ) {
