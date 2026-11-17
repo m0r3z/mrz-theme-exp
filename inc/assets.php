@@ -32,6 +32,7 @@ function mrz_theme_enqueue_assets() {
 	// Partout : une grille [products] peut se trouver sur n'importe quelle page (3 Ko).
 	if ( class_exists( 'WooCommerce' ) ) {
 		wp_enqueue_style( 'mrz-theme-woocommerce', MRZ_THEME_URI . '/assets/css/woocommerce.css', array( 'mrz-theme' ), mrz_theme_asset_version( 'assets/css/woocommerce.css' ) );
+		wp_add_inline_style( 'mrz-theme-woocommerce', mrz_theme_shop_inline_css() );
 		$child_dependencies[] = 'mrz-theme-woocommerce';
 	}
 

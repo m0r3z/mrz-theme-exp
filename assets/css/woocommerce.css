@@ -65,9 +65,137 @@
 	font-weight: var(--mrz-label-font-weight);
 }
 
+/* Badge promo : pastille du thème, plus de rond imposé. */
 .woocommerce span.onsale {
+	min-width: 0;
+	min-height: 0;
+	padding: 0.25rem 0.75rem;
+	border-radius: var(--radius-button);
 	background: var(--color-primary);
 	color: var(--color-primary-contrast);
+	font-size: var(--mrz-text-sm);
+	font-weight: var(--mrz-button-font-weight);
+	line-height: 1.5;
+}
+
+.woocommerce ul.products li.product .onsale {
+	top: 0.75rem;
+	right: 0.75rem;
+	margin: 0;
+}
+
+/*
+ * Listes de produits en grille : colonnes réglées dans le Customizer (classe columns-N
+ * de WooCommerce, gardée par le shortcode [products]), --mrz-shop-columns-mobile sous 768px.
+ * Cartes de même hauteur, bouton en bas.
+ */
+.woocommerce ul.products {
+	--mrz-shop-columns: 4;
+	display: grid;
+	grid-template-columns: repeat(var(--mrz-shop-columns), minmax(0, 1fr));
+	gap: var(--mrz-shop-gap, 2rem 1.5rem);
+	margin: 0 0 2rem;
+}
+
+.woocommerce ul.products.columns-1 { --mrz-shop-columns: 1; }
+.woocommerce ul.products.columns-2 { --mrz-shop-columns: 2; }
+.woocommerce ul.products.columns-3 { --mrz-shop-columns: 3; }
+.woocommerce ul.products.columns-5 { --mrz-shop-columns: 5; }
+.woocommerce ul.products.columns-6 { --mrz-shop-columns: 6; }
+
+.woocommerce ul.products::before,
+.woocommerce ul.products::after {
+	display: none;
+}
+
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	margin: 0;
+	float: none;
+}
+
+.woocommerce ul.products li.product .woocommerce-LoopProduct-link {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.woocommerce ul.products li.product .button {
+	align-self: flex-start;
+	margin-top: 1rem;
+}
+
+.woocommerce ul.products li.product .added_to_cart {
+	margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+	.woocommerce ul.products[class*="columns-"],
+	.woocommerce-page ul.products[class*="columns-"] {
+		--mrz-shop-columns: var(--mrz-shop-columns-mobile, 2);
+	}
+}
+
+/* Nombre de résultats et tri : sur une ligne, le tri est un champ du thème. */
+.woocommerce .woocommerce-result-count {
+	margin: 0 0 1.5rem;
+	color: var(--color-muted);
+	font-size: var(--mrz-text-sm);
+	line-height: 2.75rem;
+}
+
+.woocommerce .woocommerce-ordering {
+	margin: 0 0 1.5rem;
+}
+
+.woocommerce .woocommerce-ordering select {
+	padding: var(--mrz-field-padding);
+	padding-right: 2.5rem;
+	border: 1px solid var(--mrz-field-border, var(--color-border));
+	border-radius: var(--mrz-field-radius);
+	background-color: var(--mrz-field-bg, var(--color-background));
+	color: var(--mrz-field-color, var(--color-text));
+	font-size: var(--mrz-field-font-size);
+}
+
+/* Pagination : pastilles rondes, page courante à la couleur des boutons. */
+.woocommerce nav.woocommerce-pagination ul {
+	display: inline-flex;
+	gap: 0.5rem;
+	border: 0;
+}
+
+.woocommerce nav.woocommerce-pagination ul li {
+	border: 0;
+}
+
+.woocommerce nav.woocommerce-pagination ul li a,
+.woocommerce nav.woocommerce-pagination ul li span {
+	display: grid;
+	place-items: center;
+	min-width: 2.75rem;
+	height: 2.75rem;
+	padding: 0 0.75rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-button);
+	color: var(--color-text);
+	font-size: var(--mrz-text-sm);
+}
+
+.woocommerce nav.woocommerce-pagination ul li a:hover,
+.woocommerce nav.woocommerce-pagination ul li a:focus {
+	background: none;
+	color: var(--color-text);
+	border-color: currentColor;
+}
+
+.woocommerce nav.woocommerce-pagination ul li span.current {
+	border-color: var(--mrz-button-bg);
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
 }
 
 .woocommerce ul.products li.product .price,

@@ -48,6 +48,16 @@ function mrz_theme_option_defaults() {
 		'container_width'           => 1280,
 		'page_404'                  => 0,
 		'highlight_animated'        => false,
+		'shop_cart_behavior'        => 'drawer',
+		'shop_ajax_single'          => true,
+		'shop_product_details'      => 'summary',
+		'shop_columns'              => 4,
+		'shop_columns_mobile'       => 2,
+		'shop_per_page'             => 12,
+		'shop_sorting'              => true,
+		'shop_result_count'         => true,
+		'shop_sale_badge'           => 'text',
+		'shop_quantity_buttons'     => true,
 	);
 }
 
