@@ -384,4 +384,9 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
 7. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
 8. **Theme Check** : passer le plugin avant la 1.0.
 
+Petits restes, à traiter quand l'occasion se présente :
+- **Bordure des champs sur les fonds de couleur** (RGAA, contraste des composants) : sur une section sombre ou colorée, `--color-border` peut se confondre avec le fond. Prendre une bordure tirée du texte de la section (`color-mix()` de `--color-text`) quand `--mrz-field-border` n'est pas réglée.
+- **Footer dans la liste des sections** : `mrzchild_footer` est proposé dans le constructeur des pages ; le réserver aux sections globales.
+- **Mobile, connecté** : une bande de page apparaît au-dessus du header sticky au défilement.
+
 Pas prévu dans le parent : d'autres variantes de header et les effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, menus, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.
