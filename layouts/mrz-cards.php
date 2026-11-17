@@ -56,7 +56,7 @@ foreach ( $mrz_items as $mrz_item ) :
 				?>
 				<span class="mrz-cards__icon" style="--mrz-card-icon:url('<?php echo esc_url( wp_get_attachment_url( $mrz_image ) ); ?>')"<?php echo $mrz_alt ? ' role="img" aria-label="' . esc_attr( $mrz_alt ) . '"' : ' aria-hidden="true"'; ?>></span>
 			<?php elseif ( $mrz_image ) : ?>
-				<div class="mrz-cards__media"><?php echo wp_get_attachment_image( $mrz_image, 'medium_large' ); ?></div>
+				<div class="mrz-cards__media"><?php echo wp_get_attachment_image( $mrz_image, 'medium_large', false, array( 'style' => mrz_theme_image_ratio_style( $mrz_image, 'medium_large' ) ) ); ?></div>
 			<?php endif; ?>
 			<?php if ( ! empty( $mrz_item['title'] ) ) : ?>
 				<<?php echo esc_html( $mrz_tag ); ?> class="mrz-cards__title"><?php echo mrz_theme_title_html( $mrz_item['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtré par wp_kses. ?></<?php echo esc_html( $mrz_tag ); ?>>

@@ -121,6 +121,9 @@ function mrz_theme_render_builder( $post_id = null ) {
 function mrz_theme_section_open( $layout, $args = array() ) {
 	$settings = (array) get_sub_field( 'settings' );
 
+	// Rang de la section dans la page (sections globales du haut comprises) : la première porte l'image prioritaire.
+	$GLOBALS['mrz_theme_section_index'] = ( $GLOBALS['mrz_theme_section_index'] ?? 0 ) + 1;
+
 	$background = $settings['background'] ?? 'none';
 	$spacing    = $settings['spacing'] ?? 'normal';
 	$width      = $settings['width'] ?? 'container';
@@ -195,30 +198,52 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 }
 
 /**
+ * Chargement d'une image de section : prioritaire dans la première section de la page
+ * (image principale, LCP), différé ailleurs.
+ *
+ * @return array Attributs loading, fetchpriority et decoding pour wp_get_attachment_image().
+ */
+function mrz_theme_section_image_loading() {
+	$is_first = 1 === ( $GLOBALS['mrz_theme_section_index'] ?? 0 );
+
+	return array(
+		'loading'       => $is_first ? 'eager' : 'lazy',
+		'fetchpriority' => $is_first ? 'high' : 'auto',
+		'decoding'      => $is_first ? 'sync' : 'async',
+	);
+}
+
+/**
+ * Format réel d'une image en variable CSS (--mrz-img-ratio), pour une règle
+ * « aspect-ratio: var(--mrz-xxx-ratio, var(--mrz-img-ratio)) » : la place de l'image
+ * est réservée avant son chargement (pas de décalage, CLS), recadrage facultatif.
+ *
+ * @param int    $image_id ID de l'image.
+ * @param string $size     Taille affichée.
+ * @return string Déclaration CSS ('' si dimensions inconnues).
+ */
+function mrz_theme_image_ratio_style( $image_id, $size ) {
+	$source = wp_get_attachment_image_src( $image_id, $size );
+
+	return $source && $source[1] && $source[2] ? '--mrz-img-ratio:' . (int) $source[1] . ' / ' . (int) $source[2] . ';' : '';
+}
+
+/**
  * Image de fond d'une section : une vraie <img> décorative, recadrée sur toute la section.
- * La première de la page est chargée en priorité (souvent l'image principale, LCP),
- * les suivantes en différé.
  *
  * @param int $image_id ID de l'image.
  */
 function mrz_theme_section_background_image( $image_id ) {
-	static $is_first = true;
-
 	echo wp_get_attachment_image(
 		$image_id,
 		'full',
 		false,
 		array(
-			'class'         => 'mrz-section__bg',
-			'alt'           => '',
-			'sizes'         => '100vw',
-			'loading'       => $is_first ? 'eager' : 'lazy',
-			'fetchpriority' => $is_first ? 'high' : 'auto',
-			'decoding'      => $is_first ? 'sync' : 'async',
-		)
+			'class' => 'mrz-section__bg',
+			'alt'   => '',
+			'sizes' => '100vw',
+		) + mrz_theme_section_image_loading()
 	);
-
-	$is_first = false;
 }
 
 /**

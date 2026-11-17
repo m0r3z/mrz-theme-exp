@@ -984,7 +984,8 @@
 		width: auto;
 		max-width: 100%;
 		height: auto;
-		aspect-ratio: var(--mrz-card-media-ratio, auto);
+		/* Format réel de l'image (--mrz-img-ratio, posé par le template) sauf format imposé : place réservée, pas de CLS. */
+		aspect-ratio: var(--mrz-card-media-ratio, var(--mrz-img-ratio, auto));
 		object-fit: cover;
 	}
 
@@ -1002,6 +1003,132 @@
 	.mrz-cards--figures .mrz-cards__title {
 		font-size: var(--mrz-card-figure-size);
 		line-height: 1;
+	}
+
+	/* Section Texte et média (mrz_split) : empilée sur mobile, texte en premier. */
+	.mrz-split__grid {
+		display: grid;
+		gap: var(--mrz-split-gap);
+		align-items: center;
+	}
+
+	.mrz-split--top .mrz-split__grid {
+		align-items: start;
+	}
+
+	.mrz-split__image {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--mrz-split-image-ratio, var(--mrz-img-ratio, auto));
+		object-fit: cover;
+		border-radius: var(--mrz-split-radius);
+	}
+
+	.mrz-split__box {
+		padding: var(--mrz-split-box-padding);
+		border-radius: var(--mrz-split-radius);
+	}
+
+	@media (min-width: 768px) {
+		.mrz-split__grid {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.mrz-split--text-wide .mrz-split__grid {
+			grid-template-columns: 2fr 1fr;
+		}
+
+		.mrz-split--media-wide .mrz-split__grid {
+			grid-template-columns: 1fr 2fr;
+		}
+
+		/* Média à gauche : on inverse les colonnes, pas l'ordre du HTML (lecture et tabulation inchangées). */
+		.mrz-split--media-left .mrz-split__media {
+			grid-row: 1;
+			grid-column: 1;
+		}
+
+		.mrz-split--media-left .mrz-split__text {
+			grid-column: 2;
+		}
+
+		.mrz-split--media-left.mrz-split--text-wide .mrz-split__grid {
+			grid-template-columns: 1fr 2fr;
+		}
+
+		.mrz-split--media-left.mrz-split--media-wide .mrz-split__grid {
+			grid-template-columns: 2fr 1fr;
+		}
+
+		/* Colonne collante : elle reste sous le header pendant que l'autre défile. */
+		.mrz-split--sticky-media .mrz-split__grid,
+		.mrz-split--sticky-text .mrz-split__grid {
+			align-items: start;
+		}
+
+		.mrz-split--sticky-media .mrz-split__media,
+		.mrz-split--sticky-text .mrz-split__text {
+			position: sticky;
+			top: calc(var(--mrz-header-offset) + 1.5rem);
+		}
+	}
+
+	/* Section Accordéon (mrz_accordion) : <details> natif, sans JS. */
+	.mrz-accordion {
+		display: grid;
+		gap: var(--mrz-accordion-gap);
+	}
+
+	.mrz-accordion__item {
+		border-bottom: var(--mrz-accordion-border);
+	}
+
+	.mrz-accordion__item:first-child {
+		border-top: var(--mrz-accordion-border);
+	}
+
+	.mrz-accordion__question {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: var(--mrz-accordion-padding);
+		font-family: var(--font-title);
+		font-size: var(--mrz-accordion-question-size);
+		font-weight: var(--mrz-title-weight);
+		line-height: var(--mrz-title-line-height);
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.mrz-accordion__question::-webkit-details-marker {
+		display: none;
+	}
+
+	/* Icône en masque, à la couleur du texte ; pivote à l'ouverture (plus devient croix). */
+	.mrz-accordion__question::after {
+		content: "";
+		flex-shrink: 0;
+		width: var(--mrz-accordion-icon-size);
+		height: var(--mrz-accordion-icon-size);
+		background: currentColor;
+		mask: var(--mrz-accordion-icon) center / contain no-repeat;
+		transition: transform 0.2s var(--mrz-ease);
+	}
+
+	.mrz-accordion__item[open] > .mrz-accordion__question::after {
+		transform: rotate(45deg);
+	}
+
+	.mrz-accordion__answer {
+		padding-bottom: 1.5rem;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-accordion__question::after {
+			transition: none;
+		}
 	}
 
 	/* Texte libre : surtitre, alignement, boutons. */

@@ -16,6 +16,11 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Cartes : nombre de cartes par ligne propre à la section, style « chiffres clés » (`--mrz-card-figure-size`).
 - Variables du surtitre : `--mrz-eyebrow-color`, `-size`, `-weight`, `-text-transform`, `-letter-spacing`.
 - Sur un fond de section ou une image, `--mrz-link-color` prend la couleur du texte de la section.
+- Section **Texte et média** (`mrz_split`) : texte d'un côté, image, second texte ou encadré coloré de l'autre ; côté, largeur des colonnes, alignement vertical, colonne collante. Variables `--mrz-split-*`.
+- Section **Accordéon** (`mrz_accordion`) : `<details>` natif sans JavaScript, premier élément ouvert et un seul ouvert à la fois en option. Variables `--mrz-accordion-*`.
+
+### Corrigé
+- Images des Cartes : leur place est réservée avant chargement (format réel en `--mrz-img-ratio`). Depuis la 0.4.1, `--mrz-card-media-ratio` non réglé donnait une hauteur fausse à une image chargée en différé (décalage de mise en page).
 
 ### Modifié
 - L'image de fond d'une section est une vraie `<img>` derrière le contenu, et non plus une image de fond CSS. Celle de la première section se charge en priorité (LCP) : un Texte libre avec titre en H1, image et hauteur plein écran fait une bannière.

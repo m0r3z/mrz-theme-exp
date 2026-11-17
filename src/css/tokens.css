@@ -154,6 +154,20 @@
 	--mrz-card-figure-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); /* style « chiffres clés » : taille du chiffre */
 	/* --mrz-card-media-ratio : format des images des cartes (16 / 9, 1…), recadrées ; format d'origine par défaut. */
 
+	/* Section Texte et média (mrz_split) */
+	--mrz-split-gap: clamp(2rem, 5vw, 5rem);
+	--mrz-split-radius: var(--radius-base); /* coins de l'image et de l'encadré */
+	--mrz-split-box-padding: clamp(1.5rem, 4vw, 3.5rem);
+	/* --mrz-split-image-ratio : format de l'image (4 / 3, 1…), recadrée ; format d'origine par défaut. */
+
+	/* Section Accordéon (mrz_accordion) */
+	--mrz-accordion-gap: 0; /* entre deux éléments (0 : éléments séparés par un trait) */
+	--mrz-accordion-border: 1px solid var(--color-border);
+	--mrz-accordion-padding: 1.25rem 0;
+	--mrz-accordion-question-size: var(--mrz-h5);
+	--mrz-accordion-icon-size: 1.25rem;
+	--mrz-accordion-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5v14M5 12h14' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+
 	/* Section Footer (mrz_footer) */
 	--mrz-footer-logo-height: 4.5rem;
 	--mrz-footer-logo-space: 5rem; /* sous le logo */

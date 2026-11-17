@@ -73,6 +73,8 @@ Le menu « Ajouter une section » réunit deux sources :
 | Free text (Texte libre) | Titre, texte de l'éditeur classique | Pour un formulaire, une liste MRZ Display Post ou une carte MRZ Maps : y coller le shortcode |
 | Raw HTML (HTML brut) | Code HTML | Affiché tel quel, scripts compris. Visible seulement pour les administrateurs |
 | Cards (Cartes) | Titre, cartes (image ou icône, titre, texte, lien, fond), en grille ou en carrousel | Une icône SVG prend la couleur du texte de la carte |
+| Text and media (Texte et média) | Texte (surtitre, titre, texte, deux boutons) d'un côté ; image, second texte ou encadré coloré de l'autre | Côté, largeur des colonnes (égales ou 2/3), alignement vertical, colonne collante. Empilées sur mobile, texte en premier |
+| Accordion (Accordéon) | Titre, introduction, éléments à déplier (question, réponse) | Sans JavaScript (`<details>`). Premier élément ouvert, un seul ouvert à la fois en option |
 | Footer | Logo, phrase, bouton, colonnes de liens, réseaux sociaux, ligne du bas | Proposée seulement dans les sections globales, à l'emplacement « Footer » |
 | Global section | Une section globale existante | Pour réutiliser un bloc à un endroit précis |
 
