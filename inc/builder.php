@@ -122,7 +122,10 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 	$settings = (array) get_sub_field( 'settings' );
 
 	// Rang de la section dans la page (sections globales du haut comprises) : la première porte l'image prioritaire.
-	$GLOBALS['mrz_theme_section_index'] = ( $GLOBALS['mrz_theme_section_index'] ?? 0 ) + 1;
+	// Une section dans un mega menu ne compte pas.
+	if ( empty( $GLOBALS['mrz_theme_in_menu'] ) ) {
+		$GLOBALS['mrz_theme_section_index'] = ( $GLOBALS['mrz_theme_section_index'] ?? 0 ) + 1;
+	}
 
 	$background = $settings['background'] ?? 'none';
 	$spacing    = $settings['spacing'] ?? 'normal';
@@ -204,7 +207,7 @@ function mrz_theme_section_open( $layout, $args = array() ) {
  * @return array Attributs loading, fetchpriority et decoding pour wp_get_attachment_image().
  */
 function mrz_theme_section_image_loading() {
-	$is_first = 1 === ( $GLOBALS['mrz_theme_section_index'] ?? 0 );
+	$is_first = empty( $GLOBALS['mrz_theme_in_menu'] ) && 1 === ( $GLOBALS['mrz_theme_section_index'] ?? 0 );
 
 	return array(
 		'loading'       => $is_first ? 'eager' : 'lazy',
@@ -247,6 +250,17 @@ function mrz_theme_section_background_image( $image_id ) {
 }
 
 /**
+ * Balise d'un titre de section : celle demandée, ou un paragraphe dans un mega menu
+ * (le menu passe avant le h1 de la page : pas de titre là, RGAA 9.1).
+ *
+ * @param string $tag Balise voulue (h1 à h6).
+ * @return string
+ */
+function mrz_theme_heading_tag( $tag ) {
+	return empty( $GLOBALS['mrz_theme_in_menu'] ) ? $tag : 'p';
+}
+
+/**
  * Texte d'un titre : seuls <em> (mot en couleur, --mrz-title-highlight-color) et <br> passent.
  *
  * @param string $title Titre saisi.
@@ -282,7 +296,8 @@ function mrz_theme_section_heading( $title, $intro = '' ) {
 
 	echo '<header class="mrz-section__heading">';
 	if ( $title ) {
-		echo '<h2 class="mrz-section__title">' . mrz_theme_title_html( $title ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtré par wp_kses.
+		$tag = mrz_theme_heading_tag( 'h2' );
+		echo '<' . $tag . ' class="mrz-section__title">' . mrz_theme_title_html( $title ) . '</' . $tag . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- balise d'une liste fermée, titre filtré par wp_kses.
 	}
 	if ( $intro ) {
 		echo '<p class="mrz-section__intro">' . esc_html( $intro ) . '</p>';

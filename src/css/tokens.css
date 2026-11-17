@@ -185,7 +185,8 @@
 	/* --mrz-footer-link-color : couleur des liens du footer, celle du texte de la section par défaut. */
 
 	/* Mega menu (classe « mrz-megamenu » sur un élément du premier niveau) */
-	--mrz-megamenu-columns: 3;
+	--mrz-megamenu-columns: auto-fit; /* auto-fit : une colonne par élément du deuxième niveau ; ou un nombre */
+	--mrz-megamenu-column-min: 10rem;
 	--mrz-megamenu-width: min(52rem, 90vw);
 
 	/* Sous-menus du header (desktop) */

@@ -139,7 +139,8 @@
 		justify-content: center;
 	}
 
-	.mrz-menu a {
+	/* Liens du menu seulement (.menu-item > a) : une section globale dans un mega menu garde ses styles. */
+	.mrz-menu .menu-item > a {
 		display: block;
 		padding-block: 0.5rem;
 		text-decoration: none;
@@ -150,13 +151,13 @@
 		letter-spacing: var(--mrz-menu-letter-spacing);
 	}
 
-	.mrz-menu a:hover,
+	.mrz-menu .menu-item > a:hover,
 	.mrz-menu .current-menu-item > a,
 	.mrz-menu .current-menu-ancestor > a {
 		color: var(--color-primary);
 	}
 
-	.mrz-header-transparent .mrz-header:not(.is-scrolled) .mrz-menu a:hover {
+	.mrz-header-transparent .mrz-header:not(.is-scrolled) .mrz-menu .menu-item > a:hover {
 		color: inherit;
 		opacity: 0.75;
 	}
@@ -251,7 +252,7 @@
 		left: auto;
 	}
 
-	.mrz-menu .sub-menu a {
+	.mrz-menu .sub-menu .menu-item > a {
 		padding: 0.5rem 1rem;
 		font-weight: 400;
 	}
@@ -292,7 +293,8 @@
 	 */
 	.mrz-menu > .mrz-megamenu > .sub-menu {
 		display: grid;
-		grid-template-columns: repeat(var(--mrz-megamenu-columns), minmax(0, 1fr));
+		/* Par défaut, autant de colonnes que d'éléments du deuxième niveau (auto-fit). */
+		grid-template-columns: repeat(var(--mrz-megamenu-columns), minmax(var(--mrz-megamenu-column-min), 1fr));
 		gap: 1rem 2rem;
 		width: var(--mrz-megamenu-width);
 		padding: 1.5rem;
@@ -316,6 +318,33 @@
 
 	.mrz-menu .mrz-megamenu .sub-menu .menu-item-has-children > a::after {
 		display: none;
+	}
+
+	/*
+	 * Colonne faite d'une section globale (image, texte, bouton) : elle garde ses propres
+	 * styles et prend toute la largeur de sa colonne. Ses espacements viennent de ses réglages.
+	 */
+	.mrz-megamenu__section {
+		/* Une colonne est étroite : une carte par ligne. */
+		--mrz-cards-per-view: 1;
+		--mrz-cards-per-view-md: 1;
+		--mrz-cards-per-view-lg: 1;
+		font-family: var(--font-body);
+		font-size: var(--mrz-text-sm);
+		font-weight: 400;
+		text-transform: none;
+		letter-spacing: normal;
+	}
+
+	.mrz-megamenu__section .mrz-container {
+		max-width: none;
+		padding-inline: 0;
+	}
+
+	.mrz-megamenu__section img {
+		max-width: 100%;
+		height: auto;
+		border-radius: var(--mrz-submenu-radius);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -1023,9 +1052,14 @@
 		object-fit: cover;
 	}
 
+	/* Style de titre posé ici aussi : dans un mega menu, le titre est un paragraphe. */
 	.mrz-cards__title {
 		margin: 0;
+		color: var(--mrz-title-color, inherit);
+		font-family: var(--font-title);
 		font-size: var(--mrz-card-title-size);
+		font-weight: var(--mrz-title-weight);
+		line-height: var(--mrz-title-line-height);
 	}
 
 	/* Cartes par ligne propres à la section (grand écran ; deux en tablette). */

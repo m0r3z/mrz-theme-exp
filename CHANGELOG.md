@@ -4,6 +4,15 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Mega menu : une section globale placée au deuxième niveau forme une colonne (image, texte, bouton, Cartes). Elle n'apparaît que dans le mega menu du header ; ses titres y deviennent des paragraphes et ses images ne prennent pas la priorité de chargement.
+- `--mrz-megamenu-column-min`.
+
+### Modifié
+- Mega menu : par défaut, autant de colonnes que d'éléments du deuxième niveau (`--mrz-megamenu-columns: auto-fit`, un nombre reste possible).
+- Images des Cartes : même règle de chargement que les autres images de section (prioritaire dans la première section de la page, différé ailleurs), au lieu du choix automatique de WordPress.
+- Les styles des liens du menu ne visent plus que les liens du menu (`.menu-item > a`).
+
 ## [0.5.0] - 2026-11-17
 
 Ce qui avait obligé à créer des sections sur mesure dans les enfants (bannière, texte et image, chiffres clés, accordéon, mega menu).

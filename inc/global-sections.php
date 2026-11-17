@@ -48,7 +48,8 @@ function mrz_theme_register_global_sections() {
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => mrz_theme_admin_menu_slug(),
-			'show_in_nav_menus'   => false,
+			// Proposée dans Apparence > Menus : une section globale peut former une colonne de mega menu.
+			'show_in_nav_menus'   => true,
 			'exclude_from_search' => true,
 			'menu_position'       => 21,
 			'menu_icon'           => 'dashicons-layout',
@@ -315,3 +316,75 @@ function mrz_theme_section_column_content( $column, $post_id ) {
 	}
 }
 add_action( 'manage_mrz_section_posts_custom_column', 'mrz_theme_section_column_content', 10, 2 );
+
+/**
+ * Mega menu : une section globale placée au deuxième niveau d'un élément « mrz-megamenu »
+ * forme une colonne (image, texte, bouton…). Ailleurs (premier niveau, menu mobile,
+ * menu secondaire), l'élément est retiré : une section n'est pas un lien.
+ *
+ * @param array    $items Éléments du menu.
+ * @param stdClass $args  Arguments de wp_nav_menu().
+ * @return array
+ */
+function mrz_theme_megamenu_section_items( $items, $args ) {
+	$by_id = array();
+	foreach ( $items as $item ) {
+		$by_id[ $item->ID ] = $item;
+	}
+
+	$is_desktop_menu = isset( $args->menu_class ) && 'mrz-menu' === $args->menu_class;
+
+	return array_filter(
+		$items,
+		static function ( $item ) use ( $by_id, $is_desktop_menu ) {
+			if ( 'mrz_section' !== $item->object ) {
+				return true;
+			}
+			$parent = $by_id[ $item->menu_item_parent ] ?? null;
+
+			return $is_desktop_menu && $parent && ! $parent->menu_item_parent && in_array( 'mrz-megamenu', (array) $parent->classes, true );
+		}
+	);
+}
+add_filter( 'wp_nav_menu_objects', 'mrz_theme_megamenu_section_items', 10, 2 );
+
+/**
+ * Colonne de mega menu : la section globale à la place du lien.
+ *
+ * @param string   $output Lien de l'élément.
+ * @param WP_Post  $item   Élément du menu.
+ * @param int      $depth  Profondeur.
+ * @param stdClass $args   Arguments de wp_nav_menu().
+ * @return string
+ */
+function mrz_theme_megamenu_section_output( $output, $item, $depth, $args ) {
+	if ( 'mrz_section' !== $item->object || ! isset( $args->menu_class ) || 'mrz-menu' !== $args->menu_class ) {
+		return $output;
+	}
+
+	// Pendant le rendu du menu, les sections ne comptent pas comme première section de la page (image prioritaire).
+	$GLOBALS['mrz_theme_in_menu'] = true;
+	ob_start();
+	mrz_theme_render_global_section( (int) $item->object_id );
+	$section = ob_get_clean();
+	$GLOBALS['mrz_theme_in_menu'] = false;
+
+	return '<div class="mrz-megamenu__section">' . $section . '</div>';
+}
+add_filter( 'walker_nav_menu_start_el', 'mrz_theme_megamenu_section_output', 10, 4 );
+
+/**
+ * Classe de la colonne qui porte une section globale.
+ *
+ * @param array   $classes Classes de l'élément.
+ * @param WP_Post $item    Élément du menu.
+ * @return array
+ */
+function mrz_theme_megamenu_section_class( $classes, $item ) {
+	if ( 'mrz_section' === $item->object ) {
+		$classes[] = 'mrz-megamenu__column--section';
+	}
+
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'mrz_theme_megamenu_section_class', 10, 2 );
