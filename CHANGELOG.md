@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.3.0] - 2026-11-17
+
 ### Ajouté
 - Fond du site dans le Customizer (MRZ Theme > Couleurs, vide = blanc) : le thème marche sur un site sombre. Le texte prend Sombre ou Clair, celle qui contraste le plus avec le fond.
 - Chaque fond de section redéfinit `--color-background`, `--color-text` et `--color-muted` pour son contenu ; les champs de formulaire suivent la section.
@@ -23,6 +25,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Polylang : sections globales traduisibles d'office ; une section insérée à la main et la page 404 sont prises dans la langue courante (`mrz_theme_translated_id()`).
 
 ### Modifié
+- Customizer > Couleurs : fond du site et texte courant en tête, puis les couleurs de la marque, puis Sombre, Clair et Bordures.
 - Plus aucun blanc en dur : le texte sur une couleur, sur une image de fond et dans le header transparent prend « Clair » (une charte crème reste crème). Libellés des couleurs Sombre et Clair revus.
 - Gravity Forms : son thème CSS (`theme.min.css`) est désactivé ; il se chargeait après l'enfant et passait devant lui. Les champs prennent le style du thème.
 - `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border` ne sont plus définies par défaut : les champs suivent la section. Les définir dans l'enfant pour les fixer sur tout le site.

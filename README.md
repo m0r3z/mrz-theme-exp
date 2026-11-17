@@ -316,7 +316,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 5. **Release** : un tag égal à la version précédée de `v`, les notes tirées du CHANGELOG :
 
    ```bash
-   GH_TOKEN=$(gh auth token --user m0r3z) gh release create v0.2.0 --title "0.2.0" --notes-file notes.md
+   GH_TOKEN=$(gh auth token --user m0r3z) gh release create v0.3.0 --title "0.3.0" --notes-file notes.md
    ```
 
 6. **Premier site** : lancer la mise à jour sur un site de test qui n'est pas une copie Git (`dev.local`), refaire la recette rapide, puis seulement les autres sites, depuis ManageWP. Chaque site affiche « Mise à jour disponible » dans les 12 heures, ou tout de suite depuis **Tableau de bord > Mises à jour**.
@@ -349,11 +349,11 @@ mrz-theme-exp/
 
 ## État et feuille de route
 
-**Version publiée : 0.2.0 (16/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
+**Version publiée : 0.3.0 (17/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
-**Aucun site en production** : le thème n'est installé que sur MRZ-Dev, et bientôt sur HelloWorld. Tant que c'est le cas, un changement cassant ne demande aucune migration.
+**Aucun site en production** : le thème tourne sur MRZ-Dev (où vit le dépôt) et sur trois sites de test, HelloWorld, Beta-Bird (Energies Réunion, bilingue) et Beta-Sonny (Morez, site sombre). Tant que c'est le cas, un changement cassant ne demande aucune migration.
 
-**Site de test :** `https://helloworld.local/`, instance de développement dédiée aux recettes (Polylang compris). Encore vide (ni ACF, ni le thème) : à installer avant la première recette. Le dépôt du thème reste dans MRZ-Dev.
+**Site de test :** `https://helloworld.local/`, instance de développement dédiée aux recettes (Polylang compris).
 
 En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile en quatre styles, couleurs de la charte dans le Customizer (quatre couleurs de marque, sombre, clair, bordures) et filtres d'icônes qui les suivent, variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
 
