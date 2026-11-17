@@ -41,14 +41,24 @@ function mrz_theme_related_products_args( $args ) {
 add_filter( 'woocommerce_output_related_products_args', 'mrz_theme_related_products_args' );
 
 /**
- * Page Boutique : pas de titre imposé par WooCommerce (comme les autres pages du thème).
- * Les catégories de produits gardent le leur.
+ * Page Boutique avec des sections dans le constructeur (première page de la liste seulement).
+ *
+ * @return bool
+ */
+function mrz_theme_shop_has_sections() {
+	return function_exists( 'is_shop' ) && is_shop() && ! is_paged() && ! is_search()
+		&& wc_get_page_id( 'shop' ) > 0 && mrz_theme_has_builder( wc_get_page_id( 'shop' ) );
+}
+
+/**
+ * Page Boutique : quand ses sections sont affichées, elles portent le h1 (comme toute page
+ * du thème) et le titre de WooCommerce disparaît. Sinon il reste : la page garde son h1.
  *
  * @param bool $show Afficher le titre.
  * @return bool
  */
 function mrz_theme_shop_page_title( $show ) {
-	return function_exists( 'is_shop' ) && is_shop() ? false : $show;
+	return mrz_theme_shop_has_sections() ? false : $show;
 }
 add_filter( 'woocommerce_show_page_title', 'mrz_theme_shop_page_title' );
 
