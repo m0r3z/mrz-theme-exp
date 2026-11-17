@@ -30,6 +30,7 @@
 	font-size: var(--mrz-button-font-size);
 	font-weight: var(--mrz-button-font-weight);
 	letter-spacing: var(--mrz-button-letter-spacing);
+	font-family: var(--mrz-button-font-family, inherit);
 	text-transform: var(--mrz-button-text-transform);
 	line-height: 1.2;
 }
@@ -89,20 +90,88 @@
 	font-size: var(--mrz-h2);
 }
 
+/* Bouton désactivé (variation non choisie, commande en cours) : même bouton, atténué. */
+.woocommerce a.button.disabled,
+.woocommerce a.button:disabled,
+.woocommerce button.button.disabled,
+.woocommerce button.button:disabled,
+.woocommerce button.button:disabled[disabled],
+.woocommerce button.button.alt.disabled,
+.woocommerce button.button.alt:disabled {
+	padding: var(--mrz-button-padding);
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
+	opacity: 0.5;
+}
+
+/* « Valider la commande » (panier) et « Commander » : pleine largeur. */
+.woocommerce .wc-proceed-to-checkout a.checkout-button,
+.woocommerce #payment #place_order,
+.woocommerce-page #payment #place_order {
+	display: block;
+	width: 100%;
+	float: none;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+/*
+ * Notices : un message discret plutôt qu'un bandeau. Fond tiré du texte du site,
+ * icône à la couleur principale (erreurs : rouge de WooCommerce gardé, l'icône
+ * dit déjà « erreur » et le texte l'explique).
+ */
 .woocommerce-message,
-.woocommerce-info {
-	border-top-color: var(--color-primary);
+.woocommerce-info,
+.woocommerce-error {
+	padding: 1rem 1.25rem 1rem 3.25rem;
+	border: 0;
+	border-radius: var(--radius-base);
+	background: color-mix(in srgb, var(--color-text) 6%, transparent);
+	color: var(--color-text);
+	font-size: var(--mrz-text-sm);
 }
 
 .woocommerce-message::before,
 .woocommerce-info::before {
+	top: 1rem;
+	left: 1.25rem;
 	color: var(--color-primary);
 }
 
-.woocommerce form .form-row input.input-text,
-.woocommerce form .form-row textarea,
-.woocommerce form .form-row select {
-	padding: 0.75rem 1rem;
-	border: 1px solid var(--color-border);
-	border-radius: var(--radius-base);
+.woocommerce-error::before {
+	top: 1rem;
+	left: 1.25rem;
 }
+
+/* Bouton d'une notice (« Voir le panier ») : lien fléché du thème. */
+.woocommerce-message .button,
+.woocommerce-info .button {
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font-size: var(--mrz-link-font-size);
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
+
+.woocommerce-message .button:hover,
+.woocommerce-info .button:hover {
+	background: none;
+	color: inherit;
+	filter: none;
+	opacity: 0.75;
+}
+
+/*
+ * Focus posé par le script de WooCommerce sur la notice (tabindex="-1", pour les
+ * lecteurs d'écran) : pas de cadre, ce n'est pas un élément qu'on atteint au clavier.
+ */
+.woocommerce-notices-wrapper:focus,
+.woocommerce-NoticeGroup:focus,
+.woocommerce-message:focus,
+.woocommerce-info:focus,
+.woocommerce-error:focus {
+	outline: none;
+}
+

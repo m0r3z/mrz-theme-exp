@@ -49,3 +49,23 @@ function mrz_theme_shop_page_title( $show ) {
 	return function_exists( 'is_shop' ) && is_shop() ? false : $show;
 }
 add_filter( 'woocommerce_show_page_title', 'mrz_theme_shop_page_title' );
+
+/**
+ * Pages Panier et Commande créées en shortcode, pas en blocs, à l'installation de
+ * WooCommerce : l'éditeur classique du thème, ses boutons et le mini-panier visent
+ * le panier et la commande classiques, et les blocs chargent React sur ces pages.
+ *
+ * @param array $pages Pages créées par WooCommerce.
+ * @return array
+ */
+function mrz_theme_woocommerce_create_pages( $pages ) {
+	if ( isset( $pages['cart'] ) ) {
+		$pages['cart']['content'] = '[woocommerce_cart]';
+	}
+	if ( isset( $pages['checkout'] ) ) {
+		$pages['checkout']['content'] = '[woocommerce_checkout]';
+	}
+
+	return $pages;
+}
+add_filter( 'woocommerce_create_pages', 'mrz_theme_woocommerce_create_pages' );
