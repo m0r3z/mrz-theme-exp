@@ -96,6 +96,9 @@ function mrz_theme_body_classes( $classes ) {
 	if ( mrz_theme_is_transparent_header() ) {
 		$classes[] = 'mrz-header-transparent';
 	}
+	if ( mrz_theme_option( 'highlight_animated' ) ) {
+		$classes[] = 'mrz-highlight-animated';
+	}
 
 	return $classes;
 }

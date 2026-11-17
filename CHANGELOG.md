@@ -4,6 +4,11 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Animations au défilement, sans JavaScript : réglages de section « Animation » (apparition vers le haut, fondu, zoom, en cascade) et « Parallaxe » (légère, moyenne) sur l'image de fond. Jamais sur la première section, coupées si le visiteur limite les animations, contenu affiché normalement sur les navigateurs sans prise en charge (Firefox).
+- Customizer > Général : surlignage animé du mot en couleur des titres.
+- Variables `--mrz-motion-*`, `--mrz-parallax-*`, `--mrz-highlight-*`.
+
 ## [0.5.2] - 2026-11-17
 
 ### Ajouté

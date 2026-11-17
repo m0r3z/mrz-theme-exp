@@ -88,14 +88,16 @@ msgid "Section settings"
 msgstr "Réglages de la section"
 
 #: inc/builder-sections.php:54
-#: inc/builder-sections.php:448
+#: inc/builder-sections.php:478
 msgid "Background"
 msgstr "Fond"
 
 #: inc/builder-sections.php:26
 #: inc/builder-sections.php:69
-#: inc/builder-sections.php:222
-#: inc/builder-sections.php:620
+#: inc/builder-sections.php:191
+#: inc/builder-sections.php:207
+#: inc/builder-sections.php:252
+#: inc/builder-sections.php:650
 msgid "None"
 msgstr "Aucun"
 
@@ -121,17 +123,17 @@ msgid "Spacing"
 msgstr "Espacement"
 
 #: inc/builder-sections.php:66
-#: inc/builder-sections.php:224
+#: inc/builder-sections.php:254
 msgid "Normal"
 msgstr "Normal"
 
 #: inc/builder-sections.php:67
-#: inc/builder-sections.php:223
+#: inc/builder-sections.php:253
 msgid "Compact"
 msgstr "Compact"
 
 #: inc/builder-sections.php:68
-#: inc/builder-sections.php:225
+#: inc/builder-sections.php:255
 msgid "Large"
 msgstr "Large"
 
@@ -159,42 +161,42 @@ msgstr "Ancre"
 msgid "Background image"
 msgstr "Image de fond"
 
-#: inc/builder-sections.php:241
+#: inc/builder-sections.php:271
 msgid "Section settings (to clone)"
 msgstr "Réglages de section (à cloner)"
 
-#: inc/builder-sections.php:260
+#: inc/builder-sections.php:290
 msgid "Free text"
 msgstr "Texte libre"
 
-#: inc/builder-sections.php:286
-#: inc/builder-sections.php:441
-#: inc/builder-sections.php:492
-#: inc/builder-sections.php:741
+#: inc/builder-sections.php:316
+#: inc/builder-sections.php:471
+#: inc/builder-sections.php:522
+#: inc/builder-sections.php:771
 msgid "Title"
 msgstr "Titre"
 
-#: inc/builder-sections.php:304
-#: inc/builder-sections.php:457
-#: inc/builder-sections.php:510
-#: inc/builder-sections.php:622
+#: inc/builder-sections.php:334
+#: inc/builder-sections.php:487
+#: inc/builder-sections.php:540
+#: inc/builder-sections.php:652
 msgid "Text"
 msgstr "Texte"
 
-#: inc/builder-sections.php:333
+#: inc/builder-sections.php:363
 msgid "Raw HTML"
 msgstr "HTML brut"
 
-#: inc/builder-sections.php:339
+#: inc/builder-sections.php:369
 msgid "HTML code"
 msgstr "Code HTML"
 
-#: inc/builder-sections.php:341
+#: inc/builder-sections.php:371
 msgid "Displayed as is, scripts included. Reserved for administrators."
 msgstr "Affiché tel quel, scripts compris. Réservé aux administrateurs."
 
-#: inc/builder-sections.php:821
-#: inc/builder-sections.php:827
+#: inc/builder-sections.php:851
+#: inc/builder-sections.php:857
 #: inc/global-sections.php:43
 msgid "Global section"
 msgstr "Section globale"
@@ -319,11 +321,11 @@ msgstr "Général"
 msgid "Content width (px)"
 msgstr "Largeur du contenu (px)"
 
-#: inc/customizer.php:578
+#: inc/customizer.php:589
 msgid "404 page"
 msgstr "Page 404"
 
-#: inc/customizer.php:579
+#: inc/customizer.php:590
 msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
 msgstr "Page affichée quand une adresse n'existe pas. Le vrai statut 404 est conservé pour les moteurs de recherche."
 
@@ -610,8 +612,8 @@ msgstr "Affiché quand Polylang est actif, dans le header et le menu mobile."
 msgid "Text on %s"
 msgstr "Texte sur : %s"
 
-#: inc/builder-sections.php:294
-#: inc/builder-sections.php:500
+#: inc/builder-sections.php:324
+#: inc/builder-sections.php:530
 msgid "Title level"
 msgstr "Niveau du titre"
 
@@ -640,128 +642,128 @@ msgstr "Relancer le carrousel"
 msgid "carousel"
 msgstr "carrousel"
 
-#: inc/builder-sections.php:748
+#: inc/builder-sections.php:778
 msgid "A bulleted list of links."
 msgstr "Une liste à puces de liens."
 
-#: inc/builder-sections.php:425
+#: inc/builder-sections.php:455
 msgid "Add a card"
 msgstr "Ajouter une carte"
 
-#: inc/builder-sections.php:736
+#: inc/builder-sections.php:766
 msgid "Add a column"
 msgstr "Ajouter une colonne"
 
-#: inc/builder-sections.php:763
+#: inc/builder-sections.php:793
 msgid "Add a network"
 msgstr "Ajouter un réseau"
 
-#: inc/builder-sections.php:432
+#: inc/builder-sections.php:462
 msgid "An SVG icon takes the text color of the card."
 msgstr "Une icône SVG prend la couleur du texte de la carte."
 
-#: inc/builder-sections.php:376
+#: inc/builder-sections.php:406
 msgid "Autoplay"
 msgstr "Défilement automatique"
 
-#: inc/builder-sections.php:760
+#: inc/builder-sections.php:790
 msgid "Black SVG icon (colored by the theme), link and network name (read by screen readers)."
 msgstr "Icône SVG noire (colorée par le thème), lien et nom du réseau (lu par les lecteurs d'écran)."
 
-#: inc/builder-sections.php:808
+#: inc/builder-sections.php:838
 msgid "Bottom line"
 msgstr "Ligne du bas"
 
-#: inc/builder-sections.php:313
-#: inc/builder-sections.php:519
-#: inc/builder-sections.php:725
+#: inc/builder-sections.php:343
+#: inc/builder-sections.php:549
+#: inc/builder-sections.php:755
 msgid "Button"
 msgstr "Bouton"
 
-#: inc/builder-sections.php:350
-#: inc/builder-sections.php:422
+#: inc/builder-sections.php:380
+#: inc/builder-sections.php:452
 msgid "Cards"
 msgstr "Cartes"
 
-#: inc/builder-sections.php:368
+#: inc/builder-sections.php:398
 msgid "Carousel"
 msgstr "Carrousel"
 
-#: inc/builder-sections.php:809
+#: inc/builder-sections.php:839
 msgid "Copyright, legal links. Tags: {year}, {site}."
 msgstr "Copyright, liens légaux. Balises : {year}, {site}."
 
-#: inc/builder-sections.php:364
+#: inc/builder-sections.php:394
 msgid "Display"
 msgstr "Affichage"
 
-#: inc/builder-sections.php:377
+#: inc/builder-sections.php:407
 msgid "Every 5 seconds, with a pause button."
 msgstr "Toutes les 5 secondes, avec un bouton pause."
 
-#: inc/builder-sections.php:700
+#: inc/builder-sections.php:730
 msgid "Footer"
 msgstr "Footer"
 
-#: inc/builder-sections.php:367
+#: inc/builder-sections.php:397
 msgid "Grid"
 msgstr "Grille"
 
-#: inc/builder-sections.php:768
+#: inc/builder-sections.php:798
 msgid "Icon"
 msgstr "Icône"
 
-#: inc/builder-sections.php:431
+#: inc/builder-sections.php:461
 msgid "Image or icon"
 msgstr "Image ou icône"
 
-#: inc/builder-sections.php:466
-#: inc/builder-sections.php:776
+#: inc/builder-sections.php:496
+#: inc/builder-sections.php:806
 msgid "Link"
 msgstr "Lien"
 
-#: inc/builder-sections.php:733
+#: inc/builder-sections.php:763
 msgid "Link columns"
 msgstr "Colonnes de liens"
 
-#: inc/builder-sections.php:747
+#: inc/builder-sections.php:777
 msgid "Links"
 msgstr "Liens"
 
-#: inc/builder-sections.php:706
+#: inc/builder-sections.php:736
 msgid "Logo"
 msgstr "Logo"
 
-#: inc/builder-sections.php:782
+#: inc/builder-sections.php:812
 msgid "Name"
 msgstr "Nom"
 
-#: inc/builder-sections.php:450
+#: inc/builder-sections.php:480
 msgid "None (border)"
 msgstr "Aucun (bordure)"
 
-#: inc/builder-sections.php:357
+#: inc/builder-sections.php:387
 msgid "Optional. Also names the carousel for screen readers."
 msgstr "Facultatif. Nomme aussi le carrousel pour les lecteurs d'écran."
 
-#: inc/builder-sections.php:707
+#: inc/builder-sections.php:737
 msgid "Optional: centered above the footer."
 msgstr "Facultatif : centré au-dessus du footer."
 
-#: inc/builder-sections.php:356
-#: inc/builder-sections.php:639
+#: inc/builder-sections.php:386
+#: inc/builder-sections.php:669
 msgid "Section title"
 msgstr "Titre de la section"
 
-#: inc/builder-sections.php:716
+#: inc/builder-sections.php:746
 msgid "Sentence"
 msgstr "Phrase"
 
-#: inc/builder-sections.php:467
+#: inc/builder-sections.php:497
 msgid "Shown as an arrow link."
 msgstr "Affiché en lien fléché."
 
-#: inc/builder-sections.php:759
+#: inc/builder-sections.php:789
 msgid "Social networks"
 msgstr "Réseaux sociaux"
 
@@ -839,7 +841,7 @@ msgstr "Vers la droite"
 msgid "Diagonal"
 msgstr "En diagonale"
 
-#: inc/builder-sections.php:221
+#: inc/builder-sections.php:251
 msgid "Same as spacing"
 msgstr "Comme l'espacement"
 
@@ -848,194 +850,194 @@ msgstr "Comme l'espacement"
 msgid "Used only when Gradient is on."
 msgstr "Pris en compte seulement si Dégradé est activé."
 
-#: inc/builder-sections.php:195
+#: inc/builder-sections.php:225
 msgid "Put a word between <em> and </em> to color it; <br> for a line break."
 msgstr "Mettre un mot entre <em> et </em> pour le colorer ; <br> pour un retour à la ligne."
 
-#: inc/builder-sections.php:266
-#: inc/builder-sections.php:485
+#: inc/builder-sections.php:296
+#: inc/builder-sections.php:515
 msgid "Eyebrow"
 msgstr "Surtitre"
 
-#: inc/builder-sections.php:267
-#: inc/builder-sections.php:486
+#: inc/builder-sections.php:297
+#: inc/builder-sections.php:516
 msgid "Optional. Short line above the title."
 msgstr "Facultatif. Courte ligne au-dessus du titre."
 
-#: inc/builder-sections.php:274
+#: inc/builder-sections.php:304
 msgid "Alignment"
 msgstr "Alignement"
 
-#: inc/builder-sections.php:277
-#: inc/builder-sections.php:583
+#: inc/builder-sections.php:307
+#: inc/builder-sections.php:613
 msgid "Left"
 msgstr "À gauche"
 
-#: inc/builder-sections.php:278
-#: inc/builder-sections.php:607
+#: inc/builder-sections.php:308
+#: inc/builder-sections.php:637
 msgid "Centered"
 msgstr "Centré"
 
-#: inc/builder-sections.php:321
-#: inc/builder-sections.php:527
+#: inc/builder-sections.php:351
+#: inc/builder-sections.php:557
 msgid "Second button"
 msgstr "Second bouton"
 
-#: inc/builder-sections.php:322
-#: inc/builder-sections.php:528
+#: inc/builder-sections.php:352
+#: inc/builder-sections.php:558
 msgid "Outlined."
 msgstr "Bouton à contour."
 
-#: inc/builder-sections.php:394
+#: inc/builder-sections.php:424
 msgid "Cards per row"
 msgstr "Cartes par ligne"
 
-#: inc/builder-sections.php:395
+#: inc/builder-sections.php:425
 msgid "On a large screen. Automatic: the site setting."
 msgstr "Sur grand écran. Automatique : le réglage du site."
 
-#: inc/builder-sections.php:398
+#: inc/builder-sections.php:428
 msgid "Automatic"
 msgstr "Automatique"
 
-#: inc/builder-sections.php:409
+#: inc/builder-sections.php:439
 msgid "Card style"
 msgstr "Style des cartes"
 
-#: inc/builder-sections.php:410
+#: inc/builder-sections.php:440
 msgid "Key figures: the card title is the figure, shown large."
 msgstr "Chiffres clés : le titre de la carte est le chiffre, affiché en grand."
 
-#: inc/builder-sections.php:413
+#: inc/builder-sections.php:443
 msgid "Standard"
 msgstr "Standard"
 
-#: inc/builder-sections.php:414
+#: inc/builder-sections.php:444
 msgid "Key figures"
 msgstr "Chiffres clés"
 
-#: inc/builder-sections.php:479
+#: inc/builder-sections.php:509
 msgid "Text and media"
 msgstr "Texte et média"
 
-#: inc/builder-sections.php:536
+#: inc/builder-sections.php:566
 msgid "Other column"
 msgstr "Autre colonne"
 
-#: inc/builder-sections.php:539
-#: inc/builder-sections.php:548
+#: inc/builder-sections.php:569
+#: inc/builder-sections.php:578
 msgid "Image"
 msgstr "Image"
 
-#: inc/builder-sections.php:540
+#: inc/builder-sections.php:570
 msgid "Content"
 msgstr "Contenu"
 
-#: inc/builder-sections.php:558
+#: inc/builder-sections.php:588
 msgid "Column background"
 msgstr "Fond de la colonne"
 
-#: inc/builder-sections.php:559
+#: inc/builder-sections.php:589
 msgid "None: a second text. A color: a colored box."
 msgstr "Aucun : un second texte. Une couleur : un encadré coloré."
 
-#: inc/builder-sections.php:569
+#: inc/builder-sections.php:599
 msgid "Column content"
 msgstr "Contenu de la colonne"
 
-#: inc/builder-sections.php:579
+#: inc/builder-sections.php:609
 msgid "Image or content side"
 msgstr "Côté de l'image ou du contenu"
 
-#: inc/builder-sections.php:582
+#: inc/builder-sections.php:612
 msgid "Right"
 msgstr "À droite"
 
-#: inc/builder-sections.php:591
+#: inc/builder-sections.php:621
 msgid "Column widths"
 msgstr "Largeur des colonnes"
 
-#: inc/builder-sections.php:594
+#: inc/builder-sections.php:624
 msgid "Equal"
 msgstr "Égales"
 
-#: inc/builder-sections.php:595
+#: inc/builder-sections.php:625
 msgid "Wide text (2/3)"
 msgstr "Texte large (2/3)"
 
-#: inc/builder-sections.php:596
+#: inc/builder-sections.php:626
 msgid "Wide image or content (2/3)"
 msgstr "Image ou contenu large (2/3)"
 
-#: inc/builder-sections.php:604
+#: inc/builder-sections.php:634
 msgid "Vertical alignment"
 msgstr "Alignement vertical"
 
-#: inc/builder-sections.php:608
+#: inc/builder-sections.php:638
 msgid "Top"
 msgstr "En haut"
 
-#: inc/builder-sections.php:616
+#: inc/builder-sections.php:646
 msgid "Sticky column"
 msgstr "Colonne collante"
 
-#: inc/builder-sections.php:617
+#: inc/builder-sections.php:647
 msgid "Stays visible while scrolling, on a large screen."
 msgstr "Reste visible au défilement, sur grand écran."
 
-#: inc/builder-sections.php:621
+#: inc/builder-sections.php:651
 msgid "Image or content"
 msgstr "Image ou contenu"
 
-#: inc/builder-sections.php:633
+#: inc/builder-sections.php:663
 msgid "Accordion"
 msgstr "Accordéon"
 
-#: inc/builder-sections.php:640
+#: inc/builder-sections.php:670
 msgid "Optional."
 msgstr "Facultatif."
 
-#: inc/builder-sections.php:647
+#: inc/builder-sections.php:677
 msgid "Introduction"
 msgstr "Introduction"
 
-#: inc/builder-sections.php:654
+#: inc/builder-sections.php:684
 msgid "Items"
 msgstr "Éléments"
 
-#: inc/builder-sections.php:657
+#: inc/builder-sections.php:687
 msgid "Add an item"
 msgstr "Ajouter un élément"
 
-#: inc/builder-sections.php:663
+#: inc/builder-sections.php:693
 msgid "Question or heading"
 msgstr "Question ou intitulé"
 
-#: inc/builder-sections.php:669
+#: inc/builder-sections.php:699
 msgid "Answer"
 msgstr "Réponse"
 
-#: inc/builder-sections.php:680
+#: inc/builder-sections.php:710
 msgid "First item open"
 msgstr "Premier élément ouvert"
 
-#: inc/builder-sections.php:688
+#: inc/builder-sections.php:718
 msgid "One item open at a time"
 msgstr "Un seul élément ouvert à la fois"
 
-#: inc/builder-sections.php:689
+#: inc/builder-sections.php:719
 msgid "Opening an item closes the others."
 msgstr "Ouvrir un élément ferme les autres."
 
-#: inc/builder-sections.php:790
+#: inc/builder-sections.php:820
 msgid "Free column: title"
 msgstr "Colonne libre : titre"
 
-#: inc/builder-sections.php:797
+#: inc/builder-sections.php:827
 msgid "Free column: content"
 msgstr "Colonne libre : contenu"
 
-#: inc/builder-sections.php:798
+#: inc/builder-sections.php:828
 msgid "After the link columns: text, newsletter form (shortcode)…"
 msgstr "Après les colonnes de liens : texte, formulaire d'inscription (shortcode)…"
 
@@ -1075,11 +1077,59 @@ msgstr "Vers le haut"
 msgid "To the left"
 msgstr "Vers la gauche"
 
-#: inc/builder-sections.php:295
-#: inc/builder-sections.php:501
+#: inc/builder-sections.php:325
+#: inc/builder-sections.php:531
 msgid "H1 only when this section opens the page (one H1 per page). No skipped level."
 msgstr "H1 seulement quand cette section ouvre la page (un seul H1 par page). Pas de niveau sauté."
 
 #: inc/customizer.php:350
 msgid "Centered logo: main menu on the left, secondary menu and tools on the right"
 msgstr "Logo centré : menu principal à gauche, menu secondaire et outils à droite"
+
+#: inc/builder-sections.php:187
+msgid "Animation on scroll"
+msgstr "Animation au défilement"
+
+#: inc/builder-sections.php:188
+msgid "Never on the first section of the page. Off for visitors who limit animations."
+msgstr "Jamais sur la première section de la page. Coupée pour les visiteurs qui limitent les animations."
+
+#: inc/builder-sections.php:192
+msgid "Appear upward"
+msgstr "Apparition vers le haut"
+
+#: inc/builder-sections.php:193
+msgid "Fade in"
+msgstr "Fondu"
+
+#: inc/builder-sections.php:194
+msgid "Zoom in"
+msgstr "Zoom"
+
+#: inc/builder-sections.php:195
+msgid "Cascade (items one after another)"
+msgstr "En cascade (éléments un par un)"
+
+#: inc/builder-sections.php:203
+msgid "Parallax"
+msgstr "Parallaxe"
+
+#: inc/builder-sections.php:204
+msgid "The background image scrolls slower than the page."
+msgstr "L'image de fond défile moins vite que la page."
+
+#: inc/builder-sections.php:209
+msgid "Medium"
+msgstr "Moyenne"
+
+#: inc/customizer.php:578
+msgid "Animated highlight of the colored word"
+msgstr "Surlignage animé du mot en couleur"
+
+#: inc/customizer.php:579
+msgid "The word between <em> and </em> in a title gets highlighted when the title scrolls into view. Static highlight on browsers without scroll animations."
+msgstr "Le mot entre <em> et </em> d'un titre se surligne quand le titre arrive à l'écran. Surlignage fixe sur les navigateurs sans animations au défilement."
+
+#: inc/builder-sections.php:208
+msgid "Subtle"
+msgstr "Légère"

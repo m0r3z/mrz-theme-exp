@@ -47,6 +47,7 @@ function mrz_theme_option_defaults() {
 		'menu_button_desktop'       => false,
 		'container_width'           => 1280,
 		'page_404'                  => 0,
+		'highlight_animated'        => false,
 	);
 }
 

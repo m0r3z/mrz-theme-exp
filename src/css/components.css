@@ -828,6 +828,109 @@
 		position: relative;
 	}
 
+	/*
+	 * Animations au défilement, sans JavaScript (animation-timeline: view()).
+	 * Un navigateur qui ne les gère pas affiche tout normalement ; coupées si le visiteur
+	 * limite les animations. Les classes viennent des réglages de section (inc/builder.php).
+	 */
+	@keyframes mrz-motion-fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(var(--mrz-motion-distance));
+		}
+	}
+
+	@keyframes mrz-motion-fade {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@keyframes mrz-motion-zoom {
+		from {
+			opacity: 0;
+			transform: scale(var(--mrz-motion-scale));
+		}
+	}
+
+	@keyframes mrz-parallax {
+		from {
+			transform: translateY(calc(-1 * var(--mrz-parallax)));
+		}
+		to {
+			transform: translateY(var(--mrz-parallax));
+		}
+	}
+
+	@keyframes mrz-highlight {
+		from {
+			background-size: 0% var(--mrz-highlight-height);
+		}
+	}
+
+	/* Surlignage du mot en couleur (Customizer) : statique par défaut, animé si possible. */
+	.mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em {
+		background: linear-gradient(var(--mrz-highlight-mark), var(--mrz-highlight-mark)) no-repeat 0 88% / 100% var(--mrz-highlight-height);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		@supports (animation-timeline: view()) {
+			.mrz-motion--fade-up > .mrz-container,
+			.mrz-motion--fade > .mrz-container,
+			.mrz-motion--zoom > .mrz-container,
+			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-split__grid > *, .mrz-accordion__item, .mrz-prose > *) {
+				animation: mrz-motion-fade-up linear both;
+				animation-timeline: view();
+				animation-range: var(--mrz-motion-range);
+			}
+
+			.mrz-motion--fade > .mrz-container {
+				animation-name: mrz-motion-fade;
+			}
+
+			.mrz-motion--zoom > .mrz-container {
+				animation-name: mrz-motion-zoom;
+			}
+
+			/* Cascade : sur une même ligne, chaque élément démarre un peu après le précédent. */
+			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-split__grid > *):nth-child(3n + 2) {
+				animation-range: entry 20% entry 70%;
+			}
+
+			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-split__grid > *):nth-child(3n + 3) {
+				animation-range: entry 30% entry 80%;
+			}
+
+			/* Parallaxe : l'image dépasse de la section et glisse moins vite que la page. */
+			.mrz-parallax--light {
+				--mrz-parallax: var(--mrz-parallax-light);
+			}
+
+			.mrz-parallax--medium {
+				--mrz-parallax: var(--mrz-parallax-medium);
+			}
+
+			.mrz-parallax--light,
+			.mrz-parallax--medium {
+				overflow: clip;
+			}
+
+			.mrz-parallax--light > .mrz-section__bg,
+			.mrz-parallax--medium > .mrz-section__bg {
+				inset: calc(-1 * var(--mrz-parallax)) 0;
+				height: calc(100% + 2 * var(--mrz-parallax));
+				animation: mrz-parallax linear both;
+				animation-timeline: view();
+			}
+
+			.mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em {
+				animation: mrz-highlight linear both;
+				animation-timeline: view();
+				animation-range: entry 100% cover 45%;
+			}
+		}
+	}
+
 	/* Image de fond : une vraie <img> (LCP), derrière le voile et le contenu. */
 	.mrz-has-bg-image {
 		isolation: isolate;

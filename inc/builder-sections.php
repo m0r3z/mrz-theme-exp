@@ -181,6 +181,36 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'instructions'      => __( 'Used only when Gradient is on.', 'mrz-theme-exp' ),
 				'wrapper'           => array( 'width' => '33' ),
 			),
+			array(
+				'key'           => $prefix . '_settings_motion',
+				'name'          => 'motion',
+				'label'         => __( 'Animation on scroll', 'mrz-theme-exp' ),
+				'instructions'  => __( 'Never on the first section of the page. Off for visitors who limit animations.', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => array(
+					'none'    => __( 'None', 'mrz-theme-exp' ),
+					'fade_up' => __( 'Appear upward', 'mrz-theme-exp' ),
+					'fade'    => __( 'Fade in', 'mrz-theme-exp' ),
+					'zoom'    => __( 'Zoom in', 'mrz-theme-exp' ),
+					'cascade' => __( 'Cascade (items one after another)', 'mrz-theme-exp' ),
+				),
+				'default_value' => 'none',
+				'wrapper'       => array( 'width' => '50' ),
+			),
+			array(
+				'key'           => $prefix . '_settings_parallax',
+				'name'          => 'parallax',
+				'label'         => __( 'Parallax', 'mrz-theme-exp' ),
+				'instructions'  => __( 'The background image scrolls slower than the page.', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => array(
+					'none'   => __( 'None', 'mrz-theme-exp' ),
+					'light'  => __( 'Subtle', 'mrz-theme-exp' ),
+					'medium' => __( 'Medium', 'mrz-theme-exp' ),
+				),
+				'default_value' => 'none',
+				'wrapper'       => array( 'width' => '50' ),
+			),
 		),
 	);
 }

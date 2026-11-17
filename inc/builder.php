@@ -150,8 +150,18 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 	if ( in_array( $height, array( 'large', 'screen' ), true ) ) {
 		$classes[] = 'mrz-height--' . $height;
 	}
+	// Animation au défilement : jamais sur la première section (elle porterait l'image principale, LCP).
+	$motion = $settings['motion'] ?? 'none';
+	if ( in_array( $motion, array( 'fade_up', 'fade', 'zoom', 'cascade' ), true ) && 1 !== ( $GLOBALS['mrz_theme_section_index'] ?? 0 ) && empty( $GLOBALS['mrz_theme_in_menu'] ) ) {
+		$classes[] = 'mrz-motion--' . str_replace( '_', '-', $motion );
+	}
+
 	if ( $image_id ) {
 		$classes[] = 'mrz-has-bg-image';
+		$parallax  = $settings['parallax'] ?? 'none';
+		if ( in_array( $parallax, array( 'light', 'medium' ), true ) ) {
+			$classes[] = 'mrz-parallax--' . $parallax;
+		}
 		// Voile et texte en Clair, sauf « sans voile » : la section garde ses couleurs.
 		if ( 'none' !== $overlay ) {
 			$classes[] = 'mrz-has-image';

@@ -571,6 +571,17 @@ function mrz_theme_customize_register( $wp_customize ) {
 		)
 	);
 
+	mrz_theme_add_setting( $wp_customize, 'highlight_animated', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_highlight_animated',
+		array(
+			'label'       => __( 'Animated highlight of the colored word', 'mrz-theme-exp' ),
+			'description' => __( 'The word between <em> and </em> in a title gets highlighted when the title scrolls into view. Static highlight on browsers without scroll animations.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_general',
+			'type'        => 'checkbox',
+		)
+	);
+
 	mrz_theme_add_setting( $wp_customize, 'page_404', 'absint' );
 	$wp_customize->add_control(
 		'mrz_page_404',

@@ -237,6 +237,15 @@
 	--mrz-image-overlay-light: rgb(0 0 0 / 0.25); /* réglage « voile léger » : vérifier le contraste du texte */
 	/* --mrz-section-image-position : cadrage de l'image de fond (center par défaut, top, 30% 50%…). */
 
+	/* Animations au défilement (réglages « Animation » et « Parallaxe ») */
+	--mrz-motion-distance: 2.5rem; /* course de l'apparition vers le haut */
+	--mrz-motion-scale: 0.94; /* départ du zoom */
+	--mrz-motion-range: entry 10% entry 60%; /* quand l'animation joue : pendant l'entrée à l'écran */
+	--mrz-parallax-light: 8%;
+	--mrz-parallax-medium: 16%;
+	--mrz-highlight-mark: color-mix(in srgb, var(--color-primary) 25%, transparent); /* surlignage du mot en couleur */
+	--mrz-highlight-height: 0.35em;
+
 	/* Hauteur des sections (réglage « Hauteur ») */
 	--mrz-section-height-large: 70svh;
 	--mrz-section-height-screen: calc(100svh - var(--mrz-header-offset));

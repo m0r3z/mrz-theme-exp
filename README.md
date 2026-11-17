@@ -95,6 +95,8 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 | Image de fond | Vraie image derrière le contenu. Celle de la première section de la page se charge en priorité (image principale, LCP) |
 | Voile sur l'image | Sombre (texte clair), léger (texte clair, vérifier le contraste), sans voile (la section garde ses couleurs : image composée, motif) |
 | Dégradé | De la couleur de fond vers une seconde couleur de la palette, vers le bas, la droite ou en diagonale |
+| Animation au défilement | Aucune, apparition vers le haut, fondu, zoom, en cascade (éléments un par un). Sans JavaScript ; jamais sur la première section ; coupée si le visiteur limite les animations |
+| Parallaxe | Aucune, légère, moyenne : l'image de fond défile moins vite que la page |
 
 **Bannière de page** : un Texte libre en tête de page, titre en H1, image de fond, hauteur grande ou plein écran. Pas besoin d'une section « hero » sur mesure.
 
@@ -183,6 +185,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Effet : fondu, glissement, rideau (une couleur balaie l'écran) ou zoom ; durée (ms) | fondu, 300 |
 | | Rideau : couleur (palette) et sens (vers le haut, le bas, la gauche, la droite) | principale, vers le haut |
 | MRZ Theme > General | Largeur du contenu (px) | 1280 |
+| | Surlignage animé du mot en couleur des titres | non |
 | | Page 404 : page affichée pour une URL inexistante, avec un vrai statut 404 | page par défaut du thème |
 
 ## Retoucher un site à la main
