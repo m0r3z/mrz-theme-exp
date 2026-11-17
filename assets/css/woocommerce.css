@@ -590,10 +590,11 @@
 	padding-left: 0.75rem;
 }
 
-/* Lien « Voir le panier » du message : lien du texte, pas un bouton. */
-.mrz-toast__message a {
+/* Lien « Voir le panier » du message : lien du texte, pas un bouton (le body porte la classe woocommerce). */
+.mrz-toast .mrz-toast__message a,
+.woocommerce .mrz-toast .mrz-toast__message a.button {
 	display: inline;
-	margin: 0 0.5rem 0 0;
+	margin: 0 0.25rem;
 	padding: 0;
 	border: 0;
 	background: none;
@@ -601,4 +602,61 @@
 	font: inherit;
 	text-decoration: underline;
 	text-underline-offset: 0.25em;
+}
+
+/* Boutons + et − autour de la quantité : un seul bloc, à la hauteur du bouton d'ajout. */
+.woocommerce .quantity.mrz-qty {
+	display: inline-flex;
+	align-items: stretch;
+	border: 1px solid var(--mrz-field-border, var(--color-border));
+	border-radius: var(--mrz-field-radius);
+	background: var(--mrz-field-bg, var(--color-background));
+	color: var(--mrz-field-color, var(--color-text));
+}
+
+.woocommerce .quantity.mrz-qty input.qty {
+	width: 3rem;
+	padding-right: 0;
+	padding-left: 0;
+	border: 0;
+	background: none;
+	text-align: center;
+	appearance: textfield;
+	-moz-appearance: textfield;
+}
+
+.woocommerce .quantity.mrz-qty input.qty::-webkit-inner-spin-button,
+.woocommerce .quantity.mrz-qty input.qty::-webkit-outer-spin-button {
+	margin: 0;
+	appearance: none;
+}
+
+.mrz-qty__button {
+	min-width: 2.75rem;
+	padding: 0;
+	border: 0;
+	border-radius: var(--mrz-field-radius);
+	background: none;
+	color: inherit;
+	font-size: var(--mrz-text-lg);
+	line-height: 1;
+	cursor: pointer;
+}
+
+.mrz-qty__button:hover {
+	background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.woocommerce .mrz-toast .mrz-toast__message a.button:hover {
+	background: none;
+	color: inherit;
+	filter: none;
+	opacity: 0.75;
+}
+
+/* Panier : champ du code promo assez large pour son texte d'exemple. */
+.woocommerce .cart .coupon #coupon_code,
+.woocommerce-page .cart .coupon #coupon_code {
+	width: 12rem;
+	margin-right: 0.5rem;
 }

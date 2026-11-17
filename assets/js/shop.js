@@ -231,6 +231,46 @@
 		} );
 	}
 
+	/*
+	 * Boutons + et − autour du champ quantité (fiche produit, page Panier).
+	 * Le champ reste : saisie au clavier possible, min, max et pas respectés par stepUp/stepDown.
+	 */
+	function addQuantityButtons() {
+		document.querySelectorAll( '.quantity:not(.mrz-qty) input.qty[type="number"]' ).forEach( function ( input ) {
+			var wrapper = input.closest( '.quantity' );
+			wrapper.classList.add( 'mrz-qty' );
+
+			[ [ 'decrease', '−', 'beforebegin' ], [ 'increase', '+', 'afterend' ] ].forEach( function ( item ) {
+				var button = document.createElement( 'button' );
+				button.type = 'button';
+				button.className = 'mrz-qty__button mrz-qty__button--' + item[ 0 ];
+				button.innerHTML = '<span aria-hidden="true">' + item[ 1 ] + '</span><span class="screen-reader-text">' + ( i18n[ item[ 0 ] ] || item[ 0 ] ) + '</span>';
+				button.addEventListener( 'click', function () {
+					var before = input.value;
+					if ( 'increase' === item[ 0 ] ) {
+						input.stepUp();
+					} else {
+						input.stepDown();
+					}
+					if ( input.value !== before ) {
+						// « Mettre à jour le panier » s'active sur ces événements (cart.js de WooCommerce).
+						input.dispatchEvent( new Event( 'input', { bubbles: true } ) );
+						input.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+					}
+				} );
+				input.insertAdjacentElement( item[ 2 ], button );
+			} );
+		} );
+	}
+
+	if ( settings.quantityButtons ) {
+		addQuantityButtons();
+		// Panier mis à jour par WooCommerce : son HTML est remplacé.
+		if ( window.jQuery ) {
+			window.jQuery( document.body ).on( 'updated_wc_div updated_cart_totals', addQuantityButtons );
+		}
+	}
+
 	/* Lien vers les avis (« 2 avis client ») : ouvre l'accordéon des avis. */
 	function openDetailsFor( hash ) {
 		var target = hash && document.getElementById( hash.slice( 1 ) );
