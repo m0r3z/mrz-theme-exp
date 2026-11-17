@@ -26,7 +26,7 @@ Le thème et chaque site suivent les critères du RGAA : https://accessibilite.n
 - **Structure** (thèmes 8 et 9) : `lang` de la page juste, titres hiérarchisés sans saut, listes en `<ul>`/`<ol>`, zones `<header>`, `<nav>`, `<main>`, `<footer>`.
 - **Formulaires** (thème 11) : chaque champ a une étiquette visible et liée, erreurs explicites. Gravity Forms : jamais le balisage hérité (« legacy markup ») ; étiquettes visibles, pas de simple texte indicatif dans le champ.
 - **Contenu en mouvement** (thème 13) : rien ne défile tout seul sans bouton pause ; animations coupées avec `prefers-reduced-motion`.
-- Pas de mention « conforme RGAA » ni de déclaration d'accessibilité sur un site, sauf demande d'Aurélien (clients publics).
+- Pas de mention « conforme RGAA » ni de déclaration d'accessibilité sur un site, sauf demande expresse (clients publics soumis à l'obligation légale).
 
 ## Construire une page
 Remplir `mrz_builder` avec `update_field( 'field_mrz_builder', $rows, $post_id )`. Chaque ligne porte `acf_fc_layout`.
@@ -169,7 +169,7 @@ CPT `mrz_section`. Meta `mrz_section_hook` (emplacement), `mrz_section_priority`
 
 ## Plugins MRZ : obligatoires
 - **Toute liste de contenus** (articles, CPT, projets, équipe, références, derniers articles sur l'accueil) passe par **MRZ Display Post** (`[mrzdpe]`). **Toute carte** passe par **MRZ Maps** (`[mrzme]`). Jamais de requête `WP_Query` ni de filtre JS maison dans une section sur mesure pour ça.
-- Plugin absent du site : l'installer, ou le signaler à Aurélien **avant** de coder quoi que ce soit.
+- Plugin absent du site : l'installer, ou le signaler **avant** de coder quoi que ce soit.
 - Il manque une fonction au plugin (filtre par taxonomie, gabarit de carte, tri manuel…) : la noter comme évolution du plugin dans le compte rendu, sans recoder la liste dans le thème.
 - Un type de contenu propre au site (projets, équipe, ressources) se déclare dans un **mu-plugin du site** (`wp-content/mu-plugins/<site>-contenus.php`, types et fonctions préfixés `aa_` : `aa_equipe`, `aa_register_contenus()`), pas dans l'enfant : le contenu doit survivre à un changement de thème. C'est la seule chose qu'on écrit hors de l'enfant. Son affichage en liste passe par MRZ Display Post.
 - MRZ Display Post ne liste que les types et taxonomies publics : un type sans page à lui se déclare `'public' => true, 'publicly_queryable' => false`.
