@@ -6,6 +6,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ### Ajouté
 - Animations au défilement, sans JavaScript : réglages de section « Animation » (apparition vers le haut, fondu, zoom, en cascade) et « Parallaxe » (légère, moyenne) sur l'image de fond. Jamais sur la première section, coupées si le visiteur limite les animations, contenu affiché normalement sur les navigateurs sans prise en charge (Firefox).
+- Vidéo de fond de section (MP4 ou WebM) : l'image de fond s'affiche d'abord, la vidéo se télécharge une fois la page chargée, bouton pause (RGAA 13.8). Pas de vidéo sur mobile par défaut, ni si le visiteur limite les animations ou économise ses données. Script `assets/js/video.js` chargé seulement si une section en a une.
 - Customizer > Général : surlignage animé du mot en couleur des titres.
 - Variables `--mrz-motion-*`, `--mrz-parallax-*`, `--mrz-highlight-*`.
 

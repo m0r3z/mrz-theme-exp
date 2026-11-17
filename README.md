@@ -97,6 +97,7 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 | Dégradé | De la couleur de fond vers une seconde couleur de la palette, vers le bas, la droite ou en diagonale |
 | Animation au défilement | Aucune, apparition vers le haut, fondu, zoom, en cascade (éléments un par un). Sans JavaScript ; jamais sur la première section ; coupée si le visiteur limite les animations |
 | Parallaxe | Aucune, légère, moyenne : l'image de fond défile moins vite que la page |
+| Vidéo de fond | MP4 ou WebM, sans son, en boucle, avec bouton pause. L'image de fond s'affiche d'abord et reste seule sur mobile (sauf « Vidéo sur mobile »), si le visiteur limite les animations ou économise ses données |
 
 **Bannière de page** : un Texte libre en tête de page, titre en H1, image de fond, hauteur grande ou plein écran. Pas besoin d'une section « hero » sur mesure.
 

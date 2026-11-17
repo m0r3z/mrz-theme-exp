@@ -132,6 +132,7 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 	$width      = $settings['width'] ?? 'container';
 	$anchor     = $settings['anchor'] ?? '';
 	$image_id   = ! empty( $args['image'] ) ? (int) $args['image'] : (int) ( $settings['background_image'] ?? 0 );
+	$video_id   = (int) ( $settings['background_video'] ?? 0 );
 	$overlay    = $settings['image_overlay'] ?? 'dark';
 	$height     = $settings['height'] ?? 'auto';
 
@@ -156,7 +157,7 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 		$classes[] = 'mrz-motion--' . str_replace( '_', '-', $motion );
 	}
 
-	if ( $image_id ) {
+	if ( $image_id || $video_id ) {
 		$classes[] = 'mrz-has-bg-image';
 		$parallax  = $settings['parallax'] ?? 'none';
 		if ( in_array( $parallax, array( 'light', 'medium' ), true ) ) {
@@ -205,6 +206,9 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 
 	if ( $image_id ) {
 		mrz_theme_section_background_image( $image_id );
+	}
+	if ( $video_id ) {
+		mrz_theme_section_background_video( $video_id, ! empty( $settings['video_mobile'] ) );
 	}
 
 	printf( '<div class="%s">', esc_attr( $containers[ $width ] ?? 'mrz-container' ) );

@@ -22,6 +22,7 @@ $mrz_theme_includes = array(
 	'customizer',
 	'template-tags',
 	'carousel',
+	'video',
 	'builder',
 	'builder-sections',
 	'global-sections',

@@ -946,6 +946,65 @@
 		object-position: var(--mrz-section-image-position, center);
 	}
 
+	/* Vidéo de fond : posée sur l'image, invisible tant qu'elle ne joue pas (l'image reste affichée). */
+	.mrz-section__video {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0;
+		transition: opacity 0.6s var(--mrz-ease);
+	}
+
+	.is-video-playing > .mrz-section__video {
+		opacity: 1;
+	}
+
+	/* Bouton pause (RGAA 13.8) : en bas à droite de la section. */
+	.mrz-section__video-toggle {
+		position: absolute;
+		right: var(--mrz-gutter);
+		bottom: 1.5rem;
+		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--mrz-carousel-button-size);
+		height: var(--mrz-carousel-button-size);
+		padding: 0;
+		border: 1px solid currentColor;
+		border-radius: 50%;
+		background: color-mix(in srgb, var(--color-background) 40%, transparent);
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.mrz-section__video-toggle[hidden] {
+		display: none;
+	}
+
+	.mrz-section__video-toggle svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	.mrz-section__video-icon-play,
+	.is-video-paused .mrz-section__video-icon-pause {
+		display: none;
+	}
+
+	.is-video-paused .mrz-section__video-icon-play {
+		display: block;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-section__video {
+			transition: none;
+		}
+	}
+
 	.mrz-section__heading {
 		max-width: 48rem;
 		margin: 0 auto 3rem;
