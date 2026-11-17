@@ -1346,3 +1346,82 @@ msgstr "Couleur entre les deux pages"
 #: inc/customizer.php:513
 msgid "The page fades out to this color, then the next page comes in: the two pages never overlap."
 msgstr "La page s'efface sur cette couleur, puis la suivante arrive : les deux pages ne se superposent jamais."
+
+#, php-format
+msgid "-%d%%"
+msgstr "-%d %%"
+
+msgid "Add to cart without reloading the product page"
+msgstr "Ajout au panier sans recharger la fiche produit"
+
+msgid "Cart icon"
+msgstr "Icône du panier"
+
+msgid "Close the cart"
+msgstr "Fermer le panier"
+
+msgid "Continue shopping"
+msgstr "Continuer les achats"
+
+msgid "Decrease quantity"
+msgstr "Diminuer la quantité"
+
+msgid "Description, additional information and reviews"
+msgstr "Description, informations complémentaires et avis"
+
+msgid "Discount (\"-20%\")"
+msgstr "Réduction (« -20 % »)"
+
+msgid "Goes to the cart page"
+msgstr "Mène à la page Panier"
+
+msgid "Increase quantity"
+msgstr "Augmenter la quantité"
+
+msgid "Next to the images, under the add to cart button"
+msgstr "À côté des images, sous le bouton d'ajout au panier"
+
+msgid "Number of results"
+msgstr "Nombre de résultats"
+
+msgid "Opens a cart panel on the right"
+msgstr "Ouvre un panneau du panier à droite"
+
+msgid "Plus and minus buttons around the quantity"
+msgstr "Boutons plus et moins autour de la quantité"
+
+msgid "Products per page"
+msgstr "Produits par page"
+
+msgid "Products per row"
+msgstr "Produits par ligne"
+
+msgid "Products per row on mobile"
+msgstr "Produits par ligne sur mobile"
+
+msgid "Sale badge"
+msgstr "Badge promo"
+
+msgid "Shop"
+msgstr "Boutique"
+
+msgid "Shop, categories and related products. The [products] shortcode keeps its own columns."
+msgstr "Boutique, catégories et produits similaires. Le shortcode [products] garde ses propres colonnes."
+
+msgid "Shown as accordions instead of tabs."
+msgstr "Affichés en accordéons, sans onglets."
+
+msgid "Sorting menu"
+msgstr "Menu de tri"
+
+msgid "Text (\"Sale!\")"
+msgstr "Texte (« Promo ! »)"
+
+msgid "The product could not be added to the cart. Please try again."
+msgstr "Le produit n'a pas pu être ajouté au panier. Veuillez réessayer."
+
+msgid "The product lists follow the WooCommerce setting (Settings > Products)."
+msgstr "Les listes de produits suivent le réglage de WooCommerce (Réglages > Produits)."
+
+msgid "Under the images, full width"
+msgstr "Sous les images, pleine largeur"
