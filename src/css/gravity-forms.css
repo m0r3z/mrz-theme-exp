@@ -1,4 +1,7 @@
 /*
+ * Compilé dans dist/main.css, hors couche : seulement des variables (quelques Ko),
+ * pas de fichier en plus ni de chargement sur les pages sans formulaire.
+ *
  * Gravity Forms, thème « Orbital » (imposé par inc/assets.php) branché sur les
  * variables du thème. Orbital se règle entièrement par ses variables --gf-* :
  * on leur donne nos valeurs, sans réécrire un seul sélecteur de Gravity Forms.
@@ -43,7 +46,9 @@
 	--gf-color-in-ctrl-light-lighter: color-mix(in srgb, var(--mrz-field-border, var(--color-border)) 40%, transparent);
 
 	/* Couleurs que Gravity Forms calcule en rgba() depuis des triplets RGB : recalculées ici. */
-	--gf-ctrl-outline-color-focus: color-mix(in srgb, var(--mrz-field-border-focus) 65%, transparent);
+	/* Contour de focus au clavier : celui du thème, 2px opaque (RGAA), pas le halo pâle d'Orbital. */
+	--gf-ctrl-outline-color-focus: var(--mrz-focus-color);
+	--gf-ctrl-outline-width-focus: 2px;
 	--gf-ctrl-color-disabled: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 60%, transparent);
 	--gf-ctrl-placeholder-color: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 70%, transparent);
 	--gf-ctrl-choice-check-color-disabled: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 20%, transparent);

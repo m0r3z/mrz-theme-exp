@@ -29,14 +29,10 @@ function mrz_theme_enqueue_assets() {
 	// CSS des intégrations, branchés sur les variables du thème.
 	$child_dependencies = array( 'mrz-theme' );
 
-	if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
+	// Partout : une grille [products] peut se trouver sur n'importe quelle page (3 Ko).
+	if ( class_exists( 'WooCommerce' ) ) {
 		wp_enqueue_style( 'mrz-theme-woocommerce', MRZ_THEME_URI . '/assets/css/woocommerce.css', array( 'mrz-theme' ), mrz_theme_asset_version( 'assets/css/woocommerce.css' ) );
 		$child_dependencies[] = 'mrz-theme-woocommerce';
-	}
-
-	if ( class_exists( 'GFForms' ) ) {
-		wp_enqueue_style( 'mrz-theme-gravity-forms', MRZ_THEME_URI . '/assets/css/gravity-forms.css', array( 'mrz-theme' ), mrz_theme_asset_version( 'assets/css/gravity-forms.css' ) );
-		$child_dependencies[] = 'mrz-theme-gravity-forms';
 	}
 
 	/*
@@ -86,7 +82,7 @@ add_action( 'wp_enqueue_scripts', 'mrz_theme_enqueue_assets' );
 
 /*
  * Gravity Forms : thème « Orbital » imposé à tous les formulaires. C'est le seul
- * réglable par variables CSS (--gf-*), que assets/css/gravity-forms.css branche
+ * réglable par variables CSS (--gf-*), que src/css/gravity-forms.css (compilé dans dist/main.css) branche
  * sur celles du thème. L'ancien thème 2.5 a des valeurs en dur.
  */
 add_filter(

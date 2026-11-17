@@ -1,6 +1,9 @@
 /*
  * WooCommerce : couleurs et rayons branchés sur les variables du thème.
- * Chargé uniquement sur les pages WooCommerce. CSS classique, sans compilation.
+ * Chargé sur tout le site quand WooCommerce est actif (grilles [products] hors boutique).
+ * CSS classique, sans compilation.
+ *
+ * Titres des produits dans les listes : --mrz-product-title-font-family, -size, -text-transform.
  */
 
 /*
@@ -73,8 +76,9 @@
 }
 
 .woocommerce ul.products li.product .woocommerce-loop-product__title {
-	font-family: var(--font-title);
-	font-size: 1.125rem;
+	font-family: var(--mrz-product-title-font-family, var(--font-title));
+	font-size: var(--mrz-product-title-size, 1.125rem);
+	text-transform: var(--mrz-product-title-text-transform, none);
 }
 
 .woocommerce ul.products li.product a img {
