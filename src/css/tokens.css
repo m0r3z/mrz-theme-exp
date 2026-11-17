@@ -156,5 +156,8 @@
 	 */
 	--mrz-header-offset: var(--mrz-header-height, calc(var(--mrz-logo-height) + 2 * var(--mrz-header-padding)));
 
+	/* Contour de focus (clavier) : couleur principale sur le fond du site, couleur du texte de la section sur les fonds de section. */
+	--mrz-focus-color: var(--color-primary);
+
 	--mrz-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

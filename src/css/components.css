@@ -52,6 +52,10 @@
 	}
 
 	/* Header transparent : par-dessus le hero, couleurs claires jusqu'au défilement. */
+	.mrz-header-transparent .mrz-header:not(.is-scrolled) {
+		--mrz-focus-color: var(--mrz-header-transparent-color);
+	}
+
 	.mrz-header-transparent .mrz-header {
 		position: fixed;
 		inset-inline: 0;
@@ -654,6 +658,8 @@
 		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
 		/* Titres de la couleur du texte de la section (le « Texte courant » ne vaut que sur le fond du site). */
 		--mrz-title-color: currentColor;
+		/* Contour de focus : le texte de la section contraste toujours avec son fond (RGAA 10.7). */
+		--mrz-focus-color: var(--color-text);
 		background-color: var(--color-background);
 		color: var(--color-text);
 	}
@@ -667,6 +673,7 @@
 	/* Voile sombre sur les images de fond : le texte prend Clair. */
 	.mrz-has-image {
 		--mrz-title-color: currentColor;
+		--mrz-focus-color: var(--color-light);
 		--color-text: var(--color-light);
 		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
 		color: var(--color-text);

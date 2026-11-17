@@ -10,6 +10,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Règles pour l'IA : RGAA (AGENTS.md).
 - Règles pour l'IA : objectif Lighthouse 100 sur les quatre scores (AGENTS.md).
 
+### Corrigé
+- Contour de focus invisible sur une section de couleur principale : il prend maintenant la couleur du texte de la section (`--mrz-focus-color`), sur tous les fonds, les images et le header transparent (RGAA 10.7).
+
 ## [0.3.0] - 2026-11-17
 
 ### Ajouté
