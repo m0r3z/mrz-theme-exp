@@ -233,6 +233,11 @@
 		if ( ! item ) {
 			return;
 		}
+		/* Mega menu (classe mrz-megamenu sur le premier niveau) : Échap ferme tout le panneau. */
+		var mega = item.closest( '.mrz-nav .mrz-megamenu' );
+		if ( mega ) {
+			item = mega;
+		}
 		/* Ferme le sous-menu le plus proche et rend le focus à son lien. */
 		if ( item.querySelector( ':scope > .sub-menu' ).contains( document.activeElement ) ) {
 			item.querySelector( ':scope > a' ).focus();

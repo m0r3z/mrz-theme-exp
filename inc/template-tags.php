@@ -58,7 +58,8 @@ function mrz_theme_logo( $context = 'header' ) {
  * @param string $extra_class Classes CSS ajoutées à la nav.
  */
 function mrz_theme_primary_nav( $extra_class = '' ) {
-	if ( ! has_nav_menu( 'primary' ) ) {
+	// Menu dans le panneau aussi sur ordinateur : le bouton Menu remplace le menu du header.
+	if ( ! has_nav_menu( 'primary' ) || mrz_theme_option( 'menu_button_desktop' ) ) {
 		return;
 	}
 
@@ -118,7 +119,7 @@ function mrz_theme_header_tools() {
 	 */
 	do_action( 'mrz_header_tools_end' );
 	?>
-	<button type="button" class="mrz-burger mrz-mobile-only" data-mrz-menu-toggle aria-controls="mrz-mobile-menu" aria-expanded="false">
+	<button type="button" class="mrz-burger<?php echo mrz_theme_option( 'menu_button_desktop' ) ? '' : ' mrz-mobile-only'; ?>" data-mrz-menu-toggle aria-controls="mrz-mobile-menu" aria-expanded="false">
 		<span class="screen-reader-text"><?php esc_html_e( 'Open menu', 'mrz-theme-exp' ); ?></span>
 		<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 	</button>

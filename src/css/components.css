@@ -284,6 +284,40 @@
 		transition: none;
 	}
 
+	/*
+	 * Mega menu : classe CSS « mrz-megamenu » sur un élément du premier niveau
+	 * (Apparence > Menus). Son sous-menu devient un panneau en colonnes : chaque élément
+	 * du deuxième niveau est un titre de colonne, ses enfants sont listés dessous.
+	 * Échap ferme tout le panneau (main.js). Apparence : --mrz-megamenu-*.
+	 */
+	.mrz-menu > .mrz-megamenu > .sub-menu {
+		display: grid;
+		grid-template-columns: repeat(var(--mrz-megamenu-columns), minmax(0, 1fr));
+		gap: 1rem 2rem;
+		width: var(--mrz-megamenu-width);
+		padding: 1.5rem;
+	}
+
+	.mrz-menu > .mrz-megamenu > .sub-menu > li > a {
+		font-weight: 600;
+	}
+
+	.mrz-menu .mrz-megamenu .sub-menu .sub-menu {
+		position: static;
+		min-width: 0;
+		padding: 0;
+		background: none;
+		box-shadow: none;
+		opacity: 1;
+		visibility: inherit;
+		transform: none;
+		transition: none;
+	}
+
+	.mrz-menu .mrz-megamenu .sub-menu .menu-item-has-children > a::after {
+		display: none;
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.mrz-menu .sub-menu,
 		.mrz-menu .menu-item-has-children > a::after {
@@ -1236,6 +1270,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--mrz-footer-columns-gap);
+	}
+
+	/* Colonne libre (texte, formulaire d'inscription) : plus large qu'une liste de liens. */
+	.mrz-footer__column--free {
+		flex: 0 1 var(--mrz-footer-free-width);
 	}
 
 	.mrz-footer__heading {

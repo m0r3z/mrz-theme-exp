@@ -18,6 +18,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Sur un fond de section ou une image, `--mrz-link-color` prend la couleur du texte de la section.
 - Section **Texte et média** (`mrz_split`) : texte d'un côté, image, second texte ou encadré coloré de l'autre ; côté, largeur des colonnes, alignement vertical, colonne collante. Variables `--mrz-split-*`.
 - Section **Accordéon** (`mrz_accordion`) : `<details>` natif sans JavaScript, premier élément ouvert et un seul ouvert à la fois en option. Variables `--mrz-accordion-*`.
+- Header : disposition « menu à gauche » (logo, menu juste après, outils à droite) et réglage « Bouton Menu aussi sur ordinateur ».
+- Mega menu : classe CSS `mrz-megamenu` sur un élément du premier niveau. Panneau en colonnes, Échap ferme tout le panneau. Variables `--mrz-megamenu-columns`, `--mrz-megamenu-width`.
+- Footer : colonne libre après les colonnes de liens (texte, formulaire d'inscription). Variable `--mrz-footer-free-width`.
+- Transitions de page : effets « rideau » (couleur et sens réglables) et « zoom », toujours sans JavaScript.
 
 ### Corrigé
 - Images des Cartes : leur place est réservée avant chargement (format réel en `--mrz-img-ratio`). Depuis la 0.4.1, `--mrz-card-media-ratio` non réglé donnait une hauteur fausse à une image chargée en différé (décalage de mise en page).

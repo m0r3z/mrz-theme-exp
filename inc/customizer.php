@@ -345,8 +345,20 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'type'    => 'radio',
 			'choices' => array(
 				'classic'  => __( 'Classic: logo left, menu right', 'mrz-theme-exp' ),
+				'left'     => __( 'Menu left: logo, menu next to it, tools on the right', 'mrz-theme-exp' ),
 				'centered' => __( 'Centered: logo above, menu below', 'mrz-theme-exp' ),
 			),
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'menu_button_desktop', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_menu_button_desktop',
+		array(
+			'label'       => __( 'Menu button on desktop too', 'mrz-theme-exp' ),
+			'description' => __( 'The main menu opens in the mobile menu panel on every screen, from the Menu button (style: Mobile header).', 'mrz-theme-exp' ),
+			'section'     => 'mrz_header',
+			'type'        => 'checkbox',
 		)
 	);
 
@@ -484,8 +496,37 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'section' => 'mrz_transitions',
 			'type'    => 'select',
 			'choices' => array(
-				'fade'  => __( 'Fade', 'mrz-theme-exp' ),
-				'slide' => __( 'Slide up', 'mrz-theme-exp' ),
+				'fade'    => __( 'Fade', 'mrz-theme-exp' ),
+				'slide'   => __( 'Slide up', 'mrz-theme-exp' ),
+				'curtain' => __( 'Curtain: a color sweeps the screen', 'mrz-theme-exp' ),
+				'zoom'    => __( 'Zoom: the page steps back, the next one comes forward', 'mrz-theme-exp' ),
+			),
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'transition_color', 'mrz_theme_sanitize_choice' );
+	$wp_customize->add_control(
+		'mrz_transition_color',
+		array(
+			'label'   => __( 'Curtain color', 'mrz-theme-exp' ),
+			'section' => 'mrz_transitions',
+			'type'    => 'select',
+			'choices' => array_intersect_key( mrz_theme_color_labels(), array_flip( array( 'primary', 'secondary', 'tertiary', 'quaternary', 'dark', 'light' ) ) ),
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'transition_direction', 'mrz_theme_sanitize_choice' );
+	$wp_customize->add_control(
+		'mrz_transition_direction',
+		array(
+			'label'   => __( 'Curtain direction', 'mrz-theme-exp' ),
+			'section' => 'mrz_transitions',
+			'type'    => 'select',
+			'choices' => array(
+				'up'    => __( 'Upward', 'mrz-theme-exp' ),
+				'down'  => __( 'Downward', 'mrz-theme-exp' ),
+				'left'  => __( 'To the left', 'mrz-theme-exp' ),
+				'right' => __( 'To the right', 'mrz-theme-exp' ),
 			),
 		)
 	);
@@ -626,11 +667,37 @@ function mrz_theme_customizer_css() {
 		$css     .= '@view-transition{navigation:auto}';
 		$css     .= '::view-transition-old(root),::view-transition-new(root){animation-duration:' . $duration . 'ms}';
 
-		if ( 'slide' === mrz_theme_option( 'transition_effect' ) ) {
+		$effect = mrz_theme_option( 'transition_effect' );
+		if ( 'slide' === $effect ) {
 			$css .= '::view-transition-old(root){animation-name:mrz-vt-out}';
 			$css .= '::view-transition-new(root){animation-name:mrz-vt-in}';
 			$css .= '@keyframes mrz-vt-out{to{opacity:0;transform:translateY(-24px)}}';
 			$css .= '@keyframes mrz-vt-in{from{opacity:0;transform:translateY(24px)}}';
+		} elseif ( 'zoom' === $effect ) {
+			$css .= '::view-transition-old(root){animation-name:mrz-vt-out}';
+			$css .= '::view-transition-new(root){animation-name:mrz-vt-in}';
+			$css .= '@keyframes mrz-vt-out{to{opacity:0;transform:scale(.96)}}';
+			$css .= '@keyframes mrz-vt-in{from{opacity:0;transform:scale(1.04)}}';
+		} elseif ( 'curtain' === $effect ) {
+			/*
+			 * Rideau : l'ancienne page s'efface en balayant, découvrant la couleur (fond de
+			 * l'arbre de transition), puis la nouvelle arrive par le même côté. Chaque moitié
+			 * prend la moitié de la durée.
+			 */
+			$color = sanitize_key( mrz_theme_option( 'transition_color' ) );
+			$clips = array(
+				'up'    => array( 'inset(0 0 100% 0)', 'inset(100% 0 0 0)' ),
+				'down'  => array( 'inset(100% 0 0 0)', 'inset(0 0 100% 0)' ),
+				'left'  => array( 'inset(0 100% 0 0)', 'inset(0 0 0 100%)' ),
+				'right' => array( 'inset(0 0 0 100%)', 'inset(0 100% 0 0)' ),
+			);
+			$clip  = $clips[ mrz_theme_option( 'transition_direction' ) ] ?? $clips['up'];
+			$half  = (int) round( $duration / 2 );
+			$css  .= '::view-transition{background:var(--color-' . $color . ')}';
+			$css  .= '::view-transition-old(root){animation:mrz-vt-curtain-out ' . $half . 'ms cubic-bezier(.7,0,.3,1) both}';
+			$css  .= '::view-transition-new(root){animation:mrz-vt-curtain-in ' . $half . 'ms cubic-bezier(.7,0,.3,1) ' . $half . 'ms both}';
+			$css  .= '@keyframes mrz-vt-curtain-out{to{clip-path:' . $clip[0] . '}}';
+			$css  .= '@keyframes mrz-vt-curtain-in{from{clip-path:' . $clip[1] . '}}';
 		}
 
 		$css .= '@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}';

@@ -16,6 +16,7 @@ $mrz_button  = get_sub_field( 'button' );
 $mrz_columns = get_sub_field( 'columns' ) ?: array(); // phpcs:ignore Universal.Operators.DisallowShortTernary
 $mrz_socials = get_sub_field( 'socials' ) ?: array(); // phpcs:ignore Universal.Operators.DisallowShortTernary
 $mrz_bottom  = (string) get_sub_field( 'bottom' );
+$mrz_free    = (string) get_sub_field( 'free_content' );
 
 mrz_theme_section_open( 'mrz-footer' );
 ?>
@@ -53,7 +54,7 @@ mrz_theme_section_open( 'mrz-footer' );
 		<?php endif; ?>
 	</div>
 
-	<?php if ( $mrz_columns ) : ?>
+	<?php if ( $mrz_columns || $mrz_free ) : ?>
 		<div class="mrz-footer__columns">
 			<?php foreach ( $mrz_columns as $mrz_column ) : ?>
 				<nav class="mrz-footer__column"<?php echo ! empty( $mrz_column['title'] ) ? ' aria-label="' . esc_attr( $mrz_column['title'] ) . '"' : ''; ?>>
@@ -63,6 +64,16 @@ mrz_theme_section_open( 'mrz-footer' );
 					<?php echo wp_kses_post( $mrz_column['links'] ?? '' ); ?>
 				</nav>
 			<?php endforeach; ?>
+			<?php if ( $mrz_free ) : ?>
+				<div class="mrz-footer__column mrz-footer__column--free">
+					<?php if ( get_sub_field( 'free_title' ) ) : ?>
+						<h2 class="mrz-footer__heading"><?php echo esc_html( get_sub_field( 'free_title' ) ); ?></h2>
+					<?php endif; ?>
+					<div class="mrz-prose">
+						<?php echo $mrz_free; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- contenu de l'éditeur mis en forme par ACF, shortcodes compris (formulaire). ?>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
 	<?php endif; ?>
 </div>
