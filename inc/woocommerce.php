@@ -303,3 +303,58 @@ add_filter( 'woocommerce_sale_flash', 'mrz_theme_sale_flash', 10, 3 );
 function mrz_theme_shop_inline_css() {
 	return ':root{--mrz-shop-columns-mobile:' . ( '1' === (string) mrz_theme_option( 'shop_columns_mobile' ) ? 1 : 2 ) . '}';
 }
+
+/**
+ * Fiche produit : description, informations complémentaires, avis (et tout onglet
+ * ajouté par un plugin) en accordéons, sous le bouton d'ajout ou sous la fiche.
+ */
+function mrz_theme_product_details_setup() {
+	if ( ! is_product() ) {
+		return;
+	}
+
+	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+
+	if ( 'below' === mrz_theme_option( 'shop_product_details' ) ) {
+		add_action( 'woocommerce_after_single_product_summary', 'mrz_theme_product_details', 10 );
+	} else {
+		// Après le prix, le bouton d'ajout, les catégories et étiquettes (40) et le partage (50).
+		add_action( 'woocommerce_single_product_summary', 'mrz_theme_product_details', 60 );
+	}
+}
+add_action( 'wp', 'mrz_theme_product_details_setup' );
+
+/**
+ * Accordéons de la fiche produit : même balisage et mêmes variables
+ * (--mrz-accordion-*) que la section Accordéon. <details> natif, sans JS.
+ */
+function mrz_theme_product_details() {
+	$tabs = apply_filters( 'woocommerce_product_tabs', array() );
+	if ( ! $tabs ) {
+		return;
+	}
+	?>
+	<div class="mrz-accordion mrz-product-details">
+		<?php foreach ( $tabs as $key => $tab ) : ?>
+			<?php
+			if ( empty( $tab['callback'] ) ) {
+				continue;
+			}
+			?>
+			<details class="mrz-accordion__item mrz-product-details__item" id="tab-<?php echo esc_attr( $key ); ?>">
+				<summary class="mrz-accordion__question"><?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ); ?></summary>
+				<div class="mrz-accordion__answer<?php echo 'description' === $key ? ' mrz-prose' : ''; ?>">
+					<?php call_user_func( $tab['callback'], $key, $tab ); ?>
+				</div>
+			</details>
+		<?php endforeach; ?>
+	</div>
+	<?php
+}
+
+/*
+ * Titres répétés dans les accordéons (« Description », « Informations complémentaires ») :
+ * le libellé de l'accordéon suffit.
+ */
+add_filter( 'woocommerce_product_description_heading', '__return_empty_string' );
+add_filter( 'woocommerce_product_additional_information_heading', '__return_empty_string' );

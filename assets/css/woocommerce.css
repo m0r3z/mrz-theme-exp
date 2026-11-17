@@ -303,3 +303,43 @@
 	outline: none;
 }
 
+
+/*
+ * Fiche produit : description, informations complémentaires et avis en accordéons
+ * (classes et variables --mrz-accordion-* de la section Accordéon).
+ */
+.woocommerce div.product .mrz-product-details {
+	clear: both;
+	margin: 2rem 0;
+}
+
+.woocommerce div.product .summary .mrz-product-details {
+	margin-bottom: 0;
+}
+
+/* Titre des avis : le libellé de l'accordéon le dit déjà. */
+.mrz-product-details .woocommerce-Reviews-title {
+	display: none;
+}
+
+.mrz-product-details table.shop_attributes {
+	margin-bottom: 0;
+	border-top-color: var(--color-border);
+}
+
+.mrz-product-details table.shop_attributes th,
+.mrz-product-details table.shop_attributes td {
+	padding: 0.5rem 0;
+	border-bottom-color: var(--color-border);
+	font-style: normal;
+	text-align: left;
+}
+
+.mrz-product-details table.shop_attributes tr:nth-child(even) th,
+.mrz-product-details table.shop_attributes tr:nth-child(even) td {
+	background: none;
+}
+
+.mrz-product-details table.shop_attributes td p {
+	padding: 0;
+}
