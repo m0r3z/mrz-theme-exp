@@ -509,10 +509,11 @@ function mrz_theme_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'mrz_transition_color',
 		array(
-			'label'   => __( 'Curtain color', 'mrz-theme-exp' ),
-			'section' => 'mrz_transitions',
-			'type'    => 'select',
-			'choices' => array_intersect_key( mrz_theme_color_labels(), array_flip( array( 'primary', 'secondary', 'tertiary', 'quaternary', 'dark', 'light' ) ) ),
+			'label'       => __( 'Color between the two pages', 'mrz-theme-exp' ),
+			'description' => __( 'The page fades out to this color, then the next page comes in: the two pages never overlap.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_transitions',
+			'type'        => 'select',
+			'choices'     => array_intersect_key( mrz_theme_color_labels(), array_flip( array( 'background', 'primary', 'secondary', 'tertiary', 'quaternary', 'dark', 'light' ) ) ),
 		)
 	);
 
@@ -520,7 +521,11 @@ function mrz_theme_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'mrz_transition_direction',
 		array(
-			'label'   => __( 'Curtain direction', 'mrz-theme-exp' ),
+			'label'           => __( 'Curtain direction', 'mrz-theme-exp' ),
+			// Affiché seulement pour l'effet rideau (réévalué à chaque rafraîchissement de l'aperçu).
+			'active_callback' => static function () {
+				return 'curtain' === mrz_theme_option( 'transition_effect' );
+			},
 			'section' => 'mrz_transitions',
 			'type'    => 'select',
 			'choices' => array(
@@ -678,43 +683,45 @@ function mrz_theme_customizer_css() {
 
 	if ( mrz_theme_option( 'transition_enabled' ) ) {
 		$duration = absint( mrz_theme_option( 'transition_duration' ) );
-		$css     .= '@view-transition{navigation:auto}';
-		$css     .= '::view-transition-old(root),::view-transition-new(root){animation-duration:' . $duration . 'ms}';
-		// Header et barre d'admin à part : ils restent immobiles, seul le contenu change.
-		$css .= '.mrz-header{view-transition-name:mrz-header}#wpadminbar{view-transition-name:mrz-adminbar}';
-
+		/*
+		 * En deux temps, sur une couleur : l'ancienne page disparaît entièrement, puis la
+		 * nouvelle arrive. Les deux pages ne se superposent jamais. Chaque moitié prend la
+		 * moitié de la durée. Le header et la barre d'admin restent immobiles.
+		 */
+		$half   = max( 50, (int) round( $duration / 2 ) );
+		$color  = sanitize_key( mrz_theme_option( 'transition_color' ) );
+		$color  = $color ? $color : 'background';
 		$effect = mrz_theme_option( 'transition_effect' );
-		if ( 'slide' === $effect ) {
-			$css .= '::view-transition-old(root){animation-name:mrz-vt-out}';
-			$css .= '::view-transition-new(root){animation-name:mrz-vt-in}';
-			$css .= '@keyframes mrz-vt-out{to{opacity:0;transform:translateY(-24px)}}';
-			$css .= '@keyframes mrz-vt-in{from{opacity:0;transform:translateY(24px)}}';
-		} elseif ( 'zoom' === $effect ) {
-			$css .= '::view-transition-old(root){animation-name:mrz-vt-out}';
-			$css .= '::view-transition-new(root){animation-name:mrz-vt-in}';
-			$css .= '@keyframes mrz-vt-out{to{opacity:0;transform:scale(.96)}}';
-			$css .= '@keyframes mrz-vt-in{from{opacity:0;transform:scale(1.04)}}';
-		} elseif ( 'curtain' === $effect ) {
-			/*
-			 * Rideau : l'ancienne page s'efface en balayant, découvrant la couleur (fond de
-			 * l'arbre de transition), puis la nouvelle arrive par le même côté. Chaque moitié
-			 * prend la moitié de la durée.
-			 */
-			$color = sanitize_key( mrz_theme_option( 'transition_color' ) );
-			$clips = array(
+		$frames = array(
+			'fade'  => array( 'opacity:1', 'opacity:0', 'opacity:0', 'opacity:1' ),
+			'slide' => array( 'opacity:1;transform:none', 'opacity:0;transform:translateY(-24px)', 'opacity:0;transform:translateY(24px)', 'opacity:1;transform:none' ),
+			'zoom'  => array( 'opacity:1;transform:none', 'opacity:0;transform:scale(.96)', 'opacity:0;transform:scale(1.04)', 'opacity:1;transform:none' ),
+		);
+		if ( 'curtain' === $effect ) {
+			// Rideau : la page s'efface en balayant, puis la nouvelle arrive par le même côté.
+			$clips  = array(
 				'up'    => array( 'inset(0 0 100% 0)', 'inset(100% 0 0 0)' ),
 				'down'  => array( 'inset(100% 0 0 0)', 'inset(0 0 100% 0)' ),
 				'left'  => array( 'inset(0 100% 0 0)', 'inset(0 0 0 100%)' ),
 				'right' => array( 'inset(0 0 0 100%)', 'inset(0 100% 0 0)' ),
 			);
-			$clip  = $clips[ mrz_theme_option( 'transition_direction' ) ] ?? $clips['up'];
-			$half  = (int) round( $duration / 2 );
-			$css  .= '::view-transition{background:var(--color-' . $color . ')}';
-			$css  .= '::view-transition-old(root){animation:mrz-vt-curtain-out ' . $half . 'ms cubic-bezier(.7,0,.3,1) both}';
-			$css  .= '::view-transition-new(root){animation:mrz-vt-curtain-in ' . $half . 'ms cubic-bezier(.7,0,.3,1) ' . $half . 'ms both}';
-			$css  .= '@keyframes mrz-vt-curtain-out{to{clip-path:' . $clip[0] . '}}';
-			$css  .= '@keyframes mrz-vt-curtain-in{from{clip-path:' . $clip[1] . '}}';
+			$clip   = $clips[ mrz_theme_option( 'transition_direction' ) ] ?? $clips['up'];
+			// Les deux extrémités sont écrites : clip-path ne s'anime pas depuis « none ».
+			$frames = array( 'clip-path:inset(0 0 0 0)', 'clip-path:' . $clip[0], 'clip-path:' . $clip[1], 'clip-path:inset(0 0 0 0)' );
+			$easing = 'cubic-bezier(.7,0,.3,1)';
+		} else {
+			$frames = $frames[ $effect ] ?? $frames['fade'];
+			$easing = 'ease-in-out';
 		}
+
+		$css .= '@view-transition{navigation:auto}';
+		$css .= '.mrz-header{view-transition-name:mrz-header}#wpadminbar{view-transition-name:mrz-adminbar}';
+		$css .= '::view-transition{background:var(--color-' . $color . ')}';
+		$css .= '::view-transition-old(root),::view-transition-new(root){mix-blend-mode:normal}';
+		$css .= '::view-transition-old(root){animation:mrz-vt-out ' . $half . 'ms ' . $easing . ' both}';
+		$css .= '::view-transition-new(root){animation:mrz-vt-in ' . $half . 'ms ' . $easing . ' ' . $half . 'ms both}';
+		$css .= '@keyframes mrz-vt-out{from{' . $frames[0] . '}to{' . $frames[1] . '}}';
+		$css .= '@keyframes mrz-vt-in{from{' . $frames[2] . '}to{' . $frames[3] . '}}';
 
 		$css .= '@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}';
 	}

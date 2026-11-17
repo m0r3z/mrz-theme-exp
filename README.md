@@ -186,8 +186,8 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Menu mobile : panneau à droite, panneau à gauche, plein écran, ou déroulé sous le header (le burger ouvre et ferme). Le parent ne pose que la position et l'ouverture ; fond, flou, survol se règlent dans l'enfant | panneau à droite |
 | | Point de rupture mobile (px) : à augmenter si le menu a beaucoup d'entrées | 1000 |
 | MRZ Theme > Page transitions | Transitions animées entre les pages, sans JavaScript ; désactivées pour les visiteurs qui limitent les animations | non |
-| | Effet : fondu, glissement, rideau (une couleur balaie l'écran) ou zoom ; durée (ms) | fondu, 300 |
-| | Rideau : couleur (palette) et sens (vers le haut, le bas, la gauche, la droite) | principale, vers le haut |
+| | Effet : fondu, glissement, rideau (la page s'efface en balayant) ou zoom ; durée (ms). En deux temps : la page disparaît sur une couleur, puis la suivante arrive, sans superposition | fondu, 300 |
+| | Couleur entre les deux pages (palette ou fond du site) ; sens du rideau, affiché seulement pour le rideau | fond du site, vers le haut |
 | MRZ Theme > General | Largeur du contenu (px) | 1280 |
 | | Surlignage animé du mot en couleur des titres | non |
 | | Page 404 : page affichée pour une URL inexistante, avec un vrai statut 404 | page par défaut du thème |

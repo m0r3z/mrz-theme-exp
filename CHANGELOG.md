@@ -6,6 +6,11 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ### Modifié
 - Transitions de page : le header et la barre d'admin restent immobiles, seul le contenu change.
+- Transitions de page en deux temps : l'ancienne page disparaît entièrement sur une couleur (« Couleur entre les deux pages », fond du site par défaut), puis la nouvelle arrive. Plus de superposition des deux pages, pour tous les effets.
+- Customizer : le sens du rideau ne s'affiche que pour l'effet rideau.
+
+### Corrigé
+- Transition rideau : seul un aplat de couleur s'affichait (le balayage sautait d'un coup, `clip-path` ne s'animant pas depuis `none`).
 
 ## [0.7.0] - 2026-11-17
 

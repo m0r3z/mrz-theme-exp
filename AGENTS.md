@@ -217,7 +217,7 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Enfant : l'apparence du site, en CSS sur les classes `.mrz-` du parent. Copier un template dans l'enfant seulement en dernier recours : la copie ne reçoit plus les corrections du parent.
 
 ## Transitions de page
-Customizer > Transitions de page : fondu, glissement, rideau ou zoom, en View Transitions entre documents (CSS seul, `inc/customizer.php`). Le header (`view-transition-name: mrz-header`) et la barre d'admin restent immobiles. Coupées si le visiteur limite les animations. Un effet propre au site (transformation d'image, révélation circulaire) va dans l'enfant ; ne jamais réutiliser le nom `mrz-header`.
+Customizer > Transitions de page : fondu, glissement, rideau ou zoom, en View Transitions entre documents (CSS seul, `inc/customizer.php`). En deux temps : l'ancienne page disparaît entièrement sur la « couleur entre les deux pages » (fond du site par défaut), puis la nouvelle arrive ; jamais de superposition. Le header (`view-transition-name: mrz-header`) et la barre d'admin restent immobiles. Coupées si le visiteur limite les animations. Un effet propre au site (transformation d'image, révélation circulaire) va dans l'enfant ; ne jamais réutiliser le nom `mrz-header`.
 
 ## Carrousel
 Pour tout ce qui défile (cartes, témoignages, logos) : jamais de bibliothèque ni de carrousel maison dans l'enfant.

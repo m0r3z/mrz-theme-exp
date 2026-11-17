@@ -313,23 +313,23 @@ msgstr "Fondu"
 msgid "Slide up"
 msgstr "Glissement vers le haut"
 
-#: inc/customizer.php:539
+#: inc/customizer.php:544
 msgid "Duration (ms)"
 msgstr "Durée (ms)"
 
-#: inc/customizer.php:554
+#: inc/customizer.php:559
 msgid "General"
 msgstr "Général"
 
-#: inc/customizer.php:563
+#: inc/customizer.php:568
 msgid "Content width (px)"
 msgstr "Largeur du contenu (px)"
 
-#: inc/customizer.php:589
+#: inc/customizer.php:594
 msgid "404 page"
 msgstr "Page 404"
 
-#: inc/customizer.php:590
+#: inc/customizer.php:595
 msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
 msgstr "Page affichée quand une adresse n'existe pas. Le vrai statut 404 est conservé pour les moteurs de recherche."
 
@@ -841,13 +841,13 @@ msgid "Gradient direction"
 msgstr "Sens du dégradé"
 
 #: inc/builder-sections.php:194
-#: inc/customizer.php:528
+#: inc/customizer.php:533
 msgid "Downward"
 msgstr "Vers le bas"
 
 #: inc/builder-sections.php:195
 #: inc/builder-sections.php:966
-#: inc/customizer.php:530
+#: inc/customizer.php:535
 msgid "To the right"
 msgstr "Vers la droite"
 
@@ -1083,20 +1083,16 @@ msgstr "Rideau : une couleur balaie l'écran"
 msgid "Zoom: the page steps back, the next one comes forward"
 msgstr "Zoom : la page recule, la suivante s'avance"
 
-#: inc/customizer.php:512
-msgid "Curtain color"
-msgstr "Couleur du rideau"
-
-#: inc/customizer.php:523
+#: inc/customizer.php:524
 msgid "Curtain direction"
 msgstr "Sens du rideau"
 
-#: inc/customizer.php:527
+#: inc/customizer.php:532
 msgid "Upward"
 msgstr "Vers le haut"
 
 #: inc/builder-sections.php:965
-#: inc/customizer.php:529
+#: inc/customizer.php:534
 msgid "To the left"
 msgstr "Vers la gauche"
 
@@ -1145,11 +1141,11 @@ msgstr "L'image de fond défile moins vite que la page."
 msgid "Medium"
 msgstr "Moyenne"
 
-#: inc/customizer.php:578
+#: inc/customizer.php:583
 msgid "Animated highlight of the colored word"
 msgstr "Surlignage animé du mot en couleur"
 
-#: inc/customizer.php:579
+#: inc/customizer.php:584
 msgid "The word between <em> and </em> in a title gets highlighted when the title scrolls into view. Static highlight on browsers without scroll animations."
 msgstr "Le mot entre <em> et </em> d'un titre se surligne quand le titre arrive à l'écran. Surlignage fixe sur les navigateurs sans animations au défilement."
 
@@ -1342,3 +1338,11 @@ msgstr "Lire le bandeau défilant"
 #: layouts/mrz-anchors.php:31
 msgid "On this page"
 msgstr "Sur cette page"
+
+#: inc/customizer.php:512
+msgid "Color between the two pages"
+msgstr "Couleur entre les deux pages"
+
+#: inc/customizer.php:513
+msgid "The page fades out to this color, then the next page comes in: the two pages never overlap."
+msgstr "La page s'efface sur cette couleur, puis la suivante arrive : les deux pages ne se superposent jamais."

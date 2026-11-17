@@ -42,7 +42,7 @@ function mrz_theme_option_defaults() {
 		'transition_enabled'        => false,
 		'transition_effect'         => 'fade',
 		'transition_duration'       => 300,
-		'transition_color'          => 'primary',
+		'transition_color'          => 'background',
 		'transition_direction'      => 'up',
 		'menu_button_desktop'       => false,
 		'container_width'           => 1280,
