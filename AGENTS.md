@@ -88,8 +88,8 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 | Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
 | Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
 | Lien fléché | `--mrz-link-font-size`, `--mrz-link-arrow` (`url()` d'un SVG, utilisé en masque : la flèche prend la couleur du texte), `--mrz-link-arrow-size` (`0` pour aucune flèche) |
-| Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
-| Champs | `--mrz-field-font-size`, `--mrz-field-padding`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
+| Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding-y`, `--mrz-button-padding-x`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
+| Champs | `--mrz-field-font-size`, `--mrz-field-padding-y`, `--mrz-field-padding-x`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
 | Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` |
 | Sous-menus (desktop) | `--mrz-submenu-bg`, `--mrz-submenu-color`, `--mrz-submenu-width`, `--mrz-submenu-radius`, `--mrz-submenu-shadow`, `--mrz-submenu-indicator` (chevron en masque), `--mrz-submenu-indicator-size` (`0` pour aucun chevron) |
 | Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--mrz-container-narrow`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base` |
@@ -155,7 +155,11 @@ Ne jamais modifier le parent installé sur un site, même pour le dépanner : la
 - Formulaires : un formulaire Gravity Forms par langue.
 
 ## Gravity Forms
-Le thème CSS de Gravity Forms (`theme.min.css`) est désactivé par le parent (filtre `gform_disable_form_theme_css`) : les formulaires prennent les variables du thème (`assets/css/gravity-forms.css`). Ne pas renforcer les sélecteurs dans l'enfant pour passer devant Gravity Forms.
+- Thème de formulaire **Orbital** imposé à tous les formulaires (filtre `gform_form_theme_slug`) : c'est le seul qui gère tous les types de champs (choix d'image, fichiers, dates…) et qui se règle par variables CSS (`--gf-*`).
+- `assets/css/gravity-forms.css` donne aux variables d'Orbital les valeurs du thème (`--color-*`, `--mrz-field-*`, `--mrz-label-*`, `--mrz-button-*`). Les formulaires suivent donc les variables du site et le fond de leur section, bouton inversé compris.
+- Dans l'enfant : régler les variables du thème, **jamais un sélecteur de Gravity Forms** ni une variable `--gf-*`. Ne pas régler de style de formulaire dans l'éditeur de blocs de Gravity Forms : il passerait devant le thème.
+- Padding des champs et des boutons : `--mrz-field-padding-y`/`-x` et `--mrz-button-padding-y`/`-x` (Gravity Forms les lit séparément), pas le raccourci `--mrz-field-padding`.
+- Poids : Orbital ajoute environ 37 Ko compressés, seulement sur les pages qui ont un formulaire.
 
 ## WooCommerce
 Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.php` + `assets/css/woocommerce.css`. Panier et commande : pages en shortcodes classiques `[woocommerce_cart]` et `[woocommerce_checkout]`, pas en blocs.

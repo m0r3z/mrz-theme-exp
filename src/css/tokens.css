@@ -80,7 +80,10 @@
 	/* Boutons : les mêmes partout (thème, formulaires, WooCommerce). */
 	--mrz-button-font-size: 1rem;
 	--mrz-button-font-weight: 600;
-	--mrz-button-padding: 0.85rem 1.75rem;
+	/* Padding en deux valeurs (haut et bas, côtés) : Gravity Forms les lit séparément. */
+	--mrz-button-padding-y: 0.85rem;
+	--mrz-button-padding-x: 1.75rem;
+	--mrz-button-padding: var(--mrz-button-padding-y) var(--mrz-button-padding-x);
 	--mrz-button-border-width: 2px;
 	--mrz-button-letter-spacing: normal;
 	--mrz-button-text-transform: none;
@@ -98,7 +101,9 @@
 	 * définir --mrz-field-bg, --mrz-field-color ou --mrz-field-border dans l'enfant.
 	 */
 	--mrz-field-font-size: 1rem;
-	--mrz-field-padding: 0.75rem 1rem;
+	--mrz-field-padding-y: 0.75rem;
+	--mrz-field-padding-x: 1rem;
+	--mrz-field-padding: var(--mrz-field-padding-y) var(--mrz-field-padding-x);
 	--mrz-field-border-focus: var(--color-primary);
 	--mrz-field-radius: var(--radius-base);
 	--mrz-label-font-size: 0.9375rem;

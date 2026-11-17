@@ -85,9 +85,13 @@ function mrz_theme_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'mrz_theme_enqueue_assets' );
 
 /*
- * Gravity Forms : son thème CSS (theme.min.css) est désactivé. Il s'ajoute au rendu
- * du formulaire, donc après le CSS de l'enfant, et passait devant lui. Les champs
- * prennent le style du thème (assets/css/gravity-forms.css) ; le CSS de base de
- * Gravity Forms (mise en page des champs) reste chargé.
+ * Gravity Forms : thème « Orbital » imposé à tous les formulaires. C'est le seul
+ * réglable par variables CSS (--gf-*), que assets/css/gravity-forms.css branche
+ * sur celles du thème. L'ancien thème 2.5 a des valeurs en dur.
  */
-add_filter( 'gform_disable_form_theme_css', '__return_true' );
+add_filter(
+	'gform_form_theme_slug',
+	static function () {
+		return 'orbital';
+	}
+);

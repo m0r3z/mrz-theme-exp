@@ -10,7 +10,11 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Règles pour l'IA : RGAA (AGENTS.md).
 - Règles pour l'IA : objectif Lighthouse 100 sur les quatre scores (AGENTS.md).
 
+### Modifié
+- `--mrz-field-padding` et `--mrz-button-padding` sont composées de `--mrz-field-padding-y`/`-x` et `--mrz-button-padding-y`/`-x` : régler ces dernières dans l'enfant.
+
 ### Corrigé
+- Gravity Forms : le thème de formulaire est réactivé, en **Orbital** imposé et branché sur les variables du thème (`--gf-*` dans `assets/css/gravity-forms.css`). Sans lui, le champ « choix d'image » affichait ses textes cachés et les boutons radio n'étaient pas mis en forme. Les champs, libellés et le bouton suivent le fond de leur section.
 - Contour de focus invisible sur une section de couleur principale : il prend maintenant la couleur du texte de la section (`--mrz-focus-color`), sur tous les fonds, les images et le header transparent (RGAA 10.7).
 
 ## [0.3.0] - 2026-11-17

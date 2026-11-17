@@ -1,48 +1,110 @@
 /*
- * Gravity Forms (thème de formulaire « Gravity Forms Theme ») branché sur les
- * variables du thème. Hors couche et un peu plus précis que le CSS de Gravity
- * Forms, pour passer devant lui. Aucune valeur en dur : tout vient des
- * variables --mrz-field-*, --mrz-label-* et --mrz-button-*.
+ * Gravity Forms, thème « Orbital » (imposé par inc/assets.php) branché sur les
+ * variables du thème. Orbital se règle entièrement par ses variables --gf-* :
+ * on leur donne nos valeurs, sans réécrire un seul sélecteur de Gravity Forms.
+ * Tous les types de champs (choix d'image, fichiers, dates…) restent pris en charge.
+ *
+ * Hors couche et plus précis que .gform-theme--framework, qui définit les valeurs
+ * par défaut. Les variables se résolvent dans la section du formulaire : sur un
+ * fond de section, champs, libellés et bouton suivent ce fond.
+ * Un style réglé formulaire par formulaire dans l'éditeur de blocs passe devant.
  */
-.gform_wrapper.gravity-theme .gfield input:not([type="submit"], [type="button"], [type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="image"]),
-.gform_wrapper.gravity-theme .gfield select,
-.gform_wrapper.gravity-theme .gfield textarea {
-	padding: var(--mrz-field-padding);
-	border: 1px solid var(--mrz-field-border, var(--color-border));
-	border-radius: var(--mrz-field-radius);
-	background: var(--mrz-field-bg, var(--color-background));
-	color: var(--mrz-field-color, var(--color-text));
-	font-family: inherit;
-	font-size: var(--mrz-field-font-size);
+.gform_wrapper.gform-theme--framework {
+	/* Polices */
+	--gf-font-family-base: var(--font-body);
+	--gf-ctrl-btn-font-family: var(--font-body);
+
+	/* Couleur principale */
+	--gf-color-primary: var(--color-primary);
+	--gf-color-primary-contrast: var(--color-primary-contrast);
+	--gf-color-primary-darker: color-mix(in srgb, var(--color-primary) 85%, #000);
+	--gf-color-primary-lighter: color-mix(in srgb, var(--color-primary) 85%, #fff);
+	--gf-color-secondary: var(--color-background);
+	--gf-color-secondary-contrast: var(--color-text);
+
+	/* Hors des champs : libellés, descriptions, traits */
+	--gf-color-out-ctrl-dark: var(--color-muted);
+	--gf-color-out-ctrl-dark-darker: var(--color-text);
+	--gf-color-out-ctrl-dark-lighter: var(--color-muted);
+	--gf-color-out-ctrl-light: var(--color-border);
+	--gf-color-out-ctrl-light-darker: var(--color-border);
+	--gf-color-out-ctrl-light-lighter: color-mix(in srgb, var(--color-border) 50%, transparent);
+
+	/* Dans les champs */
+	--gf-color-in-ctrl: var(--mrz-field-bg, var(--color-background));
+	--gf-color-in-ctrl-darker: var(--mrz-field-bg, var(--color-background));
+	--gf-color-in-ctrl-lighter: var(--mrz-field-bg, var(--color-background));
+	--gf-color-in-ctrl-contrast: var(--mrz-field-color, var(--color-text));
+	--gf-color-in-ctrl-dark: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 65%, transparent);
+	--gf-color-in-ctrl-dark-darker: var(--mrz-field-color, var(--color-text));
+	--gf-color-in-ctrl-dark-lighter: var(--mrz-field-border, var(--color-border));
+	--gf-color-in-ctrl-light: var(--mrz-field-border, var(--color-border));
+	--gf-color-in-ctrl-light-darker: var(--mrz-field-border, var(--color-border));
+	--gf-color-in-ctrl-light-lighter: color-mix(in srgb, var(--mrz-field-border, var(--color-border)) 40%, transparent);
+
+	/* Couleurs que Gravity Forms calcule en rgba() depuis des triplets RGB : recalculées ici. */
+	--gf-ctrl-outline-color-focus: color-mix(in srgb, var(--mrz-field-border-focus) 65%, transparent);
+	--gf-ctrl-color-disabled: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 60%, transparent);
+	--gf-ctrl-placeholder-color: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 70%, transparent);
+	--gf-ctrl-choice-check-color-disabled: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 20%, transparent);
+	--gf-ctrl-file-zone-color: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 72%, transparent);
+	--gf-ctrl-btn-color-tertiary: color-mix(in srgb, var(--color-text) 72%, transparent);
+	--gf-ctrl-btn-color-simple: var(--color-muted);
+	--gf-ctrl-btn-icon-color-simple: var(--color-text);
+	--gf-field-img-choice-card-placeholder-bg-color: color-mix(in srgb, var(--color-border) 10%, transparent);
+	--gf-field-img-choice-card-placeholder-color: var(--color-muted);
+	--gf-field-img-choice-no-card-placeholder-bg-color: color-mix(in srgb, var(--color-border) 10%, transparent);
+	--gf-field-img-choice-no-card-placeholder-color: var(--color-muted);
+	--gf-form-spinner-bg-color: color-mix(in srgb, var(--color-primary-contrast) 10%, transparent);
+	--gf-form-spinner-bg-color-secondary: color-mix(in srgb, var(--color-primary) 10%, transparent);
+
+	/* Champs */
+	--gf-ctrl-border-color: var(--mrz-field-border, var(--color-border));
+	--gf-ctrl-border-color-focus: var(--mrz-field-border-focus);
+	--gf-ctrl-radius: var(--mrz-field-radius);
+	--gf-ctrl-font-size: var(--mrz-field-font-size);
+	--gf-ctrl-padding-x: var(--mrz-field-padding-x);
+	/* Hauteur d'un champ : la même que les autres champs du site (texte, padding, bordures). */
+	--gf-ctrl-size: calc(var(--mrz-field-font-size) * var(--mrz-body-line-height) + 2 * var(--mrz-field-padding-y) + 2px);
+	--gf-ctrl-shadow: none;
+
+	/* Libellés et descriptions */
+	--gf-ctrl-label-color-primary: var(--color-text);
+	--gf-ctrl-label-font-size-primary: var(--mrz-label-font-size);
+	--gf-ctrl-label-font-weight-primary: var(--mrz-label-font-weight);
+	--gf-ctrl-label-color-secondary: var(--color-text);
+	--gf-ctrl-label-font-size-secondary: var(--mrz-field-font-size);
+	--gf-ctrl-label-color-quaternary: var(--color-text);
+	--gf-ctrl-desc-color: var(--color-muted);
+	--gf-ctrl-desc-font-size: var(--mrz-text-sm);
+
+	/* Bouton d'envoi : le bouton du thème */
+	--gf-ctrl-btn-bg-color-primary: var(--mrz-button-bg);
+	--gf-ctrl-btn-bg-color-hover-primary: var(--mrz-button-bg);
+	--gf-ctrl-btn-bg-color-focus-primary: var(--mrz-button-bg);
+	--gf-ctrl-btn-color-primary: var(--mrz-button-color);
+	--gf-ctrl-btn-color-hover-primary: var(--mrz-button-color);
+	--gf-ctrl-btn-color-focus-primary: var(--mrz-button-color);
+	--gf-ctrl-btn-border-color-primary: var(--mrz-button-bg);
+	--gf-ctrl-btn-border-color-hover-primary: var(--mrz-button-bg);
+	--gf-ctrl-btn-border-color-focus-primary: var(--mrz-button-bg);
+	--gf-ctrl-btn-border-width-primary: var(--mrz-button-border-width);
+	--gf-ctrl-btn-radius: var(--radius-button);
+	--gf-ctrl-btn-font-size: var(--mrz-button-font-size);
+	--gf-ctrl-btn-font-weight: var(--mrz-button-font-weight);
+	--gf-ctrl-btn-letter-spacing: var(--mrz-button-letter-spacing);
+	--gf-ctrl-btn-text-transform: var(--mrz-button-text-transform);
+	--gf-ctrl-btn-line-height: 1.2;
+	--gf-ctrl-btn-size: auto;
+	--gf-ctrl-btn-padding-y: var(--mrz-button-padding-y);
+	--gf-ctrl-btn-padding-x: var(--mrz-button-padding-x);
+	--gf-ctrl-btn-shadow: none;
+	--gf-ctrl-btn-shadow-hover: none;
+	--gf-ctrl-btn-shadow-focus: none;
 }
 
-.gform_wrapper.gravity-theme .gfield input:focus,
-.gform_wrapper.gravity-theme .gfield select:focus,
-.gform_wrapper.gravity-theme .gfield textarea:focus {
-	border-color: var(--mrz-field-border-focus);
-	outline: none;
-}
-
-.gform_wrapper.gravity-theme .gfield .gfield_label,
-.gform_wrapper.gravity-theme .gfield legend.gfield_label {
-	margin-bottom: 0.5rem;
-	font-size: var(--mrz-label-font-size);
-	font-weight: var(--mrz-label-font-weight);
-}
-
-.gform_wrapper.gravity-theme .gform_footer input.gform_button[type="submit"],
-.gform_wrapper.gravity-theme .gform_page_footer input[type="submit"],
-.gform_wrapper.gravity-theme .gform_page_footer input[type="button"] {
-	padding: var(--mrz-button-padding);
-	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
-	border-radius: var(--radius-button);
-	background: var(--mrz-button-bg);
-	color: var(--mrz-button-color);
-	font-family: inherit;
-	font-size: var(--mrz-button-font-size);
-	font-weight: var(--mrz-button-font-weight);
-	letter-spacing: var(--mrz-button-letter-spacing);
-	text-transform: var(--mrz-button-text-transform);
-	line-height: 1.2;
-	cursor: pointer;
+/* Survol du bouton : comme les boutons du thème. */
+.gform_wrapper.gform-theme--framework .gform_footer .gform_button:hover,
+.gform_wrapper.gform-theme--framework .gform_page_footer .button:hover {
+	filter: brightness(1.08);
 }
