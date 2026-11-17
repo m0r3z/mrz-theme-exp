@@ -126,6 +126,8 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 	$width      = $settings['width'] ?? 'container';
 	$anchor     = $settings['anchor'] ?? '';
 	$image_id   = ! empty( $args['image'] ) ? (int) $args['image'] : (int) ( $settings['background_image'] ?? 0 );
+	$overlay    = $settings['image_overlay'] ?? 'dark';
+	$height     = $settings['height'] ?? 'auto';
 
 	$classes = array(
 		'mrz-section',
@@ -133,8 +135,38 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 		'mrz-bg--' . $background,
 		'mrz-space--' . $spacing,
 	);
+	foreach ( array( 'top', 'bottom' ) as $side ) {
+		$value = $settings[ 'spacing_' . $side ] ?? 'inherit';
+		if ( in_array( $value, array( 'none', 'compact', 'normal', 'large' ), true ) ) {
+			$classes[] = 'mrz-space-' . $side . '--' . $value;
+		}
+	}
+	if ( in_array( $height, array( 'large', 'screen' ), true ) ) {
+		$classes[] = 'mrz-height--' . $height;
+	}
 	if ( $image_id ) {
-		$classes[] = 'mrz-has-image';
+		$classes[] = 'mrz-has-bg-image';
+		// Voile et texte en Clair, sauf « sans voile » : la section garde ses couleurs.
+		if ( 'none' !== $overlay ) {
+			$classes[] = 'mrz-has-image';
+		}
+		if ( 'light' === $overlay ) {
+			$classes[] = 'mrz-overlay--light';
+		}
+	}
+
+	// Dégradé : de la couleur de fond de la section vers une couleur de la palette.
+	$style = '';
+	if ( ! empty( $settings['gradient'] ) ) {
+		$to         = $settings['gradient_to'] ?? 'dark';
+		$to         = 'none' === $to ? 'background' : $to;
+		$directions = array(
+			'bottom'   => 'to bottom',
+			'right'    => 'to right',
+			'diagonal' => '135deg',
+		);
+		$classes[]  = 'mrz-gradient';
+		$style      = '--mrz-gradient-to:var(--color-' . sanitize_key( $to ) . ');--mrz-gradient-direction:' . ( $directions[ $settings['gradient_direction'] ?? 'bottom' ] ?? 'to bottom' ) . ';';
 	}
 	if ( ! empty( $args['class'] ) ) {
 		$extra   = is_array( $args['class'] ) ? $args['class'] : preg_split( '/\s+/', (string) $args['class'], -1, PREG_SPLIT_NO_EMPTY );
@@ -149,12 +181,44 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 	);
 
 	printf(
-		'<section%1$s class="%2$s"%3$s><div class="%4$s">',
+		'<section%1$s class="%2$s"%3$s>',
 		$anchor ? ' id="' . esc_attr( sanitize_title( $anchor ) ) . '"' : '',
 		esc_attr( implode( ' ', array_map( 'sanitize_html_class', $classes ) ) ),
-		$image_id ? ' style="background-image:url(' . esc_url( wp_get_attachment_image_url( $image_id, 'full' ) ) . ')"' : '',
-		esc_attr( $containers[ $width ] ?? 'mrz-container' )
+		$style ? ' style="' . esc_attr( $style ) . '"' : ''
 	);
+
+	if ( $image_id ) {
+		mrz_theme_section_background_image( $image_id );
+	}
+
+	printf( '<div class="%s">', esc_attr( $containers[ $width ] ?? 'mrz-container' ) );
+}
+
+/**
+ * Image de fond d'une section : une vraie <img> décorative, recadrée sur toute la section.
+ * La première de la page est chargée en priorité (souvent l'image principale, LCP),
+ * les suivantes en différé.
+ *
+ * @param int $image_id ID de l'image.
+ */
+function mrz_theme_section_background_image( $image_id ) {
+	static $is_first = true;
+
+	echo wp_get_attachment_image(
+		$image_id,
+		'full',
+		false,
+		array(
+			'class'         => 'mrz-section__bg',
+			'alt'           => '',
+			'sizes'         => '100vw',
+			'loading'       => $is_first ? 'eager' : 'lazy',
+			'fetchpriority' => $is_first ? 'high' : 'auto',
+			'decoding'      => $is_first ? 'sync' : 'async',
+		)
+	);
+
+	$is_first = false;
 }
 
 /**

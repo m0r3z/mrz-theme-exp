@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MRZ Theme Experience 0.3.0\n"
+"Project-Id-Version: MRZ Theme Experience 0.4.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/mrz-theme-exp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-17T08:04:02+00:00\n"
+"POT-Creation-Date: 2026-11-17T12:09:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: inc/admin.php:28
 #: inc/admin.php:29
-#: inc/customizer.php:207
+#: inc/customizer.php:240
 #: inc/page-options.php:62
 msgid "MRZ Theme"
 msgstr ""
@@ -79,24 +79,25 @@ msgstr ""
 msgid "Theme options"
 msgstr ""
 
-#: inc/assets.php:74
+#: inc/assets.php:70
 msgid "Open submenu"
 msgstr ""
 
 #: inc/builder-sections.php:26
 #: inc/builder-sections.php:69
+#: inc/builder-sections.php:196
 msgid "None"
 msgstr ""
 
 #: inc/builder-sections.php:27
 #: inc/customizer.php:74
-#: inc/customizer.php:250
+#: inc/customizer.php:283
 msgid "Light"
 msgstr ""
 
 #: inc/builder-sections.php:28
 #: inc/customizer.php:73
-#: inc/customizer.php:251
+#: inc/customizer.php:284
 msgid "Dark"
 msgstr ""
 
@@ -125,7 +126,7 @@ msgid "Section settings"
 msgstr ""
 
 #: inc/builder-sections.php:54
-#: inc/builder-sections.php:263
+#: inc/builder-sections.php:359
 msgid "Background"
 msgstr ""
 
@@ -134,14 +135,17 @@ msgid "Spacing"
 msgstr ""
 
 #: inc/builder-sections.php:66
+#: inc/builder-sections.php:198
 msgid "Normal"
 msgstr ""
 
 #: inc/builder-sections.php:67
+#: inc/builder-sections.php:197
 msgid "Compact"
 msgstr ""
 
 #: inc/builder-sections.php:68
+#: inc/builder-sections.php:199
 msgid "Large"
 msgstr ""
 
@@ -170,172 +174,263 @@ msgid "Anchor"
 msgstr ""
 
 #: inc/builder-sections.php:98
-msgid "Background image"
+msgid "Top spacing"
+msgstr ""
+
+#: inc/builder-sections.php:107
+msgid "Bottom spacing"
+msgstr ""
+
+#: inc/builder-sections.php:116
+msgid "Height"
 msgstr ""
 
 #: inc/builder-sections.php:119
-msgid "Section settings (to clone)"
+msgid "Automatic (content)"
 msgstr ""
 
-#: inc/builder-sections.php:138
-msgid "Free text"
+#: inc/builder-sections.php:120
+msgid "Large (70% of the screen)"
 msgstr ""
 
-#: inc/builder-sections.php:144
-#: inc/builder-sections.php:256
-#: inc/builder-sections.php:335
-msgid "Title"
+#: inc/builder-sections.php:121
+#: inc/customizer.php:146
+msgid "Full screen"
 msgstr ""
 
-#: inc/builder-sections.php:151
-msgid "Title level"
+#: inc/builder-sections.php:124
+msgid "Content centered vertically."
+msgstr ""
+
+#: inc/builder-sections.php:130
+msgid "Image overlay"
+msgstr ""
+
+#: inc/builder-sections.php:133
+msgid "Dark overlay, light text"
+msgstr ""
+
+#: inc/builder-sections.php:134
+msgid "Light overlay, light text"
+msgstr ""
+
+#: inc/builder-sections.php:135
+msgid "No overlay, section colors"
+msgstr ""
+
+#: inc/builder-sections.php:143
+msgid "Background image"
+msgstr ""
+
+#: inc/builder-sections.php:147
+msgid "Shown behind the content. On the first section of the page, it loads first (main image of the page)."
 msgstr ""
 
 #: inc/builder-sections.php:152
-msgid "H1 only when this section opens the page (one H1 per page)."
+msgid "Gradient"
 msgstr ""
 
-#: inc/builder-sections.php:164
-#: inc/builder-sections.php:272
-msgid "Text"
+#: inc/builder-sections.php:155
+msgid "From the background color to a second color"
+msgstr ""
+
+#: inc/builder-sections.php:161
+msgid "Gradient to"
+msgstr ""
+
+#: inc/builder-sections.php:163
+#: inc/customizer.php:67
+msgid "Site background"
+msgstr ""
+
+#: inc/builder-sections.php:166
+#: inc/builder-sections.php:181
+msgid "Used only when Gradient is on."
+msgstr ""
+
+#: inc/builder-sections.php:172
+msgid "Gradient direction"
+msgstr ""
+
+#: inc/builder-sections.php:175
+msgid "Downward"
 msgstr ""
 
 #: inc/builder-sections.php:176
-msgid "Raw HTML"
+msgid "To the right"
 msgstr ""
 
-#: inc/builder-sections.php:182
-msgid "HTML code"
+#: inc/builder-sections.php:177
+msgid "Diagonal"
 msgstr ""
 
-#: inc/builder-sections.php:184
-msgid "Displayed as is, scripts included. Reserved for administrators."
+#: inc/builder-sections.php:195
+msgid "Same as spacing"
 msgstr ""
 
-#: inc/builder-sections.php:193
-#: inc/builder-sections.php:237
-msgid "Cards"
+#: inc/builder-sections.php:215
+msgid "Section settings (to clone)"
 msgstr ""
 
-#: inc/builder-sections.php:199
-msgid "Section title"
-msgstr ""
-
-#: inc/builder-sections.php:200
-msgid "Optional. Also names the carousel for screen readers."
-msgstr ""
-
-#: inc/builder-sections.php:207
-msgid "Display"
-msgstr ""
-
-#: inc/builder-sections.php:210
-msgid "Grid"
-msgstr ""
-
-#: inc/builder-sections.php:211
-msgid "Carousel"
-msgstr ""
-
-#: inc/builder-sections.php:219
-msgid "Autoplay"
-msgstr ""
-
-#: inc/builder-sections.php:220
-msgid "Every 5 seconds, with a pause button."
+#: inc/builder-sections.php:234
+msgid "Free text"
 msgstr ""
 
 #: inc/builder-sections.php:240
-msgid "Add a card"
-msgstr ""
-
-#: inc/builder-sections.php:246
-msgid "Image or icon"
+#: inc/builder-sections.php:352
+#: inc/builder-sections.php:431
+msgid "Title"
 msgstr ""
 
 #: inc/builder-sections.php:247
-msgid "An SVG icon takes the text color of the card."
+msgid "Title level"
 msgstr ""
 
-#: inc/builder-sections.php:265
-msgid "None (border)"
+#: inc/builder-sections.php:248
+msgid "H1 only when this section opens the page (one H1 per page)."
 msgstr ""
 
-#: inc/builder-sections.php:281
-#: inc/builder-sections.php:370
-msgid "Link"
+#: inc/builder-sections.php:260
+#: inc/builder-sections.php:368
+msgid "Text"
 msgstr ""
 
-#: inc/builder-sections.php:282
-msgid "Shown as an arrow link."
+#: inc/builder-sections.php:272
+msgid "Raw HTML"
 msgstr ""
 
-#: inc/builder-sections.php:294
-msgid "Footer"
+#: inc/builder-sections.php:278
+msgid "HTML code"
 msgstr ""
 
-#: inc/builder-sections.php:300
-msgid "Logo"
+#: inc/builder-sections.php:280
+msgid "Displayed as is, scripts included. Reserved for administrators."
 msgstr ""
 
-#: inc/builder-sections.php:301
-msgid "Optional: centered above the footer."
+#: inc/builder-sections.php:289
+#: inc/builder-sections.php:333
+msgid "Cards"
 msgstr ""
 
-#: inc/builder-sections.php:310
-msgid "Sentence"
+#: inc/builder-sections.php:295
+msgid "Section title"
 msgstr ""
 
-#: inc/builder-sections.php:319
-msgid "Button"
+#: inc/builder-sections.php:296
+msgid "Optional. Also names the carousel for screen readers."
 msgstr ""
 
-#: inc/builder-sections.php:327
-msgid "Link columns"
+#: inc/builder-sections.php:303
+msgid "Display"
 msgstr ""
 
-#: inc/builder-sections.php:330
-msgid "Add a column"
+#: inc/builder-sections.php:306
+msgid "Grid"
 msgstr ""
 
-#: inc/builder-sections.php:341
-msgid "Links"
+#: inc/builder-sections.php:307
+msgid "Carousel"
+msgstr ""
+
+#: inc/builder-sections.php:315
+msgid "Autoplay"
+msgstr ""
+
+#: inc/builder-sections.php:316
+msgid "Every 5 seconds, with a pause button."
+msgstr ""
+
+#: inc/builder-sections.php:336
+msgid "Add a card"
 msgstr ""
 
 #: inc/builder-sections.php:342
-msgid "A bulleted list of links."
+msgid "Image or icon"
 msgstr ""
 
-#: inc/builder-sections.php:353
-msgid "Social networks"
+#: inc/builder-sections.php:343
+msgid "An SVG icon takes the text color of the card."
 msgstr ""
 
-#: inc/builder-sections.php:354
-msgid "Black SVG icon (colored by the theme), link and network name (read by screen readers)."
+#: inc/builder-sections.php:361
+msgid "None (border)"
 msgstr ""
 
-#: inc/builder-sections.php:357
-msgid "Add a network"
+#: inc/builder-sections.php:377
+#: inc/builder-sections.php:466
+msgid "Link"
 msgstr ""
 
-#: inc/builder-sections.php:362
-msgid "Icon"
+#: inc/builder-sections.php:378
+msgid "Shown as an arrow link."
 msgstr ""
 
-#: inc/builder-sections.php:376
-msgid "Name"
+#: inc/builder-sections.php:390
+msgid "Footer"
 msgstr ""
 
-#: inc/builder-sections.php:384
-msgid "Bottom line"
-msgstr ""
-
-#: inc/builder-sections.php:385
-msgid "Copyright, legal links. Tags: {year}, {site}."
+#: inc/builder-sections.php:396
+msgid "Logo"
 msgstr ""
 
 #: inc/builder-sections.php:397
-#: inc/builder-sections.php:403
+msgid "Optional: centered above the footer."
+msgstr ""
+
+#: inc/builder-sections.php:406
+msgid "Sentence"
+msgstr ""
+
+#: inc/builder-sections.php:415
+msgid "Button"
+msgstr ""
+
+#: inc/builder-sections.php:423
+msgid "Link columns"
+msgstr ""
+
+#: inc/builder-sections.php:426
+msgid "Add a column"
+msgstr ""
+
+#: inc/builder-sections.php:437
+msgid "Links"
+msgstr ""
+
+#: inc/builder-sections.php:438
+msgid "A bulleted list of links."
+msgstr ""
+
+#: inc/builder-sections.php:449
+msgid "Social networks"
+msgstr ""
+
+#: inc/builder-sections.php:450
+msgid "Black SVG icon (colored by the theme), link and network name (read by screen readers)."
+msgstr ""
+
+#: inc/builder-sections.php:453
+msgid "Add a network"
+msgstr ""
+
+#: inc/builder-sections.php:458
+msgid "Icon"
+msgstr ""
+
+#: inc/builder-sections.php:472
+msgid "Name"
+msgstr ""
+
+#: inc/builder-sections.php:480
+msgid "Bottom line"
+msgstr ""
+
+#: inc/builder-sections.php:481
+msgid "Copyright, legal links. Tags: {year}, {site}."
+msgstr ""
+
+#: inc/builder-sections.php:493
+#: inc/builder-sections.php:499
 #: inc/global-sections.php:43
 msgid "Global section"
 msgstr ""
@@ -357,7 +452,7 @@ msgid "Page %1$s of %2$s"
 msgstr ""
 
 #: inc/carousel.php:44
-#: inc/carousel.php:101
+#: inc/carousel.php:105
 msgid "Pause the carousel"
 msgstr ""
 
@@ -365,24 +460,20 @@ msgstr ""
 msgid "Play the carousel"
 msgstr ""
 
-#: inc/carousel.php:81
+#: inc/carousel.php:80
 msgid "carousel"
 msgstr ""
 
-#: inc/carousel.php:108
+#: inc/carousel.php:112
 #: index.php:33
 #: parts/content/single.php:35
 msgid "Previous"
 msgstr ""
 
-#: inc/carousel.php:117
+#: inc/carousel.php:121
 #: index.php:34
 #: parts/content/single.php:36
 msgid "Next"
-msgstr ""
-
-#: inc/customizer.php:67
-msgid "Site background"
 msgstr ""
 
 #: inc/customizer.php:68
@@ -417,182 +508,178 @@ msgstr ""
 msgid "Side panel from the left"
 msgstr ""
 
-#: inc/customizer.php:146
-msgid "Full screen"
-msgstr ""
-
 #: inc/customizer.php:147
 msgid "Drops down below the header"
 msgstr ""
 
-#: inc/customizer.php:216
+#: inc/customizer.php:249
 msgid "Colors"
 msgstr ""
 
-#: inc/customizer.php:219
+#: inc/customizer.php:252
 msgid "The site palette. Every color of the theme, the forms and WooCommerce comes from it."
 msgstr ""
 
 #. translators: %s: color name, e.g. "Primary color".
-#: inc/customizer.php:245
+#: inc/customizer.php:278
 #, php-format
 msgid "Text on %s"
 msgstr ""
 
-#: inc/customizer.php:249
+#: inc/customizer.php:282
 msgid "Automatic (best contrast)"
 msgstr ""
 
-#: inc/customizer.php:262
+#: inc/customizer.php:295
 #: inc/page-options.php:97
 msgid "Header"
 msgstr ""
 
-#: inc/customizer.php:274
+#: inc/customizer.php:307
 msgid "Logo for the transparent header"
 msgstr ""
 
-#: inc/customizer.php:275
+#: inc/customizer.php:308
 msgid "Shown before scrolling when the header is transparent. Replaced by the main logo on scroll."
 msgstr ""
 
-#: inc/customizer.php:284
+#: inc/customizer.php:317
 msgid "Logo height on desktop (px)"
 msgstr ""
 
-#: inc/customizer.php:285
+#: inc/customizer.php:318
 msgid "Logo height on mobile (px)"
 msgstr ""
 
-#: inc/customizer.php:309
+#: inc/customizer.php:342
 msgid "Header layout"
 msgstr ""
 
-#: inc/customizer.php:313
+#: inc/customizer.php:346
 msgid "Classic: logo left, menu right"
 msgstr ""
 
-#: inc/customizer.php:314
+#: inc/customizer.php:347
 msgid "Centered: logo above, menu below"
 msgstr ""
 
-#: inc/customizer.php:323
+#: inc/customizer.php:356
 msgid "Sticky header"
 msgstr ""
 
-#: inc/customizer.php:333
+#: inc/customizer.php:366
 msgid "Transparent header when applicable"
 msgstr ""
 
-#: inc/customizer.php:334
+#: inc/customizer.php:367
 msgid "The header is transparent over the page until the user scrolls, on pages that start with a hero section (a section whose name contains \"hero\")."
 msgstr ""
 
-#: inc/customizer.php:344
-#: inc/template-tags.php:220
+#: inc/customizer.php:377
+#: inc/template-tags.php:222
 #: searchform.php:13
 #: searchform.php:15
 msgid "Search"
 msgstr ""
 
-#: inc/customizer.php:345
+#: inc/customizer.php:378
 msgid "Search icon in the header, opening the search form."
 msgstr ""
 
-#: inc/customizer.php:355
+#: inc/customizer.php:388
 msgid "Account link"
 msgstr ""
 
-#: inc/customizer.php:356
+#: inc/customizer.php:389
 msgid "Icon linking to the WooCommerce \"My account\" page, next to the cart. Requires WooCommerce."
 msgstr ""
 
-#: inc/customizer.php:366
+#: inc/customizer.php:399
 msgid "Language switcher"
 msgstr ""
 
-#: inc/customizer.php:367
+#: inc/customizer.php:400
 msgid "Shown when Polylang is active, in the header and the mobile menu."
 msgstr ""
 
-#: inc/customizer.php:371
+#: inc/customizer.php:404
 msgid "Codes (FR, EN)"
 msgstr ""
 
-#: inc/customizer.php:372
+#: inc/customizer.php:405
 msgid "Flags"
 msgstr ""
 
-#: inc/customizer.php:373
+#: inc/customizer.php:406
 msgid "Flags and codes"
 msgstr ""
 
-#: inc/customizer.php:382
+#: inc/customizer.php:415
 msgid "Mobile header"
 msgstr ""
 
-#: inc/customizer.php:391
+#: inc/customizer.php:424
 msgid "Sticky header on mobile"
 msgstr ""
 
-#: inc/customizer.php:401
+#: inc/customizer.php:434
 #: parts/mobile-menu/offcanvas.php:23
 msgid "Mobile menu"
 msgstr ""
 
-#: inc/customizer.php:402
+#: inc/customizer.php:435
 msgid "How the menu opens. Its look (background, blur, hover) is styled in the child theme."
 msgstr ""
 
-#: inc/customizer.php:413
+#: inc/customizer.php:446
 msgid "Mobile breakpoint (px)"
 msgstr ""
 
-#: inc/customizer.php:414
+#: inc/customizer.php:447
 msgid "Below this width, the menu collapses into the mobile menu. Raise it when the menu has many items."
 msgstr ""
 
-#: inc/customizer.php:429
+#: inc/customizer.php:462
 msgid "Page transitions"
 msgstr ""
 
-#: inc/customizer.php:431
+#: inc/customizer.php:464
 msgid "Uses the browser View Transitions API: no JavaScript. Browsers without support simply load the page normally."
 msgstr ""
 
-#: inc/customizer.php:439
+#: inc/customizer.php:472
 msgid "Animated page transitions"
 msgstr ""
 
-#: inc/customizer.php:449
+#: inc/customizer.php:482
 msgid "Transition effect"
 msgstr ""
 
-#: inc/customizer.php:453
+#: inc/customizer.php:486
 msgid "Fade"
 msgstr ""
 
-#: inc/customizer.php:454
+#: inc/customizer.php:487
 msgid "Slide up"
 msgstr ""
 
-#: inc/customizer.php:463
+#: inc/customizer.php:496
 msgid "Duration (ms)"
 msgstr ""
 
-#: inc/customizer.php:478
+#: inc/customizer.php:511
 msgid "General"
 msgstr ""
 
-#: inc/customizer.php:487
+#: inc/customizer.php:520
 msgid "Content width (px)"
 msgstr ""
 
-#: inc/customizer.php:502
+#: inc/customizer.php:535
 msgid "404 page"
 msgstr ""
 
-#: inc/customizer.php:503
+#: inc/customizer.php:536
 msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
 msgstr ""
 
@@ -708,34 +795,34 @@ msgstr ""
 msgid "Mobile menu (falls back to primary)"
 msgstr ""
 
-#: inc/template-tags.php:64
+#: inc/template-tags.php:65
 msgid "Main menu"
 msgstr ""
 
-#: inc/template-tags.php:85
+#: inc/template-tags.php:86
 #: parts/mobile-menu/offcanvas.php:38
 msgid "Secondary menu"
 msgstr ""
 
-#: inc/template-tags.php:121
+#: inc/template-tags.php:122
 msgid "Open menu"
 msgstr ""
 
-#: inc/template-tags.php:237
+#: inc/template-tags.php:239
 msgid "My account"
 msgstr ""
 
-#: inc/template-tags.php:252
+#: inc/template-tags.php:254
 msgid "Cart"
 msgstr ""
 
 #. translators: %s: search query.
-#: inc/template-tags.php:298
+#: inc/template-tags.php:300
 #, php-format
 msgid "Search results for \"%s\""
 msgstr ""
 
-#: inc/template-tags.php:304
+#: inc/template-tags.php:306
 msgid "Latest articles"
 msgstr ""
 

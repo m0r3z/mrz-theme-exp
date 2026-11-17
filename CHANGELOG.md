@@ -4,6 +4,17 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Réglages communs des sections :
+  - espace en haut et en bas réglables à part ;
+  - hauteur grande ou plein écran, contenu centré ;
+  - voile sur l'image (sombre, léger, sans voile) ;
+  - dégradé de la couleur de fond vers une seconde couleur de la palette.
+- Variables `--mrz-image-overlay-light`, `--mrz-section-image-position`, `--mrz-section-height-large`, `--mrz-section-height-screen`.
+
+### Modifié
+- L'image de fond d'une section est une vraie `<img>` derrière le contenu, et non plus une image de fond CSS. Celle de la première section se charge en priorité (LCP) : un Texte libre avec titre en H1, image et hauteur plein écran fait une bannière.
+
 ## [0.4.1] - 2026-11-17
 
 Correctifs issus des recettes de la 0.4.0 sur deux vrais sites (Beta-Coltrane, Beta-Bird).

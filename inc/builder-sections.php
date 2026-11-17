@@ -93,14 +93,110 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'wrapper' => array( 'width' => '25' ),
 			),
 			array(
+				'key'           => $prefix . '_settings_spacing_top',
+				'name'          => 'spacing_top',
+				'label'         => __( 'Top spacing', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => mrz_theme_spacing_side_choices(),
+				'default_value' => 'inherit',
+				'wrapper'       => array( 'width' => '25' ),
+			),
+			array(
+				'key'           => $prefix . '_settings_spacing_bottom',
+				'name'          => 'spacing_bottom',
+				'label'         => __( 'Bottom spacing', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => mrz_theme_spacing_side_choices(),
+				'default_value' => 'inherit',
+				'wrapper'       => array( 'width' => '25' ),
+			),
+			array(
+				'key'           => $prefix . '_settings_height',
+				'name'          => 'height',
+				'label'         => __( 'Height', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => array(
+					'auto'   => __( 'Automatic (content)', 'mrz-theme-exp' ),
+					'large'  => __( 'Large (70% of the screen)', 'mrz-theme-exp' ),
+					'screen' => __( 'Full screen', 'mrz-theme-exp' ),
+				),
+				'default_value' => 'auto',
+				'instructions'  => __( 'Content centered vertically.', 'mrz-theme-exp' ),
+				'wrapper'       => array( 'width' => '25' ),
+			),
+			array(
+				'key'           => $prefix . '_settings_image_overlay',
+				'name'          => 'image_overlay',
+				'label'         => __( 'Image overlay', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => array(
+					'dark'  => __( 'Dark overlay, light text', 'mrz-theme-exp' ),
+					'light' => __( 'Light overlay, light text', 'mrz-theme-exp' ),
+					'none'  => __( 'No overlay, section colors', 'mrz-theme-exp' ),
+				),
+				'default_value' => 'dark',
+				'wrapper'       => array( 'width' => '25' ),
+			),
+			array(
 				'key'           => $prefix . '_settings_background_image',
 				'name'          => 'background_image',
 				'label'         => __( 'Background image', 'mrz-theme-exp' ),
 				'type'          => 'image',
 				'return_format' => 'id',
 				'preview_size'  => 'medium',
+				'instructions'  => __( 'Shown behind the content. On the first section of the page, it loads first (main image of the page).', 'mrz-theme-exp' ),
+			),
+			array(
+				'key'     => $prefix . '_settings_gradient',
+				'name'    => 'gradient',
+				'label'   => __( 'Gradient', 'mrz-theme-exp' ),
+				'type'    => 'true_false',
+				'ui'      => 1,
+				'message' => __( 'From the background color to a second color', 'mrz-theme-exp' ),
+				'wrapper' => array( 'width' => '33' ),
+			),
+			array(
+				'key'               => $prefix . '_settings_gradient_to',
+				'name'              => 'gradient_to',
+				'label'             => __( 'Gradient to', 'mrz-theme-exp' ),
+				'type'              => 'select',
+				'choices'           => mrz_theme_background_choices( __( 'Site background', 'mrz-theme-exp' ) ),
+				'default_value'     => 'dark',
+				// Pas de logique conditionnelle : le clone ACF des sections de l'enfant ne réécrit pas ses clés.
+				'instructions'      => __( 'Used only when Gradient is on.', 'mrz-theme-exp' ),
+				'wrapper'           => array( 'width' => '33' ),
+			),
+			array(
+				'key'               => $prefix . '_settings_gradient_direction',
+				'name'              => 'gradient_direction',
+				'label'             => __( 'Gradient direction', 'mrz-theme-exp' ),
+				'type'              => 'select',
+				'choices'           => array(
+					'bottom'   => __( 'Downward', 'mrz-theme-exp' ),
+					'right'    => __( 'To the right', 'mrz-theme-exp' ),
+					'diagonal' => __( 'Diagonal', 'mrz-theme-exp' ),
+				),
+				'default_value'     => 'bottom',
+				// Pas de logique conditionnelle : le clone ACF des sections de l'enfant ne réécrit pas ses clés.
+				'instructions'      => __( 'Used only when Gradient is on.', 'mrz-theme-exp' ),
+				'wrapper'           => array( 'width' => '33' ),
 			),
 		),
+	);
+}
+
+/**
+ * Espacement d'un seul côté d'une section (haut ou bas).
+ *
+ * @return array
+ */
+function mrz_theme_spacing_side_choices() {
+	return array(
+		'inherit' => __( 'Same as spacing', 'mrz-theme-exp' ),
+		'none'    => __( 'None', 'mrz-theme-exp' ),
+		'compact' => __( 'Compact', 'mrz-theme-exp' ),
+		'normal'  => __( 'Normal', 'mrz-theme-exp' ),
+		'large'   => __( 'Large', 'mrz-theme-exp' ),
 	);
 }
 

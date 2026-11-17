@@ -204,6 +204,12 @@
 
 	/* Voile posé sur les images de fond de section (texte en Clair par-dessus). */
 	--mrz-image-overlay: rgb(0 0 0 / 0.45);
+	--mrz-image-overlay-light: rgb(0 0 0 / 0.25); /* réglage « voile léger » : vérifier le contraste du texte */
+	/* --mrz-section-image-position : cadrage de l'image de fond (center par défaut, top, 30% 50%…). */
+
+	/* Hauteur des sections (réglage « Hauteur ») */
+	--mrz-section-height-large: 70svh;
+	--mrz-section-height-screen: calc(100svh - var(--mrz-header-offset));
 
 	--mrz-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

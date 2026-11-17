@@ -84,10 +84,17 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 
 | Réglage | Choix |
 | --- | --- |
-| Fond | Aucun, clair, sombre, l'une des quatre couleurs de la marque, ou image de fond |
+| Fond | Aucun, clair, sombre, l'une des quatre couleurs de la marque |
 | Espacement | Normal, compact, large, aucun |
+| Espace en haut, en bas | Comme l'espacement, ou réglé à part (aucun, compact, normal, large) |
 | Largeur | Conteneur, étroite (largeur de lecture : mentions légales, article), large, pleine largeur |
 | Ancre | Identifiant pour un lien `#ancre` dans un menu |
+| Hauteur | Automatique, grande (70 % de l'écran), plein écran ; contenu centré verticalement |
+| Image de fond | Vraie image derrière le contenu. Celle de la première section de la page se charge en priorité (image principale, LCP) |
+| Voile sur l'image | Sombre (texte clair), léger (texte clair, vérifier le contraste), sans voile (la section garde ses couleurs : image composée, motif) |
+| Dégradé | De la couleur de fond vers une seconde couleur de la palette, vers le bas, la droite ou en diagonale |
+
+**Bannière de page** : un Texte libre en tête de page, titre en H1, image de fond, hauteur grande ou plein écran. Pas besoin d'une section « hero » sur mesure.
 
 Les couleurs des fonds sont celles de MRZ Theme > Couleurs. Le texte posé sur une couleur de la marque prend Sombre ou Clair selon la couleur, automatiquement ; quand la charte en décide autrement, le réglage « Texte sur … » de la couleur l'impose.
 

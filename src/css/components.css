@@ -630,8 +630,6 @@
 	/* Sections du constructeur */
 	.mrz-section {
 		position: relative;
-		background-size: cover;
-		background-position: center;
 	}
 
 	.mrz-space--normal {
@@ -644,6 +642,42 @@
 
 	.mrz-space--large {
 		padding-block: var(--spacing-section-lg);
+	}
+
+	/* Espace du haut ou du bas réglé à part (après l'espacement général, qu'il remplace). */
+	.mrz-space-top--none { padding-top: 0; }
+	.mrz-space-top--compact { padding-top: var(--spacing-section-sm); }
+	.mrz-space-top--normal { padding-top: var(--spacing-section); }
+	.mrz-space-top--large { padding-top: var(--spacing-section-lg); }
+	.mrz-space-bottom--none { padding-bottom: 0; }
+	.mrz-space-bottom--compact { padding-bottom: var(--spacing-section-sm); }
+	.mrz-space-bottom--normal { padding-bottom: var(--spacing-section); }
+	.mrz-space-bottom--large { padding-bottom: var(--spacing-section-lg); }
+
+	/* Hauteur : grande ou plein écran, contenu centré verticalement. */
+	.mrz-height--large,
+	.mrz-height--screen {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.mrz-height--large {
+		min-height: var(--mrz-section-height-large);
+	}
+
+	.mrz-height--screen {
+		min-height: var(--mrz-section-height-screen);
+	}
+
+	/* Sous un header transparent, la première section passe sous le header : tout l'écran. */
+	.mrz-header-transparent .mrz-main > .mrz-height--screen:first-child {
+		min-height: 100svh;
+	}
+
+	/* Dégradé : de la couleur de fond de la section vers --mrz-gradient-to (écrit par le réglage). */
+	.mrz-gradient {
+		background-image: linear-gradient(var(--mrz-gradient-direction, to bottom), var(--color-background), var(--mrz-gradient-to, var(--color-dark)));
 	}
 
 	/*
@@ -718,8 +752,27 @@
 		background: var(--mrz-image-overlay);
 	}
 
+	.mrz-overlay--light::before {
+		background: var(--mrz-image-overlay-light);
+	}
+
 	.mrz-has-image > * {
 		position: relative;
+	}
+
+	/* Image de fond : une vraie <img> (LCP), derrière le voile et le contenu. */
+	.mrz-has-bg-image {
+		isolation: isolate;
+	}
+
+	.mrz-section__bg {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: var(--mrz-section-image-position, center);
 	}
 
 	.mrz-section__heading {

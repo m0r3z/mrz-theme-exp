@@ -11,7 +11,7 @@ Thème WordPress classique de l'Agence Double A. Le guide d'utilisation est dans
 ## Lighthouse : 100 partout
 Chaque site vise **100 sur les quatre scores Lighthouse** (Performance, Accessibilité, Bonnes pratiques, SEO), en mobile. À chaque choix, prendre la solution la plus simple et la plus rapide à afficher.
 - **CSS avant JS.** Pas de bibliothèque, pas de jQuery, pas de CDN. Un module JS (carrousel, lightbox) ne se charge que sur les pages qui s'en servent.
-- **Image principale (LCP)** : une vraie image `<img>` avec `'fetchpriority' => 'high'` et `'loading' => 'eager'`, jamais une image de fond. Toutes les autres par `wp_get_attachment_image()` (dimensions, `srcset`, chargement différé).
+- **Image principale (LCP)** : une vraie image `<img>` avec `'fetchpriority' => 'high'` et `'loading' => 'eager'`, jamais une image de fond CSS. Le réglage « Image de fond » des sections le fait déjà. Toutes les autres par `wp_get_attachment_image()` (dimensions, `srcset`, chargement différé).
 - **Aucun décalage de mise en page (CLS)** : images avec leurs dimensions, polices en woff2 auto-hébergées avec `font-display: swap`, le moins de fichiers de police possible.
 - **Accessibilité** : contraste suffisant (réglage « Texte sur … » si la charte l'impose), texte alternatif sur chaque image porteuse de sens, un seul `<h1>`, liens et boutons au texte explicite, champs avec un `<label>`.
 - **SEO** : Rank Math pose le titre et la meta description. Le contenu des pages est dans les champs ACF, donc l'extrait automatique est vide : **écrire la meta description de chaque page** dans Rank Math.
@@ -42,7 +42,11 @@ Déclarées en PHP dans `inc/builder-sections.php`, ajoutées au constructeur de
 | `mrz_footer` | logo, title, button, columns (répéteur : title, links), socials (répéteur : icon, url, name), bottom, settings | Footer. Proposée seulement dans les sections globales. Variables `--mrz-footer-*` |
 | `mrz_global_section` | section (ID `mrz_section`) | |
 
-`settings` : background (none, light, dark, primary, secondary, tertiary, quaternary), spacing (normal, compact, large, none), width (container, narrow pour une largeur de lecture, wide, full), anchor, background_image (ID). Lu par `mrz_theme_section_open()`, qui accepte aussi `'class'` : plusieurs classes séparées par des espaces, ou un tableau.
+`settings` : background (none, light, dark, primary, secondary, tertiary, quaternary), spacing (normal, compact, large, none), spacing_top et spacing_bottom (inherit, none, compact, normal, large), width (container, narrow pour une largeur de lecture, wide, full), anchor, height (auto, large, screen), background_image (ID), image_overlay (dark, light, none), gradient (booléen), gradient_to (none = fond du site, light, dark, primary…), gradient_direction (bottom, right, diagonal). Lu par `mrz_theme_section_open()`, qui accepte aussi `'class'` : plusieurs classes séparées par des espaces, ou un tableau, et `'image'` (ID) pour une image de fond fournie par la section.
+
+- **Image de fond** : rendue en vraie `<img class="mrz-section__bg">` derrière le contenu (`object-fit: cover`). La première de la page est en `fetchpriority="high"`, les autres en chargement différé. C'est le bon moyen d'avoir l'image principale d'une bannière (LCP).
+- **Voile** : `dark` et `light` posent un voile (`--mrz-image-overlay`, `--mrz-image-overlay-light`) et passent le texte en Clair (classe `.mrz-has-image`) ; `none` laisse les couleurs de la section (image composée avec un côté blanc, motif). Vérifier le contraste du texte avec le voile léger et sans voile.
+- **Bannière de page** : Texte libre, `title_tag` à `h1`, image de fond, hauteur `large` ou `screen`. Ne pas créer de section « hero » dans l'enfant pour ça.
 
 ### Sections sur mesure (thème enfant)
 Une section par rangée de la maquette. Pour en créer une :
@@ -59,7 +63,7 @@ Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`, affi
 ### Code d'une section sur mesure (PHP)
 - **Échapper toute sortie** : `esc_html()` pour un texte, `esc_url()` pour un lien, `esc_attr()` pour un attribut, `wp_kses_post()` pour un champ WYSIWYG. Jamais un `echo get_sub_field()` brut (sauf la section du parent `mrz_html`).
 - **Images** : `wp_get_attachment_image( $id, $taille )`, jamais une balise `<img>` écrite à la main (WordPress ajoute `srcset`, dimensions et `loading`). Un texte alternatif vide (`'alt' => ''`) pour une image décorative.
-- **Image principale d'un hero** : une vraie image (`<img>`, `object-fit: cover`) avec `'fetchpriority' => 'high'` et `'loading' => 'eager'`, pas une image de fond CSS ni le réglage « image de fond » : une image de fond se charge tard et pénalise le chargement de la page (LCP).
+- **Image principale d'un hero** : le réglage « Image de fond » suffit (vraie `<img>`, prioritaire en première section). Dans une section sur mesure qui place son image elle-même : `<img>` avec `'fetchpriority' => 'high'` et `'loading' => 'eager'`, jamais une image de fond CSS (chargée tard, elle pénalise le LCP).
 - **Aucun texte visible écrit en dur dans un template de l'enfant** : tout texte (titre, bouton, « Voir plus », texte pour lecteur d'écran) vient d'un champ ACF, qui se traduit avec la page dans chaque langue. Un `aria-label` se construit à partir d'un champ (le titre de la section, par exemple). L'enfant n'a pas de fichier de traduction.
 - **Titres** : un seul `<h1>` par page, porté par la première section (souvent le hero) ; les autres sections commencent à `<h2>`.
 - **Liens** : `target="_blank"` toujours avec `rel="noopener"`. Un lien sans texte visible (icône) porte un texte pour les lecteurs d'écran (`<span class="screen-reader-text">`).
@@ -100,7 +104,7 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 | Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--mrz-container-narrow`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base` |
 | Focus | `--mrz-focus-color` : contour du focus clavier. Couleur principale sur le fond du site (couleur du texte si la principale n'atteint pas 3:1 sur ce fond, calculé par le Customizer), couleur du texte de la section sur un fond de section, sur une image et dans le header transparent. Ne jamais retirer le contour (`outline: none`) |
 | Header | `--mrz-header-padding`, `--mrz-header-max-width` (`none` : header pleine largeur), `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` ; avant le défilement d'un header transparent : `--mrz-header-transparent-bg`, `--mrz-header-transparent-color`, `--mrz-header-transparent-border`. Lecture seule : `--mrz-header-offset` (place prise par le header). Blocs du header ciblables : `.mrz-header__bar`, `.mrz-header__start` (header centré), `.mrz-logo`, `.mrz-header__end` (menu et outils) |
-| Images de fond | `--mrz-image-overlay` : voile posé sur l'image de fond d'une section (`rgb(0 0 0 / 0.45)` par défaut) |
+| Sections | `--mrz-image-overlay` (voile sombre, `rgb(0 0 0 / 0.45)`), `--mrz-image-overlay-light` (voile léger), `--mrz-section-image-position` (cadrage de l'image de fond), `--mrz-section-height-large` (`70svh`), `--mrz-section-height-screen` (écran moins le header) |
 | WooCommerce | `--mrz-product-title-font-family`, `--mrz-product-title-size`, `--mrz-product-title-text-transform` (titres des produits dans les listes) |
 | Icônes en image | Les SVG fournis sont noirs. `filter: var(--mrz-icon-filter)` (couleur principale par défaut) ou `var(--mrz-icon-filter-light)` (blanc par défaut). Pour une autre couleur : `url(#mrz-icon-<couleur>)` (primary, secondary, tertiary, quaternary, dark, light, border, white), filtres SVG imprimés par le thème qui suivent le Customizer. Jamais de chaîne `invert() sepia() hue-rotate()…` en dur : elle ne suit pas un changement de couleur |
 

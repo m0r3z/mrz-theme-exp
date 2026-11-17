@@ -69,7 +69,7 @@ msgstr "Aller au contenu"
 
 #: inc/admin.php:28
 #: inc/admin.php:29
-#: inc/customizer.php:195
+#: inc/customizer.php:240
 #: inc/page-options.php:62
 msgid "MRZ Theme"
 msgstr "MRZ Thème"
@@ -79,108 +79,118 @@ msgstr "MRZ Thème"
 msgid "Theme options"
 msgstr "Options du thème"
 
-#: inc/assets.php:74
+#: inc/assets.php:70
 msgid "Open submenu"
 msgstr "Ouvrir le sous-menu"
 
-#: inc/builder-sections.php:29
+#: inc/builder-sections.php:47
 msgid "Section settings"
 msgstr "Réglages de la section"
 
-#: inc/builder-sections.php:36
+#: inc/builder-sections.php:54
+#: inc/builder-sections.php:359
 msgid "Background"
 msgstr "Fond"
 
-#: inc/builder-sections.php:39
-#: inc/builder-sections.php:59
+#: inc/builder-sections.php:26
+#: inc/builder-sections.php:69
+#: inc/builder-sections.php:196
 msgid "None"
 msgstr "Aucun"
 
-#: inc/builder-sections.php:40
-#: inc/customizer.php:71
+#: inc/builder-sections.php:27
+#: inc/customizer.php:74
+#: inc/customizer.php:283
 msgid "Light"
 msgstr "Clair"
 
-#: inc/builder-sections.php:41
-#: inc/customizer.php:70
+#: inc/builder-sections.php:28
+#: inc/customizer.php:73
+#: inc/customizer.php:284
 msgid "Dark"
 msgstr "Sombre"
 
-#: inc/builder-sections.php:42
-#: inc/customizer.php:66
+#: inc/builder-sections.php:29
+#: inc/customizer.php:69
 msgid "Primary color"
 msgstr "Couleur principale"
 
-#: inc/builder-sections.php:53
+#: inc/builder-sections.php:63
 msgid "Spacing"
 msgstr "Espacement"
 
-#: inc/builder-sections.php:56
+#: inc/builder-sections.php:66
+#: inc/builder-sections.php:198
 msgid "Normal"
 msgstr "Normal"
 
-#: inc/builder-sections.php:57
+#: inc/builder-sections.php:67
+#: inc/builder-sections.php:197
 msgid "Compact"
 msgstr "Compact"
 
-#: inc/builder-sections.php:58
+#: inc/builder-sections.php:68
+#: inc/builder-sections.php:199
 msgid "Large"
 msgstr "Large"
 
-#: inc/builder-sections.php:67
+#: inc/builder-sections.php:77
 msgid "Width"
 msgstr "Largeur"
 
-#: inc/builder-sections.php:70
+#: inc/builder-sections.php:80
 msgid "Container"
 msgstr "Conteneur"
 
-#: inc/builder-sections.php:71
+#: inc/builder-sections.php:82
 msgid "Wide"
 msgstr "Large"
 
-#: inc/builder-sections.php:72
+#: inc/builder-sections.php:83
 msgid "Full width"
 msgstr "Pleine largeur"
 
-#: inc/builder-sections.php:80
+#: inc/builder-sections.php:91
 msgid "Anchor"
 msgstr "Ancre"
 
-#: inc/builder-sections.php:87
+#: inc/builder-sections.php:143
 msgid "Background image"
 msgstr "Image de fond"
 
-#: inc/builder-sections.php:108
+#: inc/builder-sections.php:215
 msgid "Section settings (to clone)"
 msgstr "Réglages de section (à cloner)"
 
-#: inc/builder-sections.php:127
+#: inc/builder-sections.php:234
 msgid "Free text"
 msgstr "Texte libre"
 
-#: inc/builder-sections.php:133
+#: inc/builder-sections.php:240
+#: inc/builder-sections.php:352
+#: inc/builder-sections.php:431
 msgid "Title"
 msgstr "Titre"
 
-#: inc/builder-sections.php:139
+#: inc/builder-sections.php:260
+#: inc/builder-sections.php:368
 msgid "Text"
 msgstr "Texte"
 
-#: inc/builder-sections.php:151
+#: inc/builder-sections.php:272
 msgid "Raw HTML"
 msgstr "HTML brut"
 
-#: inc/builder-sections.php:157
+#: inc/builder-sections.php:278
 msgid "HTML code"
 msgstr "Code HTML"
 
-#: inc/builder-sections.php:159
+#: inc/builder-sections.php:280
 msgid "Displayed as is, scripts included. Reserved for administrators."
 msgstr "Affiché tel quel, scripts compris. Réservé aux administrateurs."
 
-#: inc/builder-sections.php:168
-#: inc/builder-sections.php:174
+#: inc/builder-sections.php:493
+#: inc/builder-sections.php:499
 #: inc/global-sections.php:43
 msgid "Global section"
 msgstr "Section globale"
@@ -189,127 +199,127 @@ msgstr "Section globale"
 msgid "MRZ Theme Experience requires Advanced Custom Fields Pro. Without it, pages only display their classic content."
 msgstr "MRZ Theme Experience a besoin d'Advanced Custom Fields Pro. Sans lui, les pages n'affichent que leur contenu classique."
 
-#: inc/customizer.php:231
+#: inc/customizer.php:295
 #: inc/page-options.php:97
 msgid "Header"
 msgstr "Header"
 
-#: inc/customizer.php:243
+#: inc/customizer.php:307
 msgid "Logo for the transparent header"
 msgstr "Logo du header transparent"
 
-#: inc/customizer.php:244
+#: inc/customizer.php:308
 msgid "Shown before scrolling when the header is transparent. Replaced by the main logo on scroll."
 msgstr "Affiché avant le défilement quand le header est transparent. Remplacé par le logo principal au défilement."
 
-#: inc/customizer.php:253
+#: inc/customizer.php:317
 msgid "Logo height on desktop (px)"
 msgstr "Hauteur du logo sur ordinateur (px)"
 
-#: inc/customizer.php:254
+#: inc/customizer.php:318
 msgid "Logo height on mobile (px)"
 msgstr "Hauteur du logo sur mobile (px)"
 
-#: inc/customizer.php:278
+#: inc/customizer.php:342
 msgid "Header layout"
 msgstr "Disposition du header"
 
-#: inc/customizer.php:282
+#: inc/customizer.php:346
 msgid "Classic: logo left, menu right"
 msgstr "Classique : logo à gauche, menu à droite"
 
-#: inc/customizer.php:283
+#: inc/customizer.php:347
 msgid "Centered: logo above, menu below"
 msgstr "Centrée : logo au-dessus, menu en dessous"
 
-#: inc/customizer.php:292
+#: inc/customizer.php:356
 msgid "Sticky header"
 msgstr "Header fixe au défilement"
 
-#: inc/customizer.php:302
+#: inc/customizer.php:366
 msgid "Transparent header when applicable"
 msgstr "Header transparent quand c'est possible"
 
-#: inc/customizer.php:303
+#: inc/customizer.php:367
 msgid "The header is transparent over the page until the user scrolls, on pages that start with a hero section (a section whose name contains \"hero\")."
 msgstr "Le header est transparent par-dessus la page jusqu'au défilement, sur les pages qui commencent par une section hero (une section dont le nom contient « hero »)."
 
-#: inc/customizer.php:313
-#: inc/template-tags.php:183
+#: inc/customizer.php:377
+#: inc/template-tags.php:222
 #: searchform.php:13
 #: searchform.php:15
 msgid "Search"
 msgstr "Recherche"
 
-#: inc/customizer.php:314
+#: inc/customizer.php:378
 msgid "Search icon in the header, opening the search form."
 msgstr "Icône de recherche dans le header, qui ouvre le formulaire de recherche."
 
-#: inc/customizer.php:324
+#: inc/customizer.php:388
 msgid "Account link"
 msgstr "Lien vers le compte"
 
-#: inc/customizer.php:325
+#: inc/customizer.php:389
 msgid "Icon linking to the WooCommerce \"My account\" page, next to the cart. Requires WooCommerce."
 msgstr "Icône vers la page « Mon compte » de WooCommerce, à côté du panier. Nécessite WooCommerce."
 
-#: inc/customizer.php:335
+#: inc/customizer.php:415
 msgid "Mobile header"
 msgstr "Header mobile"
 
-#: inc/customizer.php:344
+#: inc/customizer.php:424
 msgid "Sticky header on mobile"
 msgstr "Header fixe sur mobile"
 
-#: inc/customizer.php:366
+#: inc/customizer.php:446
 msgid "Mobile breakpoint (px)"
 msgstr "Point de rupture mobile (px)"
 
-#: inc/customizer.php:367
+#: inc/customizer.php:447
 msgid "Below this width, the menu collapses into the mobile menu. Raise it when the menu has many items."
 msgstr "Sous cette largeur, le menu passe en menu mobile. À augmenter quand le menu a beaucoup d'entrées."
 
-#: inc/customizer.php:382
+#: inc/customizer.php:462
 msgid "Page transitions"
 msgstr "Transitions de page"
 
-#: inc/customizer.php:384
+#: inc/customizer.php:464
 msgid "Uses the browser View Transitions API: no JavaScript. Browsers without support simply load the page normally."
 msgstr "Utilise la View Transitions API du navigateur, sans JavaScript. Les navigateurs qui ne la gèrent pas chargent simplement la page."
 
-#: inc/customizer.php:392
+#: inc/customizer.php:472
 msgid "Animated page transitions"
 msgstr "Transitions animées entre les pages"
 
-#: inc/customizer.php:402
+#: inc/customizer.php:482
 msgid "Transition effect"
 msgstr "Effet de transition"
 
-#: inc/customizer.php:406
+#: inc/customizer.php:486
 msgid "Fade"
 msgstr "Fondu"
 
-#: inc/customizer.php:407
+#: inc/customizer.php:487
 msgid "Slide up"
 msgstr "Glissement vers le haut"
 
-#: inc/customizer.php:416
+#: inc/customizer.php:496
 msgid "Duration (ms)"
 msgstr "Durée (ms)"
 
-#: inc/customizer.php:431
+#: inc/customizer.php:511
 msgid "General"
 msgstr "Général"
 
-#: inc/customizer.php:440
+#: inc/customizer.php:520
 msgid "Content width (px)"
 msgstr "Largeur du contenu (px)"
 
-#: inc/customizer.php:455
+#: inc/customizer.php:535
 msgid "404 page"
 msgstr "Page 404"
 
-#: inc/customizer.php:456
+#: inc/customizer.php:536
 msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
 msgstr "Page affichée quand une adresse n'existe pas. Le vrai statut 404 est conservé pour les moteurs de recherche."
 
@@ -362,33 +372,33 @@ msgstr "Ajouter une section globale"
 msgid "Edit the global section"
 msgstr "Modifier la section globale"
 
-#: inc/global-sections.php:235
-#: inc/global-sections.php:299
+#: inc/global-sections.php:250
+#: inc/global-sections.php:314
 msgid "Manual insertion only"
 msgstr "Insertion manuelle seulement"
 
-#: inc/global-sections.php:251
+#: inc/global-sections.php:266
 msgid "Where it shows"
 msgstr "Où elle s'affiche"
 
 #. translators: %s: list of content types or pages.
-#: inc/global-sections.php:288
+#: inc/global-sections.php:303
 #, php-format
 msgid "only on %s"
 msgstr "seulement sur %s"
 
 #. translators: %s: list of content types or pages.
-#: inc/global-sections.php:291
+#: inc/global-sections.php:306
 #, php-format
 msgid "everywhere except %s"
 msgstr "partout sauf sur %s"
 
-#: inc/global-sections.php:293
+#: inc/global-sections.php:308
 msgid "whole site"
 msgstr "tout le site"
 
 #. translators: 1: location, 2: where it shows, 3: priority.
-#: inc/global-sections.php:297
+#: inc/global-sections.php:312
 #, php-format
 msgid "%1$s, %2$s (priority %3$d)"
 msgstr "%1$s, %2$s (priorité %3$d)"
@@ -421,42 +431,44 @@ msgstr "Menu secondaire (header, à droite)"
 msgid "Mobile menu (falls back to primary)"
 msgstr "Menu mobile (à défaut, le menu principal)"
 
-#: inc/template-tags.php:64
+#: inc/template-tags.php:65
 msgid "Main menu"
 msgstr "Menu principal"
 
-#: inc/template-tags.php:85
+#: inc/template-tags.php:86
 #: parts/mobile-menu/offcanvas.php:38
 msgid "Secondary menu"
 msgstr "Menu secondaire"
 
-#: inc/template-tags.php:121
+#: inc/template-tags.php:122
 msgid "Open menu"
 msgstr "Ouvrir le menu"
 
-#: inc/template-tags.php:200
+#: inc/template-tags.php:239
 msgid "My account"
 msgstr "Mon compte"
 
-#: inc/template-tags.php:215
+#: inc/template-tags.php:254
 msgid "Cart"
 msgstr "Panier"
 
 #. translators: %s: search query.
-#: inc/template-tags.php:261
+#: inc/template-tags.php:300
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "Résultats de recherche pour « %s »"
 
-#: inc/template-tags.php:267
+#: inc/template-tags.php:306
 msgid "Latest articles"
 msgstr "Derniers articles"
 
+#: inc/carousel.php:112
 #: index.php:33
 #: parts/content/single.php:35
 msgid "Previous"
 msgstr "Précédent"
 
+#: inc/carousel.php:121
 #: index.php:34
 #: parts/content/single.php:36
 msgid "Next"
@@ -474,7 +486,7 @@ msgstr "Menu"
 msgid "Close menu"
 msgstr "Fermer le menu"
 
-#: inc/customizer.php:354
+#: inc/customizer.php:434
 #: parts/mobile-menu/offcanvas.php:23
 msgid "Mobile menu"
 msgstr "Menu mobile"
@@ -483,41 +495,42 @@ msgstr "Menu mobile"
 msgid "Search…"
 msgstr "Rechercher…"
 
-#: inc/builder-sections.php:43
-#: inc/customizer.php:67
+#: inc/builder-sections.php:30
+#: inc/customizer.php:70
 msgid "Secondary color"
 msgstr "Couleur secondaire"
 
-#: inc/builder-sections.php:44
-#: inc/customizer.php:68
+#: inc/builder-sections.php:31
+#: inc/customizer.php:71
 msgid "Tertiary color"
 msgstr "Couleur tertiaire"
 
-#: inc/customizer.php:72
+#: inc/customizer.php:75
 msgid "Borders and lines"
 msgstr "Bordures et traits"
 
-#: inc/customizer.php:132
+#: inc/customizer.php:144
 msgid "Side panel from the right"
 msgstr "Panneau latéral à droite"
 
-#: inc/customizer.php:133
+#: inc/customizer.php:145
 msgid "Side panel from the left"
 msgstr "Panneau latéral à gauche"
 
-#: inc/customizer.php:134
+#: inc/builder-sections.php:121
+#: inc/customizer.php:146
 msgid "Full screen"
 msgstr "Plein écran"
 
-#: inc/customizer.php:135
+#: inc/customizer.php:147
 msgid "Drops down below the header"
 msgstr "Déroulé sous le header"
 
-#: inc/customizer.php:204
+#: inc/customizer.php:249
 msgid "Colors"
 msgstr "Couleurs"
 
-#: inc/customizer.php:355
+#: inc/customizer.php:435
 msgid "How the menu opens. Its look (background, blur, hover) is styled in the child theme."
 msgstr "La façon dont le menu s'ouvre. Son apparence (fond, flou, survol) se règle dans le thème enfant."
 
@@ -525,172 +538,306 @@ msgstr "La façon dont le menu s'ouvre. Son apparence (fond, flou, survol) se r�
 msgid "Mobile menu: below the links"
 msgstr "Menu mobile : sous les liens"
 
-#: inc/builder-sections.php:45
-#: inc/customizer.php:69
+#: inc/builder-sections.php:32
+#: inc/customizer.php:72
 msgid "Quaternary color"
 msgstr "Couleur quaternaire"
 
-#: inc/customizer.php:73
+#: inc/builder-sections.php:163
+#: inc/customizer.php:67
 msgid "Site background"
 msgstr "Fond du site"
 
-#: inc/customizer.php:84
+#: inc/customizer.php:86
 msgid "Text on light backgrounds, \"Dark\" sections."
 msgstr "Texte sur fond clair, sections « Sombre »."
 
-#: inc/customizer.php:85
+#: inc/customizer.php:87
 msgid "Text on dark backgrounds, \"Light\" sections."
 msgstr "Texte sur fond sombre, sections « Clair »."
 
-#: inc/customizer.php:86
+#: inc/customizer.php:88
 msgid "Empty: white. The text takes Dark or Light, whichever reads best on it."
 msgstr "Vide : blanc. Le texte prend Sombre ou Clair, celle qui se lit le mieux dessus."
 
-#: inc/customizer.php:207
+#: inc/customizer.php:252
 msgid "The site palette. Every color of the theme, the forms and WooCommerce comes from it."
 msgstr "La palette du site. Toutes les couleurs du thème, des formulaires et de WooCommerce en viennent."
 
+#: inc/customizer.php:282
 msgid "Automatic (best contrast)"
 msgstr "Automatique (meilleur contraste)"
 
+#: inc/customizer.php:68
 msgid "Body text"
 msgstr "Texte courant"
 
+#: inc/customizer.php:404
 msgid "Codes (FR, EN)"
 msgstr "Codes (FR, EN)"
 
+#: inc/customizer.php:405
 msgid "Flags"
 msgstr "Drapeaux"
 
+#: inc/customizer.php:406
 msgid "Flags and codes"
 msgstr "Drapeaux et codes"
 
+#: inc/builder-sections.php:248
 msgid "H1 only when this section opens the page (one H1 per page)."
 msgstr "H1 seulement quand cette section ouvre la page (un seul H1 par page)."
 
+#: inc/customizer.php:399
 msgid "Language switcher"
 msgstr "Sélecteur de langue"
 
+#: inc/builder-sections.php:81
 msgid "Narrow (reading width)"
 msgstr "Étroite (largeur de lecture)"
 
+#: inc/customizer.php:89
 msgid "Paragraphs on the site background, when they differ from the titles. Empty: same as the titles. Colored sections are not affected."
 msgstr "Paragraphes sur le fond du site, quand ils diffèrent des titres. Vide : comme les titres. Les sections de couleur ne changent pas."
 
+#: inc/customizer.php:400
 msgid "Shown when Polylang is active, in the header and the mobile menu."
 msgstr "Affiché quand Polylang est actif, dans le header et le menu mobile."
 
 #. translators: %s: color name, e.g. "Primary color".
+#: inc/customizer.php:278
 #, php-format
 msgid "Text on %s"
 msgstr "Texte sur : %s"
 
+#: inc/builder-sections.php:247
 msgid "Title level"
 msgstr "Niveau du titre"
 
+#. translators: 1: number of the first visible item, 2: total number of items.
+#: inc/carousel.php:41
 #, php-format
 msgid "Item %1$s of %2$s"
 msgstr "Élément %1$s sur %2$s"
 
+#. translators: 1: page number, 2: number of pages.
+#: inc/carousel.php:43
 #, php-format
 msgid "Page %1$s of %2$s"
 msgstr "Page %1$s sur %2$s"
 
+#: inc/carousel.php:44
+#: inc/carousel.php:105
 msgid "Pause the carousel"
 msgstr "Mettre le carrousel en pause"
 
+#: inc/carousel.php:45
 msgid "Play the carousel"
 msgstr "Relancer le carrousel"
 
+#: inc/carousel.php:80
 msgid "carousel"
 msgstr "carrousel"
 
+#: inc/builder-sections.php:438
 msgid "A bulleted list of links."
 msgstr "Une liste à puces de liens."
 
+#: inc/builder-sections.php:336
 msgid "Add a card"
 msgstr "Ajouter une carte"
 
+#: inc/builder-sections.php:426
 msgid "Add a column"
 msgstr "Ajouter une colonne"
 
+#: inc/builder-sections.php:453
 msgid "Add a network"
 msgstr "Ajouter un réseau"
 
+#: inc/builder-sections.php:343
 msgid "An SVG icon takes the text color of the card."
 msgstr "Une icône SVG prend la couleur du texte de la carte."
 
+#: inc/builder-sections.php:315
 msgid "Autoplay"
 msgstr "Défilement automatique"
 
+#: inc/builder-sections.php:450
 msgid "Black SVG icon (colored by the theme), link and network name (read by screen readers)."
 msgstr "Icône SVG noire (colorée par le thème), lien et nom du réseau (lu par les lecteurs d'écran)."
 
+#: inc/builder-sections.php:480
 msgid "Bottom line"
 msgstr "Ligne du bas"
 
+#: inc/builder-sections.php:415
 msgid "Button"
 msgstr "Bouton"
 
+#: inc/builder-sections.php:289
+#: inc/builder-sections.php:333
 msgid "Cards"
 msgstr "Cartes"
 
+#: inc/builder-sections.php:307
 msgid "Carousel"
 msgstr "Carrousel"
 
+#: inc/builder-sections.php:481
 msgid "Copyright, legal links. Tags: {year}, {site}."
 msgstr "Copyright, liens légaux. Balises : {year}, {site}."
 
+#: inc/builder-sections.php:303
 msgid "Display"
 msgstr "Affichage"
 
+#: inc/builder-sections.php:316
 msgid "Every 5 seconds, with a pause button."
 msgstr "Toutes les 5 secondes, avec un bouton pause."
 
+#: inc/builder-sections.php:390
 msgid "Footer"
 msgstr "Footer"
 
+#: inc/builder-sections.php:306
 msgid "Grid"
 msgstr "Grille"
 
+#: inc/builder-sections.php:458
 msgid "Icon"
 msgstr "Icône"
 
+#: inc/builder-sections.php:342
 msgid "Image or icon"
 msgstr "Image ou icône"
 
+#: inc/builder-sections.php:377
+#: inc/builder-sections.php:466
 msgid "Link"
 msgstr "Lien"
 
+#: inc/builder-sections.php:423
 msgid "Link columns"
 msgstr "Colonnes de liens"
 
+#: inc/builder-sections.php:437
 msgid "Links"
 msgstr "Liens"
 
+#: inc/builder-sections.php:396
 msgid "Logo"
 msgstr "Logo"
 
+#: inc/builder-sections.php:472
 msgid "Name"
 msgstr "Nom"
 
+#: inc/builder-sections.php:361
 msgid "None (border)"
 msgstr "Aucun (bordure)"
 
+#: inc/builder-sections.php:296
 msgid "Optional. Also names the carousel for screen readers."
 msgstr "Facultatif. Nomme aussi le carrousel pour les lecteurs d'écran."
 
+#: inc/builder-sections.php:397
 msgid "Optional: centered above the footer."
 msgstr "Facultatif : centré au-dessus du footer."
 
+#: inc/builder-sections.php:295
 msgid "Section title"
 msgstr "Titre de la section"
 
+#: inc/builder-sections.php:406
 msgid "Sentence"
 msgstr "Phrase"
 
+#: inc/builder-sections.php:378
 msgid "Shown as an arrow link."
 msgstr "Affiché en lien fléché."
 
+#: inc/builder-sections.php:449
 msgid "Social networks"
 msgstr "Réseaux sociaux"
+
+#: inc/builder-sections.php:98
+msgid "Top spacing"
+msgstr "Espace en haut"
+
+#: inc/builder-sections.php:107
+msgid "Bottom spacing"
+msgstr "Espace en bas"
+
+#: inc/builder-sections.php:116
+msgid "Height"
+msgstr "Hauteur"
+
+#: inc/builder-sections.php:119
+msgid "Automatic (content)"
+msgstr "Automatique (contenu)"
+
+#: inc/builder-sections.php:120
+msgid "Large (70% of the screen)"
+msgstr "Grande (70 % de l'écran)"
+
+#: inc/builder-sections.php:124
+msgid "Content centered vertically."
+msgstr "Contenu centré verticalement."
+
+#: inc/builder-sections.php:130
+msgid "Image overlay"
+msgstr "Voile sur l'image"
+
+#: inc/builder-sections.php:133
+msgid "Dark overlay, light text"
+msgstr "Voile sombre, texte clair"
+
+#: inc/builder-sections.php:134
+msgid "Light overlay, light text"
+msgstr "Voile léger, texte clair"
+
+#: inc/builder-sections.php:135
+msgid "No overlay, section colors"
+msgstr "Sans voile, couleurs de la section"
+
+#: inc/builder-sections.php:147
+msgid "Shown behind the content. On the first section of the page, it loads first (main image of the page)."
+msgstr "Affichée derrière le contenu. Sur la première section de la page, elle se charge en premier (image principale de la page)."
+
+#: inc/builder-sections.php:152
+msgid "Gradient"
+msgstr "Dégradé"
+
+#: inc/builder-sections.php:155
+msgid "From the background color to a second color"
+msgstr "De la couleur de fond vers une seconde couleur"
+
+#: inc/builder-sections.php:161
+msgid "Gradient to"
+msgstr "Dégradé vers"
+
+#: inc/builder-sections.php:172
+msgid "Gradient direction"
+msgstr "Sens du dégradé"
+
+#: inc/builder-sections.php:175
+msgid "Downward"
+msgstr "Vers le bas"
+
+#: inc/builder-sections.php:176
+msgid "To the right"
+msgstr "Vers la droite"
+
+#: inc/builder-sections.php:177
+msgid "Diagonal"
+msgstr "En diagonale"
+
+#: inc/builder-sections.php:195
+msgid "Same as spacing"
+msgstr "Comme l'espacement"
+
+#: inc/builder-sections.php:166
+#: inc/builder-sections.php:181
+msgid "Used only when Gradient is on."
+msgstr "Pris en compte seulement si Dégradé est activé."
