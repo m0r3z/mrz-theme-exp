@@ -378,7 +378,7 @@ mrz-theme-exp/
 
 ## État et feuille de route
 
-**Version publiée : 0.6.1 (17/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
+**Version publiée : 0.6.2 (17/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
 **Aucun site en production** : le thème tourne sur MRZ-Dev (où vit le dépôt) et sur trois sites de test, HelloWorld, Beta-Bird (Energies Réunion, bilingue) et Beta-Sonny (Morez, site sombre). Tant que c'est le cas, un changement cassant ne demande aucune migration.
 
