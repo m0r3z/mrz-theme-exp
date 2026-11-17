@@ -111,6 +111,15 @@
 	--mrz-menu-text-transform: none;
 	--mrz-menu-letter-spacing: normal;
 
+	/* Sous-menus du header (desktop) */
+	--mrz-submenu-bg: var(--color-background);
+	--mrz-submenu-color: var(--color-text);
+	--mrz-submenu-width: 14rem;
+	--mrz-submenu-radius: var(--radius-base);
+	--mrz-submenu-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+	--mrz-submenu-indicator-size: 0.75em; /* 0 : pas de chevron */
+	--mrz-submenu-indicator: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
 	/*
 	 * Icônes en image (SVG ou PNG noirs) : filter: var(--mrz-icon-filter).
 	 * Filtres SVG imprimés par le thème, un par couleur de la palette :

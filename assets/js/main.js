@@ -134,6 +134,95 @@
 	} );
 }() );
 
+/*
+ * Sous-menus desktop. Le CSS les ouvre au survol et au clavier ; ce script ajoute :
+ * l'ouverture au toucher (premier appui ouvre, second suit le lien), Échap pour
+ * fermer, et l'ouverture vers la gauche quand le sous-menu sortirait de l'écran.
+ */
+( function () {
+	var parents = document.querySelectorAll( '.mrz-nav .menu-item-has-children' );
+	if ( ! parents.length ) {
+		return;
+	}
+
+	var lastPointer = 'mouse';
+	document.addEventListener( 'pointerdown', function ( event ) {
+		lastPointer = event.pointerType;
+	}, { passive: true } );
+
+	function closeAll( except ) {
+		document.querySelectorAll( '.mrz-nav .menu-item-has-children.is-open' ).forEach( function ( item ) {
+			if ( ! except || ! item.contains( except ) ) {
+				item.classList.remove( 'is-open' );
+			}
+		} );
+	}
+
+	function placeSubmenu( item ) {
+		var submenu = item.querySelector( ':scope > .sub-menu' );
+		if ( ! submenu ) {
+			return;
+		}
+		item.classList.remove( 'mrz-submenu--flip' );
+		if ( submenu.getBoundingClientRect().right > document.documentElement.clientWidth ) {
+			item.classList.add( 'mrz-submenu--flip' );
+		}
+	}
+
+	parents.forEach( function ( item ) {
+		var link = item.querySelector( ':scope > a' );
+
+		item.addEventListener( 'mouseenter', function () {
+			placeSubmenu( item );
+		} );
+		item.addEventListener( 'focusin', function () {
+			placeSubmenu( item );
+		} );
+		item.addEventListener( 'mouseleave', function () {
+			item.classList.remove( 'is-closed' );
+		} );
+		item.addEventListener( 'focusout', function ( event ) {
+			if ( ! item.contains( event.relatedTarget ) ) {
+				item.classList.remove( 'is-closed', 'is-open' );
+			}
+		} );
+
+		if ( link ) {
+			link.addEventListener( 'click', function ( event ) {
+				if ( 'touch' === lastPointer && ! item.classList.contains( 'is-open' ) ) {
+					event.preventDefault();
+					closeAll( item );
+					placeSubmenu( item );
+					item.classList.add( 'is-open' );
+				}
+			} );
+		}
+	} );
+
+	/* Un appui en dehors du menu referme les sous-menus ouverts au toucher. */
+	document.addEventListener( 'click', function ( event ) {
+		if ( ! event.target.closest( '.mrz-nav' ) ) {
+			closeAll();
+		}
+	} );
+
+	document.addEventListener( 'keydown', function ( event ) {
+		if ( 'Escape' !== event.key ) {
+			return;
+		}
+		var item = document.activeElement && document.activeElement.closest( '.mrz-nav .menu-item-has-children' );
+		if ( ! item ) {
+			return;
+		}
+		/* Ferme le sous-menu le plus proche et rend le focus à son lien. */
+		if ( item.querySelector( ':scope > .sub-menu' ).contains( document.activeElement ) ) {
+			item.querySelector( ':scope > a' ).focus();
+		}
+		item.classList.remove( 'is-open' );
+		item.classList.add( 'is-closed' );
+	} );
+}() );
+
 /* Recherche du header : focus sur le champ à l'ouverture, fermeture par Échap ou clic ailleurs. */
 ( function () {
 	var search = document.querySelector( '.mrz-header-search' );

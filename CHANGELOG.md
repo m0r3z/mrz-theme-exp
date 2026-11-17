@@ -4,6 +4,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Sous-menus du header : chevron indicateur, fermeture retardée au survol, Échap qui ferme et rend le focus au lien parent, ouverture au toucher (premier appui ouvre, second suit le lien), ouverture vers la gauche près du bord de l'écran. Variables `--mrz-submenu-bg`, `-color`, `-width`, `-radius`, `-shadow`, `-indicator`, `-indicator-size`.
+- Règles pour l'IA : objectif Lighthouse 100 sur les quatre scores (AGENTS.md).
+
 ## [0.3.0] - 2026-11-17
 
 ### Ajouté

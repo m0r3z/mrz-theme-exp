@@ -309,7 +309,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
    - la page privée **Recette du thème** (`/recette-theme/`) : titres, texte, listes, boutons et lien fléché sur chaque fond, ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
    - boutique, fiche produit, ajout au panier (la pastille se met à jour), panier, commande, compte ;
-   - menu mobile (ouverture, Échap, sous-menus), recherche du header, footer ;
+   - menu mobile (ouverture, Échap, sous-menus), sous-menus desktop (survol, Tab puis Échap, appui sur tablette), recherche du header, footer ;
    - **site sombre** : dans le Customizer, régler « Fond du site » sur une couleur sombre et repasser la page Recette en aperçu, sans publier (texte de chaque fond de section, formulaire dans une section claire, header transparent, image de fond) ;
    - **bilingue** (HelloWorld, Polylang) : sélecteur de langue, footer et section globale insérée à la main dans chaque langue, 404 dans chaque langue ;
    - aucune nouvelle ligne dans `wp-content/debug.log`.
@@ -360,7 +360,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
 À faire, chacun comme un chantier à part, dans l'ordre conseillé :
 
 1. **Polylang** : passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
-2. **Menus du header** : style des sous-menus déroulants, au clavier compris. Dans le parent.
+2. ~~**Menus du header**~~ : fait après la 0.3.0 (sous-menus au survol, au clavier, au toucher, retournés au bord de l'écran, variables `--mrz-submenu-*`).
 3. **WooCommerce** : avec les variables :
    - la liste des produits, la fiche produit et sa galerie, y compris en responsive ;
    - les boutons « Ajouter au panier », « Valider la commande » et « Commander » ;

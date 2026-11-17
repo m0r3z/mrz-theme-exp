@@ -167,27 +167,69 @@
 		position: relative;
 	}
 
+	/*
+	 * Sous-menus desktop : ouverts au survol, au clavier (focus dans l'élément) ou au
+	 * toucher (classe is-open posée par main.js). Fermeture retardée de 0.2s : la souris
+	 * peut sortir un instant sans tout refermer. Apparence : variables --mrz-submenu-*.
+	 */
+	.mrz-menu .menu-item-has-children > a {
+		display: flex;
+		align-items: center;
+		gap: 0.35em;
+	}
+
+	/* Indicateur : chevron vers le bas, vers la droite dans un sous-menu. */
+	.mrz-menu .menu-item-has-children > a::after {
+		content: "";
+		flex-shrink: 0;
+		width: var(--mrz-submenu-indicator-size);
+		height: var(--mrz-submenu-indicator-size);
+		background: currentColor;
+		mask: var(--mrz-submenu-indicator) center / contain no-repeat;
+		transition: transform 0.2s var(--mrz-ease);
+	}
+
+	.mrz-menu .sub-menu .menu-item-has-children > a {
+		justify-content: space-between;
+	}
+
+	.mrz-menu .sub-menu .menu-item-has-children > a::after {
+		transform: rotate(-90deg);
+	}
+
 	.mrz-menu .sub-menu {
 		position: absolute;
 		top: 100%;
 		left: -1rem;
-		min-width: 14rem;
+		z-index: 10;
+		min-width: var(--mrz-submenu-width);
 		list-style: none;
 		margin: 0;
 		padding: 0.5rem 0;
-		background: var(--color-background);
-		color: var(--color-text);
-		border-radius: var(--radius-base);
-		box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+		background: var(--mrz-submenu-bg);
+		color: var(--mrz-submenu-color);
+		border-radius: var(--mrz-submenu-radius);
+		box-shadow: var(--mrz-submenu-shadow);
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(6px);
-		transition: opacity 0.2s var(--mrz-ease), transform 0.2s var(--mrz-ease), visibility 0.2s;
+		transition: opacity 0.2s var(--mrz-ease) 0.2s, transform 0.2s var(--mrz-ease) 0.2s, visibility 0s linear 0.4s;
 	}
 
 	.mrz-menu .sub-menu .sub-menu {
 		top: -0.5rem;
 		left: 100%;
+	}
+
+	/* Trop près du bord droit de l'écran : le sous-menu s'ouvre vers la gauche (main.js). */
+	.mrz-menu .mrz-submenu--flip > .sub-menu {
+		right: -1rem;
+		left: auto;
+	}
+
+	.mrz-menu .sub-menu .mrz-submenu--flip > .sub-menu {
+		right: 100%;
+		left: auto;
 	}
 
 	.mrz-menu .sub-menu a {
@@ -196,10 +238,38 @@
 	}
 
 	.mrz-menu li:hover > .sub-menu,
-	.mrz-menu li:focus-within > .sub-menu {
+	.mrz-menu li:focus-within > .sub-menu,
+	.mrz-menu li.is-open > .sub-menu {
 		opacity: 1;
 		visibility: visible;
 		transform: none;
+		transition-delay: 0s;
+	}
+
+	.mrz-menu li:hover > a::after,
+	.mrz-menu li:focus-within > a::after,
+	.mrz-menu li.is-open > a::after {
+		transform: rotate(180deg);
+	}
+
+	.mrz-menu .sub-menu li:hover > a::after,
+	.mrz-menu .sub-menu li:focus-within > a::after,
+	.mrz-menu .sub-menu li.is-open > a::after {
+		transform: rotate(-90deg);
+	}
+
+	/* Échap : le sous-menu se ferme même si le focus reste sur son lien parent. */
+	.mrz-menu li.is-closed > .sub-menu {
+		opacity: 0;
+		visibility: hidden;
+		transition: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-menu .sub-menu,
+		.mrz-menu .menu-item-has-children > a::after {
+			transition: none;
+		}
 	}
 
 	/* Outils du header */

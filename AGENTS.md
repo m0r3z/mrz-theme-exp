@@ -8,6 +8,15 @@ Thème WordPress classique de l'Agence Double A. Le guide d'utilisation est dans
 - Le texte (blog, pages simples) passe par `the_content()` et la classe `.mrz-prose`.
 - ACF Pro est obligatoire. Sans lui, les pages affichent seulement leur contenu classique.
 
+## Lighthouse : 100 partout
+Chaque site vise **100 sur les quatre scores Lighthouse** (Performance, Accessibilité, Bonnes pratiques, SEO), en mobile. À chaque choix, prendre la solution la plus simple et la plus rapide à afficher.
+- **CSS avant JS.** Pas de bibliothèque, pas de jQuery, pas de CDN. Un module JS (carrousel, lightbox) ne se charge que sur les pages qui s'en servent.
+- **Image principale (LCP)** : une vraie image `<img>` avec `'fetchpriority' => 'high'` et `'loading' => 'eager'`, jamais une image de fond. Toutes les autres par `wp_get_attachment_image()` (dimensions, `srcset`, chargement différé).
+- **Aucun décalage de mise en page (CLS)** : images avec leurs dimensions, polices en woff2 auto-hébergées avec `font-display: swap`, le moins de fichiers de police possible.
+- **Accessibilité** : contraste suffisant (réglage « Texte sur … » si la charte l'impose), texte alternatif sur chaque image porteuse de sens, un seul `<h1>`, liens et boutons au texte explicite, champs avec un `<label>`.
+- **SEO** : Rank Math pose le titre et la meta description. Le contenu des pages est dans les champs ACF, donc l'extrait automatique est vide : **écrire la meta description de chaque page** dans Rank Math.
+- Hors du thème : durée de cache, CSS critique et formats WebP/AVIF relèvent de WP Rocket et de l'hébergement. En local, ces alertes de Lighthouse sont normales.
+
 ## Construire une page
 Remplir `mrz_builder` avec `update_field( 'field_mrz_builder', $rows, $post_id )`. Chaque ligne porte `acf_fc_layout`.
 
@@ -71,6 +80,7 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 | Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
 | Champs | `--mrz-field-font-size`, `--mrz-field-padding`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
 | Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` |
+| Sous-menus (desktop) | `--mrz-submenu-bg`, `--mrz-submenu-color`, `--mrz-submenu-width`, `--mrz-submenu-radius`, `--mrz-submenu-shadow`, `--mrz-submenu-indicator` (chevron en masque), `--mrz-submenu-indicator-size` (`0` pour aucun chevron) |
 | Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--mrz-container-narrow`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base` |
 | Header | `--mrz-header-padding`, `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` ; avant le défilement d'un header transparent : `--mrz-header-transparent-bg`, `--mrz-header-transparent-color`, `--mrz-header-transparent-border`. Lecture seule : `--mrz-header-offset` (place prise par le header) |
 | Icônes en image | Les SVG fournis sont noirs. `filter: var(--mrz-icon-filter)` (couleur principale par défaut) ou `var(--mrz-icon-filter-light)` (blanc par défaut). Pour une autre couleur : `url(#mrz-icon-<couleur>)` (primary, secondary, tertiary, quaternary, dark, light, border, white), filtres SVG imprimés par le thème qui suivent le Customizer. Jamais de chaîne `invert() sepia() hue-rotate()…` en dur : elle ne suit pas un changement de couleur |
@@ -152,6 +162,9 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 ## Parent ou enfant
 - Parent : comportements, accessibilité, JS, intégrations (WooCommerce, Gravity Forms, Polylang, plugins MRZ). Ne pas y ajouter de variantes d'apparence (headers, menus mobiles, effets de survol).
 - Enfant : l'apparence du site, en CSS sur les classes `.mrz-` du parent. Copier un template dans l'enfant seulement en dernier recours : la copie ne reçoit plus les corrections du parent.
+
+## Sous-menus du header
+Menus principal et secondaire, jusqu'à trois niveaux. Ouverts au survol (fermeture retardée de 0.2s), au clavier (Tab entre dans le sous-menu, Échap le ferme et rend le focus au lien parent) et au toucher (premier appui ouvre, second suit le lien). Un sous-menu qui sortirait de l'écran s'ouvre vers la gauche (classe `.mrz-submenu--flip`). Tout est dans le parent (`src/css/components.css`, `assets/js/main.js`) : l'enfant ne règle que l'apparence, par les variables `--mrz-submenu-*`.
 
 ## Menu mobile
 Quatre styles au choix (Customizer > Header mobile, theme_mod `mrz_mobile_menu_style` : `right`, `left`, `fullscreen`, `dropdown`), sur le même balisage `parts/mobile-menu/offcanvas.php`, classe `.mrz-offcanvas--<style>`. Le parent ne pose que la position et l'ouverture. L'apparence (fond, flou, opacité, survol des liens) se fait dans `css/mobile-menu.css` de l'enfant, en ciblant `.mrz-offcanvas--<style> .mrz-offcanvas__panel`. Ne pas copier le template.
