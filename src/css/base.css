@@ -27,6 +27,12 @@
 		overflow-wrap: break-word;
 	}
 
+	/* Mot en couleur dans un titre (saisi entre <em> et </em>). */
+	:is(h1, h2, h3, h4, h5, h6) em {
+		font-style: var(--mrz-title-highlight-style);
+		color: var(--mrz-title-highlight-color);
+	}
+
 	h1 { font-size: var(--mrz-h1); }
 	h2 { font-size: var(--mrz-h2); }
 	h3 { font-size: var(--mrz-h3); }

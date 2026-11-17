@@ -19,13 +19,23 @@ if ( ! $mrz_items ) {
 	return;
 }
 
-mrz_theme_section_open( 'mrz-cards' );
+// Cartes par ligne propres à la section, style « chiffres clés ».
+$mrz_classes  = array();
+$mrz_per_row  = (string) get_sub_field( 'per_row' );
+if ( in_array( $mrz_per_row, array( '2', '3', '4' ), true ) ) {
+	$mrz_classes[] = 'mrz-cards--per-row-' . $mrz_per_row;
+}
+if ( 'figures' === get_sub_field( 'card_style' ) ) {
+	$mrz_classes[] = 'mrz-cards--figures';
+}
+
+mrz_theme_section_open( 'mrz-cards', array( 'class' => $mrz_classes ) );
 mrz_theme_section_heading( $mrz_title );
 
 if ( $mrz_carousel ) {
 	mrz_theme_carousel_open(
 		array(
-			'label'    => $mrz_title,
+			'label'    => wp_strip_all_tags( $mrz_title ),
 			'autoplay' => get_sub_field( 'autoplay' ) ? 5 : 0,
 		)
 	);
@@ -49,7 +59,7 @@ foreach ( $mrz_items as $mrz_item ) :
 				<div class="mrz-cards__media"><?php echo wp_get_attachment_image( $mrz_image, 'medium_large' ); ?></div>
 			<?php endif; ?>
 			<?php if ( ! empty( $mrz_item['title'] ) ) : ?>
-				<<?php echo esc_html( $mrz_tag ); ?> class="mrz-cards__title"><?php echo esc_html( $mrz_item['title'] ); ?></<?php echo esc_html( $mrz_tag ); ?>>
+				<<?php echo esc_html( $mrz_tag ); ?> class="mrz-cards__title"><?php echo mrz_theme_title_html( $mrz_item['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtré par wp_kses. ?></<?php echo esc_html( $mrz_tag ); ?>>
 			<?php endif; ?>
 			<?php if ( ! empty( $mrz_item['text'] ) ) : ?>
 				<div class="mrz-cards__text mrz-prose"><?php echo wp_kses_post( $mrz_item['text'] ); ?></div>

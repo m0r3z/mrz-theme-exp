@@ -98,7 +98,14 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 
 Les couleurs des fonds sont celles de MRZ Theme > Couleurs. Le texte posé sur une couleur de la marque prend Sombre ou Clair selon la couleur, automatiquement ; quand la charte en décide autrement, le réglage « Texte sur … » de la couleur l'impose.
 
-Le Texte libre a aussi un niveau de titre : H2 par défaut, H1 quand il ouvre la page (mentions légales).
+Le Texte libre a aussi :
+- un niveau de titre : H2 par défaut, H1 quand il ouvre la page (bannière, mentions légales) ;
+- un surtitre (petite ligne au-dessus du titre) et un alignement à gauche ou centré ;
+- deux boutons facultatifs, plein et à contour, sous le texte.
+
+Dans les titres des sections du parent, `<em>mot</em>` met un mot en couleur et `<br>` force un retour à la ligne.
+
+Les Cartes ont un nombre de cartes par ligne propre à la section (automatique, 2, 3, 4) et un style « chiffres clés » : le titre de la carte est le chiffre, affiché en grand, le texte sert de libellé.
 
 ### Ajouter une section sur mesure
 

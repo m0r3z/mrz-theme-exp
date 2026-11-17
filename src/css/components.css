@@ -726,6 +726,9 @@
 		--mrz-title-color: currentColor;
 		/* Contour de focus : le texte de la section contraste toujours avec son fond (RGAA 10.7). */
 		--mrz-focus-color: var(--color-text);
+		/* Liens, surtitre et mot en couleur : le texte de la section (la principale n'y contraste pas forcément). */
+		--mrz-link-color: var(--color-text);
+		--mrz-title-highlight-color: currentColor;
 		background-color: var(--color-background);
 		color: var(--color-text);
 	}
@@ -739,6 +742,8 @@
 	/* Voile sombre sur les images de fond : le texte prend Clair. */
 	.mrz-has-image {
 		--mrz-title-color: currentColor;
+		--mrz-link-color: var(--color-light);
+		--mrz-title-highlight-color: currentColor;
 		--mrz-focus-color: var(--color-light);
 		--color-text: var(--color-light);
 		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
@@ -988,6 +993,46 @@
 		font-size: var(--mrz-card-title-size);
 	}
 
+	/* Cartes par ligne propres à la section (grand écran ; deux en tablette). */
+	.mrz-cards--per-row-2 { --mrz-cards-per-view-lg: 2; }
+	.mrz-cards--per-row-3 { --mrz-cards-per-view-lg: 3; }
+	.mrz-cards--per-row-4 { --mrz-cards-per-view-lg: 4; }
+
+	/* Chiffres clés : le titre de la carte est le chiffre, en grand. */
+	.mrz-cards--figures .mrz-cards__title {
+		font-size: var(--mrz-card-figure-size);
+		line-height: 1;
+	}
+
+	/* Texte libre : surtitre, alignement, boutons. */
+	.mrz-eyebrow {
+		margin: 0 0 0.75rem;
+		color: var(--mrz-eyebrow-color, var(--mrz-link-color));
+		font-size: var(--mrz-eyebrow-size);
+		font-weight: var(--mrz-eyebrow-weight);
+		letter-spacing: var(--mrz-eyebrow-letter-spacing);
+		text-transform: var(--mrz-eyebrow-text-transform);
+	}
+
+	.mrz-text--center {
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.mrz-text__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.mrz-text--center .mrz-text__actions {
+		justify-content: center;
+	}
+
+	.mrz-prose .mrz-text__actions .mrz-btn {
+		margin-top: 0;
+	}
+
 	/* Le lien reste en bas de la carte, quelle que soit la longueur du texte. */
 	.mrz-cards__link {
 		margin-top: auto;
@@ -1138,6 +1183,15 @@
 	/* Texte riche (contenu de l'éditeur classique et des champs WYSIWYG) */
 	.mrz-prose > * + * {
 		margin-top: 1.25em;
+	}
+
+	/* Le titre colle à son surtitre ; les boutons du Texte libre prennent un peu d'air. */
+	.mrz-prose > .mrz-eyebrow + * {
+		margin-top: 0;
+	}
+
+	.mrz-prose > .mrz-text__actions {
+		margin-top: 2rem;
 	}
 
 	.mrz-prose h2 {

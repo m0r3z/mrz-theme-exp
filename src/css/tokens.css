@@ -70,6 +70,15 @@
 	--mrz-title-line-height: 1.15;
 	--mrz-title-letter-spacing: normal;
 	--mrz-title-text-transform: none; /* uppercase : titres en capitales (h1 à h6, titre du footer) */
+	/* Mot en couleur dans un titre (<em>) : principale, ou texte si elle manque de contraste (Customizer). */
+	--mrz-title-highlight-color: var(--color-primary);
+	--mrz-title-highlight-style: normal; /* italic pour garder l'italique */
+
+	/* Surtitre (Texte libre) : petite ligne au-dessus du titre. Couleur : --mrz-eyebrow-color, celle des liens par défaut. */
+	--mrz-eyebrow-size: var(--mrz-text-sm);
+	--mrz-eyebrow-weight: 600;
+	--mrz-eyebrow-text-transform: uppercase;
+	--mrz-eyebrow-letter-spacing: 0.08em;
 	/* --mrz-title-color : écrite par le Customizer quand « Texte courant » est réglé. */
 	--mrz-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
 	--mrz-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem);
@@ -142,6 +151,7 @@
 	--mrz-card-shadow: none;
 	--mrz-card-icon-size: 2rem;
 	--mrz-card-title-size: var(--mrz-h4);
+	--mrz-card-figure-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); /* style « chiffres clés » : taille du chiffre */
 	/* --mrz-card-media-ratio : format des images des cartes (16 / 9, 1…), recadrées ; format d'origine par défaut. */
 
 	/* Section Footer (mrz_footer) */

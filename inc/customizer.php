@@ -220,8 +220,9 @@ function mrz_theme_link_focus_css() {
 	if ( $ratio < 4.5 ) {
 		$css .= '--mrz-link-color:var(--color-text);';
 	}
+	// Contour de focus et mot en couleur d'un titre (grand texte) : 3:1.
 	if ( $ratio < 3 ) {
-		$css .= '--mrz-focus-color:var(--color-text);';
+		$css .= '--mrz-focus-color:var(--color-text);--mrz-title-highlight-color:var(--color-text);';
 	}
 
 	return $css;

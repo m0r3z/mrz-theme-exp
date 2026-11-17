@@ -186,6 +186,15 @@ function mrz_theme_section_settings_field( $prefix ) {
 }
 
 /**
+ * Aide des champs de titre : mot en couleur et retour à la ligne (mrz_theme_title_html()).
+ *
+ * @return string
+ */
+function mrz_theme_title_instructions() {
+	return __( 'Put a word between <em> and </em> to color it; <br> for a line break.', 'mrz-theme-exp' );
+}
+
+/**
  * Espacement d'un seul côté d'une section (haut ou bas).
  *
  * @return array
@@ -235,11 +244,32 @@ function mrz_theme_parent_layouts() {
 			'display'    => 'block',
 			'sub_fields' => array(
 				array(
-					'key'     => 'field_mrz_text_title',
-					'name'    => 'title',
-					'label'   => __( 'Title', 'mrz-theme-exp' ),
-					'type'    => 'text',
-					'wrapper' => array( 'width' => '75' ),
+					'key'          => 'field_mrz_text_eyebrow',
+					'name'         => 'eyebrow',
+					'label'        => __( 'Eyebrow', 'mrz-theme-exp' ),
+					'instructions' => __( 'Optional. Short line above the title.', 'mrz-theme-exp' ),
+					'type'         => 'text',
+					'wrapper'      => array( 'width' => '50' ),
+				),
+				array(
+					'key'           => 'field_mrz_text_align',
+					'name'          => 'align',
+					'label'         => __( 'Alignment', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'left'   => __( 'Left', 'mrz-theme-exp' ),
+						'center' => __( 'Centered', 'mrz-theme-exp' ),
+					),
+					'default_value' => 'left',
+					'wrapper'       => array( 'width' => '50' ),
+				),
+				array(
+					'key'          => 'field_mrz_text_title',
+					'name'         => 'title',
+					'label'        => __( 'Title', 'mrz-theme-exp' ),
+					'instructions' => mrz_theme_title_instructions(),
+					'type'         => 'text',
+					'wrapper'      => array( 'width' => '75' ),
 				),
 				array(
 					'key'           => 'field_mrz_text_title_tag',
@@ -262,6 +292,23 @@ function mrz_theme_parent_layouts() {
 					'tabs'         => 'all',
 					'toolbar'      => 'full',
 					'media_upload' => 1,
+				),
+				array(
+					'key'           => 'field_mrz_text_link',
+					'name'          => 'link',
+					'label'         => __( 'Button', 'mrz-theme-exp' ),
+					'type'          => 'link',
+					'return_format' => 'array',
+					'wrapper'       => array( 'width' => '50' ),
+				),
+				array(
+					'key'           => 'field_mrz_text_link_2',
+					'name'          => 'link_2',
+					'label'         => __( 'Second button', 'mrz-theme-exp' ),
+					'instructions'  => __( 'Outlined.', 'mrz-theme-exp' ),
+					'type'          => 'link',
+					'return_format' => 'array',
+					'wrapper'       => array( 'width' => '50' ),
 				),
 				mrz_theme_section_settings_field( 'field_mrz_text' ),
 			),
@@ -293,7 +340,7 @@ function mrz_theme_parent_layouts() {
 					'key'          => 'field_mrz_cards_title',
 					'name'         => 'title',
 					'label'        => __( 'Section title', 'mrz-theme-exp' ),
-					'instructions' => __( 'Optional. Also names the carousel for screen readers.', 'mrz-theme-exp' ),
+					'instructions' => __( 'Optional. Also names the carousel for screen readers.', 'mrz-theme-exp' ) . ' ' . mrz_theme_title_instructions(),
 					'type'         => 'text',
 					'wrapper'      => array( 'width' => '50' ),
 				),
@@ -326,6 +373,34 @@ function mrz_theme_parent_layouts() {
 							),
 						),
 					),
+				),
+				array(
+					'key'           => 'field_mrz_cards_per_row',
+					'name'          => 'per_row',
+					'label'         => __( 'Cards per row', 'mrz-theme-exp' ),
+					'instructions'  => __( 'On a large screen. Automatic: the site setting.', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'auto' => __( 'Automatic', 'mrz-theme-exp' ),
+						'2'    => '2',
+						'3'    => '3',
+						'4'    => '4',
+					),
+					'default_value' => 'auto',
+					'wrapper'       => array( 'width' => '25' ),
+				),
+				array(
+					'key'           => 'field_mrz_cards_card_style',
+					'name'          => 'card_style',
+					'label'         => __( 'Card style', 'mrz-theme-exp' ),
+					'instructions'  => __( 'Key figures: the card title is the figure, shown large.', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'default' => __( 'Standard', 'mrz-theme-exp' ),
+						'figures' => __( 'Key figures', 'mrz-theme-exp' ),
+					),
+					'default_value' => 'default',
+					'wrapper'       => array( 'width' => '25' ),
 				),
 				array(
 					'key'          => 'field_mrz_cards_items',

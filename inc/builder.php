@@ -222,6 +222,22 @@ function mrz_theme_section_background_image( $image_id ) {
 }
 
 /**
+ * Texte d'un titre : seuls <em> (mot en couleur, --mrz-title-highlight-color) et <br> passent.
+ *
+ * @param string $title Titre saisi.
+ * @return string HTML sûr.
+ */
+function mrz_theme_title_html( $title ) {
+	return wp_kses(
+		(string) $title,
+		array(
+			'em' => array(),
+			'br' => array(),
+		)
+	);
+}
+
+/**
  * Ferme une section.
  */
 function mrz_theme_section_close() {
@@ -241,7 +257,7 @@ function mrz_theme_section_heading( $title, $intro = '' ) {
 
 	echo '<header class="mrz-section__heading">';
 	if ( $title ) {
-		echo '<h2 class="mrz-section__title">' . esc_html( $title ) . '</h2>';
+		echo '<h2 class="mrz-section__title">' . mrz_theme_title_html( $title ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtré par wp_kses.
 	}
 	if ( $intro ) {
 		echo '<p class="mrz-section__intro">' . esc_html( $intro ) . '</p>';

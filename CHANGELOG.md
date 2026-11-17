@@ -11,6 +11,11 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
   - voile sur l'image (sombre, léger, sans voile) ;
   - dégradé de la couleur de fond vers une seconde couleur de la palette.
 - Variables `--mrz-image-overlay-light`, `--mrz-section-image-position`, `--mrz-section-height-large`, `--mrz-section-height-screen`.
+- Texte libre : surtitre, alignement (gauche ou centré), deux boutons (plein et à contour).
+- Titres des sections du parent : `<em>` met un mot en couleur (`--mrz-title-highlight-color`, contraste vérifié par le Customizer), `<br>` force un retour à la ligne. Fonction `mrz_theme_title_html()` pour les sections sur mesure.
+- Cartes : nombre de cartes par ligne propre à la section, style « chiffres clés » (`--mrz-card-figure-size`).
+- Variables du surtitre : `--mrz-eyebrow-color`, `-size`, `-weight`, `-text-transform`, `-letter-spacing`.
+- Sur un fond de section ou une image, `--mrz-link-color` prend la couleur du texte de la section.
 
 ### Modifié
 - L'image de fond d'une section est une vraie `<img>` derrière le contenu, et non plus une image de fond CSS. Celle de la première section se charge en priorité (LCP) : un Texte libre avec titre en H1, image et hauteur plein écran fait une bannière.
