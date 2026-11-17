@@ -37,3 +37,15 @@ function mrz_theme_related_products_args( $args ) {
 	return $args;
 }
 add_filter( 'woocommerce_output_related_products_args', 'mrz_theme_related_products_args' );
+
+/**
+ * Page Boutique : pas de titre imposé par WooCommerce (comme les autres pages du thème).
+ * Les catégories de produits gardent le leur.
+ *
+ * @param bool $show Afficher le titre.
+ * @return bool
+ */
+function mrz_theme_shop_page_title( $show ) {
+	return function_exists( 'is_shop' ) && is_shop() ? false : $show;
+}
+add_filter( 'woocommerce_show_page_title', 'mrz_theme_shop_page_title' );

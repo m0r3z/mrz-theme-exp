@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Retiré
+- Titre `h1` automatique des pages Panier, Commande et Mon compte (ajouté en 0.4.1), et titre de la page Boutique de WooCommerce. Les catégories de produits gardent leur titre.
+
 ### Modifié
 - Transitions de page : le header et la barre d'admin restent immobiles, seul le contenu change.
 - Transitions de page en deux temps : l'ancienne page disparaît entièrement sur une couleur (« Couleur entre les deux pages », fond du site par défaut), puis la nouvelle arrive. Plus de superposition des deux pages, pour tous les effets.

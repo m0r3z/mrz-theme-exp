@@ -156,7 +156,7 @@ Les boutons et les champs du thème, de Gravity Forms (`src/css/gravity-forms.cs
 
 ## Réglages par page
 Meta box native « MRZ Theme » (`inc/page-options.php`), sans ACF, sur tous les types publics. Metas `_mrz_hide_header` (`'1'` ou absente) et `_mrz_transparent_header` (`on`, `off` ou absente). Lecture : `mrz_theme_page_option( '_mrz_hide_header' )`. Classe du body : `mrz-no-header`. Ne jamais écrire de CSS sur `.page-id-*` : passer par ces réglages.
-- **Titre** : une page n'affiche jamais son titre ; sa première section (ou son contenu) porte le `<h1>`. Toujours prévoir un `<h1>` sur une page, y compris une page faite d'un seul shortcode (panier, commande, compte). Un article affiche toujours son titre.
+- **Titre** : une page n'affiche jamais son titre ; sa première section (ou son contenu) porte le `<h1>`. Un article affiche toujours son titre.
 - **Footer** : section globale ; on le retire d'une page par ses conditions, pas par un réglage de page.
 
 ## Sections globales
@@ -199,7 +199,7 @@ Ne jamais modifier le parent installé sur un site, même pour le dépanner : la
 - Poids : Orbital ajoute environ 37 Ko compressés, seulement sur les pages qui ont un formulaire.
 
 ## WooCommerce
-Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.php` + `assets/css/woocommerce.css` (chargé sur tout le site : une grille `[products]` peut être sur n'importe quelle page). Panier et commande : pages en shortcodes classiques `[woocommerce_cart]` et `[woocommerce_checkout]`, pas en blocs. Sans constructeur, ces pages et Mon compte reçoivent leur titre en `<h1>` du parent. Jamais de sélecteur de WooCommerce dans l'enfant : passer par les variables (`--mrz-product-title-*`, boutons, champs).
+Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.php` + `assets/css/woocommerce.css` (chargé sur tout le site : une grille `[products]` peut être sur n'importe quelle page). Panier et commande : pages en shortcodes classiques `[woocommerce_cart]` et `[woocommerce_checkout]`, pas en blocs. Jamais de sélecteur de WooCommerce dans l'enfant : passer par les variables (`--mrz-product-title-*`, boutons, champs).
 
 ## Code
 - Préfixe `mrz_theme_` (fonctions), `mrz_` (theme_mods, CSS), textdomain `mrz-theme-exp`, chaînes source en anglais. Toute chaîne ajoutée ou modifiée : mettre à jour `languages/mrz-theme-exp.pot`, `fr_FR.po` et recompiler `fr_FR.mo` (commandes dans le README).
