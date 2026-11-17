@@ -122,6 +122,32 @@
 	--mrz-carousel-button-size: 2.75rem; /* 44px : cible tactile confortable */
 	--mrz-carousel-dot-size: 0.625rem;
 
+	/* Section Cartes (mrz_cards) : cartes par ligne selon l'écran, grille et carrousel. */
+	--mrz-cards-per-view: 1;
+	--mrz-cards-per-view-md: 2; /* à partir de 640px */
+	--mrz-cards-per-view-lg: 3; /* à partir de 1024px */
+	--mrz-card-padding: 2rem;
+	--mrz-card-gap: 1rem; /* entre l'icône, le titre, le texte et le lien */
+	--mrz-card-radius: var(--radius-base);
+	--mrz-card-border: 1px solid var(--color-border); /* cartes sans fond */
+	--mrz-card-shadow: none;
+	--mrz-card-icon-size: 2rem;
+	--mrz-card-title-size: var(--mrz-h4);
+
+	/* Section Footer (mrz_footer) */
+	--mrz-footer-logo-height: 4.5rem;
+	--mrz-footer-logo-space: 5rem; /* sous le logo */
+	--mrz-footer-gap: 3.5rem; /* entre la phrase et les colonnes */
+	--mrz-footer-title-size: var(--mrz-h2);
+	--mrz-footer-columns-gap: 3rem 8rem;
+	--mrz-footer-heading-size: var(--mrz-h5);
+	--mrz-footer-link-size: var(--mrz-text-sm);
+	--mrz-footer-link-space: 1.25rem; /* entre deux liens */
+	--mrz-footer-social-size: 1.5rem;
+	--mrz-footer-bottom-space: 4rem; /* au-dessus de la ligne du bas */
+	--mrz-footer-bottom-size: var(--mrz-text-sm);
+	--mrz-footer-bottom-border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+
 	/* Sous-menus du header (desktop) */
 	--mrz-submenu-bg: var(--mrz-header-bg); /* même fond que le header : le sous-menu le prolonge */
 	--mrz-submenu-color: var(--mrz-header-color);

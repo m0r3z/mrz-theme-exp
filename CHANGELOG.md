@@ -5,6 +5,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Sections du parent **Cartes** (`mrz_cards`) et **Footer** (`mrz_footer`), venues du modèle d'enfant : présentes sur tous les sites et mises à jour avec le thème. Apparence entièrement en variables (`--mrz-cards-*`, `--mrz-card-*`, `--mrz-footer-*`). Liens du footer à pleine couleur (contraste RGAA).
+- Le Footer n'est proposé que dans les sections globales (filtre `mrz_theme_global_only_layouts`, que l'enfant peut compléter).
 - Sous-menus du header : chevron indicateur, fermeture retardée au survol, Échap qui ferme et rend le focus au lien parent, ouverture au toucher (premier appui ouvre, second suit le lien), ouverture vers la gauche près du bord de l'écran. Variables `--mrz-submenu-bg`, `-color`, `-width`, `-radius`, `-shadow`, `-indicator`, `-indicator-size`.
 - Carrousel : `mrz_theme_carousel_open()` et `mrz_theme_carousel_close()`. Défilement natif (scroll-snap), flèches, points, lecture automatique facultative avec bouton pause, accessible (RGAA). Script chargé seulement sur les pages qui en ont un. Variables `--mrz-carousel-per-view` (décimales acceptées), `-gap`, `-button-size`, `-dot-size`.
 - Règles pour l'IA : RGAA (AGENTS.md).

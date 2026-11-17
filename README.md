@@ -71,6 +71,8 @@ Le menu « Ajouter une section » réunit deux sources :
 | --- | --- | --- |
 | Free text (Texte libre) | Titre, texte de l'éditeur classique | Pour un formulaire, une liste MRZ Display Post ou une carte MRZ Maps : y coller le shortcode |
 | Raw HTML (HTML brut) | Code HTML | Affiché tel quel, scripts compris. Visible seulement pour les administrateurs |
+| Cards (Cartes) | Titre, cartes (image ou icône, titre, texte, lien, fond), en grille ou en carrousel | Une icône SVG prend la couleur du texte de la carte |
+| Footer | Logo, phrase, bouton, colonnes de liens, réseaux sociaux, ligne du bas | Proposée seulement dans les sections globales, à l'emplacement « Footer » |
 | Global section | Une section globale existante | Pour réutiliser un bloc à un endroit précis |
 
 Une section sur mesure dont le nom contient `hero`, placée en premier, active le header transparent si l'option est cochée.
@@ -386,7 +388,6 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
 
 Petits restes, à traiter quand l'occasion se présente :
 - **Bordure des champs sur les fonds de couleur** (RGAA, contraste des composants) : sur une section sombre ou colorée, `--color-border` peut se confondre avec le fond. Prendre une bordure tirée du texte de la section (`color-mix()` de `--color-text`) quand `--mrz-field-border` n'est pas réglée.
-- **Footer dans la liste des sections** : `mrzchild_footer` est proposé dans le constructeur des pages ; le réserver aux sections globales.
 - **Mobile, connecté** : une bande de page apparaît au-dessus du header sticky au défilement.
 
 Pas prévu dans le parent : d'autres variantes de header et les effets de survol. Ils se font dans le thème enfant, en CSS, site par site. Le parent porte les comportements (sticky, menus, accessibilité, JS, intégrations) ; l'enfant porte l'apparence. Un ajout qui revient sur trois sites remonte dans le parent.

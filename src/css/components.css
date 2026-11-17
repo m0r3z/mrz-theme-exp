@@ -865,6 +865,181 @@
 		}
 	}
 
+	/* Section Cartes (mrz_cards) : grille ou carrousel, même nombre de cartes par ligne. */
+	.mrz-section--mrz-cards {
+		--mrz-carousel-per-view: var(--mrz-cards-per-view);
+	}
+
+	@media (min-width: 640px) {
+		.mrz-section--mrz-cards {
+			--mrz-carousel-per-view: var(--mrz-cards-per-view-md);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.mrz-section--mrz-cards {
+			--mrz-carousel-per-view: var(--mrz-cards-per-view-lg);
+		}
+	}
+
+	.mrz-cards__grid {
+		display: grid;
+		grid-template-columns: repeat(var(--mrz-carousel-per-view), minmax(0, 1fr));
+		gap: var(--mrz-carousel-gap);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.mrz-cards__item {
+		display: flex;
+	}
+
+	/* Le fond vient des classes .mrz-bg-- : texte, liens, focus et bouton suivent. */
+	.mrz-cards__card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--mrz-card-gap);
+		width: 100%;
+		padding: var(--mrz-card-padding);
+		border-radius: var(--mrz-card-radius);
+		box-shadow: var(--mrz-card-shadow);
+	}
+
+	.mrz-cards__card.mrz-bg--none {
+		border: var(--mrz-card-border);
+	}
+
+	.mrz-cards__icon {
+		display: block;
+		width: var(--mrz-card-icon-size);
+		height: var(--mrz-card-icon-size);
+		background: currentColor;
+		mask: var(--mrz-card-icon) left center / contain no-repeat;
+	}
+
+	.mrz-cards__media img {
+		display: block;
+		width: auto;
+		max-width: 100%;
+		height: auto;
+	}
+
+	.mrz-cards__title {
+		margin: 0;
+		font-size: var(--mrz-card-title-size);
+	}
+
+	/* Le lien reste en bas de la carte, quelle que soit la longueur du texte. */
+	.mrz-cards__link {
+		margin-top: auto;
+	}
+
+	/* Section Footer (mrz_footer) : couleurs tirées du texte de la section, sur n'importe quel fond. */
+	.mrz-section--mrz-footer a:not(.mrz-btn) {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.mrz-section--mrz-footer a:not(.mrz-btn):hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.mrz-footer__logo {
+		display: flex;
+		justify-content: center;
+		margin-bottom: var(--mrz-footer-logo-space);
+	}
+
+	.mrz-footer__logo img {
+		width: auto;
+		max-width: 100%;
+		height: var(--mrz-footer-logo-height);
+		object-fit: contain;
+	}
+
+	.mrz-footer__main {
+		display: grid;
+		gap: var(--mrz-footer-gap);
+	}
+
+	@media (min-width: 1024px) {
+		.mrz-footer__main {
+			grid-template-columns: 1fr auto;
+			align-items: start;
+		}
+	}
+
+	.mrz-footer__title {
+		margin: 0 0 2rem;
+		font-family: var(--font-title);
+		font-size: var(--mrz-footer-title-size);
+		font-weight: var(--mrz-title-weight);
+		line-height: var(--mrz-title-line-height);
+		color: var(--mrz-title-color, inherit);
+	}
+
+	.mrz-footer__socials {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin: 2rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.mrz-footer__socials a {
+		display: block;
+	}
+
+	.mrz-footer__social-icon {
+		display: block;
+		width: var(--mrz-footer-social-size);
+		height: var(--mrz-footer-social-size);
+		background: currentColor;
+		mask: var(--mrz-footer-social-icon) center / contain no-repeat;
+	}
+
+	.mrz-footer__columns {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--mrz-footer-columns-gap);
+	}
+
+	.mrz-footer__heading {
+		margin-bottom: 2rem;
+		font-size: var(--mrz-footer-heading-size);
+	}
+
+	.mrz-footer__column ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.mrz-footer__column li + li {
+		margin-top: var(--mrz-footer-link-space);
+	}
+
+	.mrz-footer__column a {
+		font-size: var(--mrz-footer-link-size);
+	}
+
+	.mrz-footer__bottom {
+		margin-top: var(--mrz-footer-bottom-space);
+		padding-top: 2rem;
+		border-top: var(--mrz-footer-bottom-border);
+		font-size: var(--mrz-footer-bottom-size);
+	}
+
+	.mrz-footer__bottom p {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.25rem;
+		margin: 0;
+	}
+
 	/* Cartes des articles */
 	.mrz-card {
 		position: relative;

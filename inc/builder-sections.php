@@ -16,6 +16,24 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Fonds possibles (sections, cartes) : les classes .mrz-bg--* du thème.
+ *
+ * @param string $none_label Libellé du choix « aucun ».
+ * @return array
+ */
+function mrz_theme_background_choices( $none_label = '' ) {
+	return array(
+		'none'       => $none_label ? $none_label : __( 'None', 'mrz-theme-exp' ),
+		'light'      => __( 'Light', 'mrz-theme-exp' ),
+		'dark'       => __( 'Dark', 'mrz-theme-exp' ),
+		'primary'    => __( 'Primary color', 'mrz-theme-exp' ),
+		'secondary'  => __( 'Secondary color', 'mrz-theme-exp' ),
+		'tertiary'   => __( 'Tertiary color', 'mrz-theme-exp' ),
+		'quaternary' => __( 'Quaternary color', 'mrz-theme-exp' ),
+	);
+}
+
+/**
  * Réglages communs d'une section (fond, espacement, largeur, ancre, image),
  * lus par mrz_theme_section_open().
  *
@@ -35,15 +53,7 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'name'          => 'background',
 				'label'         => __( 'Background', 'mrz-theme-exp' ),
 				'type'          => 'select',
-				'choices'       => array(
-					'none'      => __( 'None', 'mrz-theme-exp' ),
-					'light'     => __( 'Light', 'mrz-theme-exp' ),
-					'dark'      => __( 'Dark', 'mrz-theme-exp' ),
-					'primary'   => __( 'Primary color', 'mrz-theme-exp' ),
-					'secondary' => __( 'Secondary color', 'mrz-theme-exp' ),
-					'tertiary'   => __( 'Tertiary color', 'mrz-theme-exp' ),
-					'quaternary' => __( 'Quaternary color', 'mrz-theme-exp' ),
-				),
+				'choices'       => mrz_theme_background_choices(),
 				'default_value' => 'none',
 				'wrapper'       => array( 'width' => '25' ),
 			),
@@ -177,6 +187,210 @@ function mrz_theme_parent_layouts() {
 				),
 			),
 		),
+		'layout_mrz_cards'          => array(
+			'key'        => 'layout_mrz_cards',
+			'name'       => 'mrz_cards',
+			'label'      => __( 'Cards', 'mrz-theme-exp' ),
+			'display'    => 'block',
+			'sub_fields' => array(
+				array(
+					'key'          => 'field_mrz_cards_title',
+					'name'         => 'title',
+					'label'        => __( 'Section title', 'mrz-theme-exp' ),
+					'instructions' => __( 'Optional. Also names the carousel for screen readers.', 'mrz-theme-exp' ),
+					'type'         => 'text',
+					'wrapper'      => array( 'width' => '50' ),
+				),
+				array(
+					'key'           => 'field_mrz_cards_display',
+					'name'          => 'display',
+					'label'         => __( 'Display', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'grid'     => __( 'Grid', 'mrz-theme-exp' ),
+						'carousel' => __( 'Carousel', 'mrz-theme-exp' ),
+					),
+					'default_value' => 'grid',
+					'wrapper'       => array( 'width' => '25' ),
+				),
+				array(
+					'key'               => 'field_mrz_cards_autoplay',
+					'name'              => 'autoplay',
+					'label'             => __( 'Autoplay', 'mrz-theme-exp' ),
+					'instructions'      => __( 'Every 5 seconds, with a pause button.', 'mrz-theme-exp' ),
+					'type'              => 'true_false',
+					'ui'                => 1,
+					'wrapper'           => array( 'width' => '25' ),
+					'conditional_logic' => array(
+						array(
+							array(
+								'field'    => 'field_mrz_cards_display',
+								'operator' => '==',
+								'value'    => 'carousel',
+							),
+						),
+					),
+				),
+				array(
+					'key'          => 'field_mrz_cards_items',
+					'name'         => 'items',
+					'label'        => __( 'Cards', 'mrz-theme-exp' ),
+					'type'         => 'repeater',
+					'layout'       => 'block',
+					'button_label' => __( 'Add a card', 'mrz-theme-exp' ),
+					'collapsed'    => 'field_mrz_cards_item_title',
+					'sub_fields'   => array(
+						array(
+							'key'           => 'field_mrz_cards_item_image',
+							'name'          => 'image',
+							'label'         => __( 'Image or icon', 'mrz-theme-exp' ),
+							'instructions'  => __( 'An SVG icon takes the text color of the card.', 'mrz-theme-exp' ),
+							'type'          => 'image',
+							'return_format' => 'id',
+							'preview_size'  => 'thumbnail',
+							'wrapper'       => array( 'width' => '25' ),
+						),
+						array(
+							'key'     => 'field_mrz_cards_item_title',
+							'name'    => 'title',
+							'label'   => __( 'Title', 'mrz-theme-exp' ),
+							'type'    => 'text',
+							'wrapper' => array( 'width' => '50' ),
+						),
+						array(
+							'key'           => 'field_mrz_cards_item_background',
+							'name'          => 'background',
+							'label'         => __( 'Background', 'mrz-theme-exp' ),
+							'type'          => 'select',
+							'choices'       => mrz_theme_background_choices( __( 'None (border)', 'mrz-theme-exp' ) ),
+							'default_value' => 'none',
+							'wrapper'       => array( 'width' => '25' ),
+						),
+						array(
+							'key'          => 'field_mrz_cards_item_text',
+							'name'         => 'text',
+							'label'        => __( 'Text', 'mrz-theme-exp' ),
+							'type'         => 'wysiwyg',
+							'tabs'         => 'all',
+							'toolbar'      => 'basic',
+							'media_upload' => 0,
+						),
+						array(
+							'key'           => 'field_mrz_cards_item_link',
+							'name'          => 'link',
+							'label'         => __( 'Link', 'mrz-theme-exp' ),
+							'instructions'  => __( 'Shown as an arrow link.', 'mrz-theme-exp' ),
+							'type'          => 'link',
+							'return_format' => 'array',
+						),
+					),
+				),
+				mrz_theme_section_settings_field( 'field_mrz_cards' ),
+			),
+		),
+		'layout_mrz_footer'         => array(
+			'key'        => 'layout_mrz_footer',
+			'name'       => 'mrz_footer',
+			'label'      => __( 'Footer', 'mrz-theme-exp' ),
+			'display'    => 'block',
+			'sub_fields' => array(
+				array(
+					'key'           => 'field_mrz_footer_logo',
+					'name'          => 'logo',
+					'label'         => __( 'Logo', 'mrz-theme-exp' ),
+					'instructions'  => __( 'Optional: centered above the footer.', 'mrz-theme-exp' ),
+					'type'          => 'image',
+					'return_format' => 'id',
+					'preview_size'  => 'medium',
+					'wrapper'       => array( 'width' => '30' ),
+				),
+				array(
+					'key'       => 'field_mrz_footer_title',
+					'name'      => 'title',
+					'label'     => __( 'Sentence', 'mrz-theme-exp' ),
+					'type'      => 'textarea',
+					'rows'      => 3,
+					'new_lines' => 'br',
+					'wrapper'   => array( 'width' => '40' ),
+				),
+				array(
+					'key'           => 'field_mrz_footer_button',
+					'name'          => 'button',
+					'label'         => __( 'Button', 'mrz-theme-exp' ),
+					'type'          => 'link',
+					'return_format' => 'array',
+					'wrapper'       => array( 'width' => '30' ),
+				),
+				array(
+					'key'          => 'field_mrz_footer_columns',
+					'name'         => 'columns',
+					'label'        => __( 'Link columns', 'mrz-theme-exp' ),
+					'type'         => 'repeater',
+					'layout'       => 'block',
+					'button_label' => __( 'Add a column', 'mrz-theme-exp' ),
+					'sub_fields'   => array(
+						array(
+							'key'   => 'field_mrz_footer_column_title',
+							'name'  => 'title',
+							'label' => __( 'Title', 'mrz-theme-exp' ),
+							'type'  => 'text',
+						),
+						array(
+							'key'          => 'field_mrz_footer_column_links',
+							'name'         => 'links',
+							'label'        => __( 'Links', 'mrz-theme-exp' ),
+							'instructions' => __( 'A bulleted list of links.', 'mrz-theme-exp' ),
+							'type'         => 'wysiwyg',
+							'tabs'         => 'all',
+							'toolbar'      => 'basic',
+							'media_upload' => 0,
+						),
+					),
+				),
+				array(
+					'key'          => 'field_mrz_footer_socials',
+					'name'         => 'socials',
+					'label'        => __( 'Social networks', 'mrz-theme-exp' ),
+					'instructions' => __( 'Black SVG icon (colored by the theme), link and network name (read by screen readers).', 'mrz-theme-exp' ),
+					'type'         => 'repeater',
+					'layout'       => 'table',
+					'button_label' => __( 'Add a network', 'mrz-theme-exp' ),
+					'sub_fields'   => array(
+						array(
+							'key'           => 'field_mrz_footer_social_icon',
+							'name'          => 'icon',
+							'label'         => __( 'Icon', 'mrz-theme-exp' ),
+							'type'          => 'image',
+							'return_format' => 'id',
+							'preview_size'  => 'thumbnail',
+						),
+						array(
+							'key'   => 'field_mrz_footer_social_url',
+							'name'  => 'url',
+							'label' => __( 'Link', 'mrz-theme-exp' ),
+							'type'  => 'url',
+						),
+						array(
+							'key'   => 'field_mrz_footer_social_name',
+							'name'  => 'name',
+							'label' => __( 'Name', 'mrz-theme-exp' ),
+							'type'  => 'text',
+						),
+					),
+				),
+				array(
+					'key'          => 'field_mrz_footer_bottom',
+					'name'         => 'bottom',
+					'label'        => __( 'Bottom line', 'mrz-theme-exp' ),
+					'instructions' => __( 'Copyright, legal links. Tags: {year}, {site}.', 'mrz-theme-exp' ),
+					'type'         => 'wysiwyg',
+					'tabs'         => 'all',
+					'toolbar'      => 'basic',
+					'media_upload' => 0,
+				),
+				mrz_theme_section_settings_field( 'field_mrz_footer' ),
+			),
+		),
 		'layout_mrz_global_section' => array(
 			'key'        => 'layout_mrz_global_section',
 			'name'       => 'mrz_global_section',
@@ -289,11 +503,39 @@ function mrz_theme_inject_parent_layouts( $field ) {
 			$layouts[ $key ] = $layout;
 		}
 	}
+	// Sections réservées aux sections globales : absentes du constructeur des pages et articles.
+	if ( mrz_theme_is_editing_content_outside_global_sections() ) {
+		$global_only = (array) apply_filters( 'mrz_theme_global_only_layouts', array( 'mrz_footer' ) );
+		foreach ( $layouts as $key => $layout ) {
+			if ( in_array( $layout['name'] ?? '', $global_only, true ) ) {
+				unset( $layouts[ $key ] );
+			}
+		}
+	}
+
 	$field['layouts'] = $layouts;
 
 	return $field;
 }
 add_filter( 'acf/load_field/type=flexible_content', 'mrz_theme_inject_parent_layouts', 20 );
+
+/**
+ * Écran d'édition d'un contenu qui n'est pas une section globale (page, article…) ?
+ * Hors admin (affichage) et en AJAX, toutes les sections restent déclarées.
+ *
+ * @return bool
+ */
+function mrz_theme_is_editing_content_outside_global_sections() {
+	if ( ! is_admin() || wp_doing_ajax() ) {
+		return false;
+	}
+
+	global $typenow;
+	$screen    = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	$post_type = $screen && $screen->post_type ? $screen->post_type : (string) $typenow;
+
+	return $post_type && 'mrz_section' !== $post_type;
+}
 
 /**
  * HTML brut : champ réservé aux comptes qui peuvent publier du HTML non filtré.

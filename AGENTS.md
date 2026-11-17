@@ -38,6 +38,8 @@ Déclarées en PHP dans `inc/builder-sections.php`, ajoutées au constructeur de
 | --- | --- | --- |
 | `mrz_text` | title, title_tag (`h2` par défaut, `h1` si la section ouvre la page), content (HTML, shortcodes compris), settings | Texte libre |
 | `mrz_html` | code | Affiché tel quel, scripts compris ; champ visible seulement avec le droit `unfiltered_html` |
+| `mrz_cards` | title, display (`grid`, `carousel`), autoplay, items (répéteur : image, title, background, text, link), settings | Cartes libres. Image SVG = icône à la couleur du texte. Variables `--mrz-cards-*`, `--mrz-card-*` |
+| `mrz_footer` | logo, title, button, columns (répéteur : title, links), socials (répéteur : icon, url, name), bottom, settings | Footer. Proposée seulement dans les sections globales. Variables `--mrz-footer-*` |
 | `mrz_global_section` | section (ID `mrz_section`) | |
 
 `settings` : background (none, light, dark, primary, secondary, tertiary, quaternary), spacing (normal, compact, large, none), width (container, narrow pour une largeur de lecture, wide, full), anchor, background_image (ID). Lu par `mrz_theme_section_open()`, qui accepte aussi `'class'` : plusieurs classes séparées par des espaces, ou un tableau.
@@ -91,6 +93,8 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 | Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding-y`, `--mrz-button-padding-x`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
 | Champs | `--mrz-field-font-size`, `--mrz-field-padding-y`, `--mrz-field-padding-x`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
 | Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` |
+| Cartes (`mrz_cards`) | `--mrz-cards-per-view`, `--mrz-cards-per-view-md` (640px), `--mrz-cards-per-view-lg` (1024px), `--mrz-card-padding`, `--mrz-card-gap`, `--mrz-card-radius`, `--mrz-card-border`, `--mrz-card-shadow`, `--mrz-card-icon-size`, `--mrz-card-title-size` |
+| Footer (`mrz_footer`) | `--mrz-footer-logo-height`, `--mrz-footer-logo-space`, `--mrz-footer-gap`, `--mrz-footer-title-size`, `--mrz-footer-columns-gap`, `--mrz-footer-heading-size`, `--mrz-footer-link-size`, `--mrz-footer-link-space`, `--mrz-footer-social-size`, `--mrz-footer-bottom-space`, `--mrz-footer-bottom-size`, `--mrz-footer-bottom-border` |
 | Sous-menus (desktop) | `--mrz-submenu-bg` (fond du header par défaut), `--mrz-submenu-color`, `--mrz-submenu-width`, `--mrz-submenu-radius`, `--mrz-submenu-shadow`, `--mrz-submenu-indicator` (chevron en masque), `--mrz-submenu-indicator-size` (`0` pour aucun chevron) |
 | Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--mrz-container-narrow`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base` |
 | Focus | `--mrz-focus-color` : contour du focus clavier. Couleur principale sur le fond du site, couleur du texte de la section sur un fond de section, sur une image et dans le header transparent. Ne jamais retirer le contour (`outline: none`) |
@@ -132,7 +136,7 @@ CPT `mrz_section`. Meta `mrz_section_hook` (emplacement), `mrz_section_priority`
 
 ### Footer
 - Le parent n'a pas de footer par défaut (ni widgets, ni menu de footer, ni copyright). Le footer d'un site est une section globale à l'emplacement `mrz_footer`, que `footer.php` enveloppe dans `<footer class="mrz-footer">`.
-- Le modèle d'enfant fournit la section `mrzchild_footer` : logo (facultatif, centré), phrase et bouton, colonnes (titre + liste de liens en WYSIWYG), réseaux sociaux (icône en image, lien, nom), ligne du bas (WYSIWYG, balises `{year}` et `{site}` via `mrz_theme_text_tags()`). Fond et espacement par les réglages de la section. Retirer du modèle ce que la maquette n'a pas.
+- Le parent fournit la section `mrz_footer` : logo (facultatif, centré), phrase et bouton, réseaux sociaux (icône SVG à la couleur du texte, lien, nom), colonnes (titre + liste de liens en WYSIWYG), ligne du bas (balises `{year}` et `{site}`). Elle n'est proposée que dans les sections globales (filtre `mrz_theme_global_only_layouts`, que l'enfant peut compléter). Apparence : variables `--mrz-footer-*`. Quand une maquette s'en écarte trop, l'enfant crée sa propre section `mrzchild_footer`.
 - Les liens du footer sont écrits dans la section, pas dans des menus WordPress : une section globale se traduit en une fois avec Polylang, au lieu d'un menu par emplacement et par langue.
 
 ## Plugins MRZ : obligatoires

@@ -604,3 +604,93 @@ msgstr "Relancer le carrousel"
 
 msgid "carousel"
 msgstr "carrousel"
+
+msgid "A bulleted list of links."
+msgstr "Une liste à puces de liens."
+
+msgid "Add a card"
+msgstr "Ajouter une carte"
+
+msgid "Add a column"
+msgstr "Ajouter une colonne"
+
+msgid "Add a network"
+msgstr "Ajouter un réseau"
+
+msgid "An SVG icon takes the text color of the card."
+msgstr "Une icône SVG prend la couleur du texte de la carte."
+
+msgid "Autoplay"
+msgstr "Défilement automatique"
+
+msgid "Black SVG icon (colored by the theme), link and network name (read by screen readers)."
+msgstr "Icône SVG noire (colorée par le thème), lien et nom du réseau (lu par les lecteurs d'écran)."
+
+msgid "Bottom line"
+msgstr "Ligne du bas"
+
+msgid "Button"
+msgstr "Bouton"
+
+msgid "Cards"
+msgstr "Cartes"
+
+msgid "Carousel"
+msgstr "Carrousel"
+
+msgid "Copyright, legal links. Tags: {year}, {site}."
+msgstr "Copyright, liens légaux. Balises : {year}, {site}."
+
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Every 5 seconds, with a pause button."
+msgstr "Toutes les 5 secondes, avec un bouton pause."
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Grid"
+msgstr "Grille"
+
+msgid "Icon"
+msgstr "Icône"
+
+msgid "Image or icon"
+msgstr "Image ou icône"
+
+msgid "Link"
+msgstr "Lien"
+
+msgid "Link columns"
+msgstr "Colonnes de liens"
+
+msgid "Links"
+msgstr "Liens"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "None (border)"
+msgstr "Aucun (bordure)"
+
+msgid "Optional. Also names the carousel for screen readers."
+msgstr "Facultatif. Nomme aussi le carrousel pour les lecteurs d'écran."
+
+msgid "Optional: centered above the footer."
+msgstr "Facultatif : centré au-dessus du footer."
+
+msgid "Section title"
+msgstr "Titre de la section"
+
+msgid "Sentence"
+msgstr "Phrase"
+
+msgid "Shown as an arrow link."
+msgstr "Affiché en lien fléché."
+
+msgid "Social networks"
+msgstr "Réseaux sociaux"
