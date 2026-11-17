@@ -123,8 +123,8 @@
 	--mrz-carousel-dot-size: 0.625rem;
 
 	/* Sous-menus du header (desktop) */
-	--mrz-submenu-bg: var(--color-background);
-	--mrz-submenu-color: var(--color-text);
+	--mrz-submenu-bg: var(--mrz-header-bg); /* même fond que le header : le sous-menu le prolonge */
+	--mrz-submenu-color: var(--mrz-header-color);
 	--mrz-submenu-width: 14rem;
 	--mrz-submenu-radius: var(--radius-base);
 	--mrz-submenu-shadow: 0 12px 32px rgb(0 0 0 / 0.12);

@@ -11,6 +11,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Règles pour l'IA : objectif Lighthouse 100 sur les quatre scores (AGENTS.md).
 
 ### Modifié
+- Sous-menus du header : le premier niveau part du bas du header, coins du haut droits, avec le fond du header par défaut (`--mrz-submenu-bg`).
+- Menu mobile plein écran : le bouton fermer prend la place exacte du burger. Dans les autres styles, il est bien à droite du panneau.
 - `--mrz-field-padding` et `--mrz-button-padding` sont composées de `--mrz-field-padding-y`/`-x` et `--mrz-button-padding-y`/`-x` : régler ces dernières dans l'enfant.
 
 ### Corrigé

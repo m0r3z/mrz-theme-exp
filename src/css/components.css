@@ -54,6 +54,9 @@
 	/* Header transparent : par-dessus le hero, couleurs claires jusqu'au défilement. */
 	.mrz-header-transparent .mrz-header:not(.is-scrolled) {
 		--mrz-focus-color: var(--mrz-header-transparent-color);
+		/* Sous-menus : fond plein du site, même quand le header est transparent. */
+		--mrz-submenu-bg: var(--color-background);
+		--mrz-submenu-color: var(--color-text);
 	}
 
 	.mrz-header-transparent .mrz-header {
@@ -223,6 +226,27 @@
 	.mrz-menu .sub-menu .sub-menu {
 		top: -0.5rem;
 		left: 100%;
+	}
+
+	/*
+	 * Premier niveau : le sous-menu part du bas du header, coins du haut droits.
+	 * main.js mesure l'écart entre le lien et le bas du header (--mrz-submenu-offset) ;
+	 * un pont invisible couvre cet écart pour que le survol ne se perde pas.
+	 */
+	.mrz-menu > li > .sub-menu {
+		top: calc(100% + var(--mrz-submenu-offset, 0px));
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		transform: translateY(-0.5rem);
+	}
+
+	.mrz-menu > li > .sub-menu::before {
+		content: "";
+		position: absolute;
+		bottom: 100%;
+		left: 0;
+		right: 0;
+		height: var(--mrz-submenu-offset, 0px);
 	}
 
 	/* Trop près du bord droit de l'écran : le sous-menu s'ouvre vers la gauche (main.js). */
@@ -469,8 +493,23 @@
 	}
 
 	.mrz-offcanvas__close {
+		display: flex;
 		margin-left: auto;
 		margin-bottom: 1rem;
+	}
+
+	/* Plein écran : le bouton fermer prend la place exacte du burger (mesurée par main.js). */
+	.mrz-offcanvas--fullscreen .mrz-offcanvas__close {
+		position: fixed;
+		top: var(--mrz-close-top, 1rem);
+		right: var(--mrz-close-right, var(--mrz-gutter));
+		left: var(--mrz-close-left, auto);
+		z-index: 1;
+		margin: 0;
+	}
+
+	.mrz-offcanvas--fullscreen .mrz-offcanvas__panel {
+		padding-top: calc(var(--mrz-header-height, 4.5rem) + 1rem);
 	}
 
 	.mrz-mobile-nav,

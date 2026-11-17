@@ -55,6 +55,17 @@
 			panel.classList.add( 'is-open' );
 		} );
 		body.classList.add( 'mrz-menu-open' );
+		/*
+		 * Plein écran : le bouton fermer se place exactement sur le burger, mesuré après le
+		 * blocage du défilement et positionné par la gauche (même repère que la mesure).
+		 */
+		var burger = document.querySelector( '.mrz-burger' );
+		if ( 'fullscreen' === panel.getAttribute( 'data-mrz-style' ) && burger ) {
+			var box = burger.getBoundingClientRect();
+			panel.style.setProperty( '--mrz-close-top', box.top + 'px' );
+			panel.style.setProperty( '--mrz-close-left', box.left + 'px' );
+			panel.style.setProperty( '--mrz-close-right', 'auto' );
+		}
 		setExpanded( true );
 		var firstFocus = isDropdown ? panel.querySelector( 'nav a' ) : panel.querySelector( '.mrz-offcanvas__close' );
 		if ( firstFocus ) {
@@ -162,6 +173,12 @@
 		var submenu = item.querySelector( ':scope > .sub-menu' );
 		if ( ! submenu ) {
 			return;
+		}
+		/* Premier niveau : écart entre le lien et le bas du header. */
+		var headerBox = item.closest( '.mrz-header' );
+		if ( headerBox && ! item.parentElement.closest( '.sub-menu' ) ) {
+			var gap = headerBox.getBoundingClientRect().bottom - item.getBoundingClientRect().bottom;
+			item.style.setProperty( '--mrz-submenu-offset', Math.max( 0, gap ) + 'px' );
 		}
 		item.classList.remove( 'mrz-submenu--flip' );
 		if ( submenu.getBoundingClientRect().right > document.documentElement.clientWidth ) {
