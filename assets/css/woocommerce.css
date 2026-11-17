@@ -660,3 +660,114 @@
 	width: 12rem;
 	margin-right: 0.5rem;
 }
+
+/*
+ * Galerie de la fiche produit (galerie native : diaporama, zoom, lightbox).
+ * WooCommerce la masque (opacity: 0 en ligne) jusqu'au chargement de son script :
+ * l'image principale, souvent le LCP de la page, s'affiche tout de suite.
+ */
+.woocommerce div.product div.images.woocommerce-product-gallery {
+	opacity: 1 !important; /* Passe devant le style en ligne de WooCommerce. */
+}
+
+.woocommerce div.product div.images .flex-viewport,
+.woocommerce div.product div.images .woocommerce-product-gallery__image img {
+	border-radius: var(--radius-base);
+}
+
+.woocommerce div.product div.images .flex-control-thumbs {
+	display: grid;
+	grid-template-columns: repeat(var(--mrz-product-thumbs, 4), minmax(0, 1fr));
+	gap: var(--mrz-gallery-gap);
+	margin-top: var(--mrz-gallery-gap);
+}
+
+.woocommerce div.product div.images .flex-control-thumbs::before,
+.woocommerce div.product div.images .flex-control-thumbs::after {
+	display: none;
+}
+
+.woocommerce div.product div.images .flex-control-thumbs li {
+	width: auto;
+	float: none;
+}
+
+.woocommerce div.product div.images .flex-control-thumbs li img {
+	border-radius: var(--radius-base);
+}
+
+/* Bouton loupe : pastille aux couleurs du site. */
+.woocommerce div.product div.images .woocommerce-product-gallery__trigger {
+	background: var(--color-background);
+}
+
+/*
+ * Mon compte : menu en liste de liens (page active marquée, comme le menu du header),
+ * à gauche sur grand écran, au-dessus du contenu sur mobile (disposition de WooCommerce).
+ */
+.woocommerce-account .woocommerce-MyAccount-navigation ul {
+	margin: 0 0 2rem;
+	padding: 0;
+	border-top: 1px solid var(--color-border);
+	list-style: none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation li {
+	border-bottom: 1px solid var(--color-border);
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a {
+	display: block;
+	padding: 0.85rem 0;
+	color: var(--color-muted);
+	font-family: var(--mrz-menu-font-family, inherit);
+	font-weight: var(--mrz-menu-font-weight, inherit);
+	letter-spacing: var(--mrz-menu-letter-spacing, normal);
+	text-transform: var(--mrz-menu-text-transform, none);
+	text-decoration: none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a:hover,
+.woocommerce-account .woocommerce-MyAccount-navigation .is-active a {
+	color: var(--color-text);
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation .is-active a {
+	font-weight: var(--mrz-title-weight);
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation .is-active a::before {
+	content: "";
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-right: 0.6rem;
+	border-radius: 50%;
+	background: var(--mrz-anchors-active-color, var(--color-primary));
+	vertical-align: middle;
+}
+
+/* Tableaux (commandes, téléchargements, panier, récapitulatif) : traits du site. */
+.woocommerce table.shop_table {
+	border-color: var(--color-border);
+	border-radius: var(--radius-base);
+}
+
+.woocommerce table.shop_table th,
+.woocommerce table.shop_table td,
+.woocommerce table.shop_table tbody th,
+.woocommerce table.shop_table tfoot td,
+.woocommerce table.shop_table tfoot th {
+	border-color: var(--color-border);
+}
+
+/* Adresses : un bloc encadré par adresse. */
+.woocommerce-account .woocommerce-Address {
+	padding: 1.5rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-base);
+}
+
+.woocommerce-account .woocommerce-Address-title h2 {
+	font-size: var(--mrz-h4);
+}
