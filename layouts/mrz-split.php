@@ -45,7 +45,7 @@ mrz_theme_section_open( 'mrz-split', array( 'class' => $mrz_classes ) );
 			echo '<p class="mrz-eyebrow">' . esc_html( get_sub_field( 'eyebrow' ) ) . '</p>';
 		}
 		if ( get_sub_field( 'title' ) ) {
-			$mrz_title_tag = mrz_theme_heading_tag( 'h1' === get_sub_field( 'title_tag' ) ? 'h1' : 'h2' );
+			$mrz_title_tag = mrz_theme_heading_tag( array_key_exists( (string) get_sub_field( 'title_tag' ), mrz_theme_title_tag_choices() ) ? get_sub_field( 'title_tag' ) : 'h2' );
 			printf( '<%1$s>%2$s</%1$s>', $mrz_title_tag, mrz_theme_title_html( get_sub_field( 'title' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- balise choisie dans une liste fermée, titre filtré par wp_kses.
 		}
 		// Contenu de l'éditeur mis en forme par ACF, shortcodes compris (comme le Texte libre).

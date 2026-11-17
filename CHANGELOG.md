@@ -7,11 +7,16 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ### Ajouté
 - Mega menu : une section globale placée au deuxième niveau forme une colonne (image, texte, bouton, Cartes). Elle n'apparaît que dans le mega menu du header ; ses titres y deviennent des paragraphes et ses images ne prennent pas la priorité de chargement.
 - `--mrz-megamenu-column-min`.
+- Texte libre et Texte et média : niveaux de titre H1 à H6 (H2 par défaut).
+- Admin : éditeurs de texte des sections moins hauts (150px au lieu de 300px).
 
 ### Modifié
 - Mega menu : par défaut, autant de colonnes que d'éléments du deuxième niveau (`--mrz-megamenu-columns: auto-fit`, un nombre reste possible).
 - Images des Cartes : même règle de chargement que les autres images de section (prioritaire dans la première section de la page, différé ailleurs), au lieu du choix automatique de WordPress.
 - Les styles des liens du menu ne visent plus que les liens du menu (`.menu-item > a`).
+
+### Corrigé
+- Admin : l'aide des champs de titre affichait le résultat des balises `<em>` et `<br>` au lieu de les citer.
 
 ## [0.5.0] - 2026-11-17
 

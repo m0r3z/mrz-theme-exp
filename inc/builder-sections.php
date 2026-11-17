@@ -191,7 +191,24 @@ function mrz_theme_section_settings_field( $prefix ) {
  * @return string
  */
 function mrz_theme_title_instructions() {
-	return __( 'Put a word between <em> and </em> to color it; <br> for a line break.', 'mrz-theme-exp' );
+	// Échappé : ACF affiche l'aide en HTML, les balises citées doivent rester visibles.
+	return esc_html__( 'Put a word between <em> and </em> to color it; <br> for a line break.', 'mrz-theme-exp' );
+}
+
+/**
+ * Niveaux de titre proposés (Texte libre, Texte et média).
+ *
+ * @return array
+ */
+function mrz_theme_title_tag_choices() {
+	return array(
+		'h2' => 'H2',
+		'h1' => 'H1',
+		'h3' => 'H3',
+		'h4' => 'H4',
+		'h5' => 'H5',
+		'h6' => 'H6',
+	);
 }
 
 /**
@@ -275,12 +292,9 @@ function mrz_theme_parent_layouts() {
 					'key'           => 'field_mrz_text_title_tag',
 					'name'          => 'title_tag',
 					'label'         => __( 'Title level', 'mrz-theme-exp' ),
-					'instructions'  => __( 'H1 only when this section opens the page (one H1 per page).', 'mrz-theme-exp' ),
+					'instructions'  => __( 'H1 only when this section opens the page (one H1 per page). No skipped level.', 'mrz-theme-exp' ),
 					'type'          => 'select',
-					'choices'       => array(
-						'h2' => 'H2',
-						'h1' => 'H1',
-					),
+					'choices'       => mrz_theme_title_tag_choices(),
 					'default_value' => 'h2',
 					'wrapper'       => array( 'width' => '25' ),
 				),
@@ -484,12 +498,9 @@ function mrz_theme_parent_layouts() {
 					'key'           => 'field_mrz_split_title_tag',
 					'name'          => 'title_tag',
 					'label'         => __( 'Title level', 'mrz-theme-exp' ),
-					'instructions'  => __( 'H1 only when this section opens the page (one H1 per page).', 'mrz-theme-exp' ),
+					'instructions'  => __( 'H1 only when this section opens the page (one H1 per page). No skipped level.', 'mrz-theme-exp' ),
 					'type'          => 'select',
-					'choices'       => array(
-						'h2' => 'H2',
-						'h1' => 'H1',
-					),
+					'choices'       => mrz_theme_title_tag_choices(),
 					'default_value' => 'h2',
 					'wrapper'       => array( 'width' => '25' ),
 				),
@@ -960,3 +971,36 @@ function mrz_theme_restrict_html_field( $field ) {
 	return current_user_can( 'unfiltered_html' ) ? $field : false;
 }
 add_filter( 'acf/prepare_field/key=field_mrz_html_code', 'mrz_theme_restrict_html_field' );
+
+/**
+ * Éditeurs de texte des sections : moins hauts (150px au lieu de 300px), ils grandissent
+ * avec le texte saisi. La page du constructeur reste lisible d'un coup d'œil.
+ */
+function mrz_theme_compact_wysiwyg() {
+	?>
+	<script>
+	if ( window.acf ) {
+		acf.add_filter( 'wysiwyg_tinymce_settings', function ( settings, id ) {
+			// TinyMCE prend la hauteur du textarea (300px imposés par ACF) : on la réduit avant le démarrage.
+			var textarea = document.getElementById( id );
+			if ( textarea ) {
+				textarea.style.height = '150px';
+			}
+			settings.height = 150;
+			settings.min_height = 120;
+			settings.autoresize_min_height = 150;
+			return settings;
+		} );
+		// WordPress impose encore sa hauteur au démarrage : on la ramène une fois l'éditeur prêt.
+		acf.addAction( 'wysiwyg_tinymce_init', function ( editor ) {
+			editor.theme.resizeTo( null, 150 );
+		} );
+	}
+	</script>
+	<style>
+	.acf-field-wysiwyg textarea.wp-editor-area { min-height: 150px; }
+	.acf-field-wysiwyg .acf-editor-wrap iframe { min-height: 120px; }
+	</style>
+	<?php
+}
+add_action( 'acf/input/admin_footer', 'mrz_theme_compact_wysiwyg' );
