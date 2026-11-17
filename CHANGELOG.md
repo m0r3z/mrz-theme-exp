@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.4.0] - 2026-11-17
+
 ### Ajouté
 - Sections du parent **Cartes** (`mrz_cards`) et **Footer** (`mrz_footer`), venues du modèle d'enfant : présentes sur tous les sites et mises à jour avec le thème. Apparence entièrement en variables (`--mrz-cards-*`, `--mrz-card-*`, `--mrz-footer-*`). Liens du footer à pleine couleur (contraste RGAA).
 - Le Footer n'est proposé que dans les sections globales (filtre `mrz_theme_global_only_layouts`, que l'enfant peut compléter).

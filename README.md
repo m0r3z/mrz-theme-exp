@@ -318,7 +318,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 5. **Release** : un tag égal à la version précédée de `v`, les notes tirées du CHANGELOG :
 
    ```bash
-   GH_TOKEN=$(gh auth token --user m0r3z) gh release create v0.3.0 --title "0.3.0" --notes-file notes.md
+   GH_TOKEN=$(gh auth token --user m0r3z) gh release create v0.4.0 --title "0.4.0" --notes-file notes.md
    ```
 
 6. **Premier site** : lancer la mise à jour sur un site de test qui n'est pas une copie Git (`dev.local`), refaire la recette rapide, puis seulement les autres sites, depuis ManageWP. Chaque site affiche « Mise à jour disponible » dans les 12 heures, ou tout de suite depuis **Tableau de bord > Mises à jour**.
@@ -351,7 +351,7 @@ mrz-theme-exp/
 
 ## État et feuille de route
 
-**Version publiée : 0.3.0 (17/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
+**Version publiée : 0.4.0 (17/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
 **Aucun site en production** : le thème tourne sur MRZ-Dev (où vit le dépôt) et sur trois sites de test, HelloWorld, Beta-Bird (Energies Réunion, bilingue) et Beta-Sonny (Morez, site sombre). Tant que c'est le cas, un changement cassant ne demande aucune migration.
 
