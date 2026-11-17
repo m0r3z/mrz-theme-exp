@@ -4,6 +4,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.5.0] - 2026-11-17
+
+Ce qui avait obligé à créer des sections sur mesure dans les enfants (bannière, texte et image, chiffres clés, accordéon, mega menu).
+
 ### Ajouté
 - Réglages communs des sections :
   - espace en haut et en bas réglables à part ;
