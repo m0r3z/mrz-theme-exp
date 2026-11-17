@@ -405,7 +405,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
    Mise en forme de la page des articles et des catégories. Dans le parent.
 5. ~~**JS, en modules chargés seulement sur les pages qui s'en servent**~~ : faits en 0.6 (lightbox et galerie, vidéo de fond) ; carrousel fait après la 0.3.0.
 6. ~~**V2**~~ : animations au défilement et parallaxe faites en 0.6 (CSS seul) ; mega menu fait en 0.5, avec les sections globales en colonne en 0.5.1.
-7. ~~**0.7, sections d'appoint**~~ : faites (sous-menu d'ancres, bandeau défilant, compteur ; séparateurs de forme abandonnés). **0.8** : fenêtre (`<dialog>`) en section globale, transition d'élément partagé, révélation circulaire.
+7. ~~**0.7, sections d'appoint**~~ : faites (sous-menu d'ancres, bandeau défilant, compteur ; séparateurs de forme abandonnés). Abandonné pour le parent : la fenêtre pop-up (ce sera un plugin à part), la transition d'élément partagé et la révélation circulaire (dans l'enfant du site qui les veut).
 8. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
 9. **Theme Check** : passer le plugin avant la 1.0.
 
