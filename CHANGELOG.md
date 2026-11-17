@@ -10,7 +10,6 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ### Ajouté
 - Section **Sous-menu d'ancres** (`mrz_anchors`) : liens vers les sections de la page, collés sous le header en option (les ancres s'arrêtent sous la barre), lien de la section affichée mis en évidence, défilement horizontal sur mobile. Variables `--mrz-anchors-*`.
 - Section **Bandeau défilant** (`mrz_marquee`) : textes ou logos en défilement continu, en CSS ; trois vitesses, deux sens, séparateur. Bouton pause, arrêt au survol et au focus (RGAA 13.8) ; éléments à la suite si le visiteur limite les animations. Variables `--mrz-marquee-*`.
-- Réglages de section : **formes en haut et en bas** (biais, vague, courbe, pointe), à la couleur de fond de la section, en masque SVG. Variables `--mrz-divider-height`, `--mrz-divider-flip`.
 - Liens vers une ancre de la page : défilement doux jusqu'à la section (`scroll-behavior: smooth`, coupé si le visiteur limite les animations). Ce n'est pas un défilement adouci de la molette.
 - Cartes « Chiffres clés » : **compteur** qui fait monter les chiffres depuis 0 à l'arrivée à l'écran ; valeur finale dans la page, formats « 13,5 M€ », « 1 200 », « +98 % » conservés.
 

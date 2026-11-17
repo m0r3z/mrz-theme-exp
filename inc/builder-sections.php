@@ -230,26 +230,6 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'default_value' => 'none',
 				'wrapper'       => array( 'width' => '50' ),
 			),
-			array(
-				'key'           => $prefix . '_settings_divider_top',
-				'name'          => 'divider_top',
-				'label'         => __( 'Shape at the top', 'mrz-theme-exp' ),
-				'instructions'  => __( 'In the background color of the section, over the previous section. Needs a background.', 'mrz-theme-exp' ),
-				'type'          => 'select',
-				'choices'       => mrz_theme_divider_choices(),
-				'default_value' => 'none',
-				'wrapper'       => array( 'width' => '50' ),
-			),
-			array(
-				'key'           => $prefix . '_settings_divider_bottom',
-				'name'          => 'divider_bottom',
-				'label'         => __( 'Shape at the bottom', 'mrz-theme-exp' ),
-				'instructions'  => __( 'Over the next section.', 'mrz-theme-exp' ),
-				'type'          => 'select',
-				'choices'       => mrz_theme_divider_choices(),
-				'default_value' => 'none',
-				'wrapper'       => array( 'width' => '50' ),
-			),
 		),
 	);
 }
@@ -277,21 +257,6 @@ function mrz_theme_title_tag_choices() {
 		'h4' => 'H4',
 		'h5' => 'H5',
 		'h6' => 'H6',
-	);
-}
-
-/**
- * Formes des séparateurs de section.
- *
- * @return array
- */
-function mrz_theme_divider_choices() {
-	return array(
-		'none'  => __( 'None', 'mrz-theme-exp' ),
-		'slant' => __( 'Slant', 'mrz-theme-exp' ),
-		'wave'  => __( 'Wave', 'mrz-theme-exp' ),
-		'curve' => __( 'Curve', 'mrz-theme-exp' ),
-		'point' => __( 'Point', 'mrz-theme-exp' ),
 	);
 }
 

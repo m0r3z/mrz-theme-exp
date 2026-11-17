@@ -185,10 +185,6 @@
 	--mrz-marquee-font-size: var(--mrz-h4);
 	--mrz-marquee-logo-height: 2.5rem;
 
-	/* Séparateurs de forme (réglages de section) */
-	--mrz-divider-height: clamp(2rem, 5vw, 5rem);
-	--mrz-divider-flip: 1; /* -1 : forme retournée de gauche à droite */
-
 	/* Section Accordéon (mrz_accordion) */
 	--mrz-accordion-gap: 0; /* entre deux éléments (0 : éléments séparés par un trait) */
 	--mrz-accordion-border: 1px solid var(--color-border);

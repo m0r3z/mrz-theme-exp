@@ -1766,56 +1766,6 @@
 		}
 	}
 
-	/*
-	 * Séparateurs de forme : une bande à la couleur de fond de la section, découpée par un
-	 * masque SVG, qui déborde sur la section voisine. La section passe devant ses voisines.
-	 */
-	.mrz-has-divider {
-		z-index: 1;
-	}
-
-	.mrz-divider {
-		position: absolute;
-		left: 0;
-		right: 0;
-		z-index: 1;
-		height: var(--mrz-divider-height);
-		background: var(--color-background);
-		mask: var(--mrz-divider-shape) 0 0 / 100% 100% no-repeat;
-		pointer-events: none;
-	}
-
-	.mrz-divider--top {
-		bottom: calc(100% - 1px);
-		transform: scaleX(var(--mrz-divider-flip));
-	}
-
-	.mrz-divider--bottom {
-		top: calc(100% - 1px);
-		transform: scale(var(--mrz-divider-flip), -1);
-	}
-
-	/* Section en dégradé : le séparateur du bas prend la couleur d'arrivée. */
-	.mrz-gradient > .mrz-divider--bottom {
-		background: var(--mrz-gradient-to);
-	}
-
-	.mrz-divider--slant {
-		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L100 0V100Z'/%3E%3C/svg%3E");
-	}
-
-	.mrz-divider--wave {
-		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 60C20 0 35 0 50 45S80 100 100 30V100H0Z'/%3E%3C/svg%3E");
-	}
-
-	.mrz-divider--curve {
-		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100Q50 0 100 100Z'/%3E%3C/svg%3E");
-	}
-
-	.mrz-divider--point {
-		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L50 0L100 100Z'/%3E%3C/svg%3E");
-	}
-
 	/* Section Accordéon (mrz_accordion) : <details> natif, sans JS. */
 	.mrz-accordion {
 		display: grid;

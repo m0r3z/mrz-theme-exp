@@ -100,7 +100,6 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 | Dégradé | De la couleur de fond vers une seconde couleur de la palette, vers le bas, la droite ou en diagonale |
 | Animation au défilement | Aucune, apparition vers le haut, fondu, zoom, en cascade (éléments un par un). Sans JavaScript ; jamais sur la première section ; coupée si le visiteur limite les animations |
 | Parallaxe | Aucune, légère, moyenne : l'image de fond défile moins vite que la page |
-| Formes en haut et en bas | Biais, vague, courbe, pointe : à la couleur de fond de la section, par-dessus la section voisine |
 | Vidéo de fond | MP4 ou WebM, sans son, en boucle, avec bouton pause. L'image de fond s'affiche d'abord et reste seule sur mobile (sauf « Vidéo sur mobile »), si le visiteur limite les animations ou économise ses données |
 
 **Bannière de page** : un Texte libre en tête de page, titre en H1, image de fond, hauteur grande ou plein écran. Pas besoin d'une section « hero » sur mesure.
@@ -406,7 +405,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
    Mise en forme de la page des articles et des catégories. Dans le parent.
 5. ~~**JS, en modules chargés seulement sur les pages qui s'en servent**~~ : faits en 0.6 (lightbox et galerie, vidéo de fond) ; carrousel fait après la 0.3.0.
 6. ~~**V2**~~ : animations au défilement et parallaxe faites en 0.6 (CSS seul) ; mega menu fait en 0.5, avec les sections globales en colonne en 0.5.1.
-7. ~~**0.7, sections d'appoint**~~ : faites (sous-menu d'ancres, séparateurs de forme, bandeau défilant, compteur). **0.8** : fenêtre (`<dialog>`) en section globale, transition d'élément partagé, révélation circulaire.
+7. ~~**0.7, sections d'appoint**~~ : faites (sous-menu d'ancres, bandeau défilant, compteur ; séparateurs de forme abandonnés). **0.8** : fenêtre (`<dialog>`) en section globale, transition d'élément partagé, révélation circulaire.
 8. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
 9. **Theme Check** : passer le plugin avant la 1.0.
 
