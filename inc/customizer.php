@@ -664,7 +664,7 @@ function mrz_theme_customizer_css() {
 	 * (hauteur mesurée par main.js) et sous la barre d'admin. Écrit ici, hors couche,
 	 * pour passer devant la règle de la barre d'admin de WordPress.
 	 */
-	$css .= 'html:has(> body.mrz-header-sticky),html:has(> body.mrz-header-transparent){scroll-padding-top:calc(var(--mrz-header-height,0px) + var(--wp-admin--admin-bar--height,0px) + 1rem)}';
+	$css .= 'html:has(> body.mrz-header-sticky),html:has(> body.mrz-header-transparent){scroll-padding-top:calc(var(--mrz-header-height,0px) + var(--mrz-anchors-height,0px) + var(--wp-admin--admin-bar--height,0px) + 1rem)}';
 
 	$css .= '@media (min-width:' . ( $breakpoint + 1 ) . 'px){.mrz-mobile-only{display:none}}';
 	$css .= '@media (max-width:' . $breakpoint . 'px){';

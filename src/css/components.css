@@ -1599,6 +1599,223 @@
 		}
 	}
 
+	/* Sous-menu d'ancres (mrz_anchors) : barre de liens, collée sous le header en option. */
+	.mrz-section--mrz-anchors {
+		padding-block: var(--mrz-anchors-padding);
+		background-color: var(--color-background);
+	}
+
+	.mrz-anchors--sticky {
+		position: sticky;
+		top: var(--wp-admin--admin-bar--height, 0px);
+		z-index: 40;
+	}
+
+	.mrz-header-sticky .mrz-anchors--sticky {
+		top: calc(var(--mrz-header-height, 0px) + var(--wp-admin--admin-bar--height, 0px));
+	}
+
+	/* Sur mobile, la barre défile horizontalement plutôt que de passer sur plusieurs lignes. */
+	.mrz-anchors {
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+
+	.mrz-anchors__list {
+		display: flex;
+		gap: var(--mrz-anchors-gap);
+		width: max-content;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.mrz-anchors--center .mrz-anchors__list {
+		margin-inline: auto;
+	}
+
+	.mrz-anchors__link {
+		display: block;
+		padding-block: 0.5rem;
+		border-bottom: 2px solid transparent;
+		text-decoration: none;
+		white-space: nowrap;
+		font-family: var(--mrz-menu-font-family);
+		font-size: var(--mrz-menu-font-size);
+		font-weight: var(--mrz-menu-font-weight);
+		text-transform: var(--mrz-menu-text-transform);
+		letter-spacing: var(--mrz-menu-letter-spacing);
+	}
+
+	.mrz-anchors__link[aria-current] {
+		border-color: currentColor;
+		color: var(--mrz-anchors-active-color);
+	}
+
+	/* Bandeau défilant (mrz_marquee) : deux listes identiques qui glissent en boucle. */
+	@keyframes mrz-marquee {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	.mrz-marquee {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.mrz-marquee__track {
+		display: flex;
+		width: max-content;
+		animation: mrz-marquee var(--mrz-marquee-duration) linear infinite;
+	}
+
+	.mrz-marquee--slow .mrz-marquee__track { animation-duration: var(--mrz-marquee-duration-slow); }
+	.mrz-marquee--fast .mrz-marquee__track { animation-duration: var(--mrz-marquee-duration-fast); }
+	.mrz-marquee--right .mrz-marquee__track { animation-direction: reverse; }
+
+	/* Arrêt : bouton pause, survol, focus dans le bandeau (RGAA 13.8). */
+	.mrz-marquee.is-paused .mrz-marquee__track,
+	.mrz-marquee:hover .mrz-marquee__track,
+	.mrz-marquee:focus-within .mrz-marquee__track {
+		animation-play-state: paused;
+	}
+
+	.mrz-marquee__list {
+		display: flex;
+		align-items: center;
+		gap: var(--mrz-marquee-gap);
+		margin: 0;
+		padding: 0 var(--mrz-marquee-gap) 0 0;
+		list-style: none;
+	}
+
+	.mrz-marquee__item {
+		display: flex;
+		align-items: center;
+		gap: var(--mrz-marquee-gap);
+		white-space: nowrap;
+	}
+
+	.mrz-marquee__item a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.mrz-marquee__text {
+		font-family: var(--font-title);
+		font-size: var(--mrz-marquee-font-size);
+		font-weight: var(--mrz-title-weight);
+	}
+
+	.mrz-marquee__logo {
+		display: block;
+		width: auto;
+		height: var(--mrz-marquee-logo-height);
+	}
+
+	.mrz-marquee__pause {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--mrz-carousel-button-size);
+		height: var(--mrz-carousel-button-size);
+		padding: 0;
+		border: 1px solid currentColor;
+		border-radius: 50%;
+		background: var(--color-background);
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.mrz-marquee__pause svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	.mrz-marquee__icon-play,
+	.mrz-marquee.is-paused .mrz-marquee__icon-pause {
+		display: none;
+	}
+
+	.mrz-marquee.is-paused .mrz-marquee__icon-play {
+		display: block;
+	}
+
+	/* Animations limitées : pas de défilement, les éléments à la suite, sans copie ni bouton. */
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-marquee__track {
+			width: auto;
+			animation: none;
+		}
+
+		.mrz-marquee__list {
+			flex-wrap: wrap;
+			justify-content: center;
+			padding: 0;
+		}
+
+		.mrz-marquee__list[aria-hidden],
+		.mrz-marquee__item[aria-hidden],
+		.mrz-marquee__pause {
+			display: none;
+		}
+	}
+
+	/*
+	 * Séparateurs de forme : une bande à la couleur de fond de la section, découpée par un
+	 * masque SVG, qui déborde sur la section voisine. La section passe devant ses voisines.
+	 */
+	.mrz-has-divider {
+		z-index: 1;
+	}
+
+	.mrz-divider {
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 1;
+		height: var(--mrz-divider-height);
+		background: var(--color-background);
+		mask: var(--mrz-divider-shape) 0 0 / 100% 100% no-repeat;
+		pointer-events: none;
+	}
+
+	.mrz-divider--top {
+		bottom: calc(100% - 1px);
+		transform: scaleX(var(--mrz-divider-flip));
+	}
+
+	.mrz-divider--bottom {
+		top: calc(100% - 1px);
+		transform: scale(var(--mrz-divider-flip), -1);
+	}
+
+	/* Section en dégradé : le séparateur du bas prend la couleur d'arrivée. */
+	.mrz-gradient > .mrz-divider--bottom {
+		background: var(--mrz-gradient-to);
+	}
+
+	.mrz-divider--slant {
+		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L100 0V100Z'/%3E%3C/svg%3E");
+	}
+
+	.mrz-divider--wave {
+		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 60C20 0 35 0 50 45S80 100 100 30V100H0Z'/%3E%3C/svg%3E");
+	}
+
+	.mrz-divider--curve {
+		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100Q50 0 100 100Z'/%3E%3C/svg%3E");
+	}
+
+	.mrz-divider--point {
+		--mrz-divider-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L50 0L100 100Z'/%3E%3C/svg%3E");
+	}
+
 	/* Section Accordéon (mrz_accordion) : <details> natif, sans JS. */
 	.mrz-accordion {
 		display: grid;

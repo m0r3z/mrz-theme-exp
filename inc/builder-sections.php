@@ -230,6 +230,26 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'default_value' => 'none',
 				'wrapper'       => array( 'width' => '50' ),
 			),
+			array(
+				'key'           => $prefix . '_settings_divider_top',
+				'name'          => 'divider_top',
+				'label'         => __( 'Shape at the top', 'mrz-theme-exp' ),
+				'instructions'  => __( 'In the background color of the section, over the previous section. Needs a background.', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => mrz_theme_divider_choices(),
+				'default_value' => 'none',
+				'wrapper'       => array( 'width' => '50' ),
+			),
+			array(
+				'key'           => $prefix . '_settings_divider_bottom',
+				'name'          => 'divider_bottom',
+				'label'         => __( 'Shape at the bottom', 'mrz-theme-exp' ),
+				'instructions'  => __( 'Over the next section.', 'mrz-theme-exp' ),
+				'type'          => 'select',
+				'choices'       => mrz_theme_divider_choices(),
+				'default_value' => 'none',
+				'wrapper'       => array( 'width' => '50' ),
+			),
 		),
 	);
 }
@@ -257,6 +277,21 @@ function mrz_theme_title_tag_choices() {
 		'h4' => 'H4',
 		'h5' => 'H5',
 		'h6' => 'H6',
+	);
+}
+
+/**
+ * Formes des séparateurs de section.
+ *
+ * @return array
+ */
+function mrz_theme_divider_choices() {
+	return array(
+		'none'  => __( 'None', 'mrz-theme-exp' ),
+		'slant' => __( 'Slant', 'mrz-theme-exp' ),
+		'wave'  => __( 'Wave', 'mrz-theme-exp' ),
+		'curve' => __( 'Curve', 'mrz-theme-exp' ),
+		'point' => __( 'Point', 'mrz-theme-exp' ),
 	);
 }
 
@@ -464,6 +499,16 @@ function mrz_theme_parent_layouts() {
 					),
 					'default_value' => 'default',
 					'wrapper'       => array( 'width' => '25' ),
+				),
+				array(
+					'key'               => 'field_mrz_cards_count_up',
+					'name'              => 'count_up',
+					'label'             => __( 'Counter', 'mrz-theme-exp' ),
+					'type'              => 'true_false',
+					'ui'                => 1,
+					'message'           => __( 'Figures count up from 0 when the cards come into view', 'mrz-theme-exp' ),
+					'wrapper'           => array( 'width' => '50' ),
+					'conditional_logic' => array( array( array( 'field' => 'field_mrz_cards_card_style', 'operator' => '==', 'value' => 'figures' ) ) ),
 				),
 				array(
 					'key'          => 'field_mrz_cards_items',
@@ -839,6 +884,135 @@ function mrz_theme_parent_layouts() {
 					'wrapper'       => array( 'width' => '20' ),
 				),
 				mrz_theme_section_settings_field( 'field_mrz_gallery' ),
+			),
+		),
+		'layout_mrz_anchors'        => array(
+			'key'        => 'layout_mrz_anchors',
+			'name'       => 'mrz_anchors',
+			'label'      => __( 'Anchor menu', 'mrz-theme-exp' ),
+			'display'    => 'block',
+			'sub_fields' => array(
+				array(
+					'key'          => 'field_mrz_anchors_items',
+					'name'         => 'items',
+					'label'        => __( 'Links', 'mrz-theme-exp' ),
+					'instructions' => __( 'Each link goes to a section of the page that has this anchor (section settings > Anchor).', 'mrz-theme-exp' ),
+					'type'         => 'repeater',
+					'layout'       => 'table',
+					'button_label' => __( 'Add a link', 'mrz-theme-exp' ),
+					'sub_fields'   => array(
+						array(
+							'key'   => 'field_mrz_anchors_item_label',
+							'name'  => 'label',
+							'label' => __( 'Text', 'mrz-theme-exp' ),
+							'type'  => 'text',
+						),
+						array(
+							'key'   => 'field_mrz_anchors_item_anchor',
+							'name'  => 'anchor',
+							'label' => __( 'Anchor', 'mrz-theme-exp' ),
+							'type'  => 'text',
+						),
+					),
+				),
+				array(
+					'key'           => 'field_mrz_anchors_sticky',
+					'name'          => 'sticky',
+					'label'         => __( 'Sticky', 'mrz-theme-exp' ),
+					'type'          => 'true_false',
+					'ui'            => 1,
+					'default_value' => 1,
+					'message'       => __( 'Stays visible under the header while scrolling', 'mrz-theme-exp' ),
+					'wrapper'       => array( 'width' => '50' ),
+				),
+				array(
+					'key'           => 'field_mrz_anchors_align',
+					'name'          => 'align',
+					'label'         => __( 'Alignment', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'left'   => __( 'Left', 'mrz-theme-exp' ),
+						'center' => __( 'Centered', 'mrz-theme-exp' ),
+					),
+					'default_value' => 'center',
+					'wrapper'       => array( 'width' => '50' ),
+				),
+				mrz_theme_section_settings_field( 'field_mrz_anchors' ),
+			),
+		),
+		'layout_mrz_marquee'        => array(
+			'key'        => 'layout_mrz_marquee',
+			'name'       => 'mrz_marquee',
+			'label'      => __( 'Scrolling band', 'mrz-theme-exp' ),
+			'display'    => 'block',
+			'sub_fields' => array(
+				array(
+					'key'          => 'field_mrz_marquee_items',
+					'name'         => 'items',
+					'label'        => __( 'Items', 'mrz-theme-exp' ),
+					'instructions' => __( 'A text, or an image (logo). A logo needs its alternative text.', 'mrz-theme-exp' ),
+					'type'         => 'repeater',
+					'layout'       => 'table',
+					'button_label' => __( 'Add an item', 'mrz-theme-exp' ),
+					'sub_fields'   => array(
+						array(
+							'key'   => 'field_mrz_marquee_item_text',
+							'name'  => 'text',
+							'label' => __( 'Text', 'mrz-theme-exp' ),
+							'type'  => 'text',
+						),
+						array(
+							'key'           => 'field_mrz_marquee_item_image',
+							'name'          => 'image',
+							'label'         => __( 'Image', 'mrz-theme-exp' ),
+							'type'          => 'image',
+							'return_format' => 'id',
+							'preview_size'  => 'thumbnail',
+						),
+						array(
+							'key'           => 'field_mrz_marquee_item_link',
+							'name'          => 'link',
+							'label'         => __( 'Link', 'mrz-theme-exp' ),
+							'type'          => 'link',
+							'return_format' => 'array',
+						),
+					),
+				),
+				array(
+					'key'           => 'field_mrz_marquee_speed',
+					'name'          => 'speed',
+					'label'         => __( 'Speed', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'slow'   => __( 'Slow', 'mrz-theme-exp' ),
+						'normal' => __( 'Normal', 'mrz-theme-exp' ),
+						'fast'   => __( 'Fast', 'mrz-theme-exp' ),
+					),
+					'default_value' => 'normal',
+					'wrapper'       => array( 'width' => '33' ),
+				),
+				array(
+					'key'           => 'field_mrz_marquee_direction',
+					'name'          => 'direction',
+					'label'         => __( 'Direction', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'left'  => __( 'To the left', 'mrz-theme-exp' ),
+						'right' => __( 'To the right', 'mrz-theme-exp' ),
+					),
+					'default_value' => 'left',
+					'wrapper'       => array( 'width' => '33' ),
+				),
+				array(
+					'key'           => 'field_mrz_marquee_separator',
+					'name'          => 'separator',
+					'label'         => __( 'Separator', 'mrz-theme-exp' ),
+					'instructions'  => __( 'Between two texts.', 'mrz-theme-exp' ),
+					'type'          => 'text',
+					'default_value' => '•',
+					'wrapper'       => array( 'width' => '33' ),
+				),
+				mrz_theme_section_settings_field( 'field_mrz_marquee' ),
 			),
 		),
 		'layout_mrz_footer'         => array(

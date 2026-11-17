@@ -25,8 +25,14 @@ $mrz_per_row  = (string) get_sub_field( 'per_row' );
 if ( in_array( $mrz_per_row, array( '2', '3', '4' ), true ) ) {
 	$mrz_classes[] = 'mrz-cards--per-row-' . $mrz_per_row;
 }
+$mrz_count_up = false;
 if ( 'figures' === get_sub_field( 'card_style' ) ) {
 	$mrz_classes[] = 'mrz-cards--figures';
+	// Compteur : la valeur finale est déjà dans la page, le script ne fait que l'animer.
+	$mrz_count_up = (bool) get_sub_field( 'count_up' );
+	if ( $mrz_count_up ) {
+		wp_enqueue_script( 'mrz-counter' );
+	}
 }
 
 mrz_theme_section_open( 'mrz-cards', array( 'class' => $mrz_classes ) );
@@ -59,7 +65,7 @@ foreach ( $mrz_items as $mrz_item ) :
 				<div class="mrz-cards__media"><?php echo wp_get_attachment_image( $mrz_image, 'medium_large', false, array( 'style' => mrz_theme_image_ratio_style( $mrz_image, 'medium_large' ) ) + mrz_theme_section_image_loading() ); ?></div>
 			<?php endif; ?>
 			<?php if ( ! empty( $mrz_item['title'] ) ) : ?>
-				<<?php echo esc_html( $mrz_tag ); ?> class="mrz-cards__title"><?php echo mrz_theme_title_html( $mrz_item['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtré par wp_kses. ?></<?php echo esc_html( $mrz_tag ); ?>>
+				<<?php echo esc_html( $mrz_tag ); ?> class="mrz-cards__title"<?php echo $mrz_count_up ? ' data-mrz-count' : ''; ?>><?php echo mrz_theme_title_html( $mrz_item['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtré par wp_kses. ?></<?php echo esc_html( $mrz_tag ); ?>>
 			<?php endif; ?>
 			<?php if ( ! empty( $mrz_item['text'] ) ) : ?>
 				<div class="mrz-cards__text mrz-prose"><?php echo wp_kses_post( $mrz_item['text'] ); ?></div>

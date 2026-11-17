@@ -172,6 +172,23 @@
 	--mrz-lightbox-color: #fff;
 	--mrz-lightbox-duration: 0.45s; /* fondu à l'ouverture et entre deux images */
 
+	/* Sous-menu d'ancres (mrz_anchors) */
+	--mrz-anchors-padding: 0.75rem; /* haut et bas de la barre (remplace l'espacement de la section) */
+	--mrz-anchors-gap: 2rem;
+	--mrz-anchors-active-color: var(--mrz-link-color);
+
+	/* Bandeau défilant (mrz_marquee) : durée d'un tour selon la vitesse. */
+	--mrz-marquee-duration-slow: 70s;
+	--mrz-marquee-duration: 45s;
+	--mrz-marquee-duration-fast: 25s;
+	--mrz-marquee-gap: 3rem;
+	--mrz-marquee-font-size: var(--mrz-h4);
+	--mrz-marquee-logo-height: 2.5rem;
+
+	/* Séparateurs de forme (réglages de section) */
+	--mrz-divider-height: clamp(2rem, 5vw, 5rem);
+	--mrz-divider-flip: 1; /* -1 : forme retournée de gauche à droite */
+
 	/* Section Accordéon (mrz_accordion) */
 	--mrz-accordion-gap: 0; /* entre deux éléments (0 : éléments séparés par un trait) */
 	--mrz-accordion-border: 1px solid var(--color-border);

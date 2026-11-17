@@ -24,6 +24,7 @@ $mrz_theme_includes = array(
 	'carousel',
 	'video',
 	'lightbox',
+	'modules',
 	'builder',
 	'builder-sections',
 	'global-sections',

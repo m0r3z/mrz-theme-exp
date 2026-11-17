@@ -185,6 +185,18 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 		$classes[]  = 'mrz-gradient';
 		$style      = '--mrz-gradient-to:var(--color-' . sanitize_key( $to ) . ');--mrz-gradient-direction:' . ( $directions[ $settings['gradient_direction'] ?? 'bottom' ] ?? 'to bottom' ) . ';';
 	}
+	// Séparateurs de forme, en haut et en bas.
+	$dividers = array();
+	foreach ( array( 'top', 'bottom' ) as $side ) {
+		$shape = $settings[ 'divider_' . $side ] ?? 'none';
+		if ( in_array( $shape, array( 'slant', 'wave', 'curve', 'point' ), true ) ) {
+			$dividers[ $side ] = $shape;
+		}
+	}
+	if ( $dividers ) {
+		$classes[] = 'mrz-has-divider';
+	}
+
 	if ( ! empty( $args['class'] ) ) {
 		$extra   = is_array( $args['class'] ) ? $args['class'] : preg_split( '/\s+/', (string) $args['class'], -1, PREG_SPLIT_NO_EMPTY );
 		$classes = array_merge( $classes, $extra );
@@ -204,6 +216,9 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 		$style ? ' style="' . esc_attr( $style ) . '"' : ''
 	);
 
+	foreach ( $dividers as $side => $shape ) {
+		printf( '<span class="mrz-divider mrz-divider--%1$s mrz-divider--%2$s" aria-hidden="true"></span>', esc_attr( $side ), esc_attr( $shape ) );
+	}
 	if ( $image_id ) {
 		mrz_theme_section_background_image( $image_id );
 	}
