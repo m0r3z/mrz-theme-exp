@@ -5,7 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Modifié
-- Animations au défilement plus lentes et plus douces : elles jouent sur une plus grande part du défilement (`--mrz-motion-range: entry 0% cover 40%`), avec une arrivée amortie (`--mrz-motion-easing`), sur une course un peu plus longue (`--mrz-motion-distance: 3rem`).
+- Animations au défilement plus lentes et plus douces : elles jouent sur une plus grande part du défilement (`--mrz-motion-range: entry 15% cover 55%`), avec une arrivée amortie (`--mrz-motion-easing`), sur une course un peu plus longue (`--mrz-motion-distance: 3rem`).
 - Lightbox : ouverture en fondu, et chaque image arrive en fondu (`--mrz-lightbox-duration`, 0,45 s). Rien si le visiteur limite les animations.
 
 ### Corrigé
