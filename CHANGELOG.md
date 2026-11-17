@@ -4,6 +4,27 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.4.1] - 2026-11-17
+
+Correctifs issus des recettes de la 0.4.0 sur deux vrais sites (Beta-Coltrane, Beta-Bird).
+
+### Corrigé
+- Un bouton (`.mrz-btn`) écrit dans un Texte libre gardait la couleur des liens : texte invisible sur le bouton.
+- Liens du texte et contour de focus : si la couleur principale manque de contraste sur le fond du site (charte claire), ils prennent la couleur du texte (RGAA : 4,5:1 pour les liens, 3:1 pour le focus). Nouvelle variable `--mrz-link-color`.
+- Gravity Forms : focus clavier des champs et des boutons en 2px opaque à la couleur `--mrz-focus-color`, au lieu du halo pâle d'Orbital.
+- Gravity Forms : le CSS du thème pour Orbital est compilé dans `dist/main.css` (quelques Ko de variables) au lieu d'un fichier chargé sur toutes les pages.
+- WooCommerce : le CSS du thème se charge dès que WooCommerce est actif, pour les grilles `[products]` hors boutique.
+- Panier, Commande et Mon compte sans constructeur : le titre de la page s'affiche en `h1`.
+- Carrousel sans titre : plus de région sans nom (`role="region"` seulement avec un libellé).
+- Sélecteur de langue masqué sous deux langues ; il suit la police et la taille du menu.
+- Logo du header sans priorité de chargement haute (l'image de la bannière est le LCP).
+- Plus de recalcul de mise en page forcé au chargement (hauteur du header mesurée par le `ResizeObserver`).
+
+### Ajouté
+- Variables : `--mrz-title-text-transform`, `--mrz-button-font-family`, `--mrz-card-media-ratio`, `--mrz-footer-link-color`, `--mrz-image-overlay`, `--mrz-header-max-width`, `--mrz-lang-inactive-opacity`, `--mrz-product-title-font-family`, `-size`, `-text-transform`.
+- Classes stables sur les blocs du header : `.mrz-header__start`, `.mrz-header__end`.
+- AGENTS.md : SVG par Safe SVG, mise en forme des listes MRZ Display Post, préfixes `aa_`, point de rupture dans les media queries de l'enfant, mega menu, `--color-text` redéfinissable, pas de texte en dur dans un hook. README : Rank Math et Safe SVG dans les prérequis.
+
 ## [0.4.0] - 2026-11-17
 
 ### Ajouté
