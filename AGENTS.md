@@ -17,6 +17,17 @@ Chaque site vise **100 sur les quatre scores Lighthouse** (Performance, Accessib
 - **SEO** : Rank Math pose le titre et la meta description. Le contenu des pages est dans les champs ACF, donc l'extrait automatique est vide : **écrire la meta description de chaque page** dans Rank Math.
 - Hors du thème : durée de cache, CSS critique et formats WebP/AVIF relèvent de WP Rocket et de l'hébergement. En local, ces alertes de Lighthouse sont normales.
 
+## Accessibilité : RGAA
+Le thème et chaque site suivent les critères du RGAA : https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/. Un 100 en accessibilité sur Lighthouse n'en couvre qu'une petite partie : le reste se vérifie à la main.
+- **Images** (thème 1) : texte alternatif pertinent pour une image porteuse de sens, `alt=""` pour une image décorative, jamais de texte important dans une image.
+- **Couleurs** (thème 3) : contraste d'au moins 4,5:1 pour le texte (3:1 pour un grand texte et les composants d'interface) ; une information n'est jamais donnée par la couleur seule.
+- **Liens** (thème 6) : intitulé explicite, ou complété par un texte pour lecteur d'écran (« Lire la suite » ne suffit pas seul).
+- **Scripts et clavier** (thèmes 7 et 12) : tout se fait au clavier, focus toujours visible, ordre de tabulation logique, composants JS avec les rôles et états ARIA attendus.
+- **Structure** (thèmes 8 et 9) : `lang` de la page juste, titres hiérarchisés sans saut, listes en `<ul>`/`<ol>`, zones `<header>`, `<nav>`, `<main>`, `<footer>`.
+- **Formulaires** (thème 11) : chaque champ a une étiquette visible et liée, erreurs explicites. Gravity Forms : jamais le balisage hérité (« legacy markup ») ; étiquettes visibles, pas de simple texte indicatif dans le champ.
+- **Contenu en mouvement** (thème 13) : rien ne défile tout seul sans bouton pause ; animations coupées avec `prefers-reduced-motion`.
+- Pas de mention « conforme RGAA » ni de déclaration d'accessibilité sur un site, sauf demande d'Aurélien (clients publics).
+
 ## Construire une page
 Remplir `mrz_builder` avec `update_field( 'field_mrz_builder', $rows, $post_id )`. Chaque ligne porte `acf_fc_layout`.
 
