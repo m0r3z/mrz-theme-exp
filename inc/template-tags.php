@@ -250,7 +250,8 @@ function mrz_theme_cart_link() {
 		return;
 	}
 	?>
-	<a class="mrz-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+	<?php // Panneau du panier : le lien reste, pour les visiteurs sans JavaScript. ?>
+	<a class="mrz-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>"<?php echo function_exists( 'mrz_theme_cart_drawer_enabled' ) && mrz_theme_cart_drawer_enabled() ? ' aria-haspopup="dialog" aria-controls="mrz-minicart"' : ''; ?>>
 		<?php mrz_theme_icon( 'cart' ); ?>
 		<span class="screen-reader-text"><?php esc_html_e( 'Cart', 'mrz-theme-exp' ); ?></span>
 		<?php echo mrz_theme_cart_count(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML échappé dans la fonction. ?>

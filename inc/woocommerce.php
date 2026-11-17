@@ -358,3 +358,150 @@ function mrz_theme_product_details() {
  */
 add_filter( 'woocommerce_product_description_heading', '__return_empty_string' );
 add_filter( 'woocommerce_product_additional_information_heading', '__return_empty_string' );
+
+/**
+ * Panneau du panier actif sur cette page : réglage « panneau », sauf sur les pages
+ * Panier et Commande, où l'icône mène simplement au panier.
+ *
+ * @return bool
+ */
+function mrz_theme_cart_drawer_enabled() {
+	return 'drawer' === mrz_theme_option( 'shop_cart_behavior' ) && ! is_cart() && ! is_checkout();
+}
+
+/**
+ * Classe du body pour le CSS du mode panneau (lien « Voir le panier » des listes masqué).
+ *
+ * @param array $classes Classes.
+ * @return array
+ */
+function mrz_theme_shop_body_classes( $classes ) {
+	if ( mrz_theme_cart_drawer_enabled() ) {
+		$classes[] = 'mrz-cart-drawer';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'mrz_theme_shop_body_classes' );
+
+/**
+ * Le module de la boutique (assets/js/shop.js) sert-il sur cette page ?
+ * Panneau du panier (toutes les pages), fiche produit (ajout sans rechargement,
+ * boutons quantité), panier (boutons quantité).
+ *
+ * @return bool
+ */
+function mrz_theme_shop_script_needed() {
+	return mrz_theme_cart_drawer_enabled()
+		|| ( is_product() && ( mrz_theme_option( 'shop_ajax_single' ) || mrz_theme_option( 'shop_quantity_buttons' ) ) )
+		|| ( is_cart() && mrz_theme_option( 'shop_quantity_buttons' ) );
+}
+
+/**
+ * Charge le module de la boutique et ses réglages.
+ */
+function mrz_theme_shop_enqueue() {
+	if ( ! mrz_theme_shop_script_needed() ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'mrz-theme-shop',
+		MRZ_THEME_URI . '/assets/js/shop.js',
+		array(),
+		mrz_theme_asset_version( 'assets/js/shop.js' ),
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
+	wp_add_inline_script(
+		'mrz-theme-shop',
+		'window.mrzShop = ' . wp_json_encode(
+			array(
+				'ajaxUrl'         => WC_AJAX::get_endpoint( '%%endpoint%%' ),
+				'drawer'          => mrz_theme_cart_drawer_enabled(),
+				// Fiche produit : pas d'ajout sans rechargement si WooCommerce doit mener au panier après l'ajout.
+				'ajaxSingle'      => is_product() && mrz_theme_option( 'shop_ajax_single' ) && 'yes' !== get_option( 'woocommerce_cart_redirect_after_add' ),
+				'quantityButtons' => (bool) mrz_theme_option( 'shop_quantity_buttons' ),
+				'i18n'            => array(
+					'close'    => __( 'Close', 'mrz-theme-exp' ),
+					'decrease' => __( 'Decrease quantity', 'mrz-theme-exp' ),
+					'increase' => __( 'Increase quantity', 'mrz-theme-exp' ),
+					'error'    => __( 'The product could not be added to the cart. Please try again.', 'mrz-theme-exp' ),
+				),
+			)
+		) . ';',
+		'before'
+	);
+}
+add_action( 'wp_enqueue_scripts', 'mrz_theme_shop_enqueue' );
+
+/**
+ * Panneau du panier et zone des notifications, en bas de page.
+ * Le contenu du panier n'est jamais dans le HTML de la page (compatible avec le
+ * cache de page) : shop.js le charge à l'ouverture, par les fragments de WooCommerce.
+ */
+function mrz_theme_shop_footer() {
+	if ( ! mrz_theme_shop_script_needed() ) {
+		return;
+	}
+	?>
+	<div class="mrz-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+	<?php if ( mrz_theme_cart_drawer_enabled() ) : ?>
+		<dialog class="mrz-minicart woocommerce" id="mrz-minicart" aria-labelledby="mrz-minicart-title">
+			<div class="mrz-minicart__header">
+				<h2 class="mrz-minicart__title" id="mrz-minicart-title"><?php esc_html_e( 'Cart', 'mrz-theme-exp' ); ?></h2>
+				<button type="button" class="mrz-minicart__close" data-mrz-minicart-close>
+					<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="24" height="24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+					<span class="screen-reader-text"><?php esc_html_e( 'Close the cart', 'mrz-theme-exp' ); ?></span>
+				</button>
+			</div>
+			<div class="widget_shopping_cart_content"></div>
+		</dialog>
+	<?php endif; ?>
+	<?php
+}
+add_action( 'wp_footer', 'mrz_theme_shop_footer' );
+
+/**
+ * Panier vide dans le panneau : un bouton pour revenir à la boutique.
+ */
+function mrz_theme_mini_cart_empty_button() {
+	if ( WC()->cart && WC()->cart->is_empty() ) {
+		printf(
+			'<p class="mrz-minicart__continue"><a class="button" href="%s">%s</a></p>',
+			esc_url( wc_get_page_permalink( 'shop' ) ),
+			esc_html__( 'Continue shopping', 'mrz-theme-exp' )
+		);
+	}
+}
+add_action( 'woocommerce_after_mini_cart', 'mrz_theme_mini_cart_empty_button' );
+
+/**
+ * Ajout au panier depuis la fiche produit (shop.js) : les messages de WooCommerce
+ * (ajout réussi, rupture de stock…) partent avec les fragments, pour la notification.
+ * Seulement pour une requête d'ajout : sinon les messages restent pour la page suivante.
+ *
+ * @param array $fragments Fragments.
+ * @return array
+ */
+function mrz_theme_cart_notices_fragment( $fragments ) {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- simple lecture, l'ajout est fait par WooCommerce.
+	if ( ! isset( $_REQUEST['add-to-cart'] ) ) {
+		return $fragments;
+	}
+
+	$html = '';
+	foreach ( wc_get_notices() as $type => $notices ) {
+		foreach ( $notices as $notice ) {
+			$html .= '<p data-type="' . esc_attr( $type ) . '">' . wp_kses_post( $notice['notice'] ) . '</p>';
+		}
+	}
+	wc_clear_notices();
+
+	$fragments['div.mrz-shop-notices'] = '<div class="mrz-shop-notices">' . $html . '</div>';
+
+	return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'mrz_theme_cart_notices_fragment' );
