@@ -4,6 +4,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.7.0] - 2026-11-17
+
+Sections d'appoint : sous-menu d'ancres, bandeau défilant, compteur des chiffres clés.
+
 ### Modifié
 - Une ancre amène la section juste sous le header (et sous la barre d'ancres), sans marge en plus.
 
