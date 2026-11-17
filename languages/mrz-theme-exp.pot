@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MRZ Theme Experience 0.5.2\n"
+"Project-Id-Version: MRZ Theme Experience 0.6.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/mrz-theme-exp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-17T14:54:41+00:00\n"
+"POT-Creation-Date: 2026-11-17T15:37:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -368,7 +368,7 @@ msgstr ""
 #: inc/builder-sections.php:335
 #: inc/builder-sections.php:490
 #: inc/builder-sections.php:541
-#: inc/builder-sections.php:886
+#: inc/builder-sections.php:888
 msgid "Title"
 msgstr ""
 
@@ -391,7 +391,7 @@ msgstr ""
 
 #: inc/builder-sections.php:362
 #: inc/builder-sections.php:568
-#: inc/builder-sections.php:870
+#: inc/builder-sections.php:872
 msgid "Button"
 msgstr ""
 
@@ -444,7 +444,7 @@ msgid "Grid"
 msgstr ""
 
 #: inc/builder-sections.php:417
-#: inc/builder-sections.php:785
+#: inc/builder-sections.php:786
 msgid "Carousel"
 msgstr ""
 
@@ -465,7 +465,7 @@ msgid "On a large screen. Automatic: the site setting."
 msgstr ""
 
 #: inc/builder-sections.php:447
-#: inc/builder-sections.php:797
+#: inc/builder-sections.php:798
 msgid "Automatic"
 msgstr ""
 
@@ -502,7 +502,7 @@ msgid "None (border)"
 msgstr ""
 
 #: inc/builder-sections.php:515
-#: inc/builder-sections.php:921
+#: inc/builder-sections.php:923
 msgid "Link"
 msgstr ""
 
@@ -636,116 +636,124 @@ msgstr ""
 msgid "The alternative text of each image describes it in the gallery; its caption is shown under it and in the viewer."
 msgstr ""
 
-#: inc/builder-sections.php:793
-msgid "Images per row"
+#: inc/builder-sections.php:785
+msgid "Masonry (original formats, in columns)"
 msgstr ""
 
 #: inc/builder-sections.php:794
+msgid "Images per row"
+msgstr ""
+
+#: inc/builder-sections.php:795
 msgid "On a large screen."
 msgstr ""
 
-#: inc/builder-sections.php:809
+#: inc/builder-sections.php:810
 msgid "Image format"
 msgstr ""
 
-#: inc/builder-sections.php:812
+#: inc/builder-sections.php:811
+msgid "Not used in masonry."
+msgstr ""
+
+#: inc/builder-sections.php:814
 msgid "Original"
 msgstr ""
 
-#: inc/builder-sections.php:813
+#: inc/builder-sections.php:815
 msgid "Square"
 msgstr ""
 
-#: inc/builder-sections.php:823
+#: inc/builder-sections.php:825
 msgid "Captions"
 msgstr ""
 
-#: inc/builder-sections.php:826
+#: inc/builder-sections.php:828
 msgid "Show captions under the images"
 msgstr ""
 
-#: inc/builder-sections.php:832
+#: inc/builder-sections.php:834
 msgid "Viewer"
 msgstr ""
 
-#: inc/builder-sections.php:836
+#: inc/builder-sections.php:838
 msgid "Open images full size on click"
 msgstr ""
 
-#: inc/builder-sections.php:845
+#: inc/builder-sections.php:847
 msgid "Footer"
 msgstr ""
 
-#: inc/builder-sections.php:851
+#: inc/builder-sections.php:853
 msgid "Logo"
 msgstr ""
 
-#: inc/builder-sections.php:852
+#: inc/builder-sections.php:854
 msgid "Optional: centered above the footer."
 msgstr ""
 
-#: inc/builder-sections.php:861
+#: inc/builder-sections.php:863
 msgid "Sentence"
 msgstr ""
 
-#: inc/builder-sections.php:878
+#: inc/builder-sections.php:880
 msgid "Link columns"
 msgstr ""
 
-#: inc/builder-sections.php:881
+#: inc/builder-sections.php:883
 msgid "Add a column"
 msgstr ""
 
-#: inc/builder-sections.php:892
+#: inc/builder-sections.php:894
 msgid "Links"
 msgstr ""
 
-#: inc/builder-sections.php:893
+#: inc/builder-sections.php:895
 msgid "A bulleted list of links."
 msgstr ""
 
-#: inc/builder-sections.php:904
+#: inc/builder-sections.php:906
 msgid "Social networks"
 msgstr ""
 
-#: inc/builder-sections.php:905
+#: inc/builder-sections.php:907
 msgid "Black SVG icon (colored by the theme), link and network name (read by screen readers)."
 msgstr ""
 
-#: inc/builder-sections.php:908
+#: inc/builder-sections.php:910
 msgid "Add a network"
 msgstr ""
 
-#: inc/builder-sections.php:913
+#: inc/builder-sections.php:915
 msgid "Icon"
 msgstr ""
 
-#: inc/builder-sections.php:927
+#: inc/builder-sections.php:929
 msgid "Name"
 msgstr ""
 
-#: inc/builder-sections.php:935
+#: inc/builder-sections.php:937
 msgid "Free column: title"
 msgstr ""
 
-#: inc/builder-sections.php:942
+#: inc/builder-sections.php:944
 msgid "Free column: content"
 msgstr ""
 
-#: inc/builder-sections.php:943
+#: inc/builder-sections.php:945
 msgid "After the link columns: text, newsletter form (shortcode)…"
 msgstr ""
 
-#: inc/builder-sections.php:953
+#: inc/builder-sections.php:955
 msgid "Bottom line"
 msgstr ""
 
-#: inc/builder-sections.php:954
+#: inc/builder-sections.php:956
 msgid "Copyright, legal links. Tags: {year}, {site}."
 msgstr ""
 
-#: inc/builder-sections.php:966
-#: inc/builder-sections.php:972
+#: inc/builder-sections.php:968
+#: inc/builder-sections.php:974
 #: inc/global-sections.php:43
 msgid "Global section"
 msgstr ""
@@ -1227,7 +1235,7 @@ msgid "Play the background video"
 msgstr ""
 
 #. translators: 1: image number, 2: number of images.
-#: layouts/mrz-gallery.php:68
+#: layouts/mrz-gallery.php:70
 #, php-format
 msgid "Enlarge image %1$s of %2$s"
 msgstr ""

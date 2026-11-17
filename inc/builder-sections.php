@@ -782,6 +782,7 @@ function mrz_theme_parent_layouts() {
 					'type'          => 'select',
 					'choices'       => array(
 						'grid'     => __( 'Grid', 'mrz-theme-exp' ),
+						'masonry'  => __( 'Masonry (original formats, in columns)', 'mrz-theme-exp' ),
 						'carousel' => __( 'Carousel', 'mrz-theme-exp' ),
 					),
 					'default_value' => 'grid',
@@ -807,6 +808,7 @@ function mrz_theme_parent_layouts() {
 					'key'           => 'field_mrz_gallery_ratio',
 					'name'          => 'ratio',
 					'label'         => __( 'Image format', 'mrz-theme-exp' ),
+					'instructions'  => __( 'Not used in masonry.', 'mrz-theme-exp' ),
 					'type'          => 'select',
 					'choices'       => array(
 						'original' => __( 'Original', 'mrz-theme-exp' ),

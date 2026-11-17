@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Galerie : affichage « Mosaïque » (masonry), en colonnes CSS sans JavaScript, chaque image à son format d'origine.
+
 ## [0.6.1] - 2026-11-17
 
 ### Modifié

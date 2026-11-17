@@ -16,6 +16,7 @@ if ( ! $mrz_images ) {
 
 $mrz_title    = (string) get_sub_field( 'title' );
 $mrz_carousel = 'carousel' === get_sub_field( 'display' );
+$mrz_masonry  = 'masonry' === get_sub_field( 'display' );
 $mrz_captions = (bool) get_sub_field( 'captions' );
 $mrz_lightbox = (bool) get_sub_field( 'lightbox' );
 $mrz_ratio    = (string) get_sub_field( 'ratio' );
@@ -40,7 +41,8 @@ mrz_theme_section_heading( $mrz_title, (string) get_sub_field( 'intro' ) );
 if ( $mrz_carousel ) {
 	mrz_theme_carousel_open( array( 'label' => wp_strip_all_tags( $mrz_title ) ) );
 } else {
-	echo '<ul class="mrz-gallery__grid">';
+	// Mosaïque : colonnes CSS, chaque image à son format d'origine (lecture colonne par colonne).
+	echo '<ul class="mrz-gallery__grid' . ( $mrz_masonry ? ' mrz-gallery__grid--masonry' : '' ) . '">';
 }
 
 $mrz_count = count( $mrz_images );

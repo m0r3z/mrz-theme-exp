@@ -1340,6 +1340,22 @@
 		list-style: none;
 	}
 
+	/* Mosaïque : colonnes CSS (sans JavaScript), images à leur format d'origine. */
+	.mrz-gallery__grid--masonry {
+		display: block;
+		columns: var(--mrz-carousel-per-view);
+		column-gap: var(--mrz-gallery-gap);
+	}
+
+	.mrz-gallery__grid--masonry .mrz-gallery__item {
+		margin-bottom: var(--mrz-gallery-gap);
+		break-inside: avoid;
+	}
+
+	.mrz-gallery__grid--masonry .mrz-gallery__image {
+		aspect-ratio: var(--mrz-img-ratio, auto);
+	}
+
 	.mrz-gallery__figure {
 		margin: 0;
 	}
