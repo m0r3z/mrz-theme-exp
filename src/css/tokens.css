@@ -170,6 +170,7 @@
 	/* Lightbox (images en grand, vidéos) */
 	--mrz-lightbox-bg: rgb(0 0 0 / 0.92);
 	--mrz-lightbox-color: #fff;
+	--mrz-lightbox-duration: 0.45s; /* fondu à l'ouverture et entre deux images */
 
 	/* Section Accordéon (mrz_accordion) */
 	--mrz-accordion-gap: 0; /* entre deux éléments (0 : éléments séparés par un trait) */
@@ -249,9 +250,16 @@
 	/* --mrz-section-image-position : cadrage de l'image de fond (center par défaut, top, 30% 50%…). */
 
 	/* Animations au défilement (réglages « Animation » et « Parallaxe ») */
-	--mrz-motion-distance: 2.5rem; /* course de l'apparition vers le haut */
+	--mrz-motion-distance: 3rem; /* course de l'apparition vers le haut */
 	--mrz-motion-scale: 0.94; /* départ du zoom */
-	--mrz-motion-range: entry 10% entry 60%; /* quand l'animation joue : pendant l'entrée à l'écran */
+	/*
+	 * Quand l'animation joue, liée au défilement : plus l'écart est grand, plus elle est lente.
+	 * entry 0% = l'élément pointe en bas de l'écran ; cover 40% = il a parcouru 40 % de sa traversée.
+	 */
+	--mrz-motion-range: entry 0% cover 40%;
+	--mrz-motion-range-2: entry 10% cover 48%; /* cascade : deuxième élément d'une ligne */
+	--mrz-motion-range-3: entry 20% cover 56%; /* cascade : troisième */
+	--mrz-motion-easing: cubic-bezier(0.25, 0.6, 0.3, 1); /* départ franc, arrivée tout en douceur */
 	--mrz-parallax-light: 8%;
 	--mrz-parallax-medium: 16%;
 	--mrz-highlight-mark: color-mix(in srgb, var(--color-primary) 25%, transparent); /* surlignage du mot en couleur */

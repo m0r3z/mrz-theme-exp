@@ -879,7 +879,7 @@
 			.mrz-motion--fade > .mrz-container,
 			.mrz-motion--zoom > .mrz-container,
 			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-accordion__item, .mrz-prose > *) {
-				animation: mrz-motion-fade-up linear both;
+				animation: mrz-motion-fade-up var(--mrz-motion-easing) both;
 				animation-timeline: view();
 				animation-range: var(--mrz-motion-range);
 			}
@@ -894,11 +894,11 @@
 
 			/* Cascade : sur une même ligne, chaque élément démarre un peu après le précédent. */
 			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *):nth-child(3n + 2) {
-				animation-range: entry 20% entry 70%;
+				animation-range: var(--mrz-motion-range-2);
 			}
 
 			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *):nth-child(3n + 3) {
-				animation-range: entry 30% entry 80%;
+				animation-range: var(--mrz-motion-range-3);
 			}
 
 			/* Parallaxe : l'image dépasse de la section et glisse moins vite que la page. */
@@ -1420,9 +1420,31 @@
 		--mrz-focus-color: var(--mrz-lightbox-color);
 	}
 
+	/* Colonne bornée à l'écran : une image en taille réelle défile dans la zone, sans l'élargir. */
 	.mrz-lightbox[open] {
 		display: grid;
 		grid-template-rows: auto minmax(0, 1fr) auto;
+		grid-template-columns: minmax(0, 1fr);
+		animation: mrz-lightbox-in var(--mrz-lightbox-duration) var(--mrz-ease);
+	}
+
+	@keyframes mrz-lightbox-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@keyframes mrz-lightbox-image-in {
+		from {
+			opacity: 0;
+			transform: scale(0.97);
+		}
+	}
+
+	/* Chaque image (ouverture, précédente, suivante) arrive en fondu. */
+	.mrz-lightbox__image,
+	.mrz-lightbox__video {
+		animation: mrz-lightbox-image-in var(--mrz-lightbox-duration) var(--mrz-ease);
 	}
 
 	.mrz-lightbox::backdrop {
@@ -1446,6 +1468,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		min-width: 0;
 		min-height: 0;
 		padding: 0 4rem;
 		overflow: hidden;
@@ -1462,16 +1485,22 @@
 	}
 
 	/* Taille réelle : l'image n'est plus réduite, on s'y déplace en faisant défiler. */
+	/* Marges automatiques : centrée si elle tient, et tous les bords atteignables si elle déborde. */
 	.mrz-lightbox.is-zoomed .mrz-lightbox__stage {
-		display: block;
+		align-items: flex-start;
+		justify-content: flex-start;
 		padding: 0;
 		overflow: auto;
+		overscroll-behavior: contain;
 	}
 
 	.mrz-lightbox.is-zoomed .mrz-lightbox__image {
+		flex-shrink: 0;
 		max-width: none;
 		max-height: none;
+		margin: auto;
 		cursor: zoom-out;
+		animation: none;
 	}
 
 	.mrz-lightbox__video {
@@ -1531,6 +1560,14 @@
 
 	.mrz-lightbox.is-zoomed :is(.mrz-lightbox__prev, .mrz-lightbox__next) {
 		display: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-lightbox[open],
+		.mrz-lightbox__image,
+		.mrz-lightbox__video {
+			animation: none;
+		}
 	}
 
 	@media (max-width: 639px) {
