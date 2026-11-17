@@ -16,11 +16,10 @@ Boutique WooCommerce : réglages dans le Customizer, panneau du panier, ajout sa
 - Boutons **+ et −** autour de la quantité (fiche produit, panier).
 - Badge promo en pourcentage (« -20 % »), ou aucun badge.
 - Module `assets/js/shop.js`, chargé seulement là où il sert. Variables `--mrz-shop-columns-mobile`, `--mrz-shop-gap`, `--mrz-minicart-*`, `--mrz-product-thumbs`.
-- Pages Panier et Commande créées en shortcode, pas en blocs, à l'installation de WooCommerce.
 
 ### Modifié
 - Listes de produits en grille : cartes de même hauteur, bouton en bas ; tri, pagination et badge promo aux couleurs du thème. Produits similaires sur une ligne de la boutique.
-- « Valider la commande » et « Commander » : boutons du thème, pleine largeur.
+- Blocs Panier et Commande : leur mise en page de WooCommerce est gardée ; leurs boutons (« Valider la commande », « Commander », « Appliquer ») prennent le bouton du thème, en pleine largeur. Ils attendaient le style `.wp-element-button`, que le thème retire avec `classic-theme-styles` et `global-styles`.
 - Notices de WooCommerce plus discrètes (fond léger, sans cadre).
 - Galerie de la fiche produit affichée sans attendre son script (image principale plus rapide) ; miniatures espacées et arrondies.
 - Mon compte : menu en liste de liens avec la page active marquée ; tableaux et adresses aux traits du site.

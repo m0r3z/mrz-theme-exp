@@ -232,7 +232,57 @@
 	opacity: 0.5;
 }
 
-/* « Valider la commande » (panier) et « Commander » : pleine largeur. */
+/*
+ * Blocs Panier et Commande de WooCommerce : leur mise en page vient de leurs propres
+ * CSS (wc-blocks-style-cart, -checkout). Leurs boutons (.wp-element-button) attendent le
+ * style de bouton du thème, que WordPress donne par theme.json ou classic-theme-styles,
+ * tous deux retirés par le thème (inc/setup.php) : on le donne ici, avec les variables.
+ */
+.wc-block-components-button:not(.is-link),
+.wp-element-button {
+	min-height: 0;
+	padding: var(--mrz-button-padding);
+	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
+	border-radius: var(--radius-button);
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
+	font-family: var(--mrz-button-font-family, inherit);
+	font-size: var(--mrz-button-font-size);
+	font-weight: var(--mrz-button-font-weight);
+	letter-spacing: var(--mrz-button-letter-spacing);
+	text-transform: var(--mrz-button-text-transform);
+	text-decoration: none;
+	line-height: 1.2;
+	cursor: pointer;
+}
+
+.wc-block-components-button:not(.is-link):hover,
+.wp-element-button:hover {
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
+	filter: brightness(1.08);
+}
+
+/* Bouton à contour des blocs (« outlined ») : comme .mrz-btn--outline. */
+.wc-block-components-button.outlined:not(.is-link),
+.wc-block-components-button.outlined:not(.is-link):hover {
+	background: transparent;
+	color: inherit;
+	border-color: currentColor;
+}
+
+.wc-block-components-button:not(.is-link):disabled,
+.wc-block-components-button:not(.is-link)[aria-disabled="true"] {
+	opacity: 0.5;
+	filter: none;
+}
+
+/* « Valider la commande » (panier) et « Commander » : pleine largeur, blocs et shortcodes. */
+.wc-block-cart__submit-button,
+.wc-block-components-checkout-place-order-button {
+	width: 100%;
+}
+
 .woocommerce .wc-proceed-to-checkout a.checkout-button,
 .woocommerce #payment #place_order,
 .woocommerce-page #payment #place_order {

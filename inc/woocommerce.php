@@ -53,26 +53,6 @@ function mrz_theme_shop_page_title( $show ) {
 add_filter( 'woocommerce_show_page_title', 'mrz_theme_shop_page_title' );
 
 /**
- * Pages Panier et Commande créées en shortcode, pas en blocs, à l'installation de
- * WooCommerce : l'éditeur classique du thème, ses boutons et le mini-panier visent
- * le panier et la commande classiques, et les blocs chargent React sur ces pages.
- *
- * @param array $pages Pages créées par WooCommerce.
- * @return array
- */
-function mrz_theme_woocommerce_create_pages( $pages ) {
-	if ( isset( $pages['cart'] ) ) {
-		$pages['cart']['content'] = '[woocommerce_cart]';
-	}
-	if ( isset( $pages['checkout'] ) ) {
-		$pages['checkout']['content'] = '[woocommerce_checkout]';
-	}
-
-	return $pages;
-}
-add_filter( 'woocommerce_create_pages', 'mrz_theme_woocommerce_create_pages' );
-
-/**
  * Réglages Customizer > MRZ Theme > Boutique (seulement quand WooCommerce est actif).
  *
  * @param WP_Customize_Manager $wp_customize Manager.
@@ -387,14 +367,14 @@ add_filter( 'body_class', 'mrz_theme_shop_body_classes' );
 /**
  * Le module de la boutique (assets/js/shop.js) sert-il sur cette page ?
  * Panneau du panier (toutes les pages), fiche produit (ajout sans rechargement,
- * boutons quantité), panier (boutons quantité).
+ * boutons quantité), panier en shortcode (boutons quantité ; le bloc Panier a les siens).
  *
  * @return bool
  */
 function mrz_theme_shop_script_needed() {
 	return mrz_theme_cart_drawer_enabled()
 		|| ( is_product() && ( mrz_theme_option( 'shop_ajax_single' ) || mrz_theme_option( 'shop_quantity_buttons' ) ) )
-		|| ( is_cart() && mrz_theme_option( 'shop_quantity_buttons' ) );
+		|| ( is_cart() && mrz_theme_option( 'shop_quantity_buttons' ) && ! has_block( 'woocommerce/cart', wc_get_page_id( 'cart' ) ) );
 }
 
 /**
