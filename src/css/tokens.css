@@ -175,7 +175,7 @@
 	/* Sous-menu d'ancres (mrz_anchors) */
 	--mrz-anchors-padding: 0.75rem; /* haut et bas de la barre (remplace l'espacement de la section) */
 	--mrz-anchors-gap: 2rem;
-	--mrz-anchors-active-color: var(--mrz-link-color);
+	--mrz-anchors-active-color: var(--color-primary); /* comme le lien actif du menu */
 
 	/* Bandeau défilant (mrz_marquee) : durée d'un tour selon la vitesse. */
 	--mrz-marquee-duration-slow: 70s;
