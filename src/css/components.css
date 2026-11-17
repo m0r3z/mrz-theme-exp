@@ -708,6 +708,127 @@
 		padding-top: calc(var(--spacing-section) + var(--mrz-header-offset));
 	}
 
+	/*
+	 * Carrousel : le navigateur fait défiler (scroll-snap), carousel.js ne gère que les
+	 * commandes. Commandes invisibles sans JS ; masquées si tout tient à l'écran.
+	 */
+	.mrz-carousel {
+		position: relative;
+	}
+
+	.mrz-carousel__track {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: calc((100% - (var(--mrz-carousel-per-view) - 1) * var(--mrz-carousel-gap)) / var(--mrz-carousel-per-view));
+		gap: var(--mrz-carousel-gap);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		scrollbar-width: none;
+	}
+
+	.mrz-carousel__track::-webkit-scrollbar {
+		display: none;
+	}
+
+	.mrz-carousel__slide {
+		min-width: 0;
+		scroll-snap-align: start;
+	}
+
+	.mrz-carousel__controls {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+		visibility: hidden;
+	}
+
+	.mrz-carousel.is-scrollable .mrz-carousel__controls {
+		visibility: visible;
+	}
+
+	.mrz-carousel.is-static .mrz-carousel__controls {
+		display: none;
+	}
+
+	.mrz-carousel__button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--mrz-carousel-button-size);
+		height: var(--mrz-carousel-button-size);
+		padding: 0;
+		border: 1px solid currentColor;
+		border-radius: 50%;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.mrz-carousel__button svg {
+		width: 45%;
+		height: 45%;
+	}
+
+	.mrz-carousel__button:hover {
+		background: var(--color-text);
+		color: var(--color-background);
+	}
+
+	.mrz-carousel__icon-play,
+	.mrz-carousel.is-paused .mrz-carousel__icon-pause {
+		display: none;
+	}
+
+	.mrz-carousel.is-paused .mrz-carousel__icon-play {
+		display: block;
+	}
+
+	.mrz-carousel__dots {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	/* Point de 10px, zone cliquable de 24px (cible minimale). */
+	.mrz-carousel__dot {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.5rem;
+		height: 1.5rem;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.mrz-carousel__dot::before {
+		content: "";
+		width: var(--mrz-carousel-dot-size);
+		height: var(--mrz-carousel-dot-size);
+		/* Cercle vide, plein quand actif : pas d'opacité, le contraste reste suffisant (RGAA 3.3). */
+		border: 2px solid currentColor;
+		border-radius: 50%;
+	}
+
+	.mrz-carousel__dot[aria-current="true"]::before {
+		background: currentColor;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-carousel__track {
+			scroll-behavior: auto;
+		}
+	}
+
 	/* Cartes des articles */
 	.mrz-card {
 		position: relative;

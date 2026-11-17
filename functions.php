@@ -21,6 +21,7 @@ $mrz_theme_includes = array(
 	'assets',
 	'customizer',
 	'template-tags',
+	'carousel',
 	'builder',
 	'builder-sections',
 	'global-sections',

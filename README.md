@@ -306,7 +306,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 2. **CHANGELOG.md** : déplacer « Non publié » sous le numéro de version, avec la date. Les notes de la release reprennent ce bloc.
 3. **Build** : `npm run build`, commiter, pousser `main`.
 4. **Recette sur MRZ-Dev** (bientôt `helloworld.local`, voir plus bas), connecté en administrateur, en desktop et en mobile :
-   - la page privée **Recette du thème** (`/recette-theme/`) : titres, texte, listes, boutons et lien fléché sur chaque fond, ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
+   - la page privée **Recette du thème** (`/recette-theme/`) : titres, texte, listes, boutons et lien fléché sur chaque fond, logos en grille et en carrousel (flèches, points, pause, glissé au doigt), ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
    - boutique, fiche produit, ajout au panier (la pastille se met à jour), panier, commande, compte ;
    - menu mobile (ouverture, Échap, sous-menus), sous-menus desktop (survol, Tab puis Échap, appui sur tablette), recherche du header, footer ;
@@ -374,7 +374,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
    Mise en forme de la page des articles et des catégories. Dans le parent.
 5. **JS, en modules chargés seulement sur les pages qui s'en servent** :
    - **lightbox** : sur les liens vers une image et sur les galeries natives de WordPress (`[gallery]`), qui sont aussi à mettre en forme ;
-   - **carrousel** : un comportement activé par une classe (`mrz-carousel`), que les sections sur mesure de l'enfant utilisent (logos qui défilent, sliders). Une bibliothèque légère et accessible, livrée dans le thème, sans CDN ;
+   - ~~**carrousel**~~ : fait après la 0.3.0 (`mrz_theme_carousel_open()`, défilement natif, RGAA). Reste à faire si besoin : un bandeau de logos en défilement continu, avec bouton pause ;
    - **vidéo de fond de section** : un réglage « vidéo » (ID de média) à côté de l'image de fond, `<video autoplay muted loop playsinline>` avec l'image en `poster`.
    
    Le parent fournit le comportement, l'enfant le balisage.

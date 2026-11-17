@@ -6,6 +6,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ### Ajouté
 - Sous-menus du header : chevron indicateur, fermeture retardée au survol, Échap qui ferme et rend le focus au lien parent, ouverture au toucher (premier appui ouvre, second suit le lien), ouverture vers la gauche près du bord de l'écran. Variables `--mrz-submenu-bg`, `-color`, `-width`, `-radius`, `-shadow`, `-indicator`, `-indicator-size`.
+- Carrousel : `mrz_theme_carousel_open()` et `mrz_theme_carousel_close()`. Défilement natif (scroll-snap), flèches, points, lecture automatique facultative avec bouton pause, accessible (RGAA). Script chargé seulement sur les pages qui en ont un. Variables `--mrz-carousel-per-view` (décimales acceptées), `-gap`, `-button-size`, `-dot-size`.
+- Règles pour l'IA : RGAA (AGENTS.md).
 - Règles pour l'IA : objectif Lighthouse 100 sur les quatre scores (AGENTS.md).
 
 ## [0.3.0] - 2026-11-17

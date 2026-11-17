@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MRZ Theme Experience 0.2.0\n"
+"Project-Id-Version: MRZ Theme Experience 0.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/mrz-theme-exp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-17T06:05:22+00:00\n"
+"POT-Creation-Date: 2026-11-17T07:12:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: inc/admin.php:28
 #: inc/admin.php:29
-#: inc/customizer.php:206
+#: inc/customizer.php:207
 #: inc/page-options.php:62
 msgid "MRZ Theme"
 msgstr ""
@@ -97,34 +97,34 @@ msgid "None"
 msgstr ""
 
 #: inc/builder-sections.php:40
-#: inc/customizer.php:71
-#: inc/customizer.php:249
+#: inc/customizer.php:74
+#: inc/customizer.php:250
 msgid "Light"
 msgstr ""
 
 #: inc/builder-sections.php:41
-#: inc/customizer.php:70
-#: inc/customizer.php:250
+#: inc/customizer.php:73
+#: inc/customizer.php:251
 msgid "Dark"
 msgstr ""
 
 #: inc/builder-sections.php:42
-#: inc/customizer.php:66
+#: inc/customizer.php:69
 msgid "Primary color"
 msgstr ""
 
 #: inc/builder-sections.php:43
-#: inc/customizer.php:67
+#: inc/customizer.php:70
 msgid "Secondary color"
 msgstr ""
 
 #: inc/builder-sections.php:44
-#: inc/customizer.php:68
+#: inc/customizer.php:71
 msgid "Tertiary color"
 msgstr ""
 
 #: inc/builder-sections.php:45
-#: inc/customizer.php:69
+#: inc/customizer.php:72
 msgid "Quaternary color"
 msgstr ""
 
@@ -218,218 +218,255 @@ msgstr ""
 msgid "MRZ Theme Experience requires Advanced Custom Fields Pro. Without it, pages only display their classic content."
 msgstr ""
 
-#: inc/customizer.php:72
-msgid "Borders and lines"
+#. translators: 1: number of the first visible item, 2: total number of items.
+#: inc/carousel.php:41
+#, php-format
+msgid "Item %1$s of %2$s"
 msgstr ""
 
-#: inc/customizer.php:73
+#. translators: 1: page number, 2: number of pages.
+#: inc/carousel.php:43
+#, php-format
+msgid "Page %1$s of %2$s"
+msgstr ""
+
+#: inc/carousel.php:44
+#: inc/carousel.php:101
+msgid "Pause the carousel"
+msgstr ""
+
+#: inc/carousel.php:45
+msgid "Play the carousel"
+msgstr ""
+
+#: inc/carousel.php:81
+msgid "carousel"
+msgstr ""
+
+#: inc/carousel.php:108
+#: index.php:33
+#: parts/content/single.php:35
+msgid "Previous"
+msgstr ""
+
+#: inc/carousel.php:117
+#: index.php:34
+#: parts/content/single.php:36
+msgid "Next"
+msgstr ""
+
+#: inc/customizer.php:67
 msgid "Site background"
 msgstr ""
 
-#: inc/customizer.php:74
+#: inc/customizer.php:68
 msgid "Body text"
 msgstr ""
 
-#: inc/customizer.php:85
-msgid "Text on light backgrounds, \"Dark\" sections."
+#: inc/customizer.php:75
+msgid "Borders and lines"
 msgstr ""
 
 #: inc/customizer.php:86
-msgid "Text on dark backgrounds, \"Light\" sections."
+msgid "Text on light backgrounds, \"Dark\" sections."
 msgstr ""
 
 #: inc/customizer.php:87
-msgid "Empty: white. The text takes Dark or Light, whichever reads best on it."
+msgid "Text on dark backgrounds, \"Light\" sections."
 msgstr ""
 
 #: inc/customizer.php:88
+msgid "Empty: white. The text takes Dark or Light, whichever reads best on it."
+msgstr ""
+
+#: inc/customizer.php:89
 msgid "Paragraphs on the site background, when they differ from the titles. Empty: same as the titles. Colored sections are not affected."
 msgstr ""
 
-#: inc/customizer.php:143
+#: inc/customizer.php:144
 msgid "Side panel from the right"
 msgstr ""
 
-#: inc/customizer.php:144
+#: inc/customizer.php:145
 msgid "Side panel from the left"
 msgstr ""
 
-#: inc/customizer.php:145
+#: inc/customizer.php:146
 msgid "Full screen"
 msgstr ""
 
-#: inc/customizer.php:146
+#: inc/customizer.php:147
 msgid "Drops down below the header"
 msgstr ""
 
-#: inc/customizer.php:215
+#: inc/customizer.php:216
 msgid "Colors"
 msgstr ""
 
-#: inc/customizer.php:218
+#: inc/customizer.php:219
 msgid "The site palette. Every color of the theme, the forms and WooCommerce comes from it."
 msgstr ""
 
 #. translators: %s: color name, e.g. "Primary color".
-#: inc/customizer.php:244
+#: inc/customizer.php:245
 #, php-format
 msgid "Text on %s"
 msgstr ""
 
-#: inc/customizer.php:248
+#: inc/customizer.php:249
 msgid "Automatic (best contrast)"
 msgstr ""
 
-#: inc/customizer.php:261
+#: inc/customizer.php:262
 #: inc/page-options.php:97
 msgid "Header"
 msgstr ""
 
-#: inc/customizer.php:273
+#: inc/customizer.php:274
 msgid "Logo for the transparent header"
 msgstr ""
 
-#: inc/customizer.php:274
+#: inc/customizer.php:275
 msgid "Shown before scrolling when the header is transparent. Replaced by the main logo on scroll."
 msgstr ""
 
-#: inc/customizer.php:283
+#: inc/customizer.php:284
 msgid "Logo height on desktop (px)"
 msgstr ""
 
-#: inc/customizer.php:284
+#: inc/customizer.php:285
 msgid "Logo height on mobile (px)"
 msgstr ""
 
-#: inc/customizer.php:308
+#: inc/customizer.php:309
 msgid "Header layout"
 msgstr ""
 
-#: inc/customizer.php:312
+#: inc/customizer.php:313
 msgid "Classic: logo left, menu right"
 msgstr ""
 
-#: inc/customizer.php:313
+#: inc/customizer.php:314
 msgid "Centered: logo above, menu below"
 msgstr ""
 
-#: inc/customizer.php:322
+#: inc/customizer.php:323
 msgid "Sticky header"
 msgstr ""
 
-#: inc/customizer.php:332
+#: inc/customizer.php:333
 msgid "Transparent header when applicable"
 msgstr ""
 
-#: inc/customizer.php:333
+#: inc/customizer.php:334
 msgid "The header is transparent over the page until the user scrolls, on pages that start with a hero section (a section whose name contains \"hero\")."
 msgstr ""
 
-#: inc/customizer.php:343
-#: inc/template-tags.php:219
+#: inc/customizer.php:344
+#: inc/template-tags.php:220
 #: searchform.php:13
 #: searchform.php:15
 msgid "Search"
 msgstr ""
 
-#: inc/customizer.php:344
+#: inc/customizer.php:345
 msgid "Search icon in the header, opening the search form."
 msgstr ""
 
-#: inc/customizer.php:354
+#: inc/customizer.php:355
 msgid "Account link"
 msgstr ""
 
-#: inc/customizer.php:355
+#: inc/customizer.php:356
 msgid "Icon linking to the WooCommerce \"My account\" page, next to the cart. Requires WooCommerce."
 msgstr ""
 
-#: inc/customizer.php:365
+#: inc/customizer.php:366
 msgid "Language switcher"
 msgstr ""
 
-#: inc/customizer.php:366
+#: inc/customizer.php:367
 msgid "Shown when Polylang is active, in the header and the mobile menu."
 msgstr ""
 
-#: inc/customizer.php:370
+#: inc/customizer.php:371
 msgid "Codes (FR, EN)"
 msgstr ""
 
-#: inc/customizer.php:371
+#: inc/customizer.php:372
 msgid "Flags"
 msgstr ""
 
-#: inc/customizer.php:372
+#: inc/customizer.php:373
 msgid "Flags and codes"
 msgstr ""
 
-#: inc/customizer.php:381
+#: inc/customizer.php:382
 msgid "Mobile header"
 msgstr ""
 
-#: inc/customizer.php:390
+#: inc/customizer.php:391
 msgid "Sticky header on mobile"
 msgstr ""
 
-#: inc/customizer.php:400
+#: inc/customizer.php:401
 #: parts/mobile-menu/offcanvas.php:23
 msgid "Mobile menu"
 msgstr ""
 
-#: inc/customizer.php:401
+#: inc/customizer.php:402
 msgid "How the menu opens. Its look (background, blur, hover) is styled in the child theme."
 msgstr ""
 
-#: inc/customizer.php:412
+#: inc/customizer.php:413
 msgid "Mobile breakpoint (px)"
 msgstr ""
 
-#: inc/customizer.php:413
+#: inc/customizer.php:414
 msgid "Below this width, the menu collapses into the mobile menu. Raise it when the menu has many items."
 msgstr ""
 
-#: inc/customizer.php:428
+#: inc/customizer.php:429
 msgid "Page transitions"
 msgstr ""
 
-#: inc/customizer.php:430
+#: inc/customizer.php:431
 msgid "Uses the browser View Transitions API: no JavaScript. Browsers without support simply load the page normally."
 msgstr ""
 
-#: inc/customizer.php:438
+#: inc/customizer.php:439
 msgid "Animated page transitions"
 msgstr ""
 
-#: inc/customizer.php:448
+#: inc/customizer.php:449
 msgid "Transition effect"
 msgstr ""
 
-#: inc/customizer.php:452
+#: inc/customizer.php:453
 msgid "Fade"
 msgstr ""
 
-#: inc/customizer.php:453
+#: inc/customizer.php:454
 msgid "Slide up"
 msgstr ""
 
-#: inc/customizer.php:462
+#: inc/customizer.php:463
 msgid "Duration (ms)"
 msgstr ""
 
-#: inc/customizer.php:477
+#: inc/customizer.php:478
 msgid "General"
 msgstr ""
 
-#: inc/customizer.php:486
+#: inc/customizer.php:487
 msgid "Content width (px)"
 msgstr ""
 
-#: inc/customizer.php:501
+#: inc/customizer.php:502
 msgid "404 page"
 msgstr ""
 
-#: inc/customizer.php:502
+#: inc/customizer.php:503
 msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
 msgstr ""
 
@@ -558,32 +595,22 @@ msgstr ""
 msgid "Open menu"
 msgstr ""
 
-#: inc/template-tags.php:236
+#: inc/template-tags.php:237
 msgid "My account"
 msgstr ""
 
-#: inc/template-tags.php:251
+#: inc/template-tags.php:252
 msgid "Cart"
 msgstr ""
 
 #. translators: %s: search query.
-#: inc/template-tags.php:297
+#: inc/template-tags.php:298
 #, php-format
 msgid "Search results for \"%s\""
 msgstr ""
 
-#: inc/template-tags.php:303
+#: inc/template-tags.php:304
 msgid "Latest articles"
-msgstr ""
-
-#: index.php:33
-#: parts/content/single.php:35
-msgid "Previous"
-msgstr ""
-
-#: index.php:34
-#: parts/content/single.php:36
-msgid "Next"
 msgstr ""
 
 #: parts/content/none.php:11

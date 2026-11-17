@@ -174,6 +174,20 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Parent : comportements, accessibilité, JS, intégrations (WooCommerce, Gravity Forms, Polylang, plugins MRZ). Ne pas y ajouter de variantes d'apparence (headers, menus mobiles, effets de survol).
 - Enfant : l'apparence du site, en CSS sur les classes `.mrz-` du parent. Copier un template dans l'enfant seulement en dernier recours : la copie ne reçoit plus les corrections du parent.
 
+## Carrousel
+Pour tout ce qui défile (logos, témoignages, cartes) : jamais de bibliothèque ni de carrousel maison dans l'enfant.
+```php
+mrz_theme_carousel_open( array( 'label' => $mrzchild_title, 'autoplay' => 0, 'dots' => true ) );
+foreach ( $mrzchild_items as $mrzchild_item ) {
+	echo '<li class="mrz-carousel__slide">…</li>';
+}
+mrz_theme_carousel_close();
+```
+- Défilement natif du navigateur (scroll-snap) : glissé au doigt, trackpad, flèches du clavier sur la piste. `assets/js/carousel.js` (commandes) ne se charge que sur les pages qui appellent `mrz_theme_carousel_open()`.
+- `label` : le titre de la section (nom du carrousel pour les lecteurs d'écran). `autoplay` : secondes entre deux défilements, 0 par défaut ; activé, un bouton pause est toujours affiché, et la lecture s'arrête au survol, au focus et si l'utilisateur limite les animations (RGAA 13.8).
+- Précédent et Suivant avancent d'une page de cartes visibles ; en fin de liste, Suivant revient au début. Commandes masquées si tout tient à l'écran.
+- Apparence dans l'enfant, par section : `--mrz-carousel-per-view` (décimales acceptées : `3.5` montre la moitié de la suivante), avec un point de rupture par écran, `--mrz-carousel-gap`, `--mrz-carousel-button-size`, `--mrz-carousel-dot-size`.
+
 ## Sous-menus du header
 Menus principal et secondaire, jusqu'à trois niveaux. Ouverts au survol (fermeture retardée de 0.2s), au clavier (Tab entre dans le sous-menu, Échap le ferme et rend le focus au lien parent) et au toucher (premier appui ouvre, second suit le lien). Un sous-menu qui sortirait de l'écran s'ouvre vers la gauche (classe `.mrz-submenu--flip`). Tout est dans le parent (`src/css/components.css`, `assets/js/main.js`) : l'enfant ne règle que l'apparence, par les variables `--mrz-submenu-*`.
 

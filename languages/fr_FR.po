@@ -587,3 +587,20 @@ msgstr "Texte sur : %s"
 
 msgid "Title level"
 msgstr "Niveau du titre"
+
+#, php-format
+msgid "Item %1$s of %2$s"
+msgstr "Élément %1$s sur %2$s"
+
+#, php-format
+msgid "Page %1$s of %2$s"
+msgstr "Page %1$s sur %2$s"
+
+msgid "Pause the carousel"
+msgstr "Mettre le carrousel en pause"
+
+msgid "Play the carousel"
+msgstr "Relancer le carrousel"
+
+msgid "carousel"
+msgstr "carrousel"

@@ -111,6 +111,12 @@
 	--mrz-menu-text-transform: none;
 	--mrz-menu-letter-spacing: normal;
 
+	/* Carrousel (mrz_theme_carousel_open) : cartes visibles, décimales acceptées (3.5 montre la moitié de la suivante). */
+	--mrz-carousel-per-view: 1;
+	--mrz-carousel-gap: 1.5rem;
+	--mrz-carousel-button-size: 2.75rem; /* 44px : cible tactile confortable */
+	--mrz-carousel-dot-size: 0.625rem;
+
 	/* Sous-menus du header (desktop) */
 	--mrz-submenu-bg: var(--color-background);
 	--mrz-submenu-color: var(--color-text);
