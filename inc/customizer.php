@@ -680,6 +680,8 @@ function mrz_theme_customizer_css() {
 		$duration = absint( mrz_theme_option( 'transition_duration' ) );
 		$css     .= '@view-transition{navigation:auto}';
 		$css     .= '::view-transition-old(root),::view-transition-new(root){animation-duration:' . $duration . 'ms}';
+		// Header et barre d'admin à part : ils restent immobiles, seul le contenu change.
+		$css .= '.mrz-header{view-transition-name:mrz-header}#wpadminbar{view-transition-name:mrz-adminbar}';
 
 		$effect = mrz_theme_option( 'transition_effect' );
 		if ( 'slide' === $effect ) {

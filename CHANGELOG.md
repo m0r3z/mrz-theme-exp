@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Modifié
+- Transitions de page : le header et la barre d'admin restent immobiles, seul le contenu change.
+
 ## [0.7.0] - 2026-11-17
 
 Sections d'appoint : sous-menu d'ancres, bandeau défilant, compteur des chiffres clés.
