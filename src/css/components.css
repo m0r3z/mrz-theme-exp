@@ -39,6 +39,7 @@
 	}
 
 	.mrz-header__bar {
+		max-width: var(--mrz-header-max-width);
 		padding-block: var(--mrz-header-padding);
 	}
 
@@ -373,7 +374,9 @@
 		margin: 0;
 		padding: 0;
 		text-transform: uppercase;
-		font-size: var(--mrz-text-sm);
+		font-family: var(--mrz-menu-font-family);
+		font-size: var(--mrz-menu-font-size);
+		letter-spacing: var(--mrz-menu-letter-spacing);
 	}
 
 	.mrz-lang a {
@@ -381,7 +384,7 @@
 		align-items: center;
 		gap: 0.35rem;
 		text-decoration: none;
-		opacity: 0.6;
+		opacity: var(--mrz-lang-inactive-opacity);
 	}
 
 	.mrz-lang .current-lang a {
@@ -567,6 +570,7 @@
 		border-radius: var(--radius-button);
 		background: var(--mrz-button-bg);
 		color: var(--mrz-button-color);
+		font-family: var(--mrz-button-font-family, inherit);
 		font-size: var(--mrz-button-font-size);
 		font-weight: var(--mrz-button-font-weight);
 		letter-spacing: var(--mrz-button-letter-spacing);
@@ -574,7 +578,6 @@
 		line-height: 1.2;
 		cursor: pointer;
 		text-decoration: none;
-		cursor: pointer;
 		transition: background-color 0.2s var(--mrz-ease), color 0.2s var(--mrz-ease), border-color 0.2s var(--mrz-ease);
 	}
 
@@ -712,7 +715,7 @@
 		content: "";
 		position: absolute;
 		inset: 0;
-		background: rgb(0 0 0 / 0.45);
+		background: var(--mrz-image-overlay);
 	}
 
 	.mrz-has-image > * {
@@ -923,6 +926,8 @@
 		width: auto;
 		max-width: 100%;
 		height: auto;
+		aspect-ratio: var(--mrz-card-media-ratio, auto);
+		object-fit: cover;
 	}
 
 	.mrz-cards__title {
@@ -937,7 +942,7 @@
 
 	/* Section Footer (mrz_footer) : couleurs tirées du texte de la section, sur n'importe quel fond. */
 	.mrz-section--mrz-footer a:not(.mrz-btn) {
-		color: inherit;
+		color: var(--mrz-footer-link-color, inherit);
 		text-decoration: none;
 	}
 
@@ -977,6 +982,7 @@
 		font-size: var(--mrz-footer-title-size);
 		font-weight: var(--mrz-title-weight);
 		line-height: var(--mrz-title-line-height);
+		text-transform: var(--mrz-title-text-transform);
 		color: var(--mrz-title-color, inherit);
 	}
 
@@ -1100,8 +1106,9 @@
 		margin-top: 0;
 	}
 
-	.mrz-prose a {
-		color: var(--color-primary);
+	/* Les boutons écrits dans le texte gardent leurs couleurs. */
+	.mrz-prose a:not(.mrz-btn) {
+		color: var(--mrz-link-color);
 		text-decoration: underline;
 		text-underline-offset: 0.2em;
 	}

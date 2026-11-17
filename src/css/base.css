@@ -23,6 +23,7 @@
 		font-weight: var(--mrz-title-weight);
 		line-height: var(--mrz-title-line-height);
 		letter-spacing: var(--mrz-title-letter-spacing);
+		text-transform: var(--mrz-title-text-transform);
 		overflow-wrap: break-word;
 	}
 

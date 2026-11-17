@@ -69,6 +69,7 @@
 	--mrz-title-weight: 700;
 	--mrz-title-line-height: 1.15;
 	--mrz-title-letter-spacing: normal;
+	--mrz-title-text-transform: none; /* uppercase : titres en capitales (h1 à h6, titre du footer) */
 	/* --mrz-title-color : écrite par le Customizer quand « Texte courant » est réglé. */
 	--mrz-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
 	--mrz-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem);
@@ -89,6 +90,13 @@
 	--mrz-button-text-transform: none;
 	--mrz-button-bg: var(--color-primary);
 	--mrz-button-color: var(--color-primary-contrast);
+	/* --mrz-button-font-family : police des boutons, celle du texte autour par défaut. */
+
+	/*
+	 * Liens dans le texte (.mrz-prose) : couleur principale. Le Customizer passe à la
+	 * couleur du texte si la principale manque de contraste sur le fond du site (RGAA).
+	 */
+	--mrz-link-color: var(--color-primary);
 
 	/* Lien fléché (mrz_theme_button( $link, 'link' )) : flèche en masque, de la couleur du texte. */
 	--mrz-link-font-size: inherit;
@@ -115,6 +123,7 @@
 	--mrz-menu-font-weight: 500;
 	--mrz-menu-text-transform: none;
 	--mrz-menu-letter-spacing: normal;
+	--mrz-lang-inactive-opacity: 0.75; /* langues non affichées du sélecteur */
 
 	/* Carrousel (mrz_theme_carousel_open) : cartes visibles, décimales acceptées (3.5 montre la moitié de la suivante). */
 	--mrz-carousel-per-view: 1;
@@ -133,6 +142,7 @@
 	--mrz-card-shadow: none;
 	--mrz-card-icon-size: 2rem;
 	--mrz-card-title-size: var(--mrz-h4);
+	/* --mrz-card-media-ratio : format des images des cartes (16 / 9, 1…), recadrées ; format d'origine par défaut. */
 
 	/* Section Footer (mrz_footer) */
 	--mrz-footer-logo-height: 4.5rem;
@@ -147,6 +157,7 @@
 	--mrz-footer-bottom-space: 4rem; /* au-dessus de la ligne du bas */
 	--mrz-footer-bottom-size: var(--mrz-text-sm);
 	--mrz-footer-bottom-border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+	/* --mrz-footer-link-color : couleur des liens du footer, celle du texte de la section par défaut. */
 
 	/* Sous-menus du header (desktop) */
 	--mrz-submenu-bg: var(--mrz-header-bg); /* même fond que le header : le sous-menu le prolonge */
@@ -174,6 +185,7 @@
 	--mrz-logo-height-mobile: 40px;
 
 	--mrz-header-padding: 1rem; /* espace en haut et en bas du header */
+	--mrz-header-max-width: calc(var(--mrz-container) + 2 * var(--mrz-gutter)); /* none : header pleine largeur */
 	--mrz-header-bg: var(--color-background);
 	--mrz-header-color: var(--mrz-title-color, var(--color-text));
 	--mrz-header-border: var(--color-border);
@@ -189,6 +201,9 @@
 
 	/* Contour de focus (clavier) : couleur principale sur le fond du site, couleur du texte de la section sur les fonds de section. */
 	--mrz-focus-color: var(--color-primary);
+
+	/* Voile posé sur les images de fond de section (texte en Clair par-dessus). */
+	--mrz-image-overlay: rgb(0 0 0 / 0.45);
 
 	--mrz-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
