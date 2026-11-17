@@ -93,7 +93,7 @@
 	/* Padding en deux valeurs (haut et bas, côtés) : Gravity Forms les lit séparément. */
 	--mrz-button-padding-y: 0.85rem;
 	--mrz-button-padding-x: 1.75rem;
-	--mrz-button-padding: var(--mrz-button-padding-y) var(--mrz-button-padding-x);
+	/* --mrz-button-padding : raccourci facultatif (non déclaré ici), sinon -y et -x, lus sur le bouton même. */
 	--mrz-button-border-width: 2px;
 	--mrz-button-letter-spacing: normal;
 	--mrz-button-text-transform: none;
@@ -121,7 +121,7 @@
 	--mrz-field-padding-y: 0.75rem;
 	--mrz-field-padding-x: 1rem;
 	--mrz-field-padding: var(--mrz-field-padding-y) var(--mrz-field-padding-x);
-	--mrz-field-border-focus: var(--color-primary);
+	--mrz-field-border-focus: var(--mrz-focus-color);
 	--mrz-field-radius: var(--radius-base);
 	--mrz-label-font-size: 0.9375rem;
 	--mrz-label-font-weight: 600;
@@ -175,7 +175,7 @@
 	/* Sous-menu d'ancres (mrz_anchors) */
 	--mrz-anchors-padding: 0.75rem; /* haut et bas de la barre (remplace l'espacement de la section) */
 	--mrz-anchors-gap: 2rem;
-	--mrz-anchors-active-color: var(--color-primary); /* comme le lien actif du menu */
+	--mrz-anchors-active-color: var(--mrz-link-color); /* comme le lien actif du menu : principale, ou texte si elle manque de contraste */
 
 	/* Bandeau défilant (mrz_marquee) : durée d'un tour selon la vitesse. */
 	--mrz-marquee-duration-slow: 70s;
@@ -256,6 +256,13 @@
 
 	/* Contour de focus (clavier) : couleur principale sur le fond du site, couleur du texte de la section sur les fonds de section. */
 	--mrz-focus-color: var(--color-primary);
+
+	/*
+	 * Valeurs du site, figées à la racine : une section ou le header peut redéfinir
+	 * --color-background ou --mrz-focus-color, ces deux-là ne bougent pas.
+	 */
+	--mrz-site-background: var(--color-background);
+	--mrz-site-focus-color: var(--mrz-focus-color);
 
 	/* Voile posé sur les images de fond de section (texte en Clair par-dessus). */
 	--mrz-image-overlay: rgb(0 0 0 / 0.45);

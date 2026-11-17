@@ -175,15 +175,16 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 	// Dégradé : de la couleur de fond de la section vers une couleur de la palette.
 	$style = '';
 	if ( ! empty( $settings['gradient'] ) ) {
-		$to         = $settings['gradient_to'] ?? 'dark';
-		$to         = 'none' === $to ? 'background' : $to;
+		$to         = sanitize_key( $settings['gradient_to'] ?? 'dark' );
+		// Fond du site : sa valeur figée à la racine, la section redéfinit --color-background.
+		$to_color   = in_array( $to, array( 'none', 'background' ), true ) ? 'var(--mrz-site-background)' : 'var(--color-' . $to . ')';
 		$directions = array(
 			'bottom'   => 'to bottom',
 			'right'    => 'to right',
 			'diagonal' => '135deg',
 		);
 		$classes[]  = 'mrz-gradient';
-		$style      = '--mrz-gradient-to:var(--color-' . sanitize_key( $to ) . ');--mrz-gradient-direction:' . ( $directions[ $settings['gradient_direction'] ?? 'bottom' ] ?? 'to bottom' ) . ';';
+		$style      = '--mrz-gradient-to:' . $to_color . ';--mrz-gradient-direction:' . ( $directions[ $settings['gradient_direction'] ?? 'bottom' ] ?? 'to bottom' ) . ';';
 	}
 	if ( ! empty( $args['class'] ) ) {
 		$extra   = is_array( $args['class'] ) ? $args['class'] : preg_split( '/\s+/', (string) $args['class'], -1, PREG_SPLIT_NO_EMPTY );

@@ -35,6 +35,9 @@
 		background: var(--mrz-header-bg);
 		color: var(--mrz-header-color);
 		border-bottom: 1px solid var(--mrz-header-border);
+		/* Un sous-menu fermé (masqué mais placé) ne fait pas défiler la page à l'horizontale.
+		   clip, pas hidden : pas de conteneur de défilement, le header reste collant. */
+		overflow-x: clip;
 		transition: background-color 0.3s var(--mrz-ease), color 0.3s var(--mrz-ease), border-color 0.3s var(--mrz-ease);
 	}
 
@@ -58,6 +61,11 @@
 		/* Sous-menus : fond plein du site, même quand le header est transparent. */
 		--mrz-submenu-bg: var(--color-background);
 		--mrz-submenu-color: var(--color-text);
+	}
+
+	/* Les sous-menus ont le fond du site : ils reprennent le focus du site, pas celui du header transparent. */
+	.mrz-header-transparent .mrz-header:not(.is-scrolled) .sub-menu {
+		--mrz-focus-color: var(--mrz-site-focus-color);
 	}
 
 	.mrz-header-transparent .mrz-header {
@@ -151,10 +159,11 @@
 		letter-spacing: var(--mrz-menu-letter-spacing);
 	}
 
+	/* Couleur des liens : la principale, ou le texte si elle manque de contraste sur le fond. */
 	.mrz-menu .menu-item > a:hover,
 	.mrz-menu .current-menu-item > a,
 	.mrz-menu .current-menu-ancestor > a {
-		color: var(--color-primary);
+		color: var(--mrz-link-color);
 	}
 
 	.mrz-header-transparent .mrz-header:not(.is-scrolled) .mrz-menu .menu-item > a:hover {
@@ -628,7 +637,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-		padding: var(--mrz-button-padding);
+		padding: var(--mrz-button-padding, var(--mrz-button-padding-y) var(--mrz-button-padding-x));
 		border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
 		border-radius: var(--radius-button);
 		background: var(--mrz-button-bg);
@@ -1039,6 +1048,8 @@
 	}
 
 	.mrz-carousel__track {
+		/* Repère des textes masqués (position absolute) des diapositives : ils restent dans la piste. */
+		position: relative;
 		display: grid;
 		grid-auto-flow: column;
 		grid-auto-columns: calc((100% - (var(--mrz-carousel-per-view) - 1) * var(--mrz-carousel-gap)) / var(--mrz-carousel-per-view));
@@ -1300,7 +1311,18 @@
 		.mrz-split--sticky-media .mrz-split__media,
 		.mrz-split--sticky-text .mrz-split__text {
 			position: sticky;
-			top: calc(var(--mrz-header-offset) + 1.5rem);
+			/* Sous la barre d'admin, le header et la barre d'ancres collante s'il y en a une. */
+			top: calc(var(--wp-admin--admin-bar--height, 0px) + var(--mrz-header-offset) + var(--mrz-anchors-height, 0px) + 1.5rem);
+		}
+
+		/* Dans une colonne de mega menu : texte et média l'un sous l'autre. */
+		.mrz-megamenu__section .mrz-split .mrz-split__grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.mrz-megamenu__section .mrz-split :is(.mrz-split__media, .mrz-split__text) {
+			grid-row: auto;
+			grid-column: auto;
 		}
 	}
 
@@ -1383,6 +1405,7 @@
 
 	.mrz-gallery__caption {
 		margin-top: 0.5rem;
+		overflow-wrap: anywhere;
 		color: var(--color-muted);
 		font-size: var(--mrz-text-sm);
 	}
@@ -1502,6 +1525,11 @@
 
 	/* Taille réelle : l'image n'est plus réduite, on s'y déplace en faisant défiler. */
 	/* Marges automatiques : centrée si elle tient, et tous les bords atteignables si elle déborde. */
+	/* Glissé horizontal laissé au script (image suivante), défilement vertical et pincement au navigateur. */
+	.mrz-lightbox:not(.is-zoomed) .mrz-lightbox__stage {
+		touch-action: pan-y pinch-zoom;
+	}
+
 	.mrz-lightbox.is-zoomed .mrz-lightbox__stage {
 		align-items: flex-start;
 		justify-content: flex-start;
@@ -1527,6 +1555,7 @@
 
 	.mrz-lightbox__caption {
 		margin: 0;
+		overflow-wrap: anywhere;
 		padding: 0.75rem 1.5rem 1.25rem;
 		font-size: var(--mrz-text-sm);
 		text-align: center;
@@ -1836,6 +1865,11 @@
 	.mrz-text--center {
 		margin-inline: auto;
 		text-align: center;
+	}
+
+	/* Un formulaire dans un texte centré garde ses étiquettes et ses champs alignés à gauche. */
+	.mrz-text--center form {
+		text-align: start;
 	}
 
 	.mrz-text__actions {

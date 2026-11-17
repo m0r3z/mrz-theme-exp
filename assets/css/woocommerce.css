@@ -22,7 +22,7 @@
 .woocommerce a.button.alt,
 .woocommerce button.button.alt,
 .woocommerce input.button.alt {
-	padding: var(--mrz-button-padding);
+	padding: var(--mrz-button-padding, var(--mrz-button-padding-y) var(--mrz-button-padding-x));
 	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
 	border-radius: var(--radius-button);
 	background: var(--mrz-button-bg);
@@ -226,7 +226,7 @@
 .woocommerce button.button:disabled[disabled],
 .woocommerce button.button.alt.disabled,
 .woocommerce button.button.alt:disabled {
-	padding: var(--mrz-button-padding);
+	padding: var(--mrz-button-padding, var(--mrz-button-padding-y) var(--mrz-button-padding-x));
 	background: var(--mrz-button-bg);
 	color: var(--mrz-button-color);
 	opacity: 0.5;
@@ -241,7 +241,7 @@
 .wc-block-components-button:not(.is-link),
 .wp-element-button {
 	min-height: 0;
-	padding: var(--mrz-button-padding);
+	padding: var(--mrz-button-padding, var(--mrz-button-padding-y) var(--mrz-button-padding-x));
 	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
 	border-radius: var(--radius-button);
 	background: var(--mrz-button-bg);
