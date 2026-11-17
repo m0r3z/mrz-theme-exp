@@ -23,6 +23,7 @@ $mrz_theme_includes = array(
 	'template-tags',
 	'carousel',
 	'video',
+	'lightbox',
 	'builder',
 	'builder-sections',
 	'global-sections',

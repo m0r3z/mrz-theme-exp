@@ -74,6 +74,7 @@ Le menu « Ajouter une section » réunit deux sources :
 | Raw HTML (HTML brut) | Code HTML | Affiché tel quel, scripts compris. Visible seulement pour les administrateurs |
 | Cards (Cartes) | Titre, cartes (image ou icône, titre, texte, lien, fond), en grille ou en carrousel | Une icône SVG prend la couleur du texte de la carte |
 | Text and media (Texte et média) | Texte (surtitre, titre, texte, deux boutons) d'un côté ; image, second texte ou encadré coloré de l'autre | Côté, largeur des colonnes (égales ou 2/3), alignement vertical, colonne collante. Empilées sur mobile, texte en premier |
+| Gallery (Galerie) | Titre, introduction, images ; grille ou carrousel, images par ligne, format, légendes | Ouvre les images dans la lightbox du thème |
 | Accordion (Accordéon) | Titre, introduction, éléments à déplier (question, réponse) | Sans JavaScript (`<details>`). Premier élément ouvert, un seul ouvert à la fois en option |
 | Footer | Logo, phrase, bouton, colonnes de liens, réseaux sociaux, ligne du bas | Proposée seulement dans les sections globales, à l'emplacement « Footer » |
 | Global section | Une section globale existante | Pour réutiliser un bloc à un endroit précis |
@@ -400,17 +401,11 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
    - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.
    
    Mise en forme de la page des articles et des catégories. Dans le parent.
-5. **JS, en modules chargés seulement sur les pages qui s'en servent** :
-   - **lightbox** : sur les liens vers une image et sur les galeries natives de WordPress (`[gallery]`), qui sont aussi à mettre en forme ;
-   - ~~**carrousel**~~ : fait après la 0.3.0 (`mrz_theme_carousel_open()`, défilement natif, RGAA). Reste à faire si besoin : un bandeau de logos en défilement continu, avec bouton pause ;
-   - **vidéo de fond de section** : un réglage « vidéo » (ID de média) à côté de l'image de fond, `<video autoplay muted loop playsinline>` avec l'image en `poster`.
-   
-   Le parent fournit le comportement, l'enfant le balisage.
-6. **V2** :
-   - animations au défilement et parallax ;
-   - **méga menu** : un élément du menu qui ouvre une section globale. Il réutilise ce qui existe déjà au lieu d'ajouter un constructeur de menus.
-7. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
-8. **Theme Check** : passer le plugin avant la 1.0.
+5. ~~**JS, en modules chargés seulement sur les pages qui s'en servent**~~ : faits en 0.6 (lightbox et galerie, vidéo de fond) ; carrousel fait après la 0.3.0.
+6. ~~**V2**~~ : animations au défilement et parallaxe faites en 0.6 (CSS seul) ; mega menu fait en 0.5, avec les sections globales en colonne en 0.5.1.
+7. **0.7, sections d'appoint** : sous-menu d'ancres collant, séparateur de forme, bandeau défilant avec pause, compteur de chiffres. **0.8** : fenêtre (`<dialog>`) en section globale, transition d'élément partagé, révélation circulaire.
+8. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
+9. **Theme Check** : passer le plugin avant la 1.0.
 
 Petits restes, à traiter quand l'occasion se présente :
 - **Bordure des champs sur les fonds de couleur** (RGAA, contraste des composants) : sur une section sombre ou colorée, `--color-border` peut se confondre avec le fond. Prendre une bordure tirée du texte de la section (`color-mix()` de `--color-text`) quand `--mrz-field-border` n'est pas réglée.

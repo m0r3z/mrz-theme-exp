@@ -160,6 +160,17 @@
 	--mrz-split-box-padding: clamp(1.5rem, 4vw, 3.5rem);
 	/* --mrz-split-image-ratio : format de l'image (4 / 3, 1…), recadrée ; format d'origine par défaut. */
 
+	/* Section Galerie (mrz_gallery) : images par ligne selon l'écran, grille et carrousel. */
+	--mrz-gallery-per-view: 2;
+	--mrz-gallery-per-view-md: 3; /* à partir de 640px */
+	--mrz-gallery-per-view-lg: 4; /* à partir de 1024px */
+	--mrz-gallery-gap: 1rem;
+	--mrz-gallery-radius: var(--radius-base);
+
+	/* Lightbox (images en grand, vidéos) */
+	--mrz-lightbox-bg: rgb(0 0 0 / 0.92);
+	--mrz-lightbox-color: #fff;
+
 	/* Section Accordéon (mrz_accordion) */
 	--mrz-accordion-gap: 0; /* entre deux éléments (0 : éléments séparés par un trait) */
 	--mrz-accordion-border: 1px solid var(--color-border);
