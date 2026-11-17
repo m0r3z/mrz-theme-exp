@@ -4,6 +4,31 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.8.0] - 2026-11-17
+
+Boutique WooCommerce : réglages dans le Customizer, panneau du panier, ajout sans rechargement.
+
+### Ajouté
+- Customizer > MRZ Theme > **Boutique** : comportement de l'icône du panier, ajout sans rechargement sur la fiche, position des informations du produit, produits par ligne (et sur mobile), produits par page, tri, nombre de résultats, badge promo, boutons quantité.
+- **Panneau du panier** (`<dialog>` à droite) ouvert par l'icône du panier et après un ajout : articles, suppression sans quitter la page, total, « Voir le panier » et « Commander », bouton « Continuer les achats » quand il est vide. Contenu chargé à l'ouverture (compatible avec le cache de page). Sans JavaScript, l'icône mène toujours au panier.
+- Fiche produit : **ajout au panier sans rechargement** (tous types de produits, champs des plugins compris) ; **notification** discrète en bas d'écran pour l'ajout (mode page) et les erreurs.
+- Fiche produit : description, informations complémentaires et avis en **accordéons** (ceux de la section Accordéon, variables `--mrz-accordion-*`), à côté des images sous le bouton d'ajout, ou sous les images.
+- Boutons **+ et −** autour de la quantité (fiche produit, panier).
+- Badge promo en pourcentage (« -20 % »), ou aucun badge.
+- Module `assets/js/shop.js`, chargé seulement là où il sert. Variables `--mrz-shop-columns-mobile`, `--mrz-shop-gap`, `--mrz-minicart-*`, `--mrz-product-thumbs`.
+- Pages Panier et Commande créées en shortcode, pas en blocs, à l'installation de WooCommerce.
+
+### Modifié
+- Listes de produits en grille : cartes de même hauteur, bouton en bas ; tri, pagination et badge promo aux couleurs du thème. Produits similaires sur une ligne de la boutique.
+- « Valider la commande » et « Commander » : boutons du thème, pleine largeur.
+- Notices de WooCommerce plus discrètes (fond léger, sans cadre).
+- Galerie de la fiche produit affichée sans attendre son script (image principale plus rapide) ; miniatures espacées et arrondies.
+- Mon compte : menu en liste de liens avec la page active marquée ; tableaux et adresses aux traits du site.
+
+### Corrigé
+- Champs de WooCommerce : une règle en dur écrasait les variables `--mrz-field-*`.
+- Fiche produit : « Produits similaires » ne passait plus sous la fiche une fois les onglets retirés.
+
 ## [0.7.1] - 2026-11-17
 
 ### Retiré

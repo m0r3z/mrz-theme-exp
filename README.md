@@ -191,6 +191,14 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | MRZ Theme > General | Largeur du contenu (px) | 1280 |
 | | Surlignage animé du mot en couleur des titres | non |
 | | Page 404 : page affichée pour une URL inexistante, avec un vrai statut 404 | page par défaut du thème |
+| MRZ Theme > Shop (WooCommerce actif) | Icône du panier : ouvre un panneau à droite, ou mène à la page Panier (toujours le cas sur les pages Panier et Commande) | panneau |
+| | Ajout au panier sans recharger la fiche produit (les listes suivent le réglage de WooCommerce) | oui |
+| | Description, informations complémentaires et avis, en accordéons : à côté des images sous le bouton d'ajout, ou sous les images | à côté des images |
+| | Produits par ligne (boutique, catégories, produits similaires ; le shortcode `[products]` garde ses colonnes, MRZ Product Filter impose les siennes avec sa barre latérale) ; sur mobile (1 ou 2) | 4, 2 |
+| | Produits par page | 12 |
+| | Menu de tri, nombre de résultats | oui, oui |
+| | Badge promo : texte, réduction en pourcentage, aucun | texte |
+| | Boutons + et − autour de la quantité | oui |
 
 ## Retoucher un site à la main
 
@@ -284,7 +292,7 @@ Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier),
 - **Blog et archives** : grille de cartes avec image, date et catégories, pagination, titres d'archive sans préfixe (« Actualités » plutôt que « Catégorie : Actualités »).
 - **Article seul** : image à la une, contenu, navigation entre articles, commentaires.
 - **CPT** : affichés comme les articles. Pour un rendu propre à un CPT, créer `parts/content/single-{post_type}.php` (et `content-{post_type}.php` pour sa carte) dans l'enfant.
-- **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème et ne se chargent que sur les pages WooCommerce. Icône du panier dans le header, avec le nombre d'articles, et icône du compte en option (MRZ Theme > Header). Les pages Panier et Commande utilisent les shortcodes `[woocommerce_cart]` et `[woocommerce_checkout]`, pas les blocs.
+- **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème. Icône du panier dans le header, avec le nombre d'articles, qui ouvre le panneau du panier ; icône du compte en option (MRZ Theme > Header). Réglages de la boutique dans MRZ Theme > Shop. Les pages Panier et Commande utilisent les shortcodes `[woocommerce_cart]` et `[woocommerce_checkout]`, pas les blocs : le thème les crée ainsi à l'installation de WooCommerce. Sur un site où WooCommerce était déjà installé, remplacer le contenu de ces deux pages par le shortcode.
 - **Polylang** : sélecteur de langue dans le header et le menu mobile, dès que Polylang est actif.
 - **Gravity Forms**, **MRZ Display Post**, **MRZ Maps** : leurs shortcodes (`[gravityform]`, `[mrzdpe]`, `[mrzme]`), dans un Texte libre, un champ de section ou un widget.
 
@@ -339,7 +347,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 4. **Recette sur MRZ-Dev** (bientôt `helloworld.local`, voir plus bas), connecté en administrateur, en desktop et en mobile :
    - la **page d'accueil** de MRZ-Dev, qui sert de recette : titres, texte, listes, boutons et lien fléché sur chaque fond, cartes en grille et en carrousel (flèches, points, pause, glissé au doigt), ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
-   - boutique, fiche produit, ajout au panier (la pastille se met à jour), panier, commande, compte ;
+   - boutique, fiche produit (galerie, accordéons, + et −), ajout au panier sans rechargement (la pastille se met à jour, le panneau s'ouvre), panneau du panier (clavier, Échap, suppression d'un article, panier vide), panier, commande, compte ;
    - menu mobile (ouverture, Échap, sous-menus), sous-menus desktop (survol, Tab puis Échap, appui sur tablette), recherche du header, footer ;
    - **site sombre** : dans le Customizer, régler « Fond du site » sur une couleur sombre et repasser la page Recette en aperçu, sans publier (texte de chaque fond de section, formulaire dans une section claire, header transparent, image de fond) ;
    - **bilingue** (HelloWorld, Polylang) : sélecteur de langue, footer et section globale insérée à la main dans chaque langue, 404 dans chaque langue ;
@@ -380,7 +388,7 @@ mrz-theme-exp/
 
 ## État et feuille de route
 
-**Version publiée : 0.7.1 (17/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
+**Version publiée : 0.8.0 (17/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
 **Aucun site en production** : le thème tourne sur MRZ-Dev (où vit le dépôt) et sur trois sites de test, HelloWorld, Beta-Bird (Energies Réunion, bilingue) et Beta-Sonny (Morez, site sombre). Tant que c'est le cas, un changement cassant ne demande aucune migration.
 
@@ -392,12 +400,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
 
 1. **Polylang** : passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
 2. ~~**Menus du header**~~ : fait après la 0.3.0 (sous-menus au survol, au clavier, au toucher, retournés au bord de l'écran, variables `--mrz-submenu-*`).
-3. **WooCommerce** : avec les variables :
-   - la liste des produits, la fiche produit et sa galerie, y compris en responsive ;
-   - les boutons « Ajouter au panier », « Valider la commande » et « Commander » ;
-   - le panier, la commande, et le compte client avec son menu de navigation.
-   
-   Ajouter une option « Description et avis à la suite, sans onglets », par les hooks WooCommerce et sans copie de template : c'est une demande fréquente. Dans le parent.
+3. ~~**WooCommerce**~~ : fait en 0.8 (réglages Boutique, panneau du panier, ajout sans rechargement, accordéons, galerie, compte). À proposer ensuite : barre « livraison offerte » dans le panneau, bouton d'ajout collant sur mobile, quantité modifiable dans le panneau.
 4. **Blog** : réglage de l'article seul, avec deux choix (demandé par le site test Energies Réunion) :
    - image à la une au-dessus du titre (l'actuel) ;
    - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.
