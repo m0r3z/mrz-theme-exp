@@ -16,6 +16,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - `--mrz-field-padding` et `--mrz-button-padding` sont composées de `--mrz-field-padding-y`/`-x` et `--mrz-button-padding-y`/`-x` : régler ces dernières dans l'enfant.
 
 ### Corrigé
+- Menu secondaire : même taille de texte que le menu principal dans le header ; dans le menu mobile, plus de trait doublé entre les deux menus.
 - Gravity Forms : le thème de formulaire est réactivé, en **Orbital** imposé et branché sur les variables du thème (`--gf-*` dans `assets/css/gravity-forms.css`). Sans lui, le champ « choix d'image » affichait ses textes cachés et les boutons radio n'étaient pas mis en forme. Les champs, libellés et le bouton suivent le fond de leur section.
 - Contour de focus invisible sur une section de couleur principale : il prend maintenant la couleur du texte de la section (`--mrz-focus-color`), sur tous les fonds, les images et le header transparent (RGAA 10.7).
 
