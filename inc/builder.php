@@ -115,7 +115,8 @@ function mrz_theme_render_builder( $post_id = null ) {
  * Ouvre une section : fond, espacement, largeur, ancre (réglages communs).
  *
  * @param string $layout Nom du layout.
- * @param array  $args   image (ID d'image de fond), class (classes en plus).
+ * @param array  $args   image (ID d'image de fond), class (classes en plus : chaîne
+ *                       séparée par des espaces, ou tableau).
  */
 function mrz_theme_section_open( $layout, $args = array() ) {
 	$settings = (array) get_sub_field( 'settings' );
@@ -136,11 +137,13 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 		$classes[] = 'mrz-has-image';
 	}
 	if ( ! empty( $args['class'] ) ) {
-		$classes[] = $args['class'];
+		$extra   = is_array( $args['class'] ) ? $args['class'] : preg_split( '/\s+/', (string) $args['class'], -1, PREG_SPLIT_NO_EMPTY );
+		$classes = array_merge( $classes, $extra );
 	}
 
 	$containers = array(
 		'container' => 'mrz-container',
+		'narrow'    => 'mrz-container mrz-container--narrow',
 		'wide'      => 'mrz-container mrz-container--wide',
 		'full'      => 'mrz-container--full',
 	);

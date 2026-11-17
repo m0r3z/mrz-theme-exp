@@ -135,17 +135,54 @@ function mrz_theme_language_switcher( $extra_class = '' ) {
 		return;
 	}
 
-	$items = pll_the_languages(
-		array(
+	$display    = mrz_theme_option( 'lang_switcher' );
+	$show_flags = in_array( $display, array( 'flags', 'both' ), true );
+	$show_codes = 'flags' !== $display;
+
+	if ( defined( 'POLYLANG_VERSION' ) && version_compare( POLYLANG_VERSION, '3.9', '>=' ) ) {
+		$args = array(
 			'echo'                   => 0,
+			'show_wrapper'           => false,
+			'show_flags'             => $show_flags,
+			'show_labels'            => $show_codes ? 'codes' : '',
+			'hide_if_no_translation' => false,
+		);
+	} else {
+		// Polylang avant 3.9 : anciens arguments.
+		$args = array(
+			'echo'                   => 0,
+			'show_flags'             => (int) $show_flags,
+			'show_names'             => (int) $show_codes,
 			'display_names_as'       => 'slug',
 			'hide_if_no_translation' => 0,
-		)
-	);
+		);
+	}
+
+	$items = pll_the_languages( $args );
 
 	if ( $items ) {
-		echo '<ul class="mrz-lang ' . esc_attr( $extra_class ) . '">' . wp_kses_post( $items ) . '</ul>';
+		// Les drapeaux de Polylang sont des images en data: : protocole autorisé ici seulement.
+		echo '<ul class="mrz-lang ' . esc_attr( $extra_class ) . '">' . wp_kses( $items, 'post', array_merge( wp_allowed_protocols(), array( 'data' ) ) ) . '</ul>';
 	}
+}
+
+/**
+ * ID d'un contenu dans la langue de la page (Polylang), ou l'ID tel quel.
+ *
+ * @param int $post_id ID d'origine (section globale, page 404…).
+ * @return int
+ */
+function mrz_theme_translated_id( $post_id ) {
+	$post_id = absint( $post_id );
+
+	if ( $post_id && function_exists( 'pll_get_post' ) ) {
+		$translated = pll_get_post( $post_id );
+		if ( $translated ) {
+			return (int) $translated;
+		}
+	}
+
+	return $post_id;
 }
 
 /**
@@ -271,7 +308,7 @@ function mrz_theme_listing_title() {
  * Bouton à partir d'un champ ACF « lien ».
  *
  * @param array|null $link  Tableau url, title, target.
- * @param string     $style primary ou outline.
+ * @param string     $style primary, outline ou link (lien souligné suivi d'une flèche).
  */
 function mrz_theme_button( $link, $style = 'primary' ) {
 	if ( empty( $link['url'] ) ) {
@@ -282,7 +319,7 @@ function mrz_theme_button( $link, $style = 'primary' ) {
 
 	printf(
 		'<a class="mrz-btn mrz-btn--%1$s" href="%2$s" target="%3$s"%4$s>%5$s</a>',
-		esc_attr( 'outline' === $style ? 'outline' : 'primary' ),
+		esc_attr( in_array( $style, array( 'outline', 'link' ), true ) ? $style : 'primary' ),
 		esc_url( $link['url'] ),
 		esc_attr( $target ),
 		'_blank' === $target ? ' rel="noopener"' : '',

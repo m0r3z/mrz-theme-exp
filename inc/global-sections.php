@@ -60,6 +60,20 @@ function mrz_theme_register_global_sections() {
 add_action( 'init', 'mrz_theme_register_global_sections' );
 
 /**
+ * Polylang : sections globales traduisibles d'office (une version par langue),
+ * sans cocher le type dans les réglages de Polylang.
+ *
+ * @param array $post_types Types traduisibles.
+ * @return array
+ */
+function mrz_theme_translatable_global_sections( $post_types ) {
+	$post_types['mrz_section'] = 'mrz_section';
+
+	return $post_types;
+}
+add_filter( 'pll_get_post_types', 'mrz_theme_translatable_global_sections' );
+
+/**
  * Affiche une section globale (garde-fou contre une section qui s'inclut elle-même).
  *
  * @param int $section_id ID de la section.
@@ -67,7 +81,8 @@ add_action( 'init', 'mrz_theme_register_global_sections' );
 function mrz_theme_render_global_section( $section_id ) {
 	static $rendering = array();
 
-	$section_id = absint( $section_id );
+	// Section insérée à la main dans une page : sa traduction, si elle existe.
+	$section_id = mrz_theme_translated_id( $section_id );
 	if ( ! $section_id || isset( $rendering[ $section_id ] ) || 'mrz_section' !== get_post_type( $section_id ) || 'publish' !== get_post_status( $section_id ) ) {
 		return;
 	}

@@ -549,3 +549,41 @@ msgstr "Vide : blanc. Le texte prend Sombre ou Clair, celle qui se lit le mieux 
 #: inc/customizer.php:207
 msgid "The site palette. Every color of the theme, the forms and WooCommerce comes from it."
 msgstr "La palette du site. Toutes les couleurs du thème, des formulaires et de WooCommerce en viennent."
+
+msgid "Automatic (best contrast)"
+msgstr "Automatique (meilleur contraste)"
+
+msgid "Body text"
+msgstr "Texte courant"
+
+msgid "Codes (FR, EN)"
+msgstr "Codes (FR, EN)"
+
+msgid "Flags"
+msgstr "Drapeaux"
+
+msgid "Flags and codes"
+msgstr "Drapeaux et codes"
+
+msgid "H1 only when this section opens the page (one H1 per page)."
+msgstr "H1 seulement quand cette section ouvre la page (un seul H1 par page)."
+
+msgid "Language switcher"
+msgstr "Sélecteur de langue"
+
+msgid "Narrow (reading width)"
+msgstr "Étroite (largeur de lecture)"
+
+msgid "Paragraphs on the site background, when they differ from the titles. Empty: same as the titles. Colored sections are not affected."
+msgstr "Paragraphes sur le fond du site, quand ils diffèrent des titres. Vide : comme les titres. Les sections de couleur ne changent pas."
+
+msgid "Shown when Polylang is active, in the header and the mobile menu."
+msgstr "Affiché quand Polylang est actif, dans le header et le menu mobile."
+
+#. translators: %s: color name, e.g. "Primary color".
+#, php-format
+msgid "Text on %s"
+msgstr "Texte sur : %s"
+
+msgid "Title level"
+msgstr "Niveau du titre"

@@ -68,6 +68,7 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'type'          => 'select',
 				'choices'       => array(
 					'container' => __( 'Container', 'mrz-theme-exp' ),
+					'narrow'    => __( 'Narrow (reading width)', 'mrz-theme-exp' ),
 					'wide'      => __( 'Wide', 'mrz-theme-exp' ),
 					'full'      => __( 'Full width', 'mrz-theme-exp' ),
 				),
@@ -128,10 +129,24 @@ function mrz_theme_parent_layouts() {
 			'display'    => 'block',
 			'sub_fields' => array(
 				array(
-					'key'   => 'field_mrz_text_title',
-					'name'  => 'title',
-					'label' => __( 'Title', 'mrz-theme-exp' ),
-					'type'  => 'text',
+					'key'     => 'field_mrz_text_title',
+					'name'    => 'title',
+					'label'   => __( 'Title', 'mrz-theme-exp' ),
+					'type'    => 'text',
+					'wrapper' => array( 'width' => '75' ),
+				),
+				array(
+					'key'           => 'field_mrz_text_title_tag',
+					'name'          => 'title_tag',
+					'label'         => __( 'Title level', 'mrz-theme-exp' ),
+					'instructions'  => __( 'H1 only when this section opens the page (one H1 per page).', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'h2' => 'H2',
+						'h1' => 'H1',
+					),
+					'default_value' => 'h2',
+					'wrapper'       => array( 'width' => '25' ),
 				),
 				array(
 					'key'          => 'field_mrz_text_content',

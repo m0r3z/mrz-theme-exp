@@ -10,9 +10,12 @@ defined( 'ABSPATH' ) || exit;
 mrz_theme_section_open( 'mrz-text' );
 ?>
 <div class="mrz-prose">
-	<?php if ( get_sub_field( 'title' ) ) : ?>
-		<h2><?php echo esc_html( get_sub_field( 'title' ) ); ?></h2>
-	<?php endif; ?>
+	<?php
+	if ( get_sub_field( 'title' ) ) {
+		$mrz_title_tag = 'h1' === get_sub_field( 'title_tag' ) ? 'h1' : 'h2';
+		printf( '<%1$s>%2$s</%1$s>', $mrz_title_tag, esc_html( get_sub_field( 'title' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- balise choisie dans une liste fermée.
+	}
+	?>
 	<?php
 	/*
 	 * Contenu de l'éditeur, déjà filtré par WordPress à l'enregistrement et mis en

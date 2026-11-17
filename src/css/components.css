@@ -16,6 +16,10 @@
 		max-width: calc(var(--mrz-container-wide) + 2 * var(--mrz-gutter));
 	}
 
+	.mrz-container--narrow {
+		max-width: calc(var(--mrz-container-narrow) + 2 * var(--mrz-gutter));
+	}
+
 	.mrz-container--full {
 		width: 100%;
 	}
@@ -52,9 +56,9 @@
 		position: fixed;
 		inset-inline: 0;
 		top: 0;
-		background: transparent;
-		border-color: transparent;
-		color: var(--color-light);
+		background: var(--mrz-header-transparent-bg);
+		border-color: var(--mrz-header-transparent-border);
+		color: var(--mrz-header-transparent-color);
 	}
 
 	.admin-bar.mrz-header-transparent .mrz-header {
@@ -285,6 +289,9 @@
 	}
 
 	.mrz-lang a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
 		text-decoration: none;
 		opacity: 0.6;
 	}
@@ -352,6 +359,13 @@
 		width: 100%;
 		transform: none;
 		opacity: 0;
+	}
+
+	/* Connecté : le menu s'ouvre sous la barre d'admin (fixe au-delà de 600px). */
+	@media (min-width: 601px) {
+		.admin-bar .mrz-offcanvas:not(.mrz-offcanvas--dropdown) {
+			top: var(--wp-admin--admin-bar--height, 32px);
+		}
 	}
 
 	/* Sous le header : le header reste visible, le burger ouvre et ferme. */
@@ -472,6 +486,32 @@
 		filter: brightness(1.08);
 	}
 
+	/* Lien fléché : texte souligné suivi d'une flèche (--mrz-link-arrow). */
+	.mrz-btn--link {
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: none;
+		color: inherit;
+		font-size: var(--mrz-link-font-size);
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+	}
+
+	.mrz-btn--link::after {
+		content: "";
+		flex-shrink: 0;
+		width: var(--mrz-link-arrow-size);
+		height: var(--mrz-link-arrow-size);
+		background: currentColor;
+		mask: var(--mrz-link-arrow) center / contain no-repeat;
+	}
+
+	.mrz-btn--link:hover {
+		filter: none;
+		opacity: 0.75;
+	}
+
 	/* Champs pleine largeur (le style vient de base.css et des variables --mrz-field-*). */
 	.mrz-input,
 	.mrz-comments input[type="text"],
@@ -542,6 +582,8 @@
 	.mrz-bg--tertiary,
 	.mrz-bg--quaternary {
 		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
+		/* Titres de la couleur du texte de la section (le « Texte courant » ne vaut que sur le fond du site). */
+		--mrz-title-color: currentColor;
 		background-color: var(--color-background);
 		color: var(--color-text);
 	}
@@ -554,6 +596,7 @@
 
 	/* Voile sombre sur les images de fond : le texte prend Clair. */
 	.mrz-has-image {
+		--mrz-title-color: currentColor;
 		--color-text: var(--color-light);
 		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
 		color: var(--color-text);
@@ -586,9 +629,13 @@
 		opacity: 0.85;
 	}
 
-	/* Sous un header transparent, le premier bloc de la page laisse la place au header. */
+	/*
+	 * Sous un header transparent, le premier bloc de la page laisse la place au header.
+	 * Un hero dont l'image est dans le flux (pas en fond) remet padding-top à 0 dans
+	 * l'enfant et décale son texte de var(--mrz-header-offset).
+	 */
 	.mrz-header-transparent .mrz-main > :first-child {
-		padding-top: calc(var(--spacing-section) + var(--mrz-logo-height) + 2 * var(--mrz-header-padding));
+		padding-top: calc(var(--spacing-section) + var(--mrz-header-offset));
 	}
 
 	/* Cartes des articles */
@@ -716,6 +763,11 @@
 
 	.mrz-prose .mrz-btn--outline {
 		color: inherit;
+	}
+
+	.mrz-prose .mrz-btn--link {
+		color: inherit;
+		text-decoration: underline;
 	}
 
 	/* Pagination et navigation d'articles */

@@ -71,6 +71,7 @@ function mrz_theme_color_labels() {
 		'light'      => __( 'Light', 'mrz-theme-exp' ),
 		'border'     => __( 'Borders and lines', 'mrz-theme-exp' ),
 		'background' => __( 'Site background', 'mrz-theme-exp' ),
+		'body'       => __( 'Body text', 'mrz-theme-exp' ),
 	);
 }
 
@@ -84,6 +85,7 @@ function mrz_theme_color_descriptions() {
 		'dark'       => __( 'Text on light backgrounds, "Dark" sections.', 'mrz-theme-exp' ),
 		'light'      => __( 'Text on dark backgrounds, "Light" sections.', 'mrz-theme-exp' ),
 		'background' => __( 'Empty: white. The text takes Dark or Light, whichever reads best on it.', 'mrz-theme-exp' ),
+		'body'       => __( 'Paragraphs on the site background, when they differ from the titles. Empty: same as the titles. Colored sections are not affected.', 'mrz-theme-exp' ),
 	);
 }
 
@@ -94,6 +96,15 @@ function mrz_theme_color_descriptions() {
  */
 function mrz_theme_brand_colors() {
 	return array( 'primary', 'secondary', 'tertiary', 'quaternary', 'dark', 'light' );
+}
+
+/**
+ * Couleurs de marque dont le texte posé dessus peut être imposé (Clair ou Sombre).
+ *
+ * @return array
+ */
+function mrz_theme_contrast_override_colors() {
+	return array( 'primary', 'secondary', 'tertiary', 'quaternary' );
 }
 
 /**
@@ -222,6 +233,25 @@ function mrz_theme_customize_register( $wp_customize ) {
 				)
 			)
 		);
+
+		// Couleur de marque : texte posé dessus, calculé ou imposé (quand la charte contredit le calcul).
+		if ( in_array( $name, mrz_theme_contrast_override_colors(), true ) ) {
+			mrz_theme_add_setting( $wp_customize, 'color_' . $name . '_contrast', 'mrz_theme_sanitize_choice' );
+			$wp_customize->add_control(
+				'mrz_color_' . $name . '_contrast',
+				array(
+					/* translators: %s: color name, e.g. "Primary color". */
+					'label'   => sprintf( __( 'Text on %s', 'mrz-theme-exp' ), $label ),
+					'section' => 'mrz_colors',
+					'type'    => 'select',
+					'choices' => array(
+						'auto'  => __( 'Automatic (best contrast)', 'mrz-theme-exp' ),
+						'light' => __( 'Light', 'mrz-theme-exp' ),
+						'dark'  => __( 'Dark', 'mrz-theme-exp' ),
+					),
+				)
+			);
+		}
 	}
 
 	/* Header. */
@@ -325,6 +355,22 @@ function mrz_theme_customize_register( $wp_customize ) {
 			'description' => __( 'Icon linking to the WooCommerce "My account" page, next to the cart. Requires WooCommerce.', 'mrz-theme-exp' ),
 			'section'     => 'mrz_header',
 			'type'        => 'checkbox',
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'lang_switcher', 'mrz_theme_sanitize_choice' );
+	$wp_customize->add_control(
+		'mrz_lang_switcher',
+		array(
+			'label'       => __( 'Language switcher', 'mrz-theme-exp' ),
+			'description' => __( 'Shown when Polylang is active, in the header and the mobile menu.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_header',
+			'type'        => 'radio',
+			'choices'     => array(
+				'codes' => __( 'Codes (FR, EN)', 'mrz-theme-exp' ),
+				'flags' => __( 'Flags', 'mrz-theme-exp' ),
+				'both'  => __( 'Flags and codes', 'mrz-theme-exp' ),
+			),
 		)
 	);
 
@@ -488,19 +534,36 @@ add_action( 'customize_register', 'mrz_theme_customize_move_logo', 20 );
 function mrz_theme_customizer_css() {
 	$breakpoint = max( 600, absint( mrz_theme_option( 'mobile_breakpoint' ) ) );
 
-	$css  = ':root{';
+	$css        = ':root{';
+	$title_text = '';
 	foreach ( array_keys( mrz_theme_color_labels() ) as $name ) {
 		$color = sanitize_hex_color( mrz_theme_option( 'color_' . $name ) );
-		if ( $color ) {
-			$css .= '--color-' . $name . ':' . $color . ';';
-			if ( in_array( $name, mrz_theme_brand_colors(), true ) ) {
-				$css .= '--color-' . $name . '-contrast:' . mrz_theme_contrast_color( $color ) . ';';
-			}
-			// Fond du site réglé : le texte prend Sombre ou Clair, selon ce fond.
-			if ( 'background' === $name ) {
-				$css .= '--color-text:' . mrz_theme_contrast_color( $color ) . ';';
-			}
+		if ( ! $color ) {
+			continue;
 		}
+
+		if ( 'body' === $name ) {
+			continue; // Écrit après la boucle : il dépend du fond du site.
+		}
+
+		$css .= '--color-' . $name . ':' . $color . ';';
+		if ( in_array( $name, mrz_theme_brand_colors(), true ) ) {
+			$forced = in_array( $name, mrz_theme_contrast_override_colors(), true ) ? mrz_theme_option( 'color_' . $name . '_contrast' ) : 'auto';
+			$text   = in_array( $forced, array( 'light', 'dark' ), true ) ? 'var(--color-' . $forced . ')' : mrz_theme_contrast_color( $color );
+			$css   .= '--color-' . $name . '-contrast:' . $text . ';';
+		}
+		// Fond du site réglé : le texte prend Sombre ou Clair, selon ce fond.
+		if ( 'background' === $name ) {
+			$title_text = mrz_theme_contrast_color( $color );
+			$css       .= '--color-text:' . $title_text . ';';
+		}
+	}
+
+	// Texte courant distinct des titres : les titres gardent la couleur calculée.
+	$body = sanitize_hex_color( mrz_theme_option( 'color_body' ) );
+	if ( $body ) {
+		$css .= '--mrz-title-color:' . ( $title_text ? $title_text : 'var(--color-dark)' ) . ';';
+		$css .= '--color-text:' . $body . ';';
 	}
 	$css .= '--mrz-logo-height:' . absint( mrz_theme_option( 'logo_height' ) ) . 'px;';
 	$css .= '--mrz-logo-height-mobile:' . absint( mrz_theme_option( 'logo_height_mobile' ) ) . 'px;';

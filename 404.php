@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-$mrz_page_id = (int) mrz_theme_option( 'page_404' );
+$mrz_page_id = mrz_theme_translated_id( mrz_theme_option( 'page_404' ) );
 
 if ( $mrz_page_id && 'publish' === get_post_status( $mrz_page_id ) ) {
 	if ( mrz_theme_has_builder( $mrz_page_id ) ) {

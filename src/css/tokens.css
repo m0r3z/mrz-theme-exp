@@ -69,6 +69,7 @@
 	--mrz-title-weight: 700;
 	--mrz-title-line-height: 1.15;
 	--mrz-title-letter-spacing: normal;
+	/* --mrz-title-color : écrite par le Customizer quand « Texte courant » est réglé. */
 	--mrz-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
 	--mrz-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem);
 	--mrz-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
@@ -85,6 +86,11 @@
 	--mrz-button-text-transform: none;
 	--mrz-button-bg: var(--color-primary);
 	--mrz-button-color: var(--color-primary-contrast);
+
+	/* Lien fléché (mrz_theme_button( $link, 'link' )) : flèche en masque, de la couleur du texte. */
+	--mrz-link-font-size: inherit;
+	--mrz-link-arrow-size: 1em;
+	--mrz-link-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
 	/*
 	 * Champs de formulaire : les mêmes partout (Gravity Forms, WooCommerce, recherche, commentaires).
@@ -116,14 +122,24 @@
 	/* Valeurs par défaut ; le Customizer les réécrit en ligne. */
 	--mrz-container: 1280px;
 	--mrz-container-wide: 1600px;
+	--mrz-container-narrow: 48rem; /* largeur de lecture (réglage « Étroite ») */
 	--mrz-gutter: clamp(1.25rem, 4vw, 2.5rem);
 	--mrz-logo-height: 48px;
 	--mrz-logo-height-mobile: 40px;
 
 	--mrz-header-padding: 1rem; /* espace en haut et en bas du header */
 	--mrz-header-bg: var(--color-background);
-	--mrz-header-color: var(--color-text);
+	--mrz-header-color: var(--mrz-title-color, var(--color-text));
 	--mrz-header-border: var(--color-border);
+	/* Header transparent, avant le défilement. */
+	--mrz-header-transparent-bg: transparent;
+	--mrz-header-transparent-color: var(--color-light);
+	--mrz-header-transparent-border: transparent;
+	/*
+	 * Place prise par le header : hauteur mesurée par main.js (--mrz-header-height),
+	 * calcul approché sans JS.
+	 */
+	--mrz-header-offset: var(--mrz-header-height, calc(var(--mrz-logo-height) + 2 * var(--mrz-header-padding)));
 
 	--mrz-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

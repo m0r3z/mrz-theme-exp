@@ -29,7 +29,8 @@ Ce guide s'adresse à la personne qui installe ou retouche un site. Les règles 
 | --- | --- |
 | WordPress | 6.6 ou plus (testé jusqu'à 7.1) |
 | PHP | 8.1 ou plus |
-| ACF Pro | Obligatoire |
+| ACF Pro | Obligatoire, à jour (testé en 6.8) : les plugins MRZ déclarent `Requires Plugins: advanced-custom-fields`, que la 6.1 ne satisfait pas |
+| Safe SVG | Recommandé : logo, icônes et réseaux sociaux en SVG (WordPress refuse les SVG sans lui) |
 
 Sans ACF Pro, le thème affiche une alerte dans l'admin et les pages montrent seulement leur contenu classique. Rien ne plante.
 
@@ -82,10 +83,12 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 | --- | --- |
 | Fond | Aucun, clair, sombre, l'une des quatre couleurs de la marque, ou image de fond |
 | Espacement | Normal, compact, large, aucun |
-| Largeur | Conteneur, large, pleine largeur |
+| Largeur | Conteneur, étroite (largeur de lecture : mentions légales, article), large, pleine largeur |
 | Ancre | Identifiant pour un lien `#ancre` dans un menu |
 
-Les couleurs des fonds sont celles de MRZ Theme > Couleurs. Le texte posé sur une couleur de la marque passe en sombre ou en blanc selon la couleur, automatiquement.
+Les couleurs des fonds sont celles de MRZ Theme > Couleurs. Le texte posé sur une couleur de la marque prend Sombre ou Clair selon la couleur, automatiquement ; quand la charte en décide autrement, le réglage « Texte sur … » de la couleur l'impose.
+
+Le Texte libre a aussi un niveau de titre : H2 par défaut, H1 quand il ouvre la page (mentions légales).
 
 ### Ajouter une section sur mesure
 
@@ -303,11 +306,12 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 2. **CHANGELOG.md** : déplacer « Non publié » sous le numéro de version, avec la date. Les notes de la release reprennent ce bloc.
 3. **Build** : `npm run build`, commiter, pousser `main`.
 4. **Recette sur MRZ-Dev** (bientôt `helloworld.local`, voir plus bas), connecté en administrateur, en desktop et en mobile :
-   - la page privée **Recette du thème** (`/recette-theme/`) : titres, texte, listes, boutons sur chaque fond, ancre sous le header, formulaire, MRZ Display Post, MRZ Maps, HTML brut ;
+   - la page privée **Recette du thème** (`/recette-theme/`) : titres, texte, listes, boutons et lien fléché sur chaque fond, ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
    - boutique, fiche produit, ajout au panier (la pastille se met à jour), panier, commande, compte ;
    - menu mobile (ouverture, Échap, sous-menus), recherche du header, footer ;
    - **site sombre** : dans le Customizer, régler « Fond du site » sur une couleur sombre et repasser la page Recette en aperçu, sans publier (texte de chaque fond de section, formulaire dans une section claire, header transparent, image de fond) ;
+   - **bilingue** (HelloWorld, Polylang) : sélecteur de langue, footer et section globale insérée à la main dans chaque langue, 404 dans chaque langue ;
    - aucune nouvelle ligne dans `wp-content/debug.log`.
 5. **Release** : un tag égal à la version précédée de `v`, les notes tirées du CHANGELOG :
 
@@ -355,12 +359,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
 
 À faire, chacun comme un chantier à part, dans l'ordre conseillé :
 
-1. **Polylang** : passer une recette sur `helloworld.local`, en bilingue. Le sélecteur de langue existe déjà. Il faut encore vérifier :
-   - les sections globales traduites, et leurs conditions sur des pages d'une seule langue ;
-   - les réglages du Customizer, communs à toutes les langues ;
-   - les chaînes du thème.
-   
-   Corriger dans le parent ce qui ne tient pas.
+1. **Polylang** : passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
 2. **Menus du header** : style des sous-menus déroulants, au clavier compris. Dans le parent.
 3. **WooCommerce** : avec les variables :
    - la liste des produits, la fiche produit et sa galerie, y compris en responsive ;
@@ -368,14 +367,15 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
    - le panier, la commande, et le compte client avec son menu de navigation.
    
    Ajouter une option « Description et avis à la suite, sans onglets », par les hooks WooCommerce et sans copie de template : c'est une demande fréquente. Dans le parent.
-4. **Blog** : réglage de l'article seul, avec deux choix :
+4. **Blog** : réglage de l'article seul, avec deux choix (demandé par le site test Energies Réunion) :
    - image à la une au-dessus du titre (l'actuel) ;
    - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.
    
    Mise en forme de la page des articles et des catégories. Dans le parent.
 5. **JS, en modules chargés seulement sur les pages qui s'en servent** :
    - **lightbox** : sur les liens vers une image et sur les galeries natives de WordPress (`[gallery]`), qui sont aussi à mettre en forme ;
-   - **carrousel** : un comportement activé par une classe (`mrz-carousel`), que les sections sur mesure de l'enfant utilisent. Une bibliothèque légère et accessible, livrée dans le thème, sans CDN.
+   - **carrousel** : un comportement activé par une classe (`mrz-carousel`), que les sections sur mesure de l'enfant utilisent (logos qui défilent, sliders). Une bibliothèque légère et accessible, livrée dans le thème, sans CDN ;
+   - **vidéo de fond de section** : un réglage « vidéo » (ID de média) à côté de l'image de fond, `<video autoplay muted loop playsinline>` avec l'image en `poster`.
    
    Le parent fournit le comportement, l'enfant le balisage.
 6. **V2** :

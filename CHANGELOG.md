@@ -14,6 +14,13 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Filtres d'icônes : un filtre SVG par couleur de la palette (`url(#mrz-icon-primary)`…, plus `white`), qui colore exactement une icône noire et suit le Customizer. `--mrz-icon-filter` (principale) et `--mrz-icon-filter-light` (blanc).
 - Menu mobile : quatre styles au choix (panneau à droite, à gauche, plein écran, déroulé sous le header).
 - Emplacement de section globale « Menu mobile : sous les liens » (`mrz_mobile_menu_end`).
+- « Texte sur … » pour chaque couleur de la marque (automatique, Clair, Sombre) : quand la charte contredit le contraste calculé.
+- « Texte courant » (Customizer > Couleurs) : paragraphes d'une autre couleur que les titres sur le fond du site ; les titres prennent `--mrz-title-color`.
+- Lien fléché : `mrz_theme_button( $link, 'link' )`, classe `.mrz-btn--link`, flèche en masque réglable (`--mrz-link-arrow`, `--mrz-link-arrow-size`, `--mrz-link-font-size`).
+- Largeur de section « Étroite » (`--mrz-container-narrow`, 48rem) et niveau de titre H1 ou H2 dans le Texte libre.
+- Header transparent : `--mrz-header-transparent-bg`, `-color`, `-border`, et `--mrz-header-offset` (place prise par le header, mesurée).
+- Sélecteur de langue en codes, drapeaux ou les deux (Customizer > Header).
+- Polylang : sections globales traduisibles d'office ; une section insérée à la main et la page 404 sont prises dans la langue courante (`mrz_theme_translated_id()`).
 
 ### Modifié
 - Plus aucun blanc en dur : le texte sur une couleur, sur une image de fond et dans le header transparent prend « Clair » (une charte crème reste crème). Libellés des couleurs Sombre et Clair revus.
@@ -23,6 +30,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Une page n'affiche plus jamais son titre (son contenu porte le `<h1>`) ; un article affiche toujours le sien. Réglages « Masquer le titre » et « Masquer le footer » retirés de la meta box : le footer se retire d'une page par les conditions de sa section globale.
 
 ### Corrigé
+- `mrz_theme_section_open()` : l'argument `class` accepte plusieurs classes (séparées par des espaces, ou un tableau) ; les espaces disparaissaient.
+- Sélecteur de langue : plus de notices avec Polylang 3.9 (`display_names_as` obsolète, `show_wrapper` manquant).
+- Menu mobile : connecté, il s'ouvre sous la barre d'admin au lieu de passer dessous.
 - Section Texte libre : un formulaire Gravity Forms inséré par shortcode perdait ses champs (`wp_kses_post()` retirait les `<input>` et les `<select>`).
 - La loupe du header est alignée sur les autres icônes, à la même taille.
 - Un texte masqué en fin de page (zone d'annonce du panier de WooCommerce) n'ajoute plus une ligne blanche sous le footer.

@@ -16,11 +16,11 @@ Déclarées en PHP dans `inc/builder-sections.php`, ajoutées au constructeur de
 
 | Section | Champs | Note |
 | --- | --- | --- |
-| `mrz_text` | title, content (HTML), settings | Texte libre |
+| `mrz_text` | title, title_tag (`h2` par défaut, `h1` si la section ouvre la page), content (HTML, shortcodes compris), settings | Texte libre |
 | `mrz_html` | code | Affiché tel quel, scripts compris ; champ visible seulement avec le droit `unfiltered_html` |
 | `mrz_global_section` | section (ID `mrz_section`) | |
 
-`settings` : background (none, light, dark, primary), spacing (normal, compact, large, none), width (container, wide, full), anchor, background_image (ID). Lu par `mrz_theme_section_open()`.
+`settings` : background (none, light, dark, primary, secondary, tertiary, quaternary), spacing (normal, compact, large, none), width (container, narrow pour une largeur de lecture, wide, full), anchor, background_image (ID). Lu par `mrz_theme_section_open()`, qui accepte aussi `'class'` : plusieurs classes séparées par des espaces, ou un tableau.
 
 ### Sections sur mesure (thème enfant)
 Une section par rangée de la maquette. Pour en créer une :
@@ -29,15 +29,16 @@ Une section par rangée de la maquette. Pour en créer une :
 3. Créer `layouts/mrzchild-<nom>.php` dans l'enfant (le nom, `_` remplacés par `-`) : `mrz_theme_section_open( 'mrzchild-<nom>' )`, le contenu échappé, `mrz_theme_section_close()`.
 4. Le style de la section va dans le fichier de sa partie, `css/<partie>.css` de l'enfant, en CSS classique et uniquement avec les variables du site (voir CSS).
 
-Une section dont le nom contient `hero`, placée en premier, active le header transparent (si l'option est cochée).
+Header transparent : automatique quand l'option est cochée et que la première section a `hero` dans son nom. Pour une autre section, ou pour le forcer ou le couper sur une page : meta box « MRZ Theme » de la page (`_mrz_transparent_header` à `on` ou `off`). Ne pas renommer une section pour l'obtenir.
+Sous un header transparent, la première section reçoit en haut `--spacing-section` + `--mrz-header-offset` (place du header). Un hero dont l'image est dans le flux remet son `padding-top` à 0 et décale son texte de `var(--mrz-header-offset)`.
 
-Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`. Formulaires, listes MRZ Display Post et cartes MRZ Maps : shortcodes (`[gravityform]`, `[mrzdpe]`, `[mrzme]`) dans un Texte libre ou dans un champ de section.
+Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`, affiché par `mrz_theme_button( $link, $style )` : `primary`, `outline` ou `link` (lien souligné suivi d'une flèche). Formulaires, listes MRZ Display Post et cartes MRZ Maps : shortcodes (`[gravityform]`, `[mrzdpe]`, `[mrzme]`) dans un Texte libre, qui les affiche sans filtrer leur balisage. Dans un champ de section sur mesure : `do_shortcode( wp_kses_post( $champ ) )`, jamais `wp_kses_post()` après le shortcode (il retire les `<script>` et les champs de formulaire).
 
 ### Code d'une section sur mesure (PHP)
 - **Échapper toute sortie** : `esc_html()` pour un texte, `esc_url()` pour un lien, `esc_attr()` pour un attribut, `wp_kses_post()` pour un champ WYSIWYG. Jamais un `echo get_sub_field()` brut (sauf la section du parent `mrz_html`).
 - **Images** : `wp_get_attachment_image( $id, $taille )`, jamais une balise `<img>` écrite à la main (WordPress ajoute `srcset`, dimensions et `loading`). Un texte alternatif vide (`'alt' => ''`) pour une image décorative.
 - **Image principale d'un hero** : une vraie image (`<img>`, `object-fit: cover`) avec `'fetchpriority' => 'high'` et `'loading' => 'eager'`, pas une image de fond CSS ni le réglage « image de fond » : une image de fond se charge tard et pénalise le chargement de la page (LCP).
-- **Textes écrits dans le template** (pas dans un champ) : `__( 'Texte', 'mrz-theme-exp-child' )` ou `esc_html_e()`, pour que Polylang et les traductions les reprennent. Le contenu des champs ACF se traduit avec la page.
+- **Aucun texte visible écrit en dur dans un template de l'enfant** : tout texte (titre, bouton, « Voir plus », texte pour lecteur d'écran) vient d'un champ ACF, qui se traduit avec la page dans chaque langue. Un `aria-label` se construit à partir d'un champ (le titre de la section, par exemple). L'enfant n'a pas de fichier de traduction.
 - **Titres** : un seul `<h1>` par page, porté par la première section (souvent le hero) ; les autres sections commencent à `<h2>`.
 - **Liens** : `target="_blank"` toujours avec `rel="noopener"`. Un lien sans texte visible (icône) porte un texte pour les lecteurs d'écran (`<span class="screen-reader-text">`).
 - **Ouvrir et fermer la section** avec `mrz_theme_section_open( 'mrzchild-<nom>' )` et `mrz_theme_section_close()` : réglages communs, ancre et conteneur sont gérés par le parent.
@@ -53,7 +54,7 @@ Un champ `link` vaut `array( 'url' => '', 'title' => '', 'target' => '' )`. Form
 ## CSS
 
 ### Règle d'or : un CSS minimal, entièrement fait de variables
-Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, partout : un bouton « Envoyer » de Gravity Forms, « Ajouter au panier » de WooCommerce et un bouton d'une section ont la même police, la même taille, la même graisse, le même rayon.
+Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, partout : un bouton « Envoyer » de Gravity Forms, « Ajouter au panier » de WooCommerce et un bouton d'une section ont la même police, la même taille, la même graisse, le même rayon. Seule variante : le lien fléché (`mrz_theme_button( $link, 'link' )`, classe `.mrz-btn--link`), pour les liens « Voir tout », « Télécharger ». Jamais de fonction de lien maison dans l'enfant.
 - **Jamais de valeur en dur** (taille de police, graisse, couleur, rayon) dans un fichier de section ou de partie : toujours une variable. Une valeur qui manque devient une variable dans le `style.css` de l'enfant, puis sert partout.
 - **Jamais de CSS propre à une page.** Pas de règle sur `.page-id-12`, pas de bouton retouché pour un seul formulaire. Si une page semble demander un style à part, c'est une section sur mesure qui le porte, avec les variables du site.
 - **Le moins de CSS possible.** Avant d'écrire une règle, vérifier qu'une variable ne suffit pas. Ne pas redéfinir ce que le parent fait déjà (boutons, champs, titres, prose).
@@ -62,14 +63,16 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 ### Variables (parent : `src/css/tokens.css`, valeurs du site : `style.css` de l'enfant)
 | Famille | Variables |
 | --- | --- |
-| Couleurs | Réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-quaternary` (marque), `--color-dark` (texte sur fond clair, sections « Sombre »), `--color-light` (texte sur fond sombre, sections « Clair »), `--color-border`, `--color-background` (fond du site, blanc si vide). Dérivées, à utiliser mais pas à régler : `--color-text`, `--color-muted`, `--color-*-contrast`. Ne jamais ajouter de couleur |
+| Couleurs | Réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-quaternary` (marque), `--color-dark` (texte sur fond clair, sections « Sombre »), `--color-light` (texte sur fond sombre, sections « Clair »), `--color-border`, `--color-background` (fond du site, blanc si vide), « Texte courant » (`mrz_color_body` : paragraphes d'une autre couleur que les titres, sur le fond du site). Dérivées, à utiliser mais pas à régler : `--color-text`, `--color-muted`, `--color-*-contrast`, `--mrz-title-color`. Quand la charte contredit le contraste calculé (texte blanc sur un vert moyen), régler « Texte sur … » de la couleur (automatique, Clair, Sombre) dans le Customizer, jamais `--color-*-contrast` dans l'enfant. Ne jamais ajouter de couleur |
 | Polices | `--font-title`, `--font-body`, `--font-accent` (troisième police facultative : mono, manuscrite… ; la police du texte par défaut). Jamais de `--mrzchild-font-*` |
 | Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
 | Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
+| Lien fléché | `--mrz-link-font-size`, `--mrz-link-arrow` (`url()` d'un SVG, utilisé en masque : la flèche prend la couleur du texte), `--mrz-link-arrow-size` (`0` pour aucune flèche) |
 | Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
 | Champs | `--mrz-field-font-size`, `--mrz-field-padding`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
 | Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` |
-| Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base`, `--mrz-header-padding` |
+| Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--mrz-container-narrow`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base` |
+| Header | `--mrz-header-padding`, `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` ; avant le défilement d'un header transparent : `--mrz-header-transparent-bg`, `--mrz-header-transparent-color`, `--mrz-header-transparent-border`. Lecture seule : `--mrz-header-offset` (place prise par le header) |
 | Icônes en image | Les SVG fournis sont noirs. `filter: var(--mrz-icon-filter)` (couleur principale par défaut) ou `var(--mrz-icon-filter-light)` (blanc par défaut). Pour une autre couleur : `url(#mrz-icon-<couleur>)` (primary, secondary, tertiary, quaternary, dark, light, border, white), filtres SVG imprimés par le thème qui suivent le Customizer. Jamais de chaîne `invert() sepia() hue-rotate()…` en dur : elle ne suit pas un changement de couleur |
 
 Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms.css`) et de WooCommerce (`assets/css/woocommerce.css`) lisent tous ces variables.
@@ -103,22 +106,31 @@ Meta box native « MRZ Theme » (`inc/page-options.php`), sans ACF, sur tous les
 - **Footer** : section globale ; on le retire d'une page par ses conditions, pas par un réglage de page.
 
 ## Sections globales
-CPT `mrz_section`. Meta `mrz_section_hook` (emplacement), `mrz_section_priority`, et conditions : `mrz_section_display` (`all`, `include`, `exclude`), `mrz_section_post_types` (types publics : un type couvre ses contenus et ses listes), `mrz_section_posts` (IDs). Test : `mrz_theme_global_section_matches()`. Hooks du thème : `mrz_before_header`, `mrz_after_header`, `mrz_before_content`, `mrz_after_content`, `mrz_footer`, `mrz_before_footer`, `mrz_after_footer`.
+CPT `mrz_section`. Meta `mrz_section_hook` (emplacement), `mrz_section_priority`, et conditions : `mrz_section_display` (`all`, `include`, `exclude`), `mrz_section_post_types` (types publics : un type couvre ses contenus et ses listes), `mrz_section_posts` (IDs). Test : `mrz_theme_global_section_matches()`. Polylang : voir plus bas. Hooks du thème : `mrz_before_header`, `mrz_after_header`, `mrz_before_content`, `mrz_after_content`, `mrz_footer`, `mrz_before_footer`, `mrz_after_footer`.
 
 ### Footer
 - Le parent n'a pas de footer par défaut (ni widgets, ni menu de footer, ni copyright). Le footer d'un site est une section globale à l'emplacement `mrz_footer`, que `footer.php` enveloppe dans `<footer class="mrz-footer">`.
-- Le modèle d'enfant fournit la section `mrzchild_footer` : logo centré, phrase et bouton, colonnes (titre + liste de liens en WYSIWYG), ligne du bas (WYSIWYG, balises `{year}` et `{site}` via `mrz_theme_text_tags()`). Fond et espacement par les réglages de la section.
-- Les liens du footer sont écrits dans la section, pas dans des menus WordPress : une section globale se traduit en une fois avec Polylang (type « Global sections » à cocher dans ses réglages), au lieu d'un menu par emplacement et par langue.
+- Le modèle d'enfant fournit la section `mrzchild_footer` : logo (facultatif, centré), phrase et bouton, colonnes (titre + liste de liens en WYSIWYG), réseaux sociaux (icône en image, lien, nom), ligne du bas (WYSIWYG, balises `{year}` et `{site}` via `mrz_theme_text_tags()`). Fond et espacement par les réglages de la section. Retirer du modèle ce que la maquette n'a pas.
+- Les liens du footer sont écrits dans la section, pas dans des menus WordPress : une section globale se traduit en une fois avec Polylang, au lieu d'un menu par emplacement et par langue.
 
 ## Plugins MRZ : obligatoires
 - **Toute liste de contenus** (articles, CPT, projets, équipe, références, derniers articles sur l'accueil) passe par **MRZ Display Post** (`[mrzdpe]`). **Toute carte** passe par **MRZ Maps** (`[mrzme]`). Jamais de requête `WP_Query` ni de filtre JS maison dans une section sur mesure pour ça.
 - Plugin absent du site : l'installer, ou le signaler à Aurélien **avant** de coder quoi que ce soit.
 - Il manque une fonction au plugin (filtre par taxonomie, gabarit de carte, tri manuel…) : la noter comme évolution du plugin dans le compte rendu, sans recoder la liste dans le thème.
-- Un type de contenu propre au site (projets, équipe) se déclare quand même dans l'enfant ; c'est son affichage en liste qui passe par MRZ Display Post.
+- Un type de contenu propre au site (projets, équipe, ressources) se déclare dans un **mu-plugin du site** (`wp-content/mu-plugins/<site>-contenus.php`), pas dans l'enfant : le contenu doit survivre à un changement de thème. C'est la seule chose qu'on écrit hors de l'enfant. Son affichage en liste passe par MRZ Display Post.
+- MRZ Display Post ne liste que les types et taxonomies publics : un type sans page à lui se déclare `'public' => true, 'publicly_queryable' => false`.
+- Site multilingue : une liste MRZ Display Post par langue (ses libellés de filtres, de recherche et de bouton sont propres à la liste).
 - Noter les plugins MRZ utilisés dans la fiche du site (`AGENTS.md` de l'enfant).
 
 ## Ce qui manque au parent
 Ne jamais modifier le parent installé sur un site, même pour le dépanner : la prochaine mise à jour l'écrase. Contourner le moins possible dans l'enfant, et lister le manque dans le compte rendu (« Manques du parent ») : il sera corrigé dans le dépôt du parent.
+
+## Polylang
+- Sections globales traduisibles d'office (filtre `pll_get_post_types`) : une version par langue. À l'emplacement d'un hook, chaque langue affiche sa version. Insérée à la main (section `mrz_global_section`) ou choisie comme page 404 : le parent prend la traduction de la langue courante (`mrz_theme_translated_id()`).
+- Menus : un menu par emplacement et par langue (Apparence > Menus, onglets de langue).
+- Sélecteur de langue : header et menu mobile, codes, drapeaux ou les deux (Customizer > Header, `mrz_lang_switcher`).
+- Accueil de la seconde langue servi en `/en/home/` : cocher dans Polylang « l'URL de la page d'accueil contient le code de langue », puis vider le cache des langues.
+- Formulaires : un formulaire Gravity Forms par langue.
 
 ## Gravity Forms
 Le thème CSS de Gravity Forms (`theme.min.css`) est désactivé par le parent (filtre `gform_disable_form_theme_css`) : les formulaires prennent les variables du thème (`assets/css/gravity-forms.css`). Ne pas renforcer les sélecteurs dans l'enfant pour passer devant Gravity Forms.
