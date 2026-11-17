@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Header : disposition « logo centré » (menu principal à gauche, logo au centre, menu secondaire et outils à droite ; logo à gauche sur mobile).
+
 ## [0.5.1] - 2026-11-17
 
 ### Ajouté

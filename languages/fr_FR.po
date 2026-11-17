@@ -236,94 +236,94 @@ msgstr "Classique : logo à gauche, menu à droite"
 msgid "Centered: logo above, menu below"
 msgstr "Centrée : logo au-dessus, menu en dessous"
 
-#: inc/customizer.php:369
+#: inc/customizer.php:370
 msgid "Sticky header"
 msgstr "Header fixe au défilement"
 
-#: inc/customizer.php:379
+#: inc/customizer.php:380
 msgid "Transparent header when applicable"
 msgstr "Header transparent quand c'est possible"
 
-#: inc/customizer.php:380
+#: inc/customizer.php:381
 msgid "The header is transparent over the page until the user scrolls, on pages that start with a hero section (a section whose name contains \"hero\")."
 msgstr "Le header est transparent par-dessus la page jusqu'au défilement, sur les pages qui commencent par une section hero (une section dont le nom contient « hero »)."
 
-#: inc/customizer.php:390
+#: inc/customizer.php:391
 #: inc/template-tags.php:223
 #: searchform.php:13
 #: searchform.php:15
 msgid "Search"
 msgstr "Recherche"
 
-#: inc/customizer.php:391
+#: inc/customizer.php:392
 msgid "Search icon in the header, opening the search form."
 msgstr "Icône de recherche dans le header, qui ouvre le formulaire de recherche."
 
-#: inc/customizer.php:401
+#: inc/customizer.php:402
 msgid "Account link"
 msgstr "Lien vers le compte"
 
-#: inc/customizer.php:402
+#: inc/customizer.php:403
 msgid "Icon linking to the WooCommerce \"My account\" page, next to the cart. Requires WooCommerce."
 msgstr "Icône vers la page « Mon compte » de WooCommerce, à côté du panier. Nécessite WooCommerce."
 
-#: inc/customizer.php:428
+#: inc/customizer.php:429
 msgid "Mobile header"
 msgstr "Header mobile"
 
-#: inc/customizer.php:437
+#: inc/customizer.php:438
 msgid "Sticky header on mobile"
 msgstr "Header fixe sur mobile"
 
-#: inc/customizer.php:459
+#: inc/customizer.php:460
 msgid "Mobile breakpoint (px)"
 msgstr "Point de rupture mobile (px)"
 
-#: inc/customizer.php:460
+#: inc/customizer.php:461
 msgid "Below this width, the menu collapses into the mobile menu. Raise it when the menu has many items."
 msgstr "Sous cette largeur, le menu passe en menu mobile. À augmenter quand le menu a beaucoup d'entrées."
 
-#: inc/customizer.php:475
+#: inc/customizer.php:476
 msgid "Page transitions"
 msgstr "Transitions de page"
 
-#: inc/customizer.php:477
+#: inc/customizer.php:478
 msgid "Uses the browser View Transitions API: no JavaScript. Browsers without support simply load the page normally."
 msgstr "Utilise la View Transitions API du navigateur, sans JavaScript. Les navigateurs qui ne la gèrent pas chargent simplement la page."
 
-#: inc/customizer.php:485
+#: inc/customizer.php:486
 msgid "Animated page transitions"
 msgstr "Transitions animées entre les pages"
 
-#: inc/customizer.php:495
+#: inc/customizer.php:496
 msgid "Transition effect"
 msgstr "Effet de transition"
 
-#: inc/customizer.php:499
+#: inc/customizer.php:500
 msgid "Fade"
 msgstr "Fondu"
 
-#: inc/customizer.php:500
+#: inc/customizer.php:501
 msgid "Slide up"
 msgstr "Glissement vers le haut"
 
-#: inc/customizer.php:538
+#: inc/customizer.php:539
 msgid "Duration (ms)"
 msgstr "Durée (ms)"
 
-#: inc/customizer.php:553
+#: inc/customizer.php:554
 msgid "General"
 msgstr "Général"
 
-#: inc/customizer.php:562
+#: inc/customizer.php:563
 msgid "Content width (px)"
 msgstr "Largeur du contenu (px)"
 
-#: inc/customizer.php:577
+#: inc/customizer.php:578
 msgid "404 page"
 msgstr "Page 404"
 
-#: inc/customizer.php:578
+#: inc/customizer.php:579
 msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
 msgstr "Page affichée quand une adresse n'existe pas. Le vrai statut 404 est conservé pour les moteurs de recherche."
 
@@ -490,7 +490,7 @@ msgstr "Menu"
 msgid "Close menu"
 msgstr "Fermer le menu"
 
-#: inc/customizer.php:447
+#: inc/customizer.php:448
 #: parts/mobile-menu/offcanvas.php:23
 msgid "Mobile menu"
 msgstr "Menu mobile"
@@ -534,7 +534,7 @@ msgstr "Déroulé sous le header"
 msgid "Colors"
 msgstr "Couleurs"
 
-#: inc/customizer.php:448
+#: inc/customizer.php:449
 msgid "How the menu opens. Its look (background, blur, hover) is styled in the child theme."
 msgstr "La façon dont le menu s'ouvre. Son apparence (fond, flou, survol) se règle dans le thème enfant."
 
@@ -576,19 +576,19 @@ msgstr "Automatique (meilleur contraste)"
 msgid "Body text"
 msgstr "Texte courant"
 
-#: inc/customizer.php:417
+#: inc/customizer.php:418
 msgid "Codes (FR, EN)"
 msgstr "Codes (FR, EN)"
 
-#: inc/customizer.php:418
+#: inc/customizer.php:419
 msgid "Flags"
 msgstr "Drapeaux"
 
-#: inc/customizer.php:419
+#: inc/customizer.php:420
 msgid "Flags and codes"
 msgstr "Drapeaux et codes"
 
-#: inc/customizer.php:412
+#: inc/customizer.php:413
 msgid "Language switcher"
 msgstr "Sélecteur de langue"
 
@@ -600,7 +600,7 @@ msgstr "Étroite (largeur de lecture)"
 msgid "Paragraphs on the site background, when they differ from the titles. Empty: same as the titles. Colored sections are not affected."
 msgstr "Paragraphes sur le fond du site, quand ils diffèrent des titres. Vide : comme les titres. Les sections de couleur ne changent pas."
 
-#: inc/customizer.php:413
+#: inc/customizer.php:414
 msgid "Shown when Polylang is active, in the header and the mobile menu."
 msgstr "Affiché quand Polylang est actif, dans le header et le menu mobile."
 
@@ -826,12 +826,12 @@ msgid "Gradient direction"
 msgstr "Sens du dégradé"
 
 #: inc/builder-sections.php:175
-#: inc/customizer.php:527
+#: inc/customizer.php:528
 msgid "Downward"
 msgstr "Vers le bas"
 
 #: inc/builder-sections.php:176
-#: inc/customizer.php:529
+#: inc/customizer.php:530
 msgid "To the right"
 msgstr "Vers la droite"
 
@@ -1043,35 +1043,35 @@ msgstr "Après les colonnes de liens : texte, formulaire d'inscription (shortcod
 msgid "Menu left: logo, menu next to it, tools on the right"
 msgstr "Menu à gauche : logo, menu juste après, outils à droite"
 
-#: inc/customizer.php:358
+#: inc/customizer.php:359
 msgid "Menu button on desktop too"
 msgstr "Bouton Menu aussi sur ordinateur"
 
-#: inc/customizer.php:359
+#: inc/customizer.php:360
 msgid "The main menu opens in the mobile menu panel on every screen, from the Menu button (style: Mobile header)."
 msgstr "Le menu principal s'ouvre dans le panneau du menu mobile sur tous les écrans, depuis le bouton Menu (style : Header mobile)."
 
-#: inc/customizer.php:501
+#: inc/customizer.php:502
 msgid "Curtain: a color sweeps the screen"
 msgstr "Rideau : une couleur balaie l'écran"
 
-#: inc/customizer.php:502
+#: inc/customizer.php:503
 msgid "Zoom: the page steps back, the next one comes forward"
 msgstr "Zoom : la page recule, la suivante s'avance"
 
-#: inc/customizer.php:511
+#: inc/customizer.php:512
 msgid "Curtain color"
 msgstr "Couleur du rideau"
 
-#: inc/customizer.php:522
+#: inc/customizer.php:523
 msgid "Curtain direction"
 msgstr "Sens du rideau"
 
-#: inc/customizer.php:526
+#: inc/customizer.php:527
 msgid "Upward"
 msgstr "Vers le haut"
 
-#: inc/customizer.php:528
+#: inc/customizer.php:529
 msgid "To the left"
 msgstr "Vers la gauche"
 
@@ -1079,3 +1079,7 @@ msgstr "Vers la gauche"
 #: inc/builder-sections.php:501
 msgid "H1 only when this section opens the page (one H1 per page). No skipped level."
 msgstr "H1 seulement quand cette section ouvre la page (un seul H1 par page). Pas de niveau sauté."
+
+#: inc/customizer.php:350
+msgid "Centered logo: main menu on the left, secondary menu and tools on the right"
+msgstr "Logo centré : menu principal à gauche, menu secondaire et outils à droite"

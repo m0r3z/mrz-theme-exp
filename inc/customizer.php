@@ -347,6 +347,7 @@ function mrz_theme_customize_register( $wp_customize ) {
 				'classic'  => __( 'Classic: logo left, menu right', 'mrz-theme-exp' ),
 				'left'     => __( 'Menu left: logo, menu next to it, tools on the right', 'mrz-theme-exp' ),
 				'centered' => __( 'Centered: logo above, menu below', 'mrz-theme-exp' ),
+				'split'    => __( 'Centered logo: main menu on the left, secondary menu and tools on the right', 'mrz-theme-exp' ),
 			),
 		)
 	);
@@ -658,6 +659,8 @@ function mrz_theme_customizer_css() {
 	$css .= '@media (max-width:' . $breakpoint . 'px){';
 	$css .= '.mrz-desktop-only{display:none}';
 	$css .= '.mrz-header .mrz-logo img{height:var(--mrz-logo-height-mobile)}';
+	// Logo centré : sur mobile, le menu est dans le burger, le logo repasse à gauche (pas la place de le centrer).
+	$css .= '.mrz-header--split .mrz-header__bar{grid-template-columns:auto 1fr}.mrz-header--split .mrz-header__start{display:none}';
 	$css .= '.mrz-mobile-static:not(.mrz-header-transparent) .mrz-header{position:relative}';
 	$css .= 'html:has(> body.mrz-mobile-static:not(.mrz-header-transparent)){scroll-padding-top:var(--wp-admin--admin-bar--height,0px)}';
 	$css .= '}';

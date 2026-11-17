@@ -170,7 +170,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | MRZ Theme > Header | Logo (le logo natif de WordPress, déplacé ici) | |
 | | Logo du header transparent : affiché avant le défilement, remplacé par le logo principal ensuite | aucun |
 | | Hauteur du logo : desktop, mobile (px) | 48, 40 |
-| | Disposition : classique (logo à gauche, menu à droite), menu à gauche (logo, menu juste après, outils à droite) ou centrée (logo au-dessus, menu dessous) | classique |
+| | Disposition : classique (logo à gauche, menu à droite), menu à gauche (logo, menu juste après, outils à droite), centrée (logo au-dessus, menu dessous) ou logo centré (menu principal à gauche, menu secondaire et outils à droite ; logo à gauche sur mobile) | classique |
 | | Bouton Menu aussi sur ordinateur : le menu principal s'ouvre dans le panneau du menu mobile sur tous les écrans | non |
 | | Header sticky | oui |
 | | Header transparent quand applicable (pages qui commencent par une section hero) | non |
