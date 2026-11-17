@@ -63,6 +63,9 @@ function mrz_theme_add_setting( $wp_customize, $name, $sanitize, $transport = 'r
  */
 function mrz_theme_color_labels() {
 	return array(
+		// Ordre d'affichage dans le Customizer : le site, puis la marque, puis les teintes de base.
+		'background' => __( 'Site background', 'mrz-theme-exp' ),
+		'body'       => __( 'Body text', 'mrz-theme-exp' ),
 		'primary'    => __( 'Primary color', 'mrz-theme-exp' ),
 		'secondary'  => __( 'Secondary color', 'mrz-theme-exp' ),
 		'tertiary'   => __( 'Tertiary color', 'mrz-theme-exp' ),
@@ -70,8 +73,6 @@ function mrz_theme_color_labels() {
 		'dark'       => __( 'Dark', 'mrz-theme-exp' ),
 		'light'      => __( 'Light', 'mrz-theme-exp' ),
 		'border'     => __( 'Borders and lines', 'mrz-theme-exp' ),
-		'background' => __( 'Site background', 'mrz-theme-exp' ),
-		'body'       => __( 'Body text', 'mrz-theme-exp' ),
 	);
 }
 
