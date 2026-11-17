@@ -30,7 +30,8 @@ Ce guide s'adresse à la personne qui installe ou retouche un site. Les règles 
 | WordPress | 6.6 ou plus (testé jusqu'à 7.1) |
 | PHP | 8.1 ou plus |
 | ACF Pro | Obligatoire, à jour (testé en 6.8) : les plugins MRZ déclarent `Requires Plugins: advanced-custom-fields`, que la 6.1 ne satisfait pas |
-| Safe SVG | Recommandé : logo, icônes et réseaux sociaux en SVG (WordPress refuse les SVG sans lui) |
+| Safe SVG | Requis pour les icônes des Cartes et des réseaux du Footer, et pour un logo en SVG : WordPress refuse les SVG sans lui, et il les nettoie |
+| Rank Math | Titre et meta description de chaque page (le contenu des pages est dans ACF : écrire la description page par page) |
 
 Sans ACF Pro, le thème affiche une alerte dans l'admin et les pages montrent seulement leur contenu classique. Rien ne plante.
 
@@ -240,9 +241,12 @@ Pour ajouter un élément sans copier de template, l'enfant se branche sur un ho
 | `mrz_header_tools_end` | Header, après le panier, avant le bouton du menu mobile |
 | `mrz_mobile_menu_end` | En bas du menu mobile, aussi disponible comme emplacement de section globale (« Menu mobile : sous les liens ») |
 
+Un hook ne doit pas écrire de texte visible : l'enfant n'a pas de fichier de traduction, et le texte ne suivrait pas les langues du site. Un bouton comme « Prendre rendez-vous » se met dans le **menu secondaire**, avec une classe CSS sur l'élément du menu (champ « Classes CSS » d'Apparence > Menus), mise en forme dans `css/header.css` de l'enfant : le texte se traduit avec le menu. Les hooks servent aux éléments sans texte ou dont le texte vient d'un champ (section globale, réglage) :
+
 ```php
 add_action( 'mrz_header_tools_end', function () {
-	echo '<a class="mrz-btn mrz-btn--primary mrz-desktop-only" href="/contact/">' . esc_html__( 'Prendre rendez-vous', 'mrz-theme-exp-child' ) . '</a>';
+	// Une section globale « Bouton du header », traduite avec Polylang comme les autres.
+	mrz_theme_render_global_section( 123 );
 } );
 ```
 

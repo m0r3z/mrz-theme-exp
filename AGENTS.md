@@ -38,7 +38,7 @@ Déclarées en PHP dans `inc/builder-sections.php`, ajoutées au constructeur de
 | --- | --- | --- |
 | `mrz_text` | title, title_tag (`h2` par défaut, `h1` si la section ouvre la page), content (HTML, shortcodes compris), settings | Texte libre |
 | `mrz_html` | code | Affiché tel quel, scripts compris ; champ visible seulement avec le droit `unfiltered_html` |
-| `mrz_cards` | title, display (`grid`, `carousel`), autoplay, items (répéteur : image, title, background, text, link), settings | Cartes libres. Image SVG = icône à la couleur du texte. Variables `--mrz-cards-*`, `--mrz-card-*` |
+| `mrz_cards` | title, display (`grid`, `carousel`), autoplay, items (répéteur : image, title, background, text, link), settings | Cartes libres. Image SVG = icône à la couleur du texte. Titre des cartes en `h3` sous un titre de section, en `h2` sans titre de section. Variables `--mrz-cards-*`, `--mrz-card-*` |
 | `mrz_footer` | logo, title, button, columns (répéteur : title, links), socials (répéteur : icon, url, name), bottom, settings | Footer. Proposée seulement dans les sections globales. Variables `--mrz-footer-*` |
 | `mrz_global_section` | section (ID `mrz_section`) | |
 
@@ -88,26 +88,32 @@ Un site doit avoir **un seul** style de bouton, de champ, de titre et de texte, 
 | Couleurs | Réglées dans le Customizer (MRZ Theme > Couleurs, theme_mods `mrz_color_*`), **jamais dans le CSS de l'enfant** : `--color-primary`, `--color-secondary`, `--color-tertiary`, `--color-quaternary` (marque), `--color-dark` (texte sur fond clair, sections « Sombre »), `--color-light` (texte sur fond sombre, sections « Clair »), `--color-border`, `--color-background` (fond du site, blanc si vide), « Texte courant » (`mrz_color_body` : paragraphes d'une autre couleur que les titres, sur le fond du site). Dérivées, à utiliser mais pas à régler : `--color-text`, `--color-muted`, `--color-*-contrast`, `--mrz-title-color`. Quand la charte contredit le contraste calculé (texte blanc sur un vert moyen), régler « Texte sur … » de la couleur (automatique, Clair, Sombre) dans le Customizer, jamais `--color-*-contrast` dans l'enfant. Ne jamais ajouter de couleur |
 | Polices | `--font-title`, `--font-body`, `--font-accent` (troisième police facultative : mono, manuscrite… ; la police du texte par défaut). Jamais de `--mrzchild-font-*` |
 | Texte | `--mrz-body-size`, `--mrz-body-line-height`, `--mrz-text-sm`, `--mrz-text-lg` |
-| Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing` |
+| Titres | `--mrz-h1` à `--mrz-h6`, `--mrz-title-weight`, `--mrz-title-line-height`, `--mrz-title-letter-spacing`, `--mrz-title-text-transform` (`uppercase` : titres en capitales, titre du footer compris) |
+| Liens du texte | `--mrz-link-color` (liens de `.mrz-prose`) : couleur principale, ou couleur du texte si la principale n'atteint pas 4,5:1 sur le fond du site (calculé par le Customizer). Sur un fond de section, les liens prennent la couleur du texte |
 | Lien fléché | `--mrz-link-font-size`, `--mrz-link-arrow` (`url()` d'un SVG, utilisé en masque : la flèche prend la couleur du texte), `--mrz-link-arrow-size` (`0` pour aucune flèche) |
-| Boutons | `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding-y`, `--mrz-button-padding-x`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
+| Boutons | `--mrz-button-font-family` (police du texte autour par défaut), `--mrz-button-font-size`, `--mrz-button-font-weight`, `--mrz-button-padding-y`, `--mrz-button-padding-x`, `--mrz-button-border-width`, `--mrz-button-letter-spacing`, `--mrz-button-text-transform`, `--mrz-button-bg`, `--mrz-button-color`, `--radius-button` |
 | Champs | `--mrz-field-font-size`, `--mrz-field-padding-y`, `--mrz-field-padding-x`, `--mrz-field-bg`, `--mrz-field-color`, `--mrz-field-border`, `--mrz-field-border-focus`, `--mrz-field-radius`, `--mrz-label-font-size`, `--mrz-label-font-weight` |
-| Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` |
-| Cartes (`mrz_cards`) | `--mrz-cards-per-view`, `--mrz-cards-per-view-md` (640px), `--mrz-cards-per-view-lg` (1024px), `--mrz-card-padding`, `--mrz-card-gap`, `--mrz-card-radius`, `--mrz-card-border`, `--mrz-card-shadow`, `--mrz-card-icon-size`, `--mrz-card-title-size` |
-| Footer (`mrz_footer`) | `--mrz-footer-logo-height`, `--mrz-footer-logo-space`, `--mrz-footer-gap`, `--mrz-footer-title-size`, `--mrz-footer-columns-gap`, `--mrz-footer-heading-size`, `--mrz-footer-link-size`, `--mrz-footer-link-space`, `--mrz-footer-social-size`, `--mrz-footer-bottom-space`, `--mrz-footer-bottom-size`, `--mrz-footer-bottom-border` |
+| Menus | `--mrz-menu-font-family`, `--mrz-menu-font-size`, `--mrz-menu-font-weight`, `--mrz-menu-text-transform`, `--mrz-menu-letter-spacing` (lues aussi par le sélecteur de langue), `--mrz-lang-inactive-opacity` (langues non affichées) |
+| Cartes (`mrz_cards`) | `--mrz-cards-per-view`, `--mrz-cards-per-view-md` (640px), `--mrz-cards-per-view-lg` (1024px), `--mrz-card-padding`, `--mrz-card-gap`, `--mrz-card-radius`, `--mrz-card-border`, `--mrz-card-shadow`, `--mrz-card-icon-size`, `--mrz-card-title-size`, `--mrz-card-media-ratio` (format des images, recadrées : `16 / 9`, `1`…) |
+| Footer (`mrz_footer`) | `--mrz-footer-logo-height`, `--mrz-footer-logo-space`, `--mrz-footer-gap`, `--mrz-footer-title-size`, `--mrz-footer-columns-gap`, `--mrz-footer-heading-size`, `--mrz-footer-link-size`, `--mrz-footer-link-space`, `--mrz-footer-social-size`, `--mrz-footer-bottom-space`, `--mrz-footer-bottom-size`, `--mrz-footer-bottom-border`, `--mrz-footer-link-color` (couleur du texte de la section par défaut) |
 | Sous-menus (desktop) | `--mrz-submenu-bg` (fond du header par défaut), `--mrz-submenu-color`, `--mrz-submenu-width`, `--mrz-submenu-radius`, `--mrz-submenu-shadow`, `--mrz-submenu-indicator` (chevron en masque), `--mrz-submenu-indicator-size` (`0` pour aucun chevron) |
 | Mise en page | `--mrz-gutter`, `--mrz-container-wide`, `--mrz-container-narrow`, `--spacing-section`, `--spacing-section-sm`, `--spacing-section-lg`, `--radius-base` |
-| Focus | `--mrz-focus-color` : contour du focus clavier. Couleur principale sur le fond du site, couleur du texte de la section sur un fond de section, sur une image et dans le header transparent. Ne jamais retirer le contour (`outline: none`) |
-| Header | `--mrz-header-padding`, `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` ; avant le défilement d'un header transparent : `--mrz-header-transparent-bg`, `--mrz-header-transparent-color`, `--mrz-header-transparent-border`. Lecture seule : `--mrz-header-offset` (place prise par le header) |
+| Focus | `--mrz-focus-color` : contour du focus clavier. Couleur principale sur le fond du site (couleur du texte si la principale n'atteint pas 3:1 sur ce fond, calculé par le Customizer), couleur du texte de la section sur un fond de section, sur une image et dans le header transparent. Ne jamais retirer le contour (`outline: none`) |
+| Header | `--mrz-header-padding`, `--mrz-header-max-width` (`none` : header pleine largeur), `--mrz-header-bg`, `--mrz-header-color`, `--mrz-header-border` ; avant le défilement d'un header transparent : `--mrz-header-transparent-bg`, `--mrz-header-transparent-color`, `--mrz-header-transparent-border`. Lecture seule : `--mrz-header-offset` (place prise par le header). Blocs du header ciblables : `.mrz-header__bar`, `.mrz-header__start` (header centré), `.mrz-logo`, `.mrz-header__end` (menu et outils) |
+| Images de fond | `--mrz-image-overlay` : voile posé sur l'image de fond d'une section (`rgb(0 0 0 / 0.45)` par défaut) |
+| WooCommerce | `--mrz-product-title-font-family`, `--mrz-product-title-size`, `--mrz-product-title-text-transform` (titres des produits dans les listes) |
 | Icônes en image | Les SVG fournis sont noirs. `filter: var(--mrz-icon-filter)` (couleur principale par défaut) ou `var(--mrz-icon-filter-light)` (blanc par défaut). Pour une autre couleur : `url(#mrz-icon-<couleur>)` (primary, secondary, tertiary, quaternary, dark, light, border, white), filtres SVG imprimés par le thème qui suivent le Customizer. Jamais de chaîne `invert() sepia() hue-rotate()…` en dur : elle ne suit pas un changement de couleur |
 
-Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms.css`) et de WooCommerce (`assets/css/woocommerce.css`) lisent tous ces variables.
+Liste complète et valeurs par défaut : `src/css/tokens.css` du parent, livré avec le thème pour servir de référence.
+
+Les boutons et les champs du thème, de Gravity Forms (`src/css/gravity-forms.css`, compilé dans `dist/main.css`) et de WooCommerce (`assets/css/woocommerce.css`) lisent tous ces variables.
 
 ### Site clair ou sombre : le texte suit le fond
 - Le thème marche aussi bien sur un site clair que sombre. Le fond du site se règle dans le Customizer (« Fond du site ») ; `--color-text` y prend Sombre ou Clair, celle qui contraste le plus.
 - Chaque fond de section (`.mrz-bg--light`, `--dark`, `--primary`…) redéfinit `--color-background`, `--color-text` et `--color-muted` pour tout ce qu'il contient. Les champs de formulaire suivent la section (`--mrz-field-bg`, `--mrz-field-color` et `--mrz-field-border` ne sont pas définies par défaut : ne les définir que pour fixer les champs sur tout le site).
 - Dans le CSS de l'enfant : **toujours `var(--color-text)`, `var(--color-muted)`, `var(--color-background)`**, jamais `var(--color-dark)` ni un blanc pour colorer du texte. Ainsi, un bloc reste lisible quel que soit le fond où on le pose.
 - Une carte qui change de fond dans une section : lui donner le même jeu de variables (`--color-background`, `--color-text`, `--color-muted`) plutôt que des couleurs.
+- Redéfinir `--color-text` ou `--color-muted` sur une section ou un bloc est permis (liens gris d'un footer sur fond clair : `--color-text: var(--color-tertiary)`), à condition que le contraste reste suffisant.
 
 ### Fichiers du thème enfant
 - `style.css` : en-tête du thème, `@font-face` des polices du site, et les variables du site dans `:root`. Rien d'autre.
@@ -118,13 +124,13 @@ Les boutons et les champs du thème, de Gravity Forms (`assets/css/gravity-forms
 - Tailwind v4 compile seulement le thème parent : `npm run build`. Le CSS compilé `dist/main.css` est commité.
 - Variables de design dans `src/css/tokens.css` (`@theme static` pour couleurs, polices, rayons, espacements ; `:root` pour le reste). Classes générées : `bg-primary`, `text-muted`, `font-title`, `rounded-base`, `py-section`…
 - Les composants sont en CSS dans `src/css/components.css`, préfixe `.mrz-`, dans `@layer components`. Les éléments HTML (titres, champs, boutons d'envoi) dans `src/css/base.css`.
-- Le CSS de Gravity Forms et de WooCommerce est hors couche : il passe devant le CSS du thème. Leurs réglages vont dans `assets/css/gravity-forms.css` et `assets/css/woocommerce.css`, hors couche eux aussi, toujours avec les variables.
+- Le CSS de Gravity Forms et de WooCommerce est hors couche : il passe devant le CSS du thème. Leurs réglages vont dans `src/css/gravity-forms.css` (importé hors couche dans `main.css`) et `assets/css/woocommerce.css` (chargé dès que WooCommerce est actif), toujours avec les variables.
 - **Thème enfant : CSS classique uniquement.** Ne jamais écrire de nouvelle classe Tailwind dans un template de l'enfant : elle n'existe pas dans `dist/main.css`.
 - Une classe Tailwind utilisée dans le parent doit apparaître en entier dans un fichier scanné (pas de nom construit par concaténation).
 
 ## Options
 - Customizer natif, panneau « MRZ Theme » (le logo natif y est déplacé, section Header), ouvert par le menu d'admin « MRZ Theme » (`inc/admin.php`), qui porte aussi les sections globales. Pas de page d'options sur mesure : garder les écrans natifs de WordPress. Lecture : `mrz_theme_option( 'nom' )`, valeurs par défaut dans `inc/options.php`.
-- Le point de rupture mobile est un réglage : les classes `.mrz-desktop-only` et `.mrz-mobile-only` sont pilotées par du CSS en ligne, pas par Tailwind.
+- Le point de rupture mobile est un réglage : les classes `.mrz-desktop-only` et `.mrz-mobile-only` sont pilotées par du CSS en ligne, pas par Tailwind. Une variable ne peut pas servir dans `@media` : l'enfant recopie la valeur du réglage (`@media (max-width: <valeur>px)`) et la note dans sa fiche de site.
 
 ## Réglages par page
 Meta box native « MRZ Theme » (`inc/page-options.php`), sans ACF, sur tous les types publics. Metas `_mrz_hide_header` (`'1'` ou absente) et `_mrz_transparent_header` (`on`, `off` ou absente). Lecture : `mrz_theme_page_option( '_mrz_hide_header' )`. Classe du body : `mrz-no-header`. Ne jamais écrire de CSS sur `.page-id-*` : passer par ces réglages.
@@ -143,10 +149,14 @@ CPT `mrz_section`. Meta `mrz_section_hook` (emplacement), `mrz_section_priority`
 - **Toute liste de contenus** (articles, CPT, projets, équipe, références, derniers articles sur l'accueil) passe par **MRZ Display Post** (`[mrzdpe]`). **Toute carte** passe par **MRZ Maps** (`[mrzme]`). Jamais de requête `WP_Query` ni de filtre JS maison dans une section sur mesure pour ça.
 - Plugin absent du site : l'installer, ou le signaler à Aurélien **avant** de coder quoi que ce soit.
 - Il manque une fonction au plugin (filtre par taxonomie, gabarit de carte, tri manuel…) : la noter comme évolution du plugin dans le compte rendu, sans recoder la liste dans le thème.
-- Un type de contenu propre au site (projets, équipe, ressources) se déclare dans un **mu-plugin du site** (`wp-content/mu-plugins/<site>-contenus.php`), pas dans l'enfant : le contenu doit survivre à un changement de thème. C'est la seule chose qu'on écrit hors de l'enfant. Son affichage en liste passe par MRZ Display Post.
+- Un type de contenu propre au site (projets, équipe, ressources) se déclare dans un **mu-plugin du site** (`wp-content/mu-plugins/<site>-contenus.php`, types et fonctions préfixés `aa_` : `aa_equipe`, `aa_register_contenus()`), pas dans l'enfant : le contenu doit survivre à un changement de thème. C'est la seule chose qu'on écrit hors de l'enfant. Son affichage en liste passe par MRZ Display Post.
 - MRZ Display Post ne liste que les types et taxonomies publics : un type sans page à lui se déclare `'public' => true, 'publicly_queryable' => false`.
+- Mettre en forme une liste : écrire ses propres classes `mrzchild-*` dans le gabarit de la liste (réglage du plugin) et styler celles-là dans l'enfant. Jamais les classes internes du plugin (`.mrz-display-post-exp-*`).
 - Site multilingue : une liste MRZ Display Post par langue (ses libellés de filtres, de recherche et de bouton sont propres à la liste).
 - Noter les plugins MRZ utilisés dans la fiche du site (`AGENTS.md` de l'enfant).
+
+## Images SVG
+Les icônes des Cartes et des réseaux du Footer sont des SVG : le plugin **Safe SVG** (prérequis du README) les autorise et les nettoie. Ne jamais écrire sa propre autorisation des SVG (filtre `upload_mimes` dans un mu-plugin ou l'enfant) : un SVG non nettoyé peut porter du script.
 
 ## Ce qui manque au parent
 Ne jamais modifier le parent installé sur un site, même pour le dépanner : la prochaine mise à jour l'écrase. Contourner le moins possible dans l'enfant, et lister le manque dans le compte rendu (« Manques du parent ») : il sera corrigé dans le dépôt du parent.
@@ -155,18 +165,19 @@ Ne jamais modifier le parent installé sur un site, même pour le dépanner : la
 - Sections globales traduisibles d'office (filtre `pll_get_post_types`) : une version par langue. À l'emplacement d'un hook, chaque langue affiche sa version. Insérée à la main (section `mrz_global_section`) ou choisie comme page 404 : le parent prend la traduction de la langue courante (`mrz_theme_translated_id()`).
 - Menus : un menu par emplacement et par langue (Apparence > Menus, onglets de langue).
 - Sélecteur de langue : header et menu mobile, codes, drapeaux ou les deux (Customizer > Header, `mrz_lang_switcher`).
-- Accueil de la seconde langue servi en `/en/home/` : cocher dans Polylang « l'URL de la page d'accueil contient le code de langue », puis vider le cache des langues.
+- Accueil de la seconde langue servi en `/en/home/` : cocher dans Polylang « l'URL de la page d'accueil contient le code de langue », puis vider le cache des langues (supprimer le transient `pll_languages_list` : `wp transient delete pll_languages_list`).
+- Le sélecteur de langue ne s'affiche qu'à partir de deux langues.
 - Formulaires : un formulaire Gravity Forms par langue.
 
 ## Gravity Forms
 - Thème de formulaire **Orbital** imposé à tous les formulaires (filtre `gform_form_theme_slug`) : c'est le seul qui gère tous les types de champs (choix d'image, fichiers, dates…) et qui se règle par variables CSS (`--gf-*`).
-- `assets/css/gravity-forms.css` donne aux variables d'Orbital les valeurs du thème (`--color-*`, `--mrz-field-*`, `--mrz-label-*`, `--mrz-button-*`). Les formulaires suivent donc les variables du site et le fond de leur section, bouton inversé compris.
+- `src/css/gravity-forms.css` (compilé dans `dist/main.css`) donne aux variables d'Orbital les valeurs du thème (`--color-*`, `--mrz-field-*`, `--mrz-label-*`, `--mrz-button-*`). Les formulaires suivent donc les variables du site et le fond de leur section, bouton inversé compris. Le focus clavier des champs et des boutons reprend `--mrz-focus-color`, en 2px.
 - Dans l'enfant : régler les variables du thème, **jamais un sélecteur de Gravity Forms** ni une variable `--gf-*`. Ne pas régler de style de formulaire dans l'éditeur de blocs de Gravity Forms : il passerait devant le thème.
 - Padding des champs et des boutons : `--mrz-field-padding-y`/`-x` et `--mrz-button-padding-y`/`-x` (Gravity Forms les lit séparément), pas le raccourci `--mrz-field-padding`.
 - Poids : Orbital ajoute environ 37 Ko compressés, seulement sur les pages qui ont un formulaire.
 
 ## WooCommerce
-Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.php` + `assets/css/woocommerce.css`. Panier et commande : pages en shortcodes classiques `[woocommerce_cart]` et `[woocommerce_checkout]`, pas en blocs.
+Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.php` + `assets/css/woocommerce.css` (chargé sur tout le site : une grille `[products]` peut être sur n'importe quelle page). Panier et commande : pages en shortcodes classiques `[woocommerce_cart]` et `[woocommerce_checkout]`, pas en blocs. Sans constructeur, ces pages et Mon compte reçoivent leur titre en `<h1>` du parent. Jamais de sélecteur de WooCommerce dans l'enfant : passer par les variables (`--mrz-product-title-*`, boutons, champs).
 
 ## Code
 - Préfixe `mrz_theme_` (fonctions), `mrz_` (theme_mods, CSS), textdomain `mrz-theme-exp`, chaînes source en anglais. Toute chaîne ajoutée ou modifiée : mettre à jour `languages/mrz-theme-exp.pot`, `fr_FR.po` et recompiler `fr_FR.mo` (commandes dans le README).
@@ -193,12 +204,13 @@ foreach ( $mrzchild_items as $mrzchild_item ) {
 mrz_theme_carousel_close();
 ```
 - Défilement natif du navigateur (scroll-snap) : glissé au doigt, trackpad, flèches du clavier sur la piste. `assets/js/carousel.js` (commandes) ne se charge que sur les pages qui appellent `mrz_theme_carousel_open()`.
-- `label` : le titre de la section (nom du carrousel pour les lecteurs d'écran). `autoplay` : secondes entre deux défilements, 0 par défaut ; activé, un bouton pause est toujours affiché, et la lecture s'arrête au survol, au focus et si l'utilisateur limite les animations (RGAA 13.8).
+- `label` : le titre de la section (nom du carrousel pour les lecteurs d'écran). Sans libellé, le carrousel n'est pas une région nommée (pas de `role="region"`). `autoplay` : secondes entre deux défilements, 0 par défaut ; activé, un bouton pause est toujours affiché, et la lecture s'arrête au survol, au focus et si l'utilisateur limite les animations (RGAA 13.8).
 - Précédent et Suivant avancent d'une page de cartes visibles ; en fin de liste, Suivant revient au début. Commandes masquées si tout tient à l'écran.
 - Apparence dans l'enfant, par section : `--mrz-carousel-per-view` (décimales acceptées : `3.5` montre la moitié de la suivante), avec un point de rupture par écran, `--mrz-carousel-gap`, `--mrz-carousel-button-size`, `--mrz-carousel-dot-size`.
 
 ## Sous-menus du header
 Menus principal et secondaire, jusqu'à trois niveaux. Ouverts au survol (fermeture retardée de 0.2s), au clavier (Tab entre dans le sous-menu, Échap le ferme et rend le focus au lien parent) et au toucher (premier appui ouvre, second suit le lien). Le premier niveau part du bas du header (coins du haut droits, même fond que le header par défaut) ; un pont invisible garde le survol entre le lien et le sous-menu. Un sous-menu qui sortirait de l'écran s'ouvre vers la gauche (classe `.mrz-submenu--flip`). Tout est dans le parent (`src/css/components.css`, `assets/js/main.js`) : l'enfant ne règle que l'apparence, par les variables `--mrz-submenu-*`.
+- Mega menu (panneau à colonnes) : l'apparence (grille, largeur) va dans `css/header.css` de l'enfant, sur une classe CSS posée sur l'élément du menu ; le comportement (ouverture, Échap) reste celui du parent. Une classe de mega menu reconnue par le parent est prévue en 0.5 : d'ici là, ne pas recoder Échap dans l'enfant, signaler le manque.
 
 ## Menu mobile
 Quatre styles au choix (Customizer > Header mobile, theme_mod `mrz_mobile_menu_style` : `right`, `left`, `fullscreen`, `dropdown`), sur le même balisage `parts/mobile-menu/offcanvas.php`, classe `.mrz-offcanvas--<style>`. Le parent ne pose que la position et l'ouverture. En plein écran, le bouton fermer prend la place exacte du burger. L'apparence (fond, flou, opacité, survol des liens) se fait dans `css/mobile-menu.css` de l'enfant, en ciblant `.mrz-offcanvas--<style> .mrz-offcanvas__panel`. Ne pas copier le template.
