@@ -28,7 +28,8 @@ function mrz_theme_logo( $context = 'header' ) {
 				'class'         => 'mrz-logo__img',
 				'alt'           => $site_name,
 				'loading'       => 'eager',
-				'fetchpriority' => 'header' === $context ? 'high' : 'auto',
+				// Pas de priorité haute : le logo n'est presque jamais le LCP, l'image de la bannière l'est.
+				'fetchpriority' => 'auto',
 			)
 		);
 
@@ -131,7 +132,8 @@ function mrz_theme_header_tools() {
  * @param string $extra_class Classes CSS ajoutées à la liste.
  */
 function mrz_theme_language_switcher( $extra_class = '' ) {
-	if ( ! function_exists( 'pll_the_languages' ) ) {
+	// Rien à choisir sous deux langues.
+	if ( ! function_exists( 'pll_the_languages' ) || ! function_exists( 'pll_languages_list' ) || count( pll_languages_list() ) < 2 ) {
 		return;
 	}
 

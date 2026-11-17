@@ -187,11 +187,44 @@ function mrz_theme_contrast_color( $hex ) {
 		return 'var(--color-dark)';
 	}
 
-	$ratio = function ( $a, $b ) {
-		return ( max( $a, $b ) + 0.05 ) / ( min( $a, $b ) + 0.05 );
-	};
+	return mrz_theme_contrast_ratio( $background, $dark ) >= mrz_theme_contrast_ratio( $background, $light ) ? 'var(--color-dark)' : 'var(--color-light)';
+}
 
-	return $ratio( $background, $dark ) >= $ratio( $background, $light ) ? 'var(--color-dark)' : 'var(--color-light)';
+/**
+ * Rapport de contraste WCAG entre deux luminances (1 à 21).
+ *
+ * @param float $first  Luminance.
+ * @param float $second Luminance.
+ * @return float
+ */
+function mrz_theme_contrast_ratio( $first, $second ) {
+	return ( max( $first, $second ) + 0.05 ) / ( min( $first, $second ) + 0.05 );
+}
+
+/**
+ * Liens du texte et contour de focus : couleur principale, sauf si elle manque de contraste
+ * sur le fond du site (charte claire, or sur crème). Ils prennent alors la couleur du texte.
+ * Seuils RGAA : 4,5:1 pour un lien dans le texte, 3:1 pour le contour de focus.
+ *
+ * @return string Déclarations CSS pour :root ('' si la principale suffit).
+ */
+function mrz_theme_link_focus_css() {
+	$primary    = mrz_theme_luminance( mrz_theme_option( 'color_primary' ) );
+	$background = mrz_theme_luminance( mrz_theme_option( 'color_background' ) ? mrz_theme_option( 'color_background' ) : '#ffffff' );
+	if ( null === $primary || null === $background ) {
+		return '';
+	}
+
+	$ratio = mrz_theme_contrast_ratio( $primary, $background );
+	$css   = '';
+	if ( $ratio < 4.5 ) {
+		$css .= '--mrz-link-color:var(--color-text);';
+	}
+	if ( $ratio < 3 ) {
+		$css .= '--mrz-focus-color:var(--color-text);';
+	}
+
+	return $css;
 }
 
 /**
@@ -566,6 +599,7 @@ function mrz_theme_customizer_css() {
 		$css .= '--mrz-title-color:' . ( $title_text ? $title_text : 'var(--color-dark)' ) . ';';
 		$css .= '--color-text:' . $body . ';';
 	}
+	$css .= mrz_theme_link_focus_css();
 	$css .= '--mrz-logo-height:' . absint( mrz_theme_option( 'logo_height' ) ) . 'px;';
 	$css .= '--mrz-logo-height-mobile:' . absint( mrz_theme_option( 'logo_height_mobile' ) ) . 'px;';
 	$css .= '--mrz-container:' . absint( mrz_theme_option( 'container_width' ) ) . 'px;';

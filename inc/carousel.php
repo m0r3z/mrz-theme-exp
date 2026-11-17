@@ -75,11 +75,15 @@ function mrz_theme_carousel_open( $args = array() ) {
 
 	$GLOBALS['mrz_theme_carousel_args'] = $args;
 
+	// Région nommée seulement avec un libellé : une région sans nom est une faute (RGAA, axe).
+	$region = $args['label']
+		? sprintf( ' role="region" aria-roledescription="%1$s" aria-label="%2$s"', esc_attr__( 'carousel', 'mrz-theme-exp' ), esc_attr( $args['label'] ) )
+		: '';
+
 	printf(
-		'<div class="mrz-carousel %1$s" role="region" aria-roledescription="%2$s"%3$s data-mrz-carousel data-autoplay="%4$d">',
+		'<div class="mrz-carousel %1$s"%2$s data-mrz-carousel data-autoplay="%3$d">',
 		esc_attr( $args['class'] ),
-		esc_attr__( 'carousel', 'mrz-theme-exp' ),
-		$args['label'] ? ' aria-label="' . esc_attr( $args['label'] ) . '"' : '',
+		$region, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- échappé ci-dessus.
 		absint( $args['autoplay'] )
 	);
 	// tabindex : la piste défile aux flèches du clavier, même sans lien dans les éléments.

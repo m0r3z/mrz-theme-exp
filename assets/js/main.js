@@ -20,9 +20,11 @@
 		var setHeaderHeight = function () {
 			document.documentElement.style.setProperty( '--mrz-header-height', header.offsetHeight + 'px' );
 		};
-		setHeaderHeight();
+		// Le ResizeObserver mesure dès l'affichage, sans forcer de recalcul au chargement.
 		if ( 'ResizeObserver' in window ) {
 			new ResizeObserver( setHeaderHeight ).observe( header );
+		} else {
+			window.requestAnimationFrame( setHeaderHeight );
 		}
 	}
 
