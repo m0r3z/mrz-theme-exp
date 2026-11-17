@@ -4,6 +4,19 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Corrigé
+- Défilement horizontal de la page : un sous-menu du mega menu fermé (header en `overflow-x: clip`), les textes masqués des diapositives d'un carrousel (piste en `position: relative`), une légende de galerie sans espace (coupée).
+- Lightbox : le glissé au doigt passe enfin à l'image suivante (`touch-action`), et la fermeture rend le focus au lien de l'image affichée, plus à celui qui l'a ouverte.
+- Texte et média : la colonne collante s'arrête sous la barre d'admin et sous le sous-menu d'ancres collant. Dans une colonne de mega menu, texte et média s'empilent.
+- Bandeau défilant : le texte d'un élément sert d'alternative à son logo (RGAA 1.1).
+- Compteur des chiffres clés : les lecteurs d'écran lisent la valeur finale, pas les valeurs intermédiaires.
+- Dégradé « vers le fond du site » dans une section colorée : il allait vers la couleur de la section (nouvelle variable `--mrz-site-background`).
+- Couleur principale peu contrastée : le lien actif et le survol du menu, le lien actif du sous-menu d'ancres et la bordure des champs au focus suivent `--mrz-link-color` et `--mrz-focus-color` (RGAA 3.2).
+- Header transparent : le focus était invisible dans les sous-menus (couleur claire du header sur leur fond blanc). Nouvelle variable `--mrz-site-focus-color`.
+- Page Boutique sans `h1` depuis la 0.7.1 : ses sections s'affichent au-dessus des produits, sinon le titre de WooCommerce revient (RGAA 9.1).
+- Texte libre centré : un formulaire garde ses étiquettes et ses champs alignés à gauche.
+- Boutons : `--mrz-button-padding-x` et `-y` redéfinis sur un bouton sont pris en compte (le raccourci `--mrz-button-padding` reste possible).
+
 ## [0.8.0] - 2026-11-17
 
 Boutique WooCommerce : réglages dans le Customizer, panneau du panier, ajout sans rechargement.
