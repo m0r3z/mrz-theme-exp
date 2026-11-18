@@ -18,6 +18,7 @@ defined( 'ABSPATH' ) || exit;
 <?php wp_body_open(); ?>
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'mrz-theme-exp' ); ?></a>
 <?php
+mrz_theme_topbar();
 do_action( 'mrz_before_header' );
 if ( ! mrz_theme_page_option( '_mrz_hide_header' ) ) {
 	get_template_part( 'parts/header/header', mrz_theme_option( 'header_layout' ) );

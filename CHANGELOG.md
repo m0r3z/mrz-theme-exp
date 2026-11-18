@@ -2,6 +2,11 @@
 
 Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versions en [SemVer](https://semver.org/lang/fr/) : le premier chiffre change quand un nom utilisé par les thèmes enfants casse (« Cassant ») ; avant la 1.0, c'est le deuxième.
 
+## [Non publié]
+
+### Ajouté
+- Sections globales : emplacement **Top bar**, un bandeau au-dessus du header (livraison offerte, annonce). Il défile avec la page et le header sticky reste seul en haut ; sous un header transparent, le header descend sous le bandeau puis remonte avec lui. Espacement réduit, texte plus petit, fond réglé par la section. Ses sections ne prennent ni la priorité d'image ni le `h1` de la page. Variables `--mrz-topbar-*`.
+
 ## [0.8.2] - 2026-11-18
 
 ### Ajouté

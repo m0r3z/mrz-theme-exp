@@ -140,6 +140,7 @@ Chaque page, article ou CPT a, dans la colonne de droite de son édition, une bo
 
 | Emplacement | Position |
 | --- | --- |
+| Top bar (above the header, hidden on scroll) | **Bandeau au-dessus du header** (« Livraison offerte dès… ») : il défile avec la page, le header sticky reste seul en haut ; sous un header transparent, le header descend sous le bandeau puis remonte. Espacement réduit et texte plus petit d'office ; fond par le réglage Fond de la section (Texte libre ou Bandeau défilant). Rien ne s'affiche sans section |
 | Before the header / After the header | Autour du header |
 | Before the content / After the content | Au début ou à la fin du contenu principal |
 | Footer (the site footer) | **Le footer du site**, dans la balise `<footer>`. Le thème n'a pas d'autre footer |

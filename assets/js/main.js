@@ -10,8 +10,37 @@
 	/* Header : classe is-scrolled dès que la page défile. */
 	var header = document.querySelector( '.mrz-header' );
 	if ( header ) {
+		/*
+		 * Bandeau au-dessus d'un header transparent (fixé en haut) : le header descend de la
+		 * partie encore visible du bandeau, puis remonte à mesure qu'il défile. Header
+		 * transparent non sticky (absolu) : toute la hauteur du bandeau.
+		 * Header classique : rien à faire, le bandeau défile et le header sticky reste.
+		 */
+		var topbar = document.querySelector( '[data-mrz-topbar]' );
+		var shiftHeader = topbar && body.classList.contains( 'mrz-header-transparent' );
+		var stickyHeader = body.classList.contains( 'mrz-header-sticky' );
+		var topbarHeight = 0;
+		var setTopbarVisible = function () {
+			var visible = stickyHeader ? Math.max( 0, topbarHeight - window.scrollY ) : topbarHeight;
+			document.documentElement.style.setProperty( '--mrz-topbar-visible', visible + 'px' );
+		};
+		if ( shiftHeader ) {
+			var measureTopbar = function () {
+				topbarHeight = topbar.offsetHeight;
+				setTopbarVisible();
+			};
+			if ( 'ResizeObserver' in window ) {
+				new ResizeObserver( measureTopbar ).observe( topbar );
+			} else {
+				window.requestAnimationFrame( measureTopbar );
+			}
+		}
+
 		var onScroll = function () {
 			header.classList.toggle( 'is-scrolled', window.scrollY > 10 );
+			if ( shiftHeader ) {
+				setTopbarVisible();
+			}
 		};
 		onScroll();
 		window.addEventListener( 'scroll', onScroll, { passive: true } );

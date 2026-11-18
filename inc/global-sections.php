@@ -18,6 +18,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function mrz_theme_global_section_hooks() {
 	return array(
+		'mrz_topbar'                       => __( 'Top bar (above the header, hidden on scroll)', 'mrz-theme-exp' ),
 		'mrz_before_header'                => __( 'Before the header', 'mrz-theme-exp' ),
 		'mrz_after_header'                 => __( 'After the header', 'mrz-theme-exp' ),
 		'mrz_before_content'               => __( 'Before the content', 'mrz-theme-exp' ),

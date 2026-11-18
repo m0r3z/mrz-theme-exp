@@ -1492,3 +1492,6 @@ msgstr "Le header est transparent par-dessus la page jusqu'au défilement, sur l
 msgctxt "menu button"
 msgid "Menu"
 msgstr "Menu"
+
+msgid "Top bar (above the header, hidden on scroll)"
+msgstr "Bandeau au-dessus du header (masqué au défilement)"

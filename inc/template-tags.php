@@ -364,3 +364,30 @@ function mrz_theme_text_tags( $text ) {
 		(string) $text
 	);
 }
+
+/**
+ * Bandeau au-dessus du header (livraison offerte, annonce) : les sections globales
+ * placées à l'emplacement « mrz_topbar ». Rien n'est imprimé sans section.
+ *
+ * Le bandeau défile avec la page ; un header sticky reste seul en haut. Sous un header
+ * transparent, main.js décale le header de la partie visible du bandeau.
+ * Comme dans un mega menu, ses sections ne comptent pas dans le rang des sections
+ * (la première section de la page garde l'image prioritaire) et leurs titres sont des paragraphes.
+ */
+function mrz_theme_topbar() {
+	if ( ! has_action( 'mrz_topbar' ) ) {
+		return;
+	}
+
+	$GLOBALS['mrz_theme_in_menu'] = true;
+	ob_start();
+	do_action( 'mrz_topbar' );
+	$html = trim( (string) ob_get_clean() );
+	$GLOBALS['mrz_theme_in_menu'] = false;
+
+	if ( '' === $html ) {
+		return;
+	}
+
+	echo '<div class="mrz-topbar" data-mrz-topbar>' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sections globales, échappées par leurs templates.
+}

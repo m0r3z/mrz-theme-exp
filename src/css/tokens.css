@@ -261,6 +261,13 @@
 	 * Place prise par le header : hauteur mesurée par main.js (--mrz-header-height),
 	 * calcul approché sans JS.
 	 */
+	/* Bandeau au-dessus du header (sections globales « Top bar ») */
+	--mrz-topbar-padding: 0.5rem; /* haut et bas */
+	--mrz-topbar-font-size: var(--mrz-text-sm);
+	--mrz-topbar-font-weight: inherit;
+	--mrz-topbar-letter-spacing: normal;
+	--mrz-topbar-text-transform: none; /* uppercase : bandeau en capitales */
+	/* --mrz-topbar-font-family : police du texte par défaut. */
 	--mrz-header-offset: var(--mrz-header-height, calc(var(--mrz-logo-height) + 2 * var(--mrz-header-padding)));
 
 	/* Contour de focus (clavier) : couleur principale sur le fond du site, couleur du texte de la section sur les fonds de section. */
