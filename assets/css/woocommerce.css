@@ -1163,3 +1163,27 @@
 	margin-top: 0.75rem;
 	font-size: var(--mrz-text-sm);
 }
+
+/*
+ * En-tête des listes de produits (titre et description de la boutique ou de la catégorie),
+ * dans la colonne des produits, au-dessus du nombre de résultats.
+ */
+.mrz-shop-header {
+	margin-bottom: 1.5rem;
+}
+
+.mrz-shop-header .page-title {
+	margin: 0;
+}
+
+.mrz-shop-header .term-description,
+.mrz-shop-header .page-description {
+	max-width: var(--mrz-container-narrow, 65ch);
+	margin-top: 0.75rem;
+	color: var(--color-muted);
+}
+
+.mrz-shop-header .term-description > :last-child,
+.mrz-shop-header .page-description > :last-child {
+	margin-bottom: 0;
+}
