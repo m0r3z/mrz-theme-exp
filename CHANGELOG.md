@@ -5,10 +5,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
-- Sections globales : emplacement **Top bar**, un bandeau au-dessus du header (livraison offerte, annonce). Il défile avec la page et le header sticky reste seul en haut ; sous un header transparent, le header descend sous le bandeau puis remonte avec lui. Espacement réduit, texte plus petit, fond réglé par la section. Ses sections ne prennent ni la priorité d'image ni le `h1` de la page. Comme le header, il reste immobile pendant les transitions de page. Variables `--mrz-topbar-*`.
+- Sections globales : emplacement **Top bar**, un bandeau au-dessus du header (livraison offerte, annonce). Il défile avec la page et le header sticky reste seul en haut ; sous un header transparent, le header descend sous le bandeau puis remonte avec lui. Espacement réduit, texte plus petit, fond réglé par la section. Ses sections ne prennent ni la priorité d'image ni le `h1` de la page. Comme le header, il reste immobile pendant les transitions de page. Les mêmes sections ouvrent le panneau du panier. Variables `--mrz-topbar-*`.
 
 ### Modifié
-- Panneau du panier : ouverture et fermeture adoucies, en CSS seul : le voile apparaît et disparaît en fondu (0,3 s), le panneau glisse plus doucement depuis la droite et y repart (0,4 s). Fermeture d'un coup sur les navigateurs sans prise en charge (Firefox). Variables `--mrz-minicart-duration` et `--mrz-minicart-backdrop-duration`.
+- Panneau du panier : ouverture et fermeture adoucies, en CSS seul : le voile apparaît et disparaît en fondu (0,5 s), le panneau glisse doucement depuis la droite et y repart (0,6 s). Plus de trait sous le titre « Panier ». Fermeture d'un coup sur les navigateurs sans prise en charge (Firefox). Variables `--mrz-minicart-duration` et `--mrz-minicart-backdrop-duration`.
 
 ## [0.8.2] - 2026-11-18
 

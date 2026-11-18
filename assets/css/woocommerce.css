@@ -434,9 +434,9 @@
 .mrz-minicart {
 	transform: translateX(100%);
 	transition:
-		transform var(--mrz-minicart-duration, 0.4s) cubic-bezier(0.32, 0.72, 0, 1),
-		overlay var(--mrz-minicart-duration, 0.4s) allow-discrete,
-		display var(--mrz-minicart-duration, 0.4s) allow-discrete;
+		transform var(--mrz-minicart-duration, 0.6s) cubic-bezier(0.22, 1, 0.36, 1),
+		overlay var(--mrz-minicart-duration, 0.6s) allow-discrete,
+		display var(--mrz-minicart-duration, 0.6s) allow-discrete;
 }
 
 .mrz-minicart[open] {
@@ -449,9 +449,9 @@
 	background: var(--mrz-minicart-backdrop, rgb(0 0 0 / 0.4));
 	opacity: 0;
 	transition:
-		opacity var(--mrz-minicart-backdrop-duration, 0.3s) ease-out,
-		overlay var(--mrz-minicart-backdrop-duration, 0.3s) allow-discrete,
-		display var(--mrz-minicart-backdrop-duration, 0.3s) allow-discrete;
+		opacity var(--mrz-minicart-backdrop-duration, 0.5s) ease,
+		overlay var(--mrz-minicart-backdrop-duration, 0.5s) allow-discrete,
+		display var(--mrz-minicart-backdrop-duration, 0.5s) allow-discrete;
 }
 
 .mrz-minicart[open]::backdrop {
@@ -481,7 +481,7 @@
 	justify-content: space-between;
 	gap: 1rem;
 	padding: var(--mrz-minicart-padding, 1.5rem);
-	border-bottom: 1px solid var(--color-border);
+	padding-bottom: 0;
 }
 
 .mrz-minicart__title {

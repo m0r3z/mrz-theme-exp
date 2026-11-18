@@ -373,8 +373,13 @@ function mrz_theme_text_tags( $text ) {
  * transparent, main.js décale le header de la partie visible du bandeau.
  * Comme dans un mega menu, ses sections ne comptent pas dans le rang des sections
  * (la première section de la page garde l'image prioritaire) et leurs titres sont des paragraphes.
+ *
+ * Les mêmes sections ouvrent le panneau du panier (WooCommerce) : une seule section
+ * globale pour le haut du site et le haut du panier.
+ *
+ * @param string $context « header » (au-dessus du header) ou « cart » (haut du panneau du panier).
  */
-function mrz_theme_topbar() {
+function mrz_theme_topbar( $context = 'header' ) {
 	if ( ! has_action( 'mrz_topbar' ) ) {
 		return;
 	}
@@ -389,5 +394,8 @@ function mrz_theme_topbar() {
 		return;
 	}
 
-	echo '<div class="mrz-topbar" data-mrz-topbar>' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sections globales, échappées par leurs templates.
+	// Seul le bandeau du header porte data-mrz-topbar (main.js, transitions de page).
+	$attributes = 'cart' === $context ? 'class="mrz-topbar mrz-topbar--cart"' : 'class="mrz-topbar" data-mrz-topbar';
+
+	echo '<div ' . $attributes . '>' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sections globales, échappées par leurs templates.
 }

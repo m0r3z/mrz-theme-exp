@@ -440,6 +440,7 @@ function mrz_theme_shop_footer() {
 	<div class="mrz-toast" role="status" aria-live="polite" aria-atomic="true"></div>
 	<?php if ( mrz_theme_cart_drawer_enabled() ) : ?>
 		<dialog class="mrz-minicart woocommerce" id="mrz-minicart" aria-labelledby="mrz-minicart-title">
+			<?php mrz_theme_topbar( 'cart' ); // Sections globales « Top bar » : même bandeau qu'au-dessus du header. ?>
 			<div class="mrz-minicart__header">
 				<h2 class="mrz-minicart__title" id="mrz-minicart-title"><?php esc_html_e( 'Cart', 'mrz-theme-exp' ); ?></h2>
 				<button type="button" class="mrz-minicart__close" data-mrz-minicart-close>
