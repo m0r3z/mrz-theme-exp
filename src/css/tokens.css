@@ -238,6 +238,7 @@
 	--mrz-gutter: clamp(1.25rem, 4vw, 2.5rem);
 	--mrz-logo-height: 48px;
 	--mrz-logo-height-mobile: 40px;
+	/* --mrz-logo-height-scrolled : hauteur du logo une fois la page défilée, sur ordinateur (inchangée par défaut). */
 
 	--mrz-header-padding: 1rem; /* espace en haut et en bas du header */
 	--mrz-header-max-width: calc(var(--mrz-container) + 2 * var(--mrz-gutter)); /* none : header pleine largeur */
@@ -248,6 +249,7 @@
 	--mrz-header-transparent-bg: transparent;
 	--mrz-header-transparent-color: var(--color-light);
 	--mrz-header-transparent-border: transparent;
+	/* --mrz-header-backdrop : flou derrière le header (blur(12px)), avec un --mrz-header-bg translucide. */
 	/*
 	 * Place prise par le header : hauteur mesurée par main.js (--mrz-header-height),
 	 * calcul approché sans JS.

@@ -38,6 +38,8 @@
 		/* Un sous-menu fermé (masqué mais placé) ne fait pas défiler la page à l'horizontale.
 		   clip, pas hidden : pas de conteneur de défilement, le header reste collant. */
 		overflow-x: clip;
+		/* Flou derrière un header translucide (blur(12px)) : aucun par défaut. */
+		backdrop-filter: var(--mrz-header-backdrop, none);
 		transition: background-color 0.3s var(--mrz-ease), color 0.3s var(--mrz-ease), border-color 0.3s var(--mrz-ease);
 	}
 
@@ -57,6 +59,7 @@
 
 	/* Header transparent : par-dessus le hero, couleurs claires jusqu'au défilement. */
 	.mrz-header-transparent .mrz-header:not(.is-scrolled) {
+		backdrop-filter: none;
 		--mrz-focus-color: var(--mrz-header-transparent-color);
 		/* Sous-menus : fond plein du site, même quand le header est transparent. */
 		--mrz-submenu-bg: var(--color-background);
@@ -105,6 +108,17 @@
 		/* Quand max-width: 100% réduit la largeur (colonne étroite), le logo garde son ratio. */
 		object-fit: contain;
 		object-position: left center;
+	}
+
+	/* Logo plus petit une fois la page défilée (ordinateur ; sur mobile, la hauteur mobile du Customizer passe devant). */
+	.mrz-header.is-scrolled .mrz-logo__img {
+		height: var(--mrz-logo-height-scrolled, var(--mrz-logo-height));
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mrz-logo__img {
+			transition: none;
+		}
 	}
 
 	.mrz-logo__text {
@@ -380,6 +394,21 @@
 		border-radius: var(--radius-base);
 		color: inherit;
 		cursor: pointer;
+	}
+
+	/* Libellé « Menu » visible à côté du burger (réglage du Customizer). */
+	.mrz-burger:has(.mrz-burger__label) {
+		width: auto;
+		gap: 0.5rem;
+		padding-inline: 0.5rem;
+	}
+
+	.mrz-burger__label {
+		font-family: var(--mrz-menu-font-family);
+		font-size: var(--mrz-menu-font-size);
+		font-weight: var(--mrz-menu-font-weight);
+		letter-spacing: var(--mrz-menu-letter-spacing);
+		text-transform: var(--mrz-menu-text-transform);
 	}
 
 	.mrz-icon {

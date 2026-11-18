@@ -352,14 +352,29 @@ function mrz_theme_customize_register( $wp_customize ) {
 		)
 	);
 
-	mrz_theme_add_setting( $wp_customize, 'menu_button_desktop', 'mrz_theme_sanitize_checkbox' );
+	mrz_theme_add_setting( $wp_customize, 'menu_button_desktop', 'mrz_theme_sanitize_choice' );
 	$wp_customize->add_control(
 		'mrz_menu_button_desktop',
 		array(
-			'label'       => __( 'Menu button on desktop too', 'mrz-theme-exp' ),
-			'description' => __( 'The main menu opens in the mobile menu panel on every screen, from the Menu button (style: Mobile header).', 'mrz-theme-exp' ),
+			'label'       => __( 'Menu button on desktop', 'mrz-theme-exp' ),
+			'description' => __( 'The Menu button opens the mobile menu panel (style: Mobile header). It shows the Mobile menu if one is assigned, otherwise the main menu.', 'mrz-theme-exp' ),
 			'section'     => 'mrz_header',
-			'type'        => 'checkbox',
+			'type'        => 'radio',
+			'choices'     => array(
+				'none'    => __( 'No: mobile only', 'mrz-theme-exp' ),
+				'replace' => __( 'Instead of the main menu', 'mrz-theme-exp' ),
+				'add'     => __( 'In addition to the main menu', 'mrz-theme-exp' ),
+			),
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'menu_button_label', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_menu_button_label',
+		array(
+			'label'   => __( 'Show the word "Menu" next to the Menu button icon', 'mrz-theme-exp' ),
+			'section' => 'mrz_header',
+			'type'    => 'checkbox',
 		)
 	);
 
@@ -378,7 +393,7 @@ function mrz_theme_customize_register( $wp_customize ) {
 		'mrz_header_transparent',
 		array(
 			'label'       => __( 'Transparent header when applicable', 'mrz-theme-exp' ),
-			'description' => __( 'The header is transparent over the page until the user scrolls, on pages that start with a hero section (a section whose name contains "hero").', 'mrz-theme-exp' ),
+			'description' => __( 'The header is transparent over the page until the user scrolls, on pages whose first section has a background image or video. A page can force it or turn it off (MRZ Theme box of the page).', 'mrz-theme-exp' ),
 			'section'     => 'mrz_header',
 			'type'        => 'checkbox',
 		)

@@ -53,13 +53,28 @@ function mrz_theme_logo( $context = 'header' ) {
 }
 
 /**
+ * Bouton Menu sur ordinateur : none (mobile seulement), replace (à la place du menu
+ * principal) ou add (en plus). L'ancienne case cochée vaut replace.
+ *
+ * @return string
+ */
+function mrz_theme_menu_button_desktop() {
+	$value = mrz_theme_option( 'menu_button_desktop' );
+	if ( true === $value || '1' === $value || 1 === $value ) {
+		return 'replace';
+	}
+
+	return in_array( $value, array( 'replace', 'add' ), true ) ? $value : 'none';
+}
+
+/**
  * Menu principal pour le desktop.
  *
  * @param string $extra_class Classes CSS ajoutées à la nav.
  */
 function mrz_theme_primary_nav( $extra_class = '' ) {
-	// Menu dans le panneau aussi sur ordinateur : le bouton Menu remplace le menu du header.
-	if ( ! has_nav_menu( 'primary' ) || mrz_theme_option( 'menu_button_desktop' ) ) {
+	// Bouton Menu à la place du menu principal : le menu ne s'ouvre que dans le panneau.
+	if ( ! has_nav_menu( 'primary' ) || 'replace' === mrz_theme_menu_button_desktop() ) {
 		return;
 	}
 
@@ -119,9 +134,14 @@ function mrz_theme_header_tools() {
 	 */
 	do_action( 'mrz_header_tools_end' );
 	?>
-	<button type="button" class="mrz-burger<?php echo mrz_theme_option( 'menu_button_desktop' ) ? '' : ' mrz-mobile-only'; ?>" data-mrz-menu-toggle aria-controls="mrz-mobile-menu" aria-expanded="false">
-		<span class="screen-reader-text"><?php esc_html_e( 'Open menu', 'mrz-theme-exp' ); ?></span>
+	<button type="button" class="mrz-burger<?php echo 'none' === mrz_theme_menu_button_desktop() ? ' mrz-mobile-only' : ''; ?>" data-mrz-menu-toggle aria-controls="mrz-mobile-menu" aria-expanded="false">
 		<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+		<?php if ( mrz_theme_option( 'menu_button_label' ) ) : ?>
+			<?php // Libellé visible : il sert aussi de nom au bouton (RGAA 11.9, l'état vient d'aria-expanded). ?>
+			<span class="mrz-burger__label"><?php echo esc_html_x( 'Menu', 'menu button', 'mrz-theme-exp' ); ?></span>
+		<?php else : ?>
+			<span class="screen-reader-text"><?php esc_html_e( 'Open menu', 'mrz-theme-exp' ); ?></span>
+		<?php endif; ?>
 	</button>
 	<?php
 	echo '</div>';

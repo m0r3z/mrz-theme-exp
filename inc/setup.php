@@ -105,9 +105,9 @@ function mrz_theme_body_classes( $classes ) {
 add_filter( 'body_class', 'mrz_theme_body_classes' );
 
 /**
- * Header transparent : seulement si l'option est active et que la page
- * commence par une section de type hero (comme le « when applicable » de Salient) :
- * une section dont le nom contient « hero », par exemple mrzchild_hero.
+ * Header transparent : seulement si l'option est active et que la page commence par
+ * une section avec une image ou une vidéo de fond (comme le « when applicable » de Salient).
+ * Une première section dont le nom contient « hero » compte aussi (compatibilité).
  *
  * @return bool
  */
@@ -126,10 +126,16 @@ function mrz_theme_is_transparent_header() {
 		return false;
 	}
 
-	// ACF stocke la liste des layouts dans la meta du champ flexible.
-	$layouts = get_post_meta( get_queried_object_id(), 'mrz_builder', true );
+	// ACF stocke la liste des layouts dans la meta du champ flexible, et les réglages de chaque rangée à part.
+	$post_id = get_queried_object_id();
+	$layouts = get_post_meta( $post_id, 'mrz_builder', true );
+	if ( ! is_array( $layouts ) || ! isset( $layouts[0] ) ) {
+		return false;
+	}
 
-	return is_array( $layouts ) && isset( $layouts[0] ) && str_contains( (string) $layouts[0], 'hero' );
+	return str_contains( (string) $layouts[0], 'hero' )
+		|| get_post_meta( $post_id, 'mrz_builder_0_settings_background_image', true )
+		|| get_post_meta( $post_id, 'mrz_builder_0_settings_background_video', true );
 }
 
 /**
