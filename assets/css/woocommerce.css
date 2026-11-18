@@ -600,7 +600,7 @@
 	grid-column: 2;
 	grid-row: 1;
 	/* Place de la croix, posée en haut à droite hors de la grille. */
-	padding-right: 2.25rem;
+	padding-right: calc(var(--mrz-minicart-remove-size, 1.75rem) + 0.5rem);
 	font-family: var(--mrz-minicart-name-font-family, inherit);
 	font-size: var(--mrz-minicart-name-size, 0.9375rem);
 	font-weight: var(--mrz-minicart-name-weight, var(--mrz-label-font-weight, 600));
@@ -667,8 +667,9 @@
 }
 
 /*
- * Croix : en face du titre, sans fond au survol ; zone de clic de 44 px. Hors de la
- * grille, pour ne pas agrandir la ligne du titre (les options restent collées dessous).
+ * Croix : en face du titre, sans fond au survol. Hors de la grille, pour ne pas agrandir
+ * la ligne du titre (les options restent collées dessous). Zone de clic de 28 px
+ * (--mrz-minicart-remove-size) : au-dessus des 24 px minimum (WCAG 2.2, critère 2.5.8).
  */
 .mrz-minicart ul.cart_list li a.remove {
 	position: absolute;
@@ -678,8 +679,8 @@
 	display: grid;
 	/* Icône dans le coin haut droit de sa zone de clic : alignée sur le titre et le bord, jamais rognée. */
 	place-items: start end;
-	width: 2.75rem;
-	height: 2.75rem;
+	width: var(--mrz-minicart-remove-size, 1.75rem);
+	height: var(--mrz-minicart-remove-size, 1.75rem);
 	padding-top: 0.15rem;
 	border-radius: var(--radius-button);
 	color: var(--color-text) !important; /* WooCommerce écrit cette couleur avec !important. */
@@ -695,8 +696,8 @@
  */
 .mrz-minicart ul.cart_list li a.remove::before {
 	content: "";
-	width: var(--mrz-minicart-remove-icon-size, 1rem);
-	height: var(--mrz-minicart-remove-icon-size, 1rem);
+	width: var(--mrz-minicart-remove-icon-size, 0.875rem);
+	height: var(--mrz-minicart-remove-icon-size, 0.875rem);
 	background: currentColor;
 	mask: var(--mrz-minicart-remove-icon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")) center / contain no-repeat;
 }
