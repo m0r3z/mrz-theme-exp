@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-18T10:45:08+00:00\n"
+"POT-Creation-Date: 2026-11-18T10:49:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -1156,7 +1156,7 @@ msgid "Animated highlight of the colored word"
 msgstr ""
 
 #: inc/customizer.php:599
-msgid "The word between <em> and </em> in a title gets highlighted when the title scrolls into view. Static highlight on browsers without scroll animations."
+msgid "The word between <em> and </em> in a title gets highlighted when the title comes into view, like the scroll animations (once or on each pass)."
 msgstr ""
 
 #: inc/customizer.php:609

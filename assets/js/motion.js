@@ -5,7 +5,8 @@
  * Par défaut, l'élément se cache de nouveau quand il ressort par le bas de l'écran
  * (on remonte), et se rejoue au prochain passage. Réglage « Une seule fois »
  * (window.mrzMotion.once) : une fois apparu, il reste.
- * Chargé seulement si une section a une animation (inc/builder.php).
+ * Chargé seulement si une section a une animation (inc/builder.php), ou sur tout le site
+ * quand le surlignage animé est activé (inc/setup.php).
  */
 ( function () {
 	'use strict';
@@ -18,6 +19,8 @@
 		'.mrz-motion--fade > .mrz-container',
 		'.mrz-motion--zoom > .mrz-container',
 		'.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-accordion__item, .mrz-prose > *)',
+		// Surlignage animé du mot en couleur des titres (Customizer).
+		'.mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em',
 	].join( ',' );
 	var targets = document.querySelectorAll( selector );
 

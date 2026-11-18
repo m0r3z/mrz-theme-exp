@@ -596,7 +596,7 @@ function mrz_theme_customize_register( $wp_customize ) {
 		'mrz_highlight_animated',
 		array(
 			'label'       => __( 'Animated highlight of the colored word', 'mrz-theme-exp' ),
-			'description' => __( 'The word between <em> and </em> in a title gets highlighted when the title scrolls into view. Static highlight on browsers without scroll animations.', 'mrz-theme-exp' ),
+			'description' => __( 'The word between <em> and </em> in a title gets highlighted when the title comes into view, like the scroll animations (once or on each pass).', 'mrz-theme-exp' ),
 			'section'     => 'mrz_general',
 			'type'        => 'checkbox',
 		)

@@ -323,7 +323,8 @@ function mrz_theme_section_heading( $title, $intro = '' ) {
 
 /**
  * Animations au défilement : charge assets/js/motion.js et, juste avant la première
- * section animée, pose la classe mrz-motion-js sur <html>. Le CSS ne cache les éléments
+ * section animée (ou dans <head> si le surlignage animé est activé), pose la classe
+ * mrz-motion-js sur <html>. Le CSS ne cache les éléments
  * à animer qu'avec cette classe : sans JavaScript, tout s'affiche normalement, et la
  * classe est posée avant que la section s'affiche (pas d'élément qui apparaît, disparaît
  * puis s'anime). Si motion.js ne démarre pas dans les 4 s, la classe est retirée.

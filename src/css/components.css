@@ -913,7 +913,8 @@
 	 * l'animation se joue alors en entier (--mrz-motion-duration). En remontant, elle se
 	 * rejoue ou non selon le Customizer. Sans JavaScript (pas de .mrz-motion-js sur <html>)
 	 * ou si le visiteur limite les animations : tout s'affiche normalement.
-	 * La parallaxe et le surlignage restent liés au défilement (animation-timeline).
+	 * La parallaxe reste liée au défilement (animation-timeline). Le surlignage du mot en
+	 * couleur suit les mêmes règles que ces animations (voir plus bas).
 	 */
 	@media (prefers-reduced-motion: no-preference) {
 		.mrz-motion-js :is(.mrz-motion--fade-up, .mrz-motion--fade, .mrz-motion--zoom) > .mrz-container,
@@ -957,15 +958,24 @@
 		}
 	}
 
-	@keyframes mrz-highlight {
-		from {
-			background-size: 0% var(--mrz-highlight-height);
-		}
-	}
-
-	/* Surlignage du mot en couleur (Customizer) : statique par défaut, animé si possible. */
+	/*
+	 * Surlignage du mot en couleur (Customizer) : statique sans JavaScript. Avec motion.js,
+	 * il se trace en entier quand le titre entre à l'écran (.is-inview), et se rejoue ou
+	 * non comme les animations au défilement (réglage « une seule fois »).
+	 */
 	.mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em {
 		background: linear-gradient(var(--mrz-highlight-mark), var(--mrz-highlight-mark)) no-repeat 0 88% / 100% var(--mrz-highlight-height);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.mrz-motion-js .mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em {
+			background-size: 0% var(--mrz-highlight-height);
+			transition: background-size var(--mrz-highlight-duration) var(--mrz-motion-easing) var(--mrz-highlight-delay);
+		}
+
+		.mrz-motion-js .mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em.is-inview {
+			background-size: 100% var(--mrz-highlight-height);
+		}
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
@@ -990,12 +1000,6 @@
 				height: calc(100% + 2 * var(--mrz-parallax));
 				animation: mrz-parallax linear both;
 				animation-timeline: view();
-			}
-
-			.mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em {
-				animation: mrz-highlight linear both;
-				animation-timeline: view();
-				animation-range: entry 100% cover 45%;
 			}
 		}
 	}

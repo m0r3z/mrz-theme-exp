@@ -295,6 +295,8 @@
 	--mrz-parallax-medium: 16%;
 	--mrz-highlight-mark: color-mix(in srgb, var(--color-primary) 25%, transparent); /* surlignage du mot en couleur */
 	--mrz-highlight-height: 0.35em;
+	--mrz-highlight-duration: 0.8s; /* tracé du surlignage animé */
+	--mrz-highlight-delay: 0.2s; /* après l'arrivée du titre */
 
 	/* Hauteur des sections (réglage « Hauteur ») */
 	--mrz-section-height-large: 70svh;

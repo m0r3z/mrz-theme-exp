@@ -142,3 +142,14 @@ function mrz_theme_is_transparent_header() {
  * Titre d'archive sans préfixe « Catégorie : ».
  */
 add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
+
+/**
+ * Surlignage animé du mot en couleur (Customizer) : sur tout le site, donc motion.js
+ * et la classe mrz-motion-js sont posés dès <head>, avant le premier titre.
+ */
+function mrz_theme_highlight_motion() {
+	if ( mrz_theme_option( 'highlight_animated' ) ) {
+		mrz_theme_motion_init();
+	}
+}
+add_action( 'wp_head', 'mrz_theme_highlight_motion', 1 );

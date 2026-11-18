@@ -1136,8 +1136,8 @@ msgid "Animated highlight of the colored word"
 msgstr "Surlignage animé du mot en couleur"
 
 #: inc/customizer.php:599
-msgid "The word between <em> and </em> in a title gets highlighted when the title scrolls into view. Static highlight on browsers without scroll animations."
-msgstr "Le mot entre <em> et </em> d'un titre se surligne quand le titre arrive à l'écran. Surlignage fixe sur les navigateurs sans animations au défilement."
+msgid "The word between <em> and </em> in a title gets highlighted when the title comes into view, like the scroll animations (once or on each pass)."
+msgstr "Le mot entre <em> et </em> d’un titre se surligne quand le titre arrive à l’écran, comme les animations au défilement (une seule fois ou à chaque passage)."
 
 #: inc/builder-sections.php:227
 msgid "Subtle"
