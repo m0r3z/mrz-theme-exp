@@ -927,7 +927,7 @@
 .woocommerce-account .woocommerce-MyAccount-navigation a {
 	display: block;
 	padding: 0.85rem 0;
-	color: var(--color-muted);
+	color: var(--color-text);
 	font-family: var(--mrz-menu-font-family, inherit);
 	font-weight: var(--mrz-menu-font-weight, inherit);
 	letter-spacing: var(--mrz-menu-letter-spacing, normal);
@@ -935,24 +935,13 @@
 	text-decoration: none;
 }
 
-.woocommerce-account .woocommerce-MyAccount-navigation a:hover,
-.woocommerce-account .woocommerce-MyAccount-navigation .is-active a {
-	color: var(--color-text);
+.woocommerce-account .woocommerce-MyAccount-navigation a:hover {
+	opacity: 0.7;
 }
 
+/* Page active : en gras, sans autre marque. */
 .woocommerce-account .woocommerce-MyAccount-navigation .is-active a {
 	font-weight: var(--mrz-title-weight);
-}
-
-.woocommerce-account .woocommerce-MyAccount-navigation .is-active a::before {
-	content: "";
-	display: inline-block;
-	width: 0.4rem;
-	height: 0.4rem;
-	margin-right: 0.6rem;
-	border-radius: 50%;
-	background: var(--mrz-anchors-active-color, var(--color-primary));
-	vertical-align: middle;
 }
 
 /* Tableaux (commandes, téléchargements, panier, récapitulatif) : traits du site. */
@@ -1442,8 +1431,34 @@
  * Mon compte, connecté : contenu en largeur de lecture, boutons des tableaux discrets,
  * formulaires (détails du compte, adresses) plus compacts.
  */
+/*
+ * Menu et contenu côte à côte en grille (WooCommerce les met en flottants à 30 % et 68 %,
+ * d'où un grand vide) : menu à largeur fixe, contenu juste à côté. Empilés sur mobile.
+ * Variables : --mrz-account-nav-width, --mrz-account-gap.
+ */
+.woocommerce-account.logged-in .mrz-main .woocommerce:has(> .woocommerce-MyAccount-navigation) {
+	display: grid;
+	grid-template-columns: var(--mrz-account-nav-width, 15rem) minmax(0, 1fr);
+	gap: var(--mrz-account-gap, 3rem);
+	align-items: start;
+}
+
+.woocommerce-account.logged-in .mrz-main .woocommerce:has(> .woocommerce-MyAccount-navigation)::before,
+.woocommerce-account.logged-in .mrz-main .woocommerce:has(> .woocommerce-MyAccount-navigation)::after {
+	display: none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation,
 .woocommerce-account .woocommerce-MyAccount-content {
-	max-width: var(--mrz-container-narrow);
+	width: auto;
+	float: none;
+}
+
+@media (max-width: 768px) {
+	.woocommerce-account.logged-in .mrz-main .woocommerce:has(> .woocommerce-MyAccount-navigation) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.5rem;
+	}
 }
 
 .woocommerce-account .woocommerce-MyAccount-content > p:first-child {
