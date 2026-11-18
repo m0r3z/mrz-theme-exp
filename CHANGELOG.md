@@ -5,7 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Modifié
-- Connexion, inscription, mot de passe perdu : une colonne étroite et centrée, sans cadre, bouton pleine largeur. Connexion et inscription ne s'affichent plus côte à côte : « Vous n'avez pas encore de compte ? S'inscrire » mène au formulaire d'inscription (`?action=register`), qui renvoie à la connexion ; lien « Retour à la connexion » sous le mot de passe perdu. L'inscription suit le réglage de WooCommerce (Réglages > Comptes et confidentialité). Variable `--mrz-account-form-width`.
+- Connexion, inscription, mot de passe perdu : une colonne étroite et centrée, sans cadre, bouton pleine largeur. Connexion et inscription ne s'affichent plus côte à côte : « Vous n'avez pas encore de compte ? S'inscrire » mène au formulaire d'inscription (`?action=register`), qui renvoie à la connexion ; lien « Retour à la connexion » sous le mot de passe perdu. Inscription : le texte sur les données personnelles passe sous le bouton « S'inscrire ». L'inscription suit le réglage de WooCommerce (Réglages > Comptes et confidentialité). Variable `--mrz-account-form-width`.
 - Page de remerciement et détail d'une commande : message de confirmation en avant avec une coche, récapitulatif en lignes (numéro, date, e-mail, total, paiement), tableau à traits simples, titres à taille raisonnable, adresses côte à côte dans des cadres légers, coordonnées bancaires du virement en cartes. Variable `--mrz-order-width`.
 - Mon compte : contenu en largeur de lecture, boutons des tableaux petits et à contour, « Changement de mot de passe » avec un vrai intertitre, adresses côte à côte avec titre et lien « Modifier » alignés.
 

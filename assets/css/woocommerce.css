@@ -1256,6 +1256,7 @@
 
 .woocommerce form.register > p:not(.form-row):not(.mrz-account-switch),
 .woocommerce form.register .woocommerce-privacy-policy-text {
+	margin-top: 0;
 	color: var(--color-muted);
 	font-size: var(--mrz-text-sm);
 }
@@ -1555,4 +1556,13 @@
 .woocommerce form.lost_reset_password > p:first-child {
 	margin-top: 0;
 	color: var(--color-muted);
+}
+
+/* Texte sur les données personnelles, sous le bouton « S'inscrire ». */
+.woocommerce form.register .woocommerce-privacy-policy-text {
+	margin-top: 1rem;
+}
+
+.woocommerce form.register .woocommerce-privacy-policy-text p {
+	margin: 0;
 }

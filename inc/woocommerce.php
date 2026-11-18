@@ -747,6 +747,10 @@ function mrz_theme_account_login_link() {
 }
 add_action( 'woocommerce_register_form_end', 'mrz_theme_account_login_link' );
 
+// Texte sur les données personnelles : sous le bouton « S'inscrire », avant le lien de connexion.
+remove_action( 'woocommerce_register_form', 'wc_registration_privacy_policy_text', 20 );
+add_action( 'woocommerce_register_form_end', 'wc_registration_privacy_policy_text', 5 );
+
 /**
  * Sous le formulaire « Mot de passe perdu » : retour à la connexion.
  */
