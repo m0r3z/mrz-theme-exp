@@ -878,7 +878,7 @@
 /* « Parcourir la boutique » : le bouton du thème. */
 .wp-block-woocommerce-empty-cart-block p a {
 	display: inline-flex;
-	padding: var(--mrz-button-padding);
+	padding: var(--mrz-button-padding, var(--mrz-button-padding-y) var(--mrz-button-padding-x));
 	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
 	border-radius: var(--radius-button);
 	background: var(--mrz-button-bg);
