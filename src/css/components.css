@@ -916,9 +916,10 @@
 	 * La parallaxe reste liée au défilement (animation-timeline). Le surlignage du mot en
 	 * couleur suit les mêmes règles que ces animations (voir plus bas).
 	 */
+	/* Cascade : réponses d'accordéon exclues par :where(), sans poids, pour que la règle .is-inview plus bas l'emporte toujours. */
 	@media (prefers-reduced-motion: no-preference) {
 		.mrz-motion-js :is(.mrz-motion--fade-up, .mrz-motion--fade, .mrz-motion--zoom) > .mrz-container,
-		.mrz-motion-js .mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-prose:not(.mrz-accordion__answer) > *) {
+		.mrz-motion-js .mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-prose:not(:where(.mrz-accordion__answer)) > *) {
 			opacity: 0;
 			transform: translateY(var(--mrz-motion-distance));
 			transition:
