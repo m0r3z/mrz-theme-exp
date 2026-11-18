@@ -424,14 +424,22 @@
 	overflow: hidden;
 }
 
+/*
+ * Ouverture adoucie : le voile apparaît en fondu, le panneau glisse depuis la droite.
+ * Durées : --mrz-minicart-duration (panneau), --mrz-minicart-backdrop-duration (voile).
+ */
 .mrz-minicart[open] {
 	display: flex;
 	flex-direction: column;
-	animation: mrz-minicart-in 0.3s var(--mrz-ease);
+	animation: mrz-minicart-in var(--mrz-minicart-duration, 0.4s) cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .mrz-minicart::backdrop {
 	background: var(--mrz-minicart-backdrop, rgb(0 0 0 / 0.4));
+}
+
+.mrz-minicart[open]::backdrop {
+	animation: mrz-minicart-fade var(--mrz-minicart-backdrop-duration, 0.3s) ease-out;
 }
 
 @keyframes mrz-minicart-in {
@@ -440,8 +448,15 @@
 	}
 }
 
+@keyframes mrz-minicart-fade {
+	from {
+		opacity: 0;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.mrz-minicart[open] {
+	.mrz-minicart[open],
+	.mrz-minicart[open]::backdrop {
 		animation: none;
 	}
 }
