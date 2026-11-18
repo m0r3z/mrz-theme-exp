@@ -72,7 +72,7 @@ Le menu « Ajouter une section » réunit deux sources :
 | --- | --- | --- |
 | Free text (Texte libre) | Titre, texte de l'éditeur classique | Pour un formulaire, une liste MRZ Display Post ou une carte MRZ Maps : y coller le shortcode |
 | Raw HTML (HTML brut) | Code HTML | Affiché tel quel, scripts compris. Visible seulement pour les administrateurs |
-| Cards (Cartes) | Titre, cartes (image ou icône, titre, texte, lien, fond), en grille ou en carrousel | Une icône SVG prend la couleur du texte de la carte |
+| Cards (Cartes) | Titre, cartes (image ou icône, titre, texte, lien, fond), en grille ou en carrousel | Une icône SVG prend la couleur du texte de la carte. Lien des cartes en lien fléché, bouton à contour ou bouton plein |
 | Text and media (Texte et média) | Texte (surtitre, titre, texte, deux boutons) d'un côté ; image, second texte ou encadré coloré de l'autre | Côté, largeur des colonnes (égales ou 2/3), alignement vertical, colonne collante. Empilées sur mobile, texte en premier |
 | Gallery (Galerie) | Titre, introduction, images ; grille, mosaïque (formats d'origine, en colonnes) ou carrousel, images par ligne, format, légendes | Ouvre les images dans la lightbox du thème |
 | Anchor menu (Sous-menu d'ancres) | Liens vers les sections de la page | Collé sous le header en option, lien de la section affichée mis en évidence |
@@ -81,7 +81,7 @@ Le menu « Ajouter une section » réunit deux sources :
 | Footer | Logo, phrase, bouton, colonnes de liens, réseaux sociaux, ligne du bas | Proposée seulement dans les sections globales, à l'emplacement « Footer » |
 | Global section | Une section globale existante | Pour réutiliser un bloc à un endroit précis |
 
-Une section sur mesure dont le nom contient `hero`, placée en premier, active le header transparent si l'option est cochée.
+Si l'option est cochée, le header est transparent sur toute page dont la première section a une image ou une vidéo de fond (une section sur mesure dont le nom contient `hero` compte aussi).
 
 ### Réglages communs
 
@@ -102,7 +102,7 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 | Parallaxe | Aucune, légère, moyenne : l'image de fond défile moins vite que la page |
 | Vidéo de fond | MP4 ou WebM, sans son, en boucle, avec bouton pause. L'image de fond s'affiche d'abord et reste seule sur mobile (sauf « Vidéo sur mobile »), si le visiteur limite les animations ou économise ses données |
 
-**Bannière de page** : un Texte libre en tête de page, titre en H1, image de fond, hauteur grande ou plein écran. Pas besoin d'une section « hero » sur mesure.
+**Bannière de page** : un Texte libre en tête de page, titre en H1, image de fond, hauteur grande ou plein écran. Le header transparent suit tout seul.
 
 Les couleurs des fonds sont celles de MRZ Theme > Couleurs. Le texte posé sur une couleur de la marque prend Sombre ou Clair selon la couleur, automatiquement ; quand la charte en décide autrement, le réglage « Texte sur … » de la couleur l'impose.
 
@@ -177,9 +177,10 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Logo du header transparent : affiché avant le défilement, remplacé par le logo principal ensuite | aucun |
 | | Hauteur du logo : desktop, mobile (px) | 48, 40 |
 | | Disposition : classique (logo à gauche, menu à droite), menu à gauche (logo, menu juste après, outils à droite), centrée (logo au-dessus, menu dessous) ou logo centré (menu principal à gauche, menu secondaire et outils à droite ; logo à gauche sur mobile) | classique |
-| | Bouton Menu aussi sur ordinateur : le menu principal s'ouvre dans le panneau du menu mobile sur tous les écrans | non |
+| | Bouton Menu sur ordinateur : non (mobile seulement), à la place du menu principal, ou en plus du menu principal. Il ouvre le panneau du menu mobile (menu Mobile s'il est affecté, sinon le menu principal) | non |
+| | Mot « Menu » écrit à côté de l'icône du bouton Menu | non |
 | | Header sticky | oui |
-| | Header transparent quand applicable (pages qui commencent par une section hero) | non |
+| | Header transparent quand applicable (pages dont la première section a une image ou une vidéo de fond) | non |
 | | Recherche : icône qui déplie le formulaire de recherche (Échap ou clic ailleurs pour fermer) | non |
 | | Lien vers le compte : icône vers la page « Mon compte » de WooCommerce, à côté du panier | non |
 | MRZ Theme > Mobile header | Header sticky sur mobile | oui |
@@ -305,9 +306,10 @@ update_field(
 	'field_mrz_builder',
 	array(
 		array(
-			'acf_fc_layout' => 'mrzchild_hero',
+			'acf_fc_layout' => 'mrz_text',
 			'title'         => 'Titre de la page',
-			'settings'      => array( 'background' => 'dark' ),
+			'title_tag'     => 'h1',
+			'settings'      => array( 'background_image' => 123, 'height' => 'large' ),
 		),
 		array(
 			'acf_fc_layout' => 'mrz_text',
