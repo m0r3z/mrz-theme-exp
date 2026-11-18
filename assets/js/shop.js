@@ -164,6 +164,52 @@
 			}
 		} );
 
+		/*
+		 * Quantité d'un article du panneau : − et + (ou saisie au clavier), envoyée après
+		 * une courte pause pour regrouper les clics, puis fragments à jour. 0 retire l'article.
+		 */
+		function sendQuantity( wrapper ) {
+			var input = wrapper.querySelector( 'input.qty' );
+			var body = new FormData();
+			body.append( 'cart_item_key', wrapper.getAttribute( 'data-mrz-cart-item' ) );
+			body.append( 'quantity', Math.max( 0, parseInt( input.value, 10 ) || 0 ) );
+			// Une pause par article : deux articles changés coup sur coup partent tous les deux.
+			clearTimeout( wrapper.mrzQuantityTimer );
+			wrapper.mrzQuantityTimer = setTimeout( function () {
+				wrapper.closest( 'li' ).classList.add( 'is-removing' );
+				post( 'mrz_cart_quantity', body )
+					.then( function ( data ) {
+						applyFragments( data.fragments );
+					} )
+					.catch( function () {
+						wrapper.closest( 'li' ).classList.remove( 'is-removing' );
+						showToast( [ { type: 'error', html: i18n.error || '' } ] );
+					} );
+			}, 400 );
+		}
+
+		drawer.addEventListener( 'click', function ( event ) {
+			var button = event.target.closest( '[data-mrz-cart-item] .mrz-qty__button' );
+			if ( ! button ) {
+				return;
+			}
+			var wrapper = button.closest( '[data-mrz-cart-item]' );
+			var input = wrapper.querySelector( 'input.qty' );
+			if ( button.classList.contains( 'mrz-qty__button--increase' ) ) {
+				input.stepUp();
+			} else {
+				input.stepDown();
+			}
+			sendQuantity( wrapper );
+		} );
+
+		drawer.addEventListener( 'change', function ( event ) {
+			var wrapper = event.target.closest( '[data-mrz-cart-item]' );
+			if ( wrapper && event.target.matches( 'input.qty' ) ) {
+				sendQuantity( wrapper );
+			}
+		} );
+
 		drawer.addEventListener( 'close', function () {
 			if ( opener && opener.focus ) {
 				opener.focus();

@@ -472,6 +472,115 @@ function mrz_theme_mini_cart_empty_button() {
 }
 add_action( 'woocommerce_after_mini_cart', 'mrz_theme_mini_cart_empty_button' );
 
+/*
+ * Article du panneau du panier : titre (nom du produit) et options de la variation en
+ * dessous, prix de la ligne et quantité modifiable sur la dernière ligne. Par filtres,
+ * seulement pendant l'affichage du mini-panier : la page Panier et les commandes gardent
+ * les noms de WooCommerce.
+ */
+add_action(
+	'woocommerce_before_mini_cart',
+	static function () {
+		$GLOBALS['mrz_theme_in_mini_cart'] = true;
+	}
+);
+add_action(
+	'woocommerce_after_mini_cart',
+	static function () {
+		$GLOBALS['mrz_theme_in_mini_cart'] = false;
+	},
+	1
+);
+
+/**
+ * Mini-panier : nom du produit, puis ses options sur une ligne (« Moutarde – 40 × 40 cm »).
+ *
+ * @param string $name      Nom de l'article (avec ses options pour une variation).
+ * @param array  $cart_item Article.
+ * @return string
+ */
+function mrz_theme_mini_cart_item_name( $name, $cart_item ) {
+	if ( empty( $GLOBALS['mrz_theme_in_mini_cart'] ) || empty( $cart_item['data'] ) || ! $cart_item['data'] instanceof WC_Product ) {
+		return $name;
+	}
+
+	$product = $cart_item['data'];
+	$parent  = $product->get_parent_id() ? wc_get_product( $product->get_parent_id() ) : null;
+	$title   = $parent ? $parent->get_name() : $product->get_name();
+	$values  = array();
+
+	foreach ( (array) ( $cart_item['variation'] ?? array() ) as $key => $value ) {
+		$taxonomy = wc_sanitize_taxonomy_name( str_replace( 'attribute_', '', $key ) );
+		$term     = taxonomy_exists( $taxonomy ) ? get_term_by( 'slug', $value, $taxonomy ) : false;
+		$values[] = $term ? $term->name : $value;
+	}
+	$values = array_filter( $values, 'strlen' );
+
+	// Espace entre les deux : le libellé « Retirer … du panier » est construit sans les balises.
+	return '<span class="mrz-minicart__name">' . esc_html( $title ) . '</span>'
+		. ( $values ? ' <span class="mrz-minicart__options">' . esc_html( implode( ' – ', $values ) ) . '</span>' : '' );
+}
+add_filter( 'woocommerce_cart_item_name', 'mrz_theme_mini_cart_item_name', 10, 2 );
+
+/**
+ * Mini-panier : à la place de « 2 × 19,00 € », le prix de la ligne et la quantité
+ * modifiable (− et +, champ au clavier). shop.js envoie le changement (wc-ajax=mrz_cart_quantity).
+ *
+ * @param string $html          Quantité de WooCommerce.
+ * @param array  $cart_item     Article.
+ * @param string $cart_item_key Clé de l'article.
+ * @return string
+ */
+function mrz_theme_mini_cart_item_quantity( $html, $cart_item, $cart_item_key ) {
+	$product = $cart_item['data'] ?? null;
+	if ( ! $product instanceof WC_Product ) {
+		return $html;
+	}
+
+	$quantity = (int) $cart_item['quantity'];
+	$price    = '<span class="mrz-minicart__price">' . WC()->cart->get_product_subtotal( $product, $quantity ) . '</span>';
+
+	if ( $product->is_sold_individually() ) {
+		return '<span class="mrz-minicart__row">' . $price . '</span>';
+	}
+
+	$max  = $product->get_max_purchase_quantity();
+	$name = wp_strip_all_tags( $product->get_name() );
+
+	return sprintf(
+		'<span class="mrz-minicart__row">%1$s<span class="quantity mrz-qty" data-mrz-cart-item="%2$s"><button type="button" class="mrz-qty__button mrz-qty__button--decrease"><span aria-hidden="true">−</span><span class="screen-reader-text">%3$s</span></button><input type="number" class="qty" value="%4$d" min="0" step="1"%5$s aria-label="%6$s" inputmode="numeric"><button type="button" class="mrz-qty__button mrz-qty__button--increase"><span aria-hidden="true">+</span><span class="screen-reader-text">%7$s</span></button></span></span>',
+		$price,
+		esc_attr( $cart_item_key ),
+		esc_html__( 'Decrease quantity', 'mrz-theme-exp' ),
+		$quantity,
+		$max > 0 ? ' max="' . (int) $max . '"' : '',
+		/* translators: %s: nom du produit. */
+		esc_attr( sprintf( __( 'Quantity of %s', 'mrz-theme-exp' ), $name ) ),
+		esc_html__( 'Increase quantity', 'mrz-theme-exp' )
+	);
+}
+add_filter( 'woocommerce_widget_cart_item_quantity', 'mrz_theme_mini_cart_item_quantity', 10, 3 );
+
+/**
+ * Change la quantité d'un article du panier (0 : le retire), puis renvoie les fragments.
+ * Point d'entrée wc-ajax, sur le modèle de remove_from_cart de WooCommerce (sans nonce
+ * comme lui : la page peut venir du cache, et l'action ne touche que le panier du visiteur).
+ */
+function mrz_theme_ajax_cart_quantity() {
+	// phpcs:disable WordPress.Security.NonceVerification.Missing -- voir le commentaire de la fonction.
+	$key      = isset( $_POST['cart_item_key'] ) ? wc_clean( wp_unslash( $_POST['cart_item_key'] ) ) : '';
+	$quantity = isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : -1;
+	// phpcs:enable
+
+	if ( ! $key || $quantity < 0 || ! WC()->cart->get_cart_item( $key ) ) {
+		wp_send_json_error();
+	}
+
+	WC()->cart->set_quantity( $key, $quantity );
+	WC_AJAX::get_refreshed_fragments();
+}
+add_action( 'wc_ajax_mrz_cart_quantity', 'mrz_theme_ajax_cart_quantity' );
+
 /**
  * Ajout au panier depuis la fiche produit (shop.js) : les messages de WooCommerce
  * (ajout réussi, rupture de stock…) partent avec les fragments, pour la notification.

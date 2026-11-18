@@ -545,12 +545,24 @@
 }
 
 .mrz-minicart ul.cart_list li {
-	position: relative;
+	/*
+	 * Un article : image carrée à gauche ; à droite, le titre (et la croix en face), les
+	 * options de la variation, puis en bas le prix de la ligne et la quantité.
+	 * Variables : --mrz-minicart-thumb (côté de l'image), --mrz-minicart-item-gap.
+	 */
 	display: grid;
-	grid-template-columns: 4.5rem 1fr;
+	grid-template-columns: var(--mrz-minicart-thumb, 6rem) minmax(0, 1fr) auto;
+	grid-template-rows: auto auto auto 1fr;
 	column-gap: 1rem;
-	padding: 0 2.75rem 1.25rem 0;
+	margin: 0 0 var(--mrz-minicart-item-gap, 1.25rem);
+	padding: 0;
 	transition: opacity 0.2s var(--mrz-ease);
+}
+
+/* Pas de clearfix de WooCommerce dans la grille (ses ::before/::after en feraient des cases). */
+.mrz-minicart ul.cart_list li::before,
+.mrz-minicart ul.cart_list li::after {
+	display: none;
 }
 
 .mrz-minicart ul.cart_list li.is-removing {
@@ -560,37 +572,84 @@
 .mrz-minicart ul.cart_list li > a:not(.remove) {
 	display: contents;
 	color: inherit;
-	font-weight: var(--mrz-label-font-weight, 600);
 	text-decoration: none;
 }
 
 .mrz-minicart ul.cart_list li img {
 	grid-column: 1;
-	grid-row: 1 / span 3;
-	width: 4.5rem;
+	grid-row: 1 / -1;
+	width: var(--mrz-minicart-thumb, 6rem);
 	height: auto;
 	margin: 0;
 	float: none;
+	aspect-ratio: 1;
+	object-fit: cover;
 	border-radius: var(--radius-base);
 }
 
-.mrz-minicart ul.cart_list li dl,
-.mrz-minicart ul.cart_list li .quantity {
+.mrz-minicart__name {
 	grid-column: 2;
-	margin: 0;
+	grid-row: 1;
+	font-weight: var(--mrz-label-font-weight, 600);
+	line-height: 1.3;
+}
+
+.mrz-minicart__options {
+	grid-column: 2 / 4;
+	grid-row: 2;
+	margin-top: 0.25rem;
 	color: var(--color-muted);
 	font-size: var(--mrz-text-sm);
 }
 
+/* Autres données de l'article (champs ajoutés par un plugin). */
+.mrz-minicart ul.cart_list li dl {
+	grid-column: 2 / 4;
+	grid-row: 3;
+	margin: 0.25rem 0 0;
+	padding: 0;
+	border: 0;
+	color: var(--color-muted);
+	font-size: var(--mrz-text-sm);
+}
+
+/* Dernière ligne : prix à gauche, quantité à droite, alignés en bas de l'image. */
+.mrz-minicart__row {
+	grid-column: 2 / 4;
+	grid-row: 4;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-self: end;
+	justify-content: space-between;
+	gap: 0.5rem;
+	margin-top: 0.75rem;
+}
+
+.mrz-minicart__price {
+	font-weight: var(--mrz-label-font-weight, 600);
+}
+
+.mrz-minicart .quantity.mrz-qty input.qty {
+	width: 2.5rem;
+	padding-block: 0.4rem;
+}
+
+.mrz-minicart .mrz-qty__button {
+	min-width: 2.25rem;
+}
+
+/* Croix : en face du titre, sans fond au survol ; zone de clic de 44 px. */
 .mrz-minicart ul.cart_list li a.remove {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: auto;
+	position: static;
+	grid-column: 3;
+	grid-row: 1;
 	display: grid;
-	place-items: center;
+	/* Icône dans le coin haut droit de sa zone de clic : alignée sur le titre et le bord, jamais rognée. */
+	place-items: start end;
 	width: 2.75rem;
 	height: 2.75rem;
+	padding-top: 0.15rem;
 	border-radius: var(--radius-button);
 	color: var(--color-text) !important; /* WooCommerce écrit cette couleur avec !important. */
 	/* Le « × » de WooCommerce est masqué (le lien garde son aria-label « Retirer … du panier »). */
@@ -612,8 +671,9 @@
 }
 
 .mrz-minicart ul.cart_list li a.remove:hover {
-	background: color-mix(in srgb, var(--color-text) 8%, transparent);
+	background: none;
 	color: var(--color-text) !important;
+	opacity: 0.6;
 }
 
 .mrz-minicart .woocommerce-mini-cart__total {

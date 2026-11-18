@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-18T12:54:30+00:00\n"
+"POT-Creation-Date: 2026-11-18T13:08:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -1489,10 +1489,12 @@ msgid ": %s"
 msgstr ""
 
 #: inc/woocommerce.php:422
+#: inc/woocommerce.php:554
 msgid "Decrease quantity"
 msgstr ""
 
 #: inc/woocommerce.php:423
+#: inc/woocommerce.php:559
 msgid "Increase quantity"
 msgstr ""
 
@@ -1506,6 +1508,12 @@ msgstr ""
 
 #: inc/woocommerce.php:469
 msgid "Continue shopping"
+msgstr ""
+
+#. translators: %s: nom du produit.
+#: inc/woocommerce.php:558
+#, php-format
+msgid "Quantity of %s"
 msgstr ""
 
 #: layouts/mrz-anchors.php:31

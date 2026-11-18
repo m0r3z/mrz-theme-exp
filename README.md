@@ -404,7 +404,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
 
 1. **Polylang** : passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
 2. ~~**Menus du header**~~ : fait après la 0.3.0 (sous-menus au survol, au clavier, au toucher, retournés au bord de l'écran, variables `--mrz-submenu-*`).
-3. ~~**WooCommerce**~~ : fait en 0.8 (réglages Boutique, panneau du panier, ajout sans rechargement, accordéons, galerie, compte). À proposer ensuite : barre « livraison offerte » dans le panneau, bouton d'ajout collant sur mobile, quantité modifiable dans le panneau.
+3. ~~**WooCommerce**~~ : fait en 0.8 (réglages Boutique, panneau du panier, ajout sans rechargement, accordéons, galerie, compte). À proposer ensuite : barre « livraison offerte » dans le panneau, bouton d'ajout collant sur mobile.
 4. **Blog** : réglage de l'article seul, avec deux choix (demandé par le site test Energies Réunion) :
    - image à la une au-dessus du titre (l'actuel) ;
    - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.

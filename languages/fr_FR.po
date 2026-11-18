@@ -1523,3 +1523,8 @@ msgstr "Affichée en rond de couleur sur la fiche produit. Vide : le nom s’aff
 #, php-format
 msgid ": %s"
 msgstr " : %s"
+
+#. translators: %s: nom du produit.
+#, php-format
+msgid "Quantity of %s"
+msgstr "Quantité de %s"
