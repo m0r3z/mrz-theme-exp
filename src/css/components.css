@@ -105,6 +105,7 @@
 	.mrz-logo__img {
 		height: var(--mrz-logo-height);
 		width: auto;
+		transition: height 0.3s var(--mrz-ease);
 		/* Quand max-width: 100% réduit la largeur (colonne étroite), le logo garde son ratio. */
 		object-fit: contain;
 		object-position: left center;
@@ -682,6 +683,20 @@
 		transition: background-color 0.2s var(--mrz-ease), color 0.2s var(--mrz-ease), border-color 0.2s var(--mrz-ease);
 	}
 
+	/*
+	 * Icône après le texte des boutons du thème, pleins et à contour : --mrz-button-icon (url() d'un SVG,
+	 * en masque à la couleur du texte) et --mrz-button-icon-size (0 par défaut : aucune icône, ni espace).
+	 */
+	.mrz-btn:not(.mrz-btn--link)::after {
+		content: "";
+		flex-shrink: 0;
+		width: var(--mrz-button-icon-size);
+		height: var(--mrz-button-icon-size);
+		margin-inline-start: calc(min(var(--mrz-button-icon-size), 0.5rem) - 0.5rem);
+		background: currentColor;
+		mask: var(--mrz-button-icon) center / contain no-repeat;
+	}
+
 	.mrz-btn--outline {
 		background: transparent;
 		color: inherit;
@@ -844,7 +859,7 @@
 	.mrz-has-image {
 		--mrz-title-color: currentColor;
 		--mrz-link-color: var(--color-light);
-		--mrz-title-highlight-color: currentColor;
+		--mrz-title-highlight-color: var(--mrz-title-highlight-color-on-image, currentColor);
 		--mrz-focus-color: var(--color-light);
 		--color-text: var(--color-light);
 		--color-muted: color-mix(in srgb, var(--color-text) 60%, transparent);
@@ -1128,8 +1143,8 @@
 		padding: 0;
 		border: 1px solid currentColor;
 		border-radius: 50%;
-		background: transparent;
-		color: inherit;
+		background: var(--mrz-carousel-button-bg, transparent);
+		color: var(--mrz-carousel-button-color, inherit);
 		cursor: pointer;
 	}
 
@@ -1852,8 +1867,9 @@
 		justify-content: space-between;
 		gap: 1rem;
 		padding: var(--mrz-accordion-padding);
-		font-family: var(--font-title);
+		font-family: var(--mrz-accordion-question-font-family, var(--font-title));
 		font-size: var(--mrz-accordion-question-size);
+		text-transform: var(--mrz-accordion-question-text-transform, none);
 		font-weight: var(--mrz-title-weight);
 		line-height: var(--mrz-title-line-height);
 		cursor: pointer;
@@ -1893,6 +1909,7 @@
 	.mrz-eyebrow {
 		margin: 0 0 0.75rem;
 		color: var(--mrz-eyebrow-color, var(--mrz-link-color));
+		font-family: var(--mrz-eyebrow-font-family, inherit);
 		font-size: var(--mrz-eyebrow-size);
 		font-weight: var(--mrz-eyebrow-weight);
 		letter-spacing: var(--mrz-eyebrow-letter-spacing);
@@ -2111,7 +2128,9 @@
 	/* Les boutons écrits dans le texte gardent leurs couleurs. */
 	.mrz-prose a:not(.mrz-btn) {
 		color: var(--mrz-link-color);
+		font-weight: var(--mrz-link-weight, inherit);
 		text-decoration: underline;
+		text-decoration-thickness: var(--mrz-link-underline-thickness, auto);
 		text-underline-offset: 0.2em;
 	}
 

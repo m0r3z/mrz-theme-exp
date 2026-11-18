@@ -73,12 +73,14 @@
 	/* Mot en couleur dans un titre (<em>) : principale, ou texte si elle manque de contraste (Customizer). */
 	--mrz-title-highlight-color: var(--color-primary);
 	--mrz-title-highlight-style: normal; /* italic pour garder l'italique */
+	/* --mrz-title-highlight-color-on-image : mot en couleur sur une image de fond (couleur du texte par défaut). */
 
 	/* Surtitre (Texte libre) : petite ligne au-dessus du titre. Couleur : --mrz-eyebrow-color, celle des liens par défaut. */
 	--mrz-eyebrow-size: var(--mrz-text-sm);
 	--mrz-eyebrow-weight: 600;
 	--mrz-eyebrow-text-transform: uppercase;
 	--mrz-eyebrow-letter-spacing: 0.08em;
+	/* --mrz-eyebrow-font-family : police du surtitre (celle du texte par défaut). */
 	/* --mrz-title-color : écrite par le Customizer quand « Texte courant » est réglé. */
 	--mrz-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
 	--mrz-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem);
@@ -97,6 +99,8 @@
 	--mrz-button-border-width: 2px;
 	--mrz-button-letter-spacing: normal;
 	--mrz-button-text-transform: none;
+	--mrz-button-icon: none; /* url() d'un SVG : icône après le texte des boutons du thème, en masque */
+	--mrz-button-icon-size: 0; /* 0 : aucune icône */
 	--mrz-button-bg: var(--color-primary);
 	--mrz-button-color: var(--color-primary-contrast);
 	/* --mrz-button-font-family : police des boutons, celle du texte autour par défaut. */
@@ -110,6 +114,7 @@
 	/* Lien fléché (mrz_theme_button( $link, 'link' )) : flèche en masque, de la couleur du texte. */
 	--mrz-link-font-size: inherit;
 	--mrz-link-arrow-size: 1em;
+	/* --mrz-link-weight, --mrz-link-underline-thickness : graisse et épaisseur du soulignement des liens du texte. */
 	--mrz-link-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
 	/*
@@ -138,6 +143,7 @@
 	--mrz-carousel-per-view: 1;
 	--mrz-carousel-gap: 1.5rem;
 	--mrz-carousel-button-size: 2.75rem; /* 44px : cible tactile confortable */
+	/* --mrz-carousel-button-bg, --mrz-carousel-button-color : fond et couleur des boutons (transparent et texte par défaut). */
 	--mrz-carousel-dot-size: 0.625rem;
 
 	/* Section Cartes (mrz_cards) : cartes par ligne selon l'écran, grille et carrousel. */
@@ -190,6 +196,7 @@
 	--mrz-accordion-border: 1px solid var(--color-border);
 	--mrz-accordion-padding: 1.25rem 0;
 	--mrz-accordion-question-size: var(--mrz-h5);
+	/* --mrz-accordion-question-font-family, --mrz-accordion-question-text-transform : police (des titres) et casse des questions. */
 	--mrz-accordion-icon-size: 1.25rem;
 	--mrz-accordion-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5v14M5 12h14' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
 
