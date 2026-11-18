@@ -1576,3 +1576,9 @@ msgstr "Page des articles, catégories, archives et recherche, sur ordinateur. U
 
 msgid "Show the excerpt in the lists"
 msgstr "Afficher l’extrait dans les listes"
+
+msgid "Categories"
+msgstr "Catégories"
+
+msgid "All"
+msgstr "Tous"

@@ -16,7 +16,7 @@ if ( $mrz_theme_sections_page ) {
 	mrz_theme_render_builder( $mrz_theme_sections_page );
 }
 ?>
-<div class="mrz-container py-16">
+<div class="<?php echo esc_attr( $mrz_theme_sections_page ? 'mrz-container mrz-blog-list--after-sections pb-16' : 'mrz-container py-16' ); ?>">
 	<?php if ( ! $mrz_theme_sections_page ) : ?>
 		<header class="mb-12">
 			<h1 class="mrz-page-title"><?php echo esc_html( mrz_theme_listing_title() ); ?></h1>
@@ -25,6 +25,8 @@ if ( $mrz_theme_sections_page ) {
 			<?php endif; ?>
 		</header>
 	<?php endif; ?>
+
+	<?php mrz_theme_blog_categories(); ?>
 
 	<?php if ( have_posts() ) : ?>
 		<div class="<?php echo esc_attr( mrz_theme_blog_grid_class() ); ?>">

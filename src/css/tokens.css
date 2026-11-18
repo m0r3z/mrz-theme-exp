@@ -298,6 +298,10 @@
 	--mrz-highlight-duration: 0.8s; /* tracé du surlignage animé */
 	--mrz-highlight-delay: 0.2s; /* après l'arrivée du titre */
 
+	/* Catégories du blog en cartouches */
+	--mrz-blog-category-radius: 999px;
+	--mrz-blog-categories-space: 2.5rem; /* entre les cartouches et les articles */
+
 	/* Hauteur des sections (réglage « Hauteur ») */
 	--mrz-section-height-large: 70svh;
 	--mrz-section-height-screen: calc(100svh - var(--mrz-header-offset));

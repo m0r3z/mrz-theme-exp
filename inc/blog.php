@@ -1,7 +1,7 @@
 <?php
 /**
- * Blog : réglages Customizer > MRZ Theme > Blog (article seul, liste des articles)
- * et sections de la page des articles.
+ * Blog : réglages Customizer > MRZ Theme > Blog (article seul, liste des articles),
+ * sections de la page des articles et catégories en cartouches.
  *
  * @package mrz-theme-exp
  */
@@ -103,4 +103,46 @@ function mrz_theme_blog_grid_class() {
 	return '2' === (string) mrz_theme_option( 'blog_columns' )
 		? 'grid gap-8 md:grid-cols-2'
 		: 'grid gap-8 md:grid-cols-2 lg:grid-cols-3';
+}
+
+/**
+ * Catégories du blog en cartouches, entre le titre et les articles : « Tous » (page des
+ * articles) puis chaque catégorie qui a des articles, celle affichée mise en évidence.
+ * De simples liens vers les pages de catégorie, pas un filtre. Blog et catégories
+ * seulement, et à partir de deux catégories.
+ */
+function mrz_theme_blog_categories() {
+	if ( ! is_home() && ! is_category() ) {
+		return;
+	}
+
+	$categories = get_categories(
+		array(
+			'hide_empty' => true,
+			'orderby'    => 'name',
+		)
+	);
+	if ( count( $categories ) < 2 ) {
+		return;
+	}
+
+	$current   = is_category() ? get_queried_object_id() : 0;
+	$posts_url = get_option( 'page_for_posts' ) ? get_permalink( (int) get_option( 'page_for_posts' ) ) : home_url( '/' );
+
+	echo '<nav class="mrz-blog-categories" aria-label="' . esc_attr__( 'Categories', 'mrz-theme-exp' ) . '"><ul>';
+	printf(
+		'<li><a href="%1$s"%2$s>%3$s</a></li>',
+		esc_url( $posts_url ),
+		$current ? '' : ' aria-current="page"',
+		esc_html__( 'All', 'mrz-theme-exp' )
+	);
+	foreach ( $categories as $category ) {
+		printf(
+			'<li><a href="%1$s"%2$s>%3$s</a></li>',
+			esc_url( get_category_link( $category ) ),
+			$current === $category->term_id ? ' aria-current="page"' : '',
+			esc_html( $category->name )
+		);
+	}
+	echo '</ul></nav>';
 }
