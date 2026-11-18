@@ -2,7 +2,7 @@
 
 Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versions en [SemVer](https://semver.org/lang/fr/) : le premier chiffre change quand un nom utilisé par les thèmes enfants casse (« Cassant ») ; avant la 1.0, c'est le deuxième.
 
-## [Non publié]
+## [0.8.2] - 2026-11-18
 
 ### Ajouté
 - Header transparent automatique dès que la première section a une image ou une vidéo de fond (plus besoin d'une section « hero » ; un nom en `hero` compte toujours).
