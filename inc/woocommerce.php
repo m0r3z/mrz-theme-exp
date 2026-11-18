@@ -194,6 +194,17 @@ function mrz_theme_shop_customize_register( $wp_customize ) {
 		)
 	);
 
+	mrz_theme_add_setting( $wp_customize, 'shop_variation_swatches', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_shop_variation_swatches',
+		array(
+			'label'       => __( 'Variation buttons instead of drop-down menus', 'mrz-theme-exp' ),
+			'description' => __( 'Sizes, colors and other options shown as buttons to pick on the product page.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_shop',
+			'type'        => 'checkbox',
+		)
+	);
+
 	mrz_theme_add_setting( $wp_customize, 'shop_quantity_buttons', 'mrz_theme_sanitize_checkbox' );
 	$wp_customize->add_control(
 		'mrz_shop_quantity_buttons',
@@ -383,7 +394,7 @@ add_filter( 'body_class', 'mrz_theme_shop_body_classes' );
  */
 function mrz_theme_shop_script_needed() {
 	return mrz_theme_cart_drawer_enabled()
-		|| ( is_product() && ( mrz_theme_option( 'shop_ajax_single' ) || mrz_theme_option( 'shop_quantity_buttons' ) ) )
+		|| ( is_product() && ( mrz_theme_option( 'shop_ajax_single' ) || mrz_theme_option( 'shop_quantity_buttons' ) || mrz_theme_option( 'shop_variation_swatches' ) ) )
 		|| ( is_cart() && mrz_theme_option( 'shop_quantity_buttons' ) && ! has_block( 'woocommerce/cart', wc_get_page_id( 'cart' ) ) );
 }
 
@@ -414,11 +425,13 @@ function mrz_theme_shop_enqueue() {
 				// Fiche produit : pas d'ajout sans rechargement si WooCommerce doit mener au panier après l'ajout.
 				'ajaxSingle'      => is_product() && mrz_theme_option( 'shop_ajax_single' ) && 'yes' !== get_option( 'woocommerce_cart_redirect_after_add' ),
 				'quantityButtons' => (bool) mrz_theme_option( 'shop_quantity_buttons' ),
+				'swatches'        => (bool) mrz_theme_option( 'shop_variation_swatches' ),
 				'i18n'            => array(
-					'close'    => __( 'Close', 'mrz-theme-exp' ),
-					'decrease' => __( 'Decrease quantity', 'mrz-theme-exp' ),
-					'increase' => __( 'Increase quantity', 'mrz-theme-exp' ),
-					'error'    => __( 'The product could not be added to the cart. Please try again.', 'mrz-theme-exp' ),
+					'close'      => __( 'Close', 'mrz-theme-exp' ),
+					'outOfStock' => __( 'out of stock', 'mrz-theme-exp' ),
+					'decrease'   => __( 'Decrease quantity', 'mrz-theme-exp' ),
+					'increase'   => __( 'Increase quantity', 'mrz-theme-exp' ),
+					'error'      => __( 'The product could not be added to the cart. Please try again.', 'mrz-theme-exp' ),
 				),
 			)
 		) . ';',
@@ -543,3 +556,58 @@ function mrz_theme_empty_cart_block( $parsed_block ) {
 	return $parsed_block;
 }
 add_filter( 'render_block_data', 'mrz_theme_empty_cart_block' );
+
+/**
+ * Variations en pastilles (réglage « shop_variation_swatches ») : chaque menu déroulant
+ * d'une variation est doublé d'un groupe de boutons radio. Le <select> de WooCommerce
+ * reste, masqué : son script y lit le choix pour trouver la variation (prix, stock, image,
+ * bouton). shop.js les synchronise, et grise les choix indisponibles.
+ * Pas de copie de template : filtre sur le HTML du menu.
+ *
+ * @param string $html Menu déroulant de WooCommerce.
+ * @param array  $args Arguments (options, attribute, product, selected).
+ * @return string
+ */
+function mrz_theme_variation_swatches( $html, $args ) {
+	if ( ! mrz_theme_option( 'shop_variation_swatches' ) || empty( $args['options'] ) || ! $args['product'] instanceof WC_Product ) {
+		return $html;
+	}
+
+	$attribute = $args['attribute'];
+	$name      = $args['name'] ? $args['name'] : 'attribute_' . sanitize_title( $attribute );
+	$selected  = (string) $args['selected'];
+	$choices   = array();
+
+	// Même ordre et mêmes valeurs que le menu de WooCommerce.
+	if ( taxonomy_exists( $attribute ) ) {
+		foreach ( wc_get_product_terms( $args['product']->get_id(), $attribute, array( 'fields' => 'all' ) ) as $term ) {
+			if ( in_array( $term->slug, $args['options'], true ) ) {
+				$choices[ $term->slug ] = $term->name;
+			}
+		}
+	} else {
+		foreach ( $args['options'] as $option ) {
+			$choices[ $option ] = $option;
+		}
+	}
+
+	$swatches = '';
+	foreach ( $choices as $value => $label ) {
+		$swatches .= sprintf(
+			'<label class="mrz-swatch"><input type="radio" name="%1$s" value="%2$s"%3$s><span>%4$s</span></label>',
+			esc_attr( 'mrz_swatch_' . $name ),
+			esc_attr( $value ),
+			checked( $selected, (string) $value, false ),
+			esc_html( apply_filters( 'woocommerce_variation_option_name', $label, null, $attribute, $args['product'] ) )
+		);
+	}
+
+	return sprintf(
+		'<fieldset class="mrz-swatches" data-mrz-swatches="%1$s"><legend class="screen-reader-text">%2$s</legend>%3$s</fieldset><div class="mrz-swatches__native">%4$s</div>',
+		esc_attr( $name ),
+		esc_html( wc_attribute_label( $attribute, $args['product'] ) ),
+		$swatches,
+		$html
+	);
+}
+add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'mrz_theme_variation_swatches', 10, 2 );

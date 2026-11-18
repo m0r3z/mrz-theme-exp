@@ -202,6 +202,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Menu de tri, nombre de résultats | oui, oui |
 | | Badge promo : texte, réduction en pourcentage, aucun | texte |
 | | Boutons + et − autour de la quantité | oui |
+| | Variations en pastilles (tailles, couleurs…) à la place des menus déroulants ; combinaison en rupture barrée | oui |
 
 ## Retoucher un site à la main
 

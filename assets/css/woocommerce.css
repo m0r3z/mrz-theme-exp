@@ -910,3 +910,106 @@
 .wp-block-woocommerce-empty-cart-block p a:hover {
 	filter: brightness(1.08);
 }
+
+/*
+ * Variations en pastilles (Customizer > Shop) : boutons radio à la place du menu
+ * déroulant, qui reste dans la page, masqué (WooCommerce y lit le choix).
+ * Pastille choisie : couleurs du bouton du thème ; indisponible : barrée et atténuée.
+ * Variables : --mrz-swatch-gap, --mrz-swatch-padding, --mrz-swatch-radius.
+ */
+.mrz-swatches__native {
+	display: none;
+}
+
+.mrz-swatches {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--mrz-swatch-gap, 0.5rem);
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.mrz-swatch {
+	position: relative;
+	display: inline-flex;
+	cursor: pointer;
+}
+
+/* Le vrai bouton radio : invisible mais toujours atteint au clavier et par les lecteurs d'écran. */
+.mrz-swatch input {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	opacity: 0;
+	cursor: inherit;
+}
+
+.mrz-swatch span {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+	padding: var(--mrz-swatch-padding, 0.5rem 1rem);
+	border: 1px solid var(--mrz-field-border, var(--color-border));
+	border-radius: var(--mrz-swatch-radius, var(--radius-button));
+	background: var(--mrz-field-bg, var(--color-background));
+	color: var(--mrz-field-color, var(--color-text));
+	font-size: var(--mrz-field-font-size);
+	line-height: 1.2;
+	transition: border-color 0.2s var(--mrz-ease), background-color 0.2s var(--mrz-ease), color 0.2s var(--mrz-ease);
+}
+
+.mrz-swatch:hover span {
+	border-color: currentColor;
+}
+
+.mrz-swatch input:checked + span {
+	border-color: var(--mrz-button-bg);
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
+}
+
+.mrz-swatch input:focus-visible + span {
+	outline: 2px solid var(--mrz-focus-color, currentColor);
+	outline-offset: 2px;
+}
+
+.mrz-swatch:has(input:disabled) {
+	cursor: not-allowed;
+}
+
+.mrz-swatch input:disabled + span,
+.mrz-swatch.is-out-of-stock span {
+	border-style: dashed;
+	opacity: 0.45;
+	text-decoration: line-through;
+}
+
+/* En rupture mais encore cliquable : WooCommerce affiche alors « En rupture de stock ». */
+.mrz-swatch.is-out-of-stock input:checked + span {
+	opacity: 0.7;
+}
+
+/* Tableau des variations : libellé au-dessus des pastilles, de l'air entre deux groupes. */
+.woocommerce div.product form.cart .variations:has(.mrz-swatches) th,
+.woocommerce div.product form.cart .variations:has(.mrz-swatches) td {
+	display: block;
+	padding: 0;
+	text-align: left;
+}
+
+.woocommerce div.product form.cart .variations:has(.mrz-swatches) th {
+	padding-bottom: 0.5rem;
+	font-size: var(--mrz-label-font-size);
+	font-weight: var(--mrz-label-font-weight);
+}
+
+.woocommerce div.product form.cart .variations:has(.mrz-swatches) tr + tr th {
+	padding-top: 1.25rem;
+}
+
+.woocommerce div.product form.cart .reset_variations {
+	display: inline-block;
+	margin-top: 0.75rem;
+	font-size: var(--mrz-text-sm);
+}

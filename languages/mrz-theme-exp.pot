@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-18T10:55:20+00:00\n"
+"POT-Creation-Date: 2026-11-18T11:00:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -1268,7 +1268,7 @@ msgid "Image viewer"
 msgstr ""
 
 #: inc/lightbox.php:33
-#: inc/woocommerce.php:418
+#: inc/woocommerce.php:430
 msgid "Close"
 msgstr ""
 
@@ -1350,7 +1350,7 @@ msgid "My account"
 msgstr ""
 
 #: inc/template-tags.php:276
-#: inc/woocommerce.php:445
+#: inc/woocommerce.php:458
 msgid "Cart"
 msgstr ""
 
@@ -1450,32 +1450,44 @@ msgid "Discount (\"-20%\")"
 msgstr ""
 
 #: inc/woocommerce.php:201
+msgid "Variation buttons instead of drop-down menus"
+msgstr ""
+
+#: inc/woocommerce.php:202
+msgid "Sizes, colors and other options shown as buttons to pick on the product page."
+msgstr ""
+
+#: inc/woocommerce.php:212
 msgid "Plus and minus buttons around the quantity"
 msgstr ""
 
 #. translators: %d: réduction en pourcentage.
-#: inc/woocommerce.php:284
+#: inc/woocommerce.php:295
 #, php-format
 msgid "-%d%%"
 msgstr ""
 
-#: inc/woocommerce.php:419
+#: inc/woocommerce.php:431
+msgid "out of stock"
+msgstr ""
+
+#: inc/woocommerce.php:432
 msgid "Decrease quantity"
 msgstr ""
 
-#: inc/woocommerce.php:420
+#: inc/woocommerce.php:433
 msgid "Increase quantity"
 msgstr ""
 
-#: inc/woocommerce.php:421
+#: inc/woocommerce.php:434
 msgid "The product could not be added to the cart. Please try again."
 msgstr ""
 
-#: inc/woocommerce.php:448
+#: inc/woocommerce.php:461
 msgid "Close the cart"
 msgstr ""
 
-#: inc/woocommerce.php:466
+#: inc/woocommerce.php:479
 msgid "Continue shopping"
 msgstr ""
 

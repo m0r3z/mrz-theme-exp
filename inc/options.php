@@ -60,6 +60,7 @@ function mrz_theme_option_defaults() {
 		'shop_result_count'         => true,
 		'shop_sale_badge'           => 'text',
 		'shop_quantity_buttons'     => true,
+		'shop_variation_swatches'   => true,
 	);
 }
 

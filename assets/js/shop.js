@@ -271,6 +271,88 @@
 		}
 	}
 
+	/*
+	 * Variations en pastilles : chaque groupe de boutons radio pilote le <select> masqué
+	 * de WooCommerce (événement change, que son script écoute), et suit ce que ce script
+	 * y fait : choix effacé (« Effacer »), choix indisponible pour la combinaison en cours
+	 * (option retirée ou désactivée : pastille grisée).
+	 */
+	// Rupture de stock : aucune variation en stock ne correspond à ce choix, avec les autres
+	// choix en cours (données des variations dans la page ; absentes au-delà de 30 variations).
+	function isOutOfStock( form, name, value ) {
+		var variations;
+		try {
+			variations = JSON.parse( form.getAttribute( 'data-product_variations' ) || 'false' );
+		} catch ( error ) {
+			variations = false;
+		}
+		if ( ! Array.isArray( variations ) ) {
+			return false;
+		}
+		var wanted = {};
+		form.querySelectorAll( '.variations select' ).forEach( function ( select ) {
+			wanted[ select.name ] = select.name === name ? value : select.value;
+		} );
+		return ! variations.some( function ( variation ) {
+			return variation.is_in_stock && Object.keys( wanted ).every( function ( key ) {
+				var attribute = variation.attributes[ key ];
+				return ! wanted[ key ] || ! attribute || attribute === wanted[ key ];
+			} );
+		} );
+	}
+
+	function syncSwatches( form ) {
+		form.querySelectorAll( '[data-mrz-swatches]' ).forEach( function ( group ) {
+			var name = group.getAttribute( 'data-mrz-swatches' );
+			var select = form.querySelector( 'select[name="' + name + '"]' );
+			if ( ! select ) {
+				return;
+			}
+			group.querySelectorAll( 'input[type="radio"]' ).forEach( function ( radio ) {
+				var option = Array.prototype.find.call( select.options, function ( item ) {
+					return item.value === radio.value;
+				} );
+				radio.disabled = ! option || option.disabled;
+				radio.checked = select.value === radio.value;
+				var label = radio.closest( '.mrz-swatch' );
+				var out = ! radio.disabled && isOutOfStock( form, name, radio.value );
+				var note = label.querySelector( '.mrz-swatch__note' );
+				label.classList.toggle( 'is-out-of-stock', out );
+				// Le trait barré ne suffit pas : le lecteur d'écran l'annonce aussi.
+				if ( out && ! note ) {
+					note = document.createElement( 'span' );
+					note.className = 'mrz-swatch__note screen-reader-text';
+					note.textContent = ' (' + ( i18n.outOfStock || 'out of stock' ) + ')';
+					label.querySelector( 'span' ).appendChild( note );
+				} else if ( ! out && note ) {
+					note.remove();
+				}
+			} );
+		} );
+	}
+
+	if ( settings.swatches ) {
+		document.querySelectorAll( 'form.variations_form' ).forEach( function ( form ) {
+			form.addEventListener( 'change', function ( event ) {
+				var radio = event.target.closest( '[data-mrz-swatches] input[type="radio"]' );
+				if ( radio ) {
+					var select = form.querySelector( 'select[name="' + radio.closest( '[data-mrz-swatches]' ).getAttribute( 'data-mrz-swatches' ) + '"]' );
+					select.value = radio.value;
+					select.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+				} else if ( event.target.matches( 'select' ) ) {
+					syncSwatches( form );
+				}
+			} );
+			// Le script des variations (jQuery) recalcule les options après chaque choix.
+			if ( window.jQuery ) {
+				window.jQuery( form ).on( 'woocommerce_update_variation_values reset_data', function () {
+					syncSwatches( form );
+				} );
+			}
+			syncSwatches( form );
+		} );
+	}
+
 	/* Lien vers les avis (« 2 avis client ») : ouvre l'accordéon des avis. */
 	function openDetailsFor( hash ) {
 		var target = hash && document.getElementById( hash.slice( 1 ) );
