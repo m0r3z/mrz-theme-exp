@@ -1496,8 +1496,8 @@ msgstr "Menu"
 msgid "Top bar (above the header, hidden on scroll)"
 msgstr "Bandeau au-dessus du header (masqué au défilement)"
 
-msgid "Replay scroll animations when scrolling back up"
-msgstr "Rejouer les animations au défilement en remontant"
+msgid "Play scroll animations only once"
+msgstr "Jouer les animations au défilement une seule fois"
 
-msgid "Unchecked: each element appears once, then stays."
-msgstr "Décoché : chaque élément apparaît une fois, puis reste."
+msgid "Once an element has appeared, it stays, even when scrolling back up and down again. Unchecked: the animation plays again on each pass."
+msgstr "Un élément apparu reste affiché, même si on remonte puis redescend. Décoché : l’animation se rejoue à chaque passage."

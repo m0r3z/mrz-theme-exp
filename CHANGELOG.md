@@ -5,7 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
-- Customizer > General : « Rejouer les animations au défilement en remontant » (coché par défaut). Décoché, chaque élément apparaît une fois puis reste.
+- Customizer > General : « Jouer les animations au défilement une seule fois » (décoché par défaut). Coché, un élément apparu reste affiché, même si on remonte puis redescend ; décoché, l'animation se rejoue à chaque passage.
 
 ### Modifié
 - Animations au défilement : déclenchées quand l'élément entre à l'écran, puis jouées en entier (0,9 s, `--mrz-motion-duration`), au lieu d'avancer avec le défilement : plus d'éléments à moitié apparus en bas de l'écran. Petit module `assets/js/motion.js`, chargé seulement si une section a une animation ; sans JavaScript, tout s'affiche normalement. Elles marchent maintenant aussi sur Firefox. `--mrz-motion-range`, `-range-2` et `-range-3` remplacées par `--mrz-motion-duration` et `--mrz-motion-stagger` (cascade).

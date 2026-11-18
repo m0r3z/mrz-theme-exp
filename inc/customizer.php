@@ -602,12 +602,12 @@ function mrz_theme_customize_register( $wp_customize ) {
 		)
 	);
 
-	mrz_theme_add_setting( $wp_customize, 'motion_replay', 'mrz_theme_sanitize_checkbox' );
+	mrz_theme_add_setting( $wp_customize, 'motion_once', 'mrz_theme_sanitize_checkbox' );
 	$wp_customize->add_control(
-		'mrz_motion_replay',
+		'mrz_motion_once',
 		array(
-			'label'       => __( 'Replay scroll animations when scrolling back up', 'mrz-theme-exp' ),
-			'description' => __( 'Unchecked: each element appears once, then stays.', 'mrz-theme-exp' ),
+			'label'       => __( 'Play scroll animations only once', 'mrz-theme-exp' ),
+			'description' => __( 'Once an element has appeared, it stays, even when scrolling back up and down again. Unchecked: the animation plays again on each pass.', 'mrz-theme-exp' ),
 			'section'     => 'mrz_general',
 			'type'        => 'checkbox',
 		)

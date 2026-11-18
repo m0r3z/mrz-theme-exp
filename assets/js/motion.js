@@ -2,8 +2,9 @@
  * MRZ Theme Experience : animations au défilement (vanilla).
  * Ajoute .is-inview à chaque élément à animer quand il entre à l'écran : la transition
  * CSS se joue alors en entier, sans dépendre de la vitesse de défilement.
- * Réglage « Rejouer en remontant » (window.mrzMotion.replay) : l'élément se cache de
- * nouveau quand il ressort par le bas de l'écran, et se rejoue au prochain passage.
+ * Par défaut, l'élément se cache de nouveau quand il ressort par le bas de l'écran
+ * (on remonte), et se rejoue au prochain passage. Réglage « Une seule fois »
+ * (window.mrzMotion.once) : une fois apparu, il reste.
  * Chargé seulement si une section a une animation (inc/builder.php).
  */
 ( function () {
@@ -11,7 +12,7 @@
 
 	window.mrzMotionReady = true;
 
-	var replay = !! ( window.mrzMotion && window.mrzMotion.replay );
+	var replay = ! ( window.mrzMotion && window.mrzMotion.once );
 	var selector = [
 		'.mrz-motion--fade-up > .mrz-container',
 		'.mrz-motion--fade > .mrz-container',
@@ -45,7 +46,7 @@
 		{ rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
 	);
 
-	// Sortie (réglage « Rejouer ») : l'élément entièrement ressorti par le bas, donc quand
+	// Sortie (sauf réglage « Une seule fois ») : l'élément entièrement ressorti par le bas, donc quand
 	// on remonte, est prêt à se rejouer. Il ne se cache jamais sous les yeux du visiteur ;
 	// sorti par le haut, il reste visible.
 	var hide = replay ? new IntersectionObserver( function ( entries ) {
