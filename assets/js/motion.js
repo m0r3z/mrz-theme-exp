@@ -14,11 +14,12 @@
 	window.mrzMotionReady = true;
 
 	var replay = ! ( window.mrzMotion && window.mrzMotion.once );
+	// Cascade : jamais dans un accordéon (éléments et réponses), qui a sa propre animation d'ouverture.
 	var selector = [
 		'.mrz-motion--fade-up > .mrz-container',
 		'.mrz-motion--fade > .mrz-container',
 		'.mrz-motion--zoom > .mrz-container',
-		'.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-accordion__item, .mrz-prose > *)',
+		'.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-prose:not(.mrz-accordion__answer) > *)',
 		// Surlignage animé du mot en couleur des titres (Customizer).
 		'.mrz-highlight-animated :is(h1, h2, h3, h4, h5, h6, .mrz-section__title) em',
 	].join( ',' );

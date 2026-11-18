@@ -5,6 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Accordéon : ouverture et fermeture en douceur, l'élément qui se referme (un seul ouvert à la fois) aussi. En CSS seul (`::details-content`, `interpolate-size`) ; navigateur sans ce support : ouverture immédiate, comme avant. Variable `--mrz-accordion-duration` (0,35 s). Rien si le visiteur limite les animations. Vaut aussi pour les accordéons de la fiche produit.
 - Customizer > MRZ Theme > Blog : « Afficher les articles précédent et suivant » (coché par défaut, comme avant). Décoché, l'article seul n'a plus ces liens en bas.
 - Blog : les catégories en cartouches entre le titre et les articles, sur la page des articles et les pages de catégorie. « Tous » puis chaque catégorie qui a des articles, celle de la page en plein (couleur principale, `aria-current`). De simples liens vers les catégories, sans filtre ni JavaScript ; rien sous deux catégories. Variables `--mrz-blog-category-radius` (999px) et `--mrz-blog-categories-space` (2,5 rem).
 - Customizer > MRZ Theme > **Blog** : « Disposition de l'article seul », classique (titre, puis image à la une, comme avant) ou **bannière** (image à la une en fond du haut de l'article, sur 70 % de l'écran, date et titre posés dessus avec le voile des images de section, image chargée en priorité). En bannière, le header est toujours transparent par-dessus. Un article sans image à la une, et les CPT, restent en classique. « Articles par ligne » sur ordinateur (2 ou 3, par défaut 3) et « Afficher l'extrait dans les listes » (coché par défaut), pour le blog, les catégories, les archives et la recherche.
@@ -14,6 +15,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Animations au défilement, en remontant : l'élément disparaît dès que son haut repasse sous une ligne à 30 % du bas de l'écran, pendant qu'il est encore bien visible, au lieu d'attendre qu'il soit presque sorti de l'écran. L'apparition, en descendant, ne change pas (ligne à 10 % du bas).
 
 ### Corrigé
+- Accordéon en cascade : ses éléments et les paragraphes de ses réponses apparaissaient un par un au défilement, et certains restaient invisibles en laissant un grand vide. Plus aucune animation au défilement dans un accordéon.
 - Header sticky : ouvrir la recherche faisait remonter la page de la hauteur du header (décalage des ancres appliqué au focus du champ). Même correction pour le focus clavier dans le header et dans le sous-menu d'ancres collant.
 
 ## [0.8.6] - 2026-11-18

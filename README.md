@@ -77,7 +77,7 @@ Le menu « Ajouter une section » réunit deux sources :
 | Gallery (Galerie) | Titre, introduction, images ; grille, mosaïque (formats d'origine, en colonnes) ou carrousel, images par ligne, format, légendes | Ouvre les images dans la lightbox du thème |
 | Anchor menu (Sous-menu d'ancres) | Liens vers les sections de la page | Collé sous le header en option, lien de la section affichée mis en évidence |
 | Scrolling band (Bandeau défilant) | Textes ou logos qui défilent en continu | Bouton pause, arrêt au survol, rien ne bouge si le visiteur limite les animations |
-| Accordion (Accordéon) | Titre, introduction, éléments à déplier (question, réponse) | Sans JavaScript (`<details>`). Premier élément ouvert, un seul ouvert à la fois en option |
+| Accordion (Accordéon) | Titre, introduction, éléments à déplier (question, réponse) | Sans JavaScript (`<details>`). Premier élément ouvert, un seul ouvert à la fois en option. Ouverture et fermeture en douceur (`--mrz-accordion-duration`, 0,35 s) ; jamais d'animation au défilement sur ses éléments, même en cascade |
 | Footer | Logo, phrase, bouton, colonnes de liens, réseaux sociaux, ligne du bas | Proposée seulement dans les sections globales, à l'emplacement « Footer » |
 | Global section | Une section globale existante | Pour réutiliser un bloc à un endroit précis |
 
@@ -98,7 +98,7 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 | Image de fond | Vraie image derrière le contenu. Celle de la première section de la page se charge en priorité (image principale, LCP) |
 | Voile sur l'image | Sombre (texte clair), léger (texte clair, vérifier le contraste), sans voile (la section garde ses couleurs : image composée, motif) |
 | Dégradé | De la couleur de fond vers une seconde couleur de la palette, vers le bas, la droite ou en diagonale |
-| Animation au défilement | Aucune, apparition vers le haut, fondu, zoom, en cascade (éléments un par un). Déclenchée quand l'élément entre à l'écran, puis jouée en entier ; jouée à l'envers en remontant, ou une seule fois (MRZ Theme > General) ; jamais sur la première section ; coupée si le visiteur limite les animations |
+| Animation au défilement | Aucune, apparition vers le haut, fondu, zoom, en cascade (éléments un par un, sauf dans un accordéon). Déclenchée quand l'élément entre à l'écran, puis jouée en entier ; jouée à l'envers en remontant, ou une seule fois (MRZ Theme > General) ; jamais sur la première section ; coupée si le visiteur limite les animations |
 | Parallaxe | Aucune, légère, moyenne : l'image de fond défile moins vite que la page |
 | Vidéo de fond | MP4 ou WebM, sans son, en boucle, avec bouton pause. L'image de fond s'affiche d'abord et reste seule sur mobile (sauf « Vidéo sur mobile »), si le visiteur limite les animations ou économise ses données |
 

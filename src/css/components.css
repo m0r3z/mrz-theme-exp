@@ -918,7 +918,7 @@
 	 */
 	@media (prefers-reduced-motion: no-preference) {
 		.mrz-motion-js :is(.mrz-motion--fade-up, .mrz-motion--fade, .mrz-motion--zoom) > .mrz-container,
-		.mrz-motion-js .mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-accordion__item, .mrz-prose > *) {
+		.mrz-motion-js .mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-prose:not(.mrz-accordion__answer) > *) {
 			opacity: 0;
 			transform: translateY(var(--mrz-motion-distance));
 			transition:
@@ -1917,6 +1917,32 @@
 
 	.mrz-accordion__answer {
 		padding-bottom: 1.5rem;
+	}
+
+	/*
+	 * Ouverture et fermeture en douceur, l'autre élément se refermant de même (« un seul
+	 * ouvert à la fois », attribut name natif). En CSS seul : la réponse déroule sa hauteur
+	 * (::details-content). Navigateur sans ce support : ouverture immédiate, comme avant.
+	 * Aucune animation au défilement dans un accordéon (voir la cascade plus haut).
+	 */
+	@media (prefers-reduced-motion: no-preference) {
+		@supports selector(::details-content) {
+			.mrz-accordion__item {
+				interpolate-size: allow-keywords;
+			}
+
+			.mrz-accordion__item::details-content {
+				block-size: 0;
+				overflow: hidden;
+				transition:
+					block-size var(--mrz-accordion-duration) var(--mrz-ease),
+					content-visibility var(--mrz-accordion-duration) allow-discrete;
+			}
+
+			.mrz-accordion__item[open]::details-content {
+				block-size: auto;
+			}
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {

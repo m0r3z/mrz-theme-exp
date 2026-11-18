@@ -198,6 +198,7 @@
 	--mrz-accordion-question-size: var(--mrz-h5);
 	/* --mrz-accordion-question-font-family, --mrz-accordion-question-text-transform : police (des titres) et casse des questions. */
 	--mrz-accordion-icon-size: 1.25rem;
+	--mrz-accordion-duration: 0.35s; /* ouverture et fermeture d'un élément */
 	--mrz-accordion-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5v14M5 12h14' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
 
 	/* Section Footer (mrz_footer) */
