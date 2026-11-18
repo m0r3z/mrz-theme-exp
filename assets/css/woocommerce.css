@@ -401,8 +401,12 @@
 	border-bottom: 0;
 }
 
-/* Air entre le texte court du produit et le formulaire d'ajout (quantité, bouton). */
-.woocommerce div.product .woocommerce-product-details__short-description {
+/*
+ * Air entre le texte court du produit et le formulaire d'ajout (quantité, bouton), et,
+ * pour un produit à variations, entre le prix de la variation choisie et ce formulaire.
+ */
+.woocommerce div.product .woocommerce-product-details__short-description,
+.woocommerce div.product .woocommerce-variation:not(:empty) {
 	margin-bottom: var(--mrz-product-summary-gap, 1.5rem);
 }
 
