@@ -607,7 +607,7 @@ function mrz_theme_customize_register( $wp_customize ) {
 		'mrz_motion_once',
 		array(
 			'label'       => __( 'Play scroll animations only once', 'mrz-theme-exp' ),
-			'description' => __( 'Once an element has appeared, it stays, even when scrolling back up and down again. Unchecked: the animation plays again on each pass.', 'mrz-theme-exp' ),
+			'description' => __( 'Once an element has appeared, it stays, even when scrolling back up and down again. Unchecked: the animation plays when scrolling down, and in reverse when scrolling back up.', 'mrz-theme-exp' ),
 			'section'     => 'mrz_general',
 			'type'        => 'checkbox',
 		)

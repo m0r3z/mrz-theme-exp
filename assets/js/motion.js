@@ -2,9 +2,9 @@
  * MRZ Theme Experience : animations au défilement (vanilla).
  * Ajoute .is-inview à chaque élément à animer quand il entre à l'écran : la transition
  * CSS se joue alors en entier, sans dépendre de la vitesse de défilement.
- * Par défaut, l'élément se cache de nouveau quand il ressort par le bas de l'écran
- * (on remonte), et se rejoue au prochain passage. Réglage « Une seule fois »
- * (window.mrzMotion.once) : une fois apparu, il reste.
+ * Par défaut, l'animation se joue à l'envers quand on remonte et que l'élément repasse
+ * sous la ligne de déclenchement, puis de nouveau en redescendant. Réglage « Une seule
+ * fois » (window.mrzMotion.once) : une fois apparu, il reste.
  * Chargé seulement si une section a une animation (inc/builder.php), ou sur tout le site
  * quand le surlignage animé est activé (inc/setup.php).
  */
@@ -34,36 +34,28 @@
 		return;
 	}
 
-	// Entrée : déclenchée quand un peu de l'élément est passé au-dessus du bas de l'écran.
-	var show = new IntersectionObserver(
+	/*
+	 * Ligne de déclenchement : un peu au-dessus du bas de l'écran. L'élément qui la passe
+	 * en descendant s'anime en entier. En remontant (il repasse dessous), l'animation se
+	 * joue à l'envers, sauf réglage « Une seule fois ». Sorti par le haut, il reste visible.
+	 */
+	var observer = new IntersectionObserver(
 		function ( entries ) {
 			entries.forEach( function ( entry ) {
 				if ( entry.isIntersecting ) {
 					entry.target.classList.add( 'is-inview' );
 					if ( ! replay ) {
-						show.unobserve( entry.target );
+						observer.unobserve( entry.target );
 					}
+				} else if ( entry.boundingClientRect.top > 0 ) {
+					entry.target.classList.remove( 'is-inview' );
 				}
 			} );
 		},
 		{ rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
 	);
 
-	// Sortie (sauf réglage « Une seule fois ») : l'élément entièrement ressorti par le bas, donc quand
-	// on remonte, est prêt à se rejouer. Il ne se cache jamais sous les yeux du visiteur ;
-	// sorti par le haut, il reste visible.
-	var hide = replay ? new IntersectionObserver( function ( entries ) {
-		entries.forEach( function ( entry ) {
-			if ( ! entry.isIntersecting && entry.boundingClientRect.top > 0 ) {
-				entry.target.classList.remove( 'is-inview' );
-			}
-		} );
-	} ) : null;
-
 	targets.forEach( function ( target ) {
-		show.observe( target );
-		if ( hide ) {
-			hide.observe( target );
-		}
+		observer.observe( target );
 	} );
 }() );
