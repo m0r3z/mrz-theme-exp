@@ -730,7 +730,8 @@ function mrz_theme_customizer_css() {
 		}
 
 		$css .= '@view-transition{navigation:auto}';
-		$css .= '.mrz-header{view-transition-name:mrz-header}#wpadminbar{view-transition-name:mrz-adminbar}';
+		// Header, bandeau au-dessus du header et barre d'admin restent en place : seul le contenu change.
+		$css .= '.mrz-header{view-transition-name:mrz-header}.mrz-topbar{view-transition-name:mrz-topbar}#wpadminbar{view-transition-name:mrz-adminbar}';
 		$css .= '::view-transition{background:var(--color-' . $color . ')}';
 		$css .= '::view-transition-old(root),::view-transition-new(root){mix-blend-mode:normal}';
 		$css .= '::view-transition-old(root){animation:mrz-vt-out ' . $half . 'ms ' . $easing . ' both}';
