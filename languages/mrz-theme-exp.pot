@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-18T13:08:19+00:00\n"
+"POT-Creation-Date: 2026-11-18T13:17:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -89,7 +89,7 @@ msgstr ""
 #: inc/builder-sections.php:226
 #: inc/builder-sections.php:271
 #: inc/builder-sections.php:692
-#: inc/woocommerce.php:192
+#: inc/woocommerce.php:218
 msgid "None"
 msgstr ""
 
@@ -1269,7 +1269,7 @@ msgid "Image viewer"
 msgstr ""
 
 #: inc/lightbox.php:33
-#: inc/woocommerce.php:418
+#: inc/woocommerce.php:444
 msgid "Close"
 msgstr ""
 
@@ -1351,7 +1351,7 @@ msgid "My account"
 msgstr ""
 
 #: inc/template-tags.php:276
-#: inc/woocommerce.php:448
+#: inc/woocommerce.php:474
 msgid "Cart"
 msgstr ""
 
@@ -1392,126 +1392,134 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: inc/woocommerce.php:74
+#: inc/woocommerce.php:85
 msgid "Shop"
 msgstr ""
 
-#: inc/woocommerce.php:83
+#: inc/woocommerce.php:94
 msgid "Cart icon"
 msgstr ""
 
-#: inc/woocommerce.php:87
+#: inc/woocommerce.php:98
 msgid "Opens a cart panel on the right"
 msgstr ""
 
-#: inc/woocommerce.php:88
+#: inc/woocommerce.php:99
 msgid "Goes to the cart page"
 msgstr ""
 
-#: inc/woocommerce.php:97
+#: inc/woocommerce.php:108
 msgid "Add to cart without reloading the product page"
 msgstr ""
 
-#: inc/woocommerce.php:98
+#: inc/woocommerce.php:109
 msgid "The product lists follow the WooCommerce setting (Settings > Products)."
 msgstr ""
 
-#: inc/woocommerce.php:108
+#: inc/woocommerce.php:119
 msgid "Description, additional information and reviews"
 msgstr ""
 
-#: inc/woocommerce.php:109
+#: inc/woocommerce.php:120
 msgid "Shown as accordions instead of tabs."
 msgstr ""
 
-#: inc/woocommerce.php:113
+#: inc/woocommerce.php:124
 msgid "Next to the images, under the add to cart button"
 msgstr ""
 
-#: inc/woocommerce.php:114
+#: inc/woocommerce.php:125
 msgid "Under the images, full width"
 msgstr ""
 
-#: inc/woocommerce.php:123
+#: inc/woocommerce.php:134
 msgid "Products per row"
 msgstr ""
 
-#: inc/woocommerce.php:124
-msgid "Shop, categories and related products. The [products] shortcode keeps its own columns."
+#: inc/woocommerce.php:135
+msgid "Shop and categories. The [products] shortcode keeps its own columns."
 msgstr ""
 
-#: inc/woocommerce.php:138
+#: inc/woocommerce.php:149
 msgid "Products per row on mobile"
 msgstr ""
 
-#: inc/woocommerce.php:152
+#: inc/woocommerce.php:163
 msgid "Products per page"
 msgstr ""
 
-#: inc/woocommerce.php:166
+#: inc/woocommerce.php:177
+msgid "Related products"
+msgstr ""
+
+#: inc/woocommerce.php:178
+msgid "Number shown under the product page, on one row. 0: none."
+msgstr ""
+
+#: inc/woocommerce.php:192
 msgid "Sorting menu"
 msgstr ""
 
-#: inc/woocommerce.php:176
+#: inc/woocommerce.php:202
 msgid "Number of results"
 msgstr ""
 
-#: inc/woocommerce.php:186
+#: inc/woocommerce.php:212
 msgid "Sale badge"
 msgstr ""
 
-#: inc/woocommerce.php:190
+#: inc/woocommerce.php:216
 msgid "Text (\"Sale!\")"
 msgstr ""
 
-#: inc/woocommerce.php:191
+#: inc/woocommerce.php:217
 msgid "Discount (\"-20%\")"
 msgstr ""
 
-#: inc/woocommerce.php:201
+#: inc/woocommerce.php:227
 msgid "Plus and minus buttons around the quantity"
 msgstr ""
 
 #. translators: %d: réduction en pourcentage.
-#: inc/woocommerce.php:284
+#: inc/woocommerce.php:310
 #, php-format
 msgid "-%d%%"
 msgstr ""
 
-#: inc/woocommerce.php:419
+#: inc/woocommerce.php:445
 msgid "out of stock"
 msgstr ""
 
 #. translators: %s: couleur choisie, après le libellé de l'attribut (« Couleur : Moutarde »).
-#: inc/woocommerce.php:421
+#: inc/woocommerce.php:447
 #, php-format
 msgid ": %s"
 msgstr ""
 
-#: inc/woocommerce.php:422
-#: inc/woocommerce.php:554
+#: inc/woocommerce.php:448
+#: inc/woocommerce.php:580
 msgid "Decrease quantity"
 msgstr ""
 
-#: inc/woocommerce.php:423
-#: inc/woocommerce.php:559
+#: inc/woocommerce.php:449
+#: inc/woocommerce.php:585
 msgid "Increase quantity"
 msgstr ""
 
-#: inc/woocommerce.php:424
+#: inc/woocommerce.php:450
 msgid "The product could not be added to the cart. Please try again."
 msgstr ""
 
-#: inc/woocommerce.php:451
+#: inc/woocommerce.php:477
 msgid "Close the cart"
 msgstr ""
 
-#: inc/woocommerce.php:469
+#: inc/woocommerce.php:495
 msgid "Continue shopping"
 msgstr ""
 
 #. translators: %s: nom du produit.
-#: inc/woocommerce.php:558
+#: inc/woocommerce.php:584
 #, php-format
 msgid "Quantity of %s"
 msgstr ""

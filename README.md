@@ -197,7 +197,8 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | MRZ Theme > Shop (WooCommerce actif) | Icône du panier : ouvre un panneau à droite, ou mène à la page Panier (toujours le cas sur les pages Panier et Commande) | panneau |
 | | Ajout au panier sans recharger la fiche produit (les listes suivent le réglage de WooCommerce) | oui |
 | | Description, informations complémentaires et avis, en accordéons : à côté des images sous le bouton d'ajout, ou sous les images | à côté des images |
-| | Produits par ligne (boutique, catégories, produits similaires ; le shortcode `[products]` garde ses colonnes, MRZ Product Filter impose les siennes avec sa barre latérale) ; sur mobile (1 ou 2) | 4, 2 |
+| | Produits par ligne (boutique, catégories ; le shortcode `[products]` garde ses colonnes, MRZ Product Filter impose les siennes avec sa barre latérale) ; sur mobile (1 ou 2) | 4, 2 |
+| | Produits similaires : nombre sous la fiche produit, sur une ligne (0 : aucun) | 4 |
 | | Produits par page | 12 |
 | | Menu de tri, nombre de résultats | oui, oui |
 | | Badge promo : texte, réduction en pourcentage, aucun | texte |

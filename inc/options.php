@@ -56,6 +56,7 @@ function mrz_theme_option_defaults() {
 		'shop_columns'              => 4,
 		'shop_columns_mobile'       => 2,
 		'shop_per_page'             => 12,
+		'shop_related_count'        => 4,
 		'shop_sorting'              => true,
 		'shop_result_count'         => true,
 		'shop_sale_badge'           => 'text',

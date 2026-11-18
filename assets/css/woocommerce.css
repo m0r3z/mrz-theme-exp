@@ -108,8 +108,12 @@
 	display: none;
 }
 
-.woocommerce ul.products li.product,
-.woocommerce-page ul.products li.product {
+/*
+ * WooCommerce fixe une largeur par colonnes (« .columns-3 li.product { width: 30.75% } »,
+ * plus fort qu'un sélecteur simple) : chaque produit prend toute sa case de la grille.
+ */
+.woocommerce ul.products[class*="columns-"] li.product[class],
+.woocommerce-page ul.products[class*="columns-"] li.product[class] {
 	display: flex;
 	flex-direction: column;
 	width: auto;

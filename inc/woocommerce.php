@@ -25,19 +25,30 @@ function mrz_theme_cart_fragments( $fragments ) {
 add_filter( 'woocommerce_add_to_cart_fragments', 'mrz_theme_cart_fragments' );
 
 /**
- * Produits apparentés : une ligne de la boutique (même nombre de colonnes).
+ * Produits similaires : leur propre réglage (Customizer > Shop), sur une ligne,
+ * indépendant des colonnes de la boutique. 0 les masque (voir mrz_theme_related_products_display).
  *
  * @param array $args Arguments.
  * @return array
  */
 function mrz_theme_related_products_args( $args ) {
-	$columns = mrz_theme_shop_columns();
+	$count = min( 6, max( 1, absint( mrz_theme_option( 'shop_related_count' ) ) ) );
 
-	$args['posts_per_page'] = $columns;
-	$args['columns']        = $columns;
+	$args['posts_per_page'] = $count;
+	$args['columns']        = $count;
 
 	return $args;
 }
+
+/**
+ * Produits similaires masqués quand leur nombre vaut 0.
+ */
+function mrz_theme_related_products_display() {
+	if ( is_product() && 0 === absint( mrz_theme_option( 'shop_related_count' ) ) ) {
+		remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+	}
+}
+add_action( 'wp', 'mrz_theme_related_products_display' );
 add_filter( 'woocommerce_output_related_products_args', 'mrz_theme_related_products_args' );
 
 /**
@@ -121,7 +132,7 @@ function mrz_theme_shop_customize_register( $wp_customize ) {
 		'mrz_shop_columns',
 		array(
 			'label'       => __( 'Products per row', 'mrz-theme-exp' ),
-			'description' => __( 'Shop, categories and related products. The [products] shortcode keeps its own columns.', 'mrz-theme-exp' ),
+			'description' => __( 'Shop and categories. The [products] shortcode keeps its own columns.', 'mrz-theme-exp' ),
 			'section'     => 'mrz_shop',
 			'type'        => 'number',
 			'input_attrs' => array(
@@ -155,6 +166,21 @@ function mrz_theme_shop_customize_register( $wp_customize ) {
 			'input_attrs' => array(
 				'min' => 1,
 				'max' => 96,
+			),
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'shop_related_count', 'absint' );
+	$wp_customize->add_control(
+		'mrz_shop_related_count',
+		array(
+			'label'       => __( 'Related products', 'mrz-theme-exp' ),
+			'description' => __( 'Number shown under the product page, on one row. 0: none.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_shop',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'min' => 0,
+				'max' => 6,
 			),
 		)
 	);

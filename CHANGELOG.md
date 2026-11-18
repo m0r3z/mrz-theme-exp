@@ -5,6 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Customizer > Shop : « Produits similaires », leur nombre sur une ligne (4 par défaut, 0 pour aucun), indépendant des colonnes de la boutique.
 - Fiche produit : **variations en pastilles ou en couleurs**, au choix sur chaque attribut (Produits > Attributs > Modifier, champ « Type » : Menu déroulant, Pastilles, Couleurs). En « Couleurs », une couleur par terme (Configurer les termes, sélecteur de couleur, colonne dans la liste) : ronds de couleur, nom de la couleur choisie à côté du libellé (« Couleur : Moutarde ») ; terme sans couleur affiché par son nom. Vrais boutons radio, au clavier ; le menu de WooCommerce reste masqué et calcule toujours prix, stock et image. Choix impossible grisé, combinaison en rupture barrée (et annoncée aux lecteurs d'écran). Thème changé : retour aux menus déroulants, couleurs gardées sur les termes. Variables `--mrz-swatch-gap`, `--mrz-swatch-padding`, `--mrz-swatch-radius`, `--mrz-swatch-size`.
 - Customizer > General : « Jouer les animations au défilement une seule fois » (décoché par défaut). Coché, un élément apparu reste affiché, même si on remonte puis redescend ; décoché, l'animation se joue en descendant, et à l'envers en remontant, dès que l'élément repasse sous la ligne de déclenchement.
 
@@ -12,6 +13,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Animations au défilement : déclenchées quand l'élément entre à l'écran, puis jouées en entier (0,9 s, `--mrz-motion-duration`), au lieu d'avancer avec le défilement : plus d'éléments à moitié apparus en bas de l'écran. Petit module `assets/js/motion.js`, chargé seulement si une section a une animation ; sans JavaScript, tout s'affiche normalement. Elles marchent maintenant aussi sur Firefox. Le surlignage animé du mot en couleur des titres suit les mêmes règles : tracé en entier quand le titre entre à l'écran (`--mrz-highlight-duration` 0,8 s, `--mrz-highlight-delay` 0,2 s), rejoué ou non selon le réglage « une seule fois ». `--mrz-motion-range`, `-range-2` et `-range-3` remplacées par `--mrz-motion-duration` et `--mrz-motion-stagger` (cascade).
 - Fiche produit : informations complémentaires séparées par des traits pleins aux couleurs du site (plus de pointillés ni de double trait avec l'accordéon) ; de l'air entre le texte court et le formulaire d'ajout, et entre le prix de la variation choisie et ce formulaire (`--mrz-product-summary-gap`, 1,5 rem).
 - Panier vide (bloc Panier) : seulement le message et un bouton « Parcourir la boutique », centrés. Plus d'icône, de séparateur ni de « Nouveau dans la boutique » (grille de blocs WooCommerce qui ne suivait pas le style des produits du thème), retirés au rendu sans toucher au contenu de la page.
+
+### Corrigé
+- Boutique en 2, 3, 5 ou 6 colonnes : chaque produit ne prenait qu'une fraction de sa case (largeur en pourcentage imposée par WooCommerce).
 
 ## [0.8.3] - 2026-11-18
 

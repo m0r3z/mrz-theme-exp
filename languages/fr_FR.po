@@ -1528,3 +1528,12 @@ msgstr " : %s"
 #, php-format
 msgid "Quantity of %s"
 msgstr "Quantité de %s"
+
+msgid "Related products"
+msgstr "Produits similaires"
+
+msgid "Number shown under the product page, on one row. 0: none."
+msgstr "Nombre affiché sous la fiche produit, sur une ligne. 0 : aucun."
+
+msgid "Shop and categories. The [products] shortcode keeps its own columns."
+msgstr "Boutique et catégories. Le shortcode [products] garde ses propres colonnes."
