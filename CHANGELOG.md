@@ -2,7 +2,7 @@
 
 Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versions en [SemVer](https://semver.org/lang/fr/) : le premier chiffre change quand un nom utilisé par les thèmes enfants casse (« Cassant ») ; avant la 1.0, c'est le deuxième.
 
-## [Non publié]
+## [0.8.1] - 2026-11-18
 
 ### Corrigé
 - Défilement horizontal de la page : un sous-menu du mega menu fermé (header en `overflow-x: clip`), les textes masqués des diapositives d'un carrousel (piste en `position: relative`), une légende de galerie sans espace (coupée).
