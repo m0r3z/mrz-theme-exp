@@ -5,7 +5,8 @@
  * image ou une vidéo YouTube ou Vimeo dans un texte (.mrz-prose), les galeries natives.
  * Image : affichée en entier ; si elle est plus grande que l'écran, un clic (ou le bouton
  * loupe) la montre en taille réelle, on s'y déplace en faisant défiler.
- * Vidéo : lecteur chargé seulement à l'ouverture (youtube-nocookie, Vimeo sans traceurs).
+ * Vidéo : lecteur chargé seulement à l'ouverture (youtube-nocookie, Vimeo sans traceurs),
+ * ou fichier MP4 ou WebM du site lu dans un <video controls>.
  * Clavier : flèches, Échap ; focus rendu au lien de l'image affichée à la fermeture. Glissé au doigt.
  * Chargé seulement sur les pages qui en ont besoin (inc/lightbox.php).
  */
@@ -14,6 +15,7 @@
 
 	var i18n = window.mrzLightbox || {};
 	var imagePattern = /\.(jpe?g|png|gif|webp|avif)(\?.*)?$/i;
+	var videoFilePattern = /\.(mp4|webm)(\?.*)?$/i;
 
 	/* Lien vers une vidéo : adresse du lecteur intégré, ou null. */
 	function videoEmbed( href ) {
@@ -43,7 +45,8 @@
 		var href = link.getAttribute( 'href' ) || '';
 		var isImage = imagePattern.test( href );
 		var embed = isImage ? null : videoEmbed( href );
-		if ( ! link.hasAttribute( 'data-mrz-lightbox' ) && ! isImage && ! embed ) {
+		var isVideoFile = ! isImage && ! embed && videoFilePattern.test( href );
+		if ( ! link.hasAttribute( 'data-mrz-lightbox' ) && ! isImage && ! embed && ! isVideoFile ) {
 			return;
 		}
 		var container = link.closest( '.gallery, .mrz-prose' );
@@ -57,6 +60,7 @@
 			link: link,
 			href: href,
 			embed: embed,
+			videoFile: isVideoFile,
 			alt: image ? image.getAttribute( 'alt' ) || '' : link.textContent.trim(),
 			caption: caption,
 		} );
@@ -193,6 +197,16 @@
 			frame.allow = 'autoplay; fullscreen; picture-in-picture';
 			frame.setAttribute( 'allowfullscreen', '' );
 			stage.appendChild( frame );
+		} else if ( item.videoFile ) {
+			// Fichier du site : lecteur natif, avec ses commandes (pause, son, plein écran).
+			var video = document.createElement( 'video' );
+			video.className = 'mrz-lightbox__video mrz-lightbox__video--file';
+			video.controls = true;
+			video.autoplay = true;
+			video.playsInline = true;
+			video.setAttribute( 'aria-label', item.alt || i18n.video || 'Video' );
+			video.src = item.href;
+			stage.appendChild( video );
 		} else {
 			var image = document.createElement( 'img' );
 			image.className = 'mrz-lightbox__image';

@@ -1,8 +1,9 @@
 <?php
 /**
- * Lightbox : images en grand (taille réelle si l'écran est trop petit, au clic) et
- * vidéos YouTube ou Vimeo, dans un <dialog> natif. Ouverte par la section Galerie,
- * les liens vers une image ou une vidéo d'un texte, et les galeries natives [gallery].
+ * Lightbox : images en grand (taille réelle si l'écran est trop petit, au clic),
+ * vidéos YouTube ou Vimeo et fichiers MP4 ou WebM, dans un <dialog> natif. Ouverte par
+ * la section Galerie, les liens vers une image ou une vidéo d'un texte, et les galeries
+ * natives [gallery].
  * Le script ne se charge que sur les pages qui en ont besoin.
  *
  * @package mrz-theme-exp
@@ -45,13 +46,13 @@ function mrz_theme_register_lightbox_script() {
 add_action( 'wp_enqueue_scripts', 'mrz_theme_register_lightbox_script' );
 
 /**
- * Charge la lightbox si un contenu a un lien vers une image, une vidéo YouTube ou Vimeo.
+ * Charge la lightbox si un contenu a un lien vers une image, une vidéo YouTube ou Vimeo, un fichier MP4 ou WebM.
  *
  * @param string $content Contenu mis en forme (the_content, champs WYSIWYG d'ACF).
  * @return string Contenu inchangé.
  */
 function mrz_theme_maybe_enqueue_lightbox( $content ) {
-	if ( is_string( $content ) && preg_match( '#<a\s[^>]*href=["\'][^"\']+(\.(jpe?g|png|gif|webp|avif)|youtube\.com/watch|youtu\.be/|vimeo\.com/\d)#i', $content ) ) {
+	if ( is_string( $content ) && preg_match( '#<a\s[^>]*href=["\'][^"\']+(\.(jpe?g|png|gif|webp|avif|mp4|webm)|youtube\.com/watch|youtu\.be/|vimeo\.com/\d)#i', $content ) ) {
 		wp_enqueue_script( 'mrz-lightbox' );
 	}
 
