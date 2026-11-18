@@ -1,7 +1,7 @@
 <?php
 /**
  * Section du parent « Cartes » : des blocs libres (image ou icône, titre, texte,
- * lien fléché), chacun sur le fond de son choix, en grille ou en carrousel.
+ * lien fléché ou bouton), chacun sur le fond de son choix, en grille ou en carrousel.
  * Apparence : variables --mrz-cards-* et --mrz-card-* (src/css/tokens.css).
  *
  * @package mrz-theme-exp
@@ -12,6 +12,9 @@ defined( 'ABSPATH' ) || exit;
 $mrz_title    = (string) get_sub_field( 'title' );
 $mrz_items    = get_sub_field( 'items' ) ?: array(); // phpcs:ignore Universal.Operators.DisallowShortTernary
 $mrz_carousel = 'carousel' === get_sub_field( 'display' );
+// Style du lien des cartes : fléché par défaut, ou bouton à contour ou plein.
+$mrz_link_style = (string) get_sub_field( 'link_style' );
+$mrz_link_style = in_array( $mrz_link_style, array( 'outline', 'primary' ), true ) ? $mrz_link_style : 'link';
 // Sans titre de section, les cartes portent les titres de niveau 2 (pas de saut de niveau).
 $mrz_tag = mrz_theme_heading_tag( $mrz_title ? 'h3' : 'h2' );
 
@@ -71,7 +74,7 @@ foreach ( $mrz_items as $mrz_item ) :
 				<div class="mrz-cards__text mrz-prose"><?php echo wp_kses_post( $mrz_item['text'] ); ?></div>
 			<?php endif; ?>
 			<?php if ( ! empty( $mrz_item['link']['url'] ) ) : ?>
-				<div class="mrz-cards__link"><?php mrz_theme_button( $mrz_item['link'], 'link' ); ?></div>
+				<div class="mrz-cards__link"><?php mrz_theme_button( $mrz_item['link'], $mrz_link_style ); ?></div>
 			<?php endif; ?>
 		</div>
 	</li>

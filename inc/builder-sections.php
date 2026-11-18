@@ -466,13 +466,26 @@ function mrz_theme_parent_layouts() {
 					'wrapper'       => array( 'width' => '25' ),
 				),
 				array(
+					'key'           => 'field_mrz_cards_link_style',
+					'name'          => 'link_style',
+					'label'         => __( 'Link style', 'mrz-theme-exp' ),
+					'type'          => 'select',
+					'choices'       => array(
+						'link'    => __( 'Arrow link', 'mrz-theme-exp' ),
+						'outline' => __( 'Outline button', 'mrz-theme-exp' ),
+						'primary' => __( 'Filled button', 'mrz-theme-exp' ),
+					),
+					'default_value' => 'link',
+					'wrapper'       => array( 'width' => '25' ),
+				),
+				array(
 					'key'               => 'field_mrz_cards_count_up',
 					'name'              => 'count_up',
 					'label'             => __( 'Counter', 'mrz-theme-exp' ),
 					'type'              => 'true_false',
 					'ui'                => 1,
 					'message'           => __( 'Figures count up from 0 when the cards come into view', 'mrz-theme-exp' ),
-					'wrapper'           => array( 'width' => '50' ),
+					'wrapper'           => array( 'width' => '25' ),
 					'conditional_logic' => array( array( array( 'field' => 'field_mrz_cards_card_style', 'operator' => '==', 'value' => 'figures' ) ) ),
 				),
 				array(
