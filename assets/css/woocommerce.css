@@ -593,8 +593,22 @@
 	height: 2.75rem;
 	border-radius: var(--radius-button);
 	color: var(--color-text) !important; /* WooCommerce écrit cette couleur avec !important. */
-	font-size: 1.5rem;
+	/* Le « × » de WooCommerce est masqué (le lien garde son aria-label « Retirer … du panier »). */
+	font-size: 0;
 	line-height: 1;
+}
+
+/*
+ * Icône de suppression : SVG en masque, centré au pixel, à la couleur du texte.
+ * Pour une autre icône : --mrz-minicart-remove-icon (url() d'un SVG) et
+ * --mrz-minicart-remove-icon-size, dans le style.css de l'enfant.
+ */
+.mrz-minicart ul.cart_list li a.remove::before {
+	content: "";
+	width: var(--mrz-minicart-remove-icon-size, 1rem);
+	height: var(--mrz-minicart-remove-icon-size, 1rem);
+	background: currentColor;
+	mask: var(--mrz-minicart-remove-icon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")) center / contain no-repeat;
 }
 
 .mrz-minicart ul.cart_list li a.remove:hover {
