@@ -1582,3 +1582,9 @@ msgstr "Catégories"
 
 msgid "All"
 msgstr "Tous"
+
+msgid "Show the previous and next posts"
+msgstr "Afficher les articles précédent et suivant"
+
+msgid "Links at the bottom of a single post, before the comments."
+msgstr "Liens en bas de l’article seul, avant les commentaires."

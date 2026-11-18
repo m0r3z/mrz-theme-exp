@@ -50,13 +50,16 @@ $mrz_theme_banner = mrz_theme_is_post_banner();
 	<footer class="mx-auto mt-12 max-w-3xl">
 		<?php the_tags( '<p class="mrz-tags text-sm text-muted">', ', ', '</p>' ); ?>
 		<?php
-		the_post_navigation(
-			array(
-				'class'     => 'mrz-post-nav',
-				'prev_text' => '<span class="text-sm text-muted">' . esc_html__( 'Previous', 'mrz-theme-exp' ) . '</span><br>%title',
-				'next_text' => '<span class="text-sm text-muted">' . esc_html__( 'Next', 'mrz-theme-exp' ) . '</span><br>%title',
-			)
-		);
+		// Articles précédent et suivant : réglage Customizer > MRZ Theme > Blog.
+		if ( mrz_theme_option( 'blog_post_nav' ) ) {
+			the_post_navigation(
+				array(
+					'class'     => 'mrz-post-nav',
+					'prev_text' => '<span class="text-sm text-muted">' . esc_html__( 'Previous', 'mrz-theme-exp' ) . '</span><br>%title',
+					'next_text' => '<span class="text-sm text-muted">' . esc_html__( 'Next', 'mrz-theme-exp' ) . '</span><br>%title',
+				)
+			);
+		}
 
 		if ( comments_open() || get_comments_number() ) {
 			comments_template();

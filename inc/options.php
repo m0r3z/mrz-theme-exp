@@ -53,6 +53,7 @@ function mrz_theme_option_defaults() {
 		'blog_single_layout'        => 'classic',
 		'blog_columns'              => '3',
 		'blog_excerpt'              => true,
+		'blog_post_nav'             => true,
 		'shop_cart_behavior'        => 'drawer',
 		'shop_ajax_single'          => true,
 		'shop_product_details'      => 'summary',

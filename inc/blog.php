@@ -61,6 +61,17 @@ function mrz_theme_blog_customize_register( $wp_customize ) {
 			'type'    => 'checkbox',
 		)
 	);
+
+	mrz_theme_add_setting( $wp_customize, 'blog_post_nav', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_blog_post_nav',
+		array(
+			'label'       => __( 'Show the previous and next posts', 'mrz-theme-exp' ),
+			'description' => __( 'Links at the bottom of a single post, before the comments.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_blog',
+			'type'        => 'checkbox',
+		)
+	);
 }
 add_action( 'customize_register', 'mrz_theme_blog_customize_register' );
 
