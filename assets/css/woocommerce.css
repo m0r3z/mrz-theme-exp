@@ -1163,3 +1163,25 @@
 	margin-top: 0.75rem;
 	font-size: var(--mrz-text-sm);
 }
+
+/*
+ * Titre et description des listes de produits (boutique, catégorie) : de l'air avant les
+ * filtres et les produits. Variable : --mrz-shop-header-gap.
+ */
+.woocommerce-page .mrz-main .page-title {
+	margin: 0 0 var(--mrz-shop-header-gap, 2.5rem);
+}
+
+.woocommerce-page .mrz-main .page-title:has(+ :is(.term-description, .page-description)) {
+	margin-bottom: 0.75rem;
+}
+
+.woocommerce-page .mrz-main :is(.term-description, .page-description) {
+	max-width: var(--mrz-container-narrow);
+	margin-bottom: var(--mrz-shop-header-gap, 2.5rem);
+	color: var(--color-muted);
+}
+
+.woocommerce-page .mrz-main :is(.term-description, .page-description) > :last-child {
+	margin-bottom: 0;
+}
