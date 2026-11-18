@@ -1185,3 +1185,374 @@
 .woocommerce-page .mrz-main :is(.term-description, .page-description) > :last-child {
 	margin-bottom: 0;
 }
+
+/*
+ * Connexion, inscription, mot de passe perdu : une colonne étroite et centrée, sans cadre.
+ * Une seule des deux colonnes de WooCommerce (classe du body posée par le thème).
+ * Variable : --mrz-account-form-width.
+ */
+.woocommerce-account:not(.logged-in) .mrz-main .woocommerce {
+	max-width: var(--mrz-account-form-width, 26rem);
+	margin-inline: auto;
+}
+
+.woocommerce-account #customer_login {
+	display: block;
+}
+
+.woocommerce-account #customer_login > .u-column1,
+.woocommerce-account #customer_login > .u-column2 {
+	width: auto;
+	float: none;
+}
+
+.mrz-account-login #customer_login > .u-column2,
+.mrz-account-register #customer_login > .u-column1 {
+	display: none;
+}
+
+.woocommerce-account:not(.logged-in) .mrz-main .woocommerce h2 {
+	margin: 0 0 1.5rem;
+	font-size: var(--mrz-h3);
+}
+
+.woocommerce form.login,
+.woocommerce form.register,
+.woocommerce form.lost_reset_password {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+}
+
+/* Bouton pleine largeur, « Se souvenir de moi » au-dessus. */
+.woocommerce form.login .form-row:has(.woocommerce-form-login__submit) {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1rem;
+}
+
+.woocommerce form.login .woocommerce-form-login__rememberme {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0;
+	font-weight: normal;
+}
+
+.woocommerce form.login .woocommerce-form-login__submit,
+.woocommerce form.register .woocommerce-form-register__submit,
+.woocommerce form.lost_reset_password button[type="submit"] {
+	width: 100%;
+	margin: 0;
+	float: none;
+}
+
+.woocommerce form .lost_password {
+	margin: 1rem 0 0;
+	font-size: var(--mrz-text-sm);
+}
+
+.woocommerce form.register > p:not(.form-row):not(.mrz-account-switch),
+.woocommerce form.register .woocommerce-privacy-policy-text {
+	color: var(--color-muted);
+	font-size: var(--mrz-text-sm);
+}
+
+/* « Vous n'avez pas encore de compte ? S'inscrire » : séparé du formulaire par un trait. */
+.mrz-account-switch {
+	margin: 1.5rem 0 0;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--color-border);
+	text-align: center;
+}
+
+.mrz-account-switch a {
+	font-weight: var(--mrz-label-font-weight, 600);
+}
+
+/*
+ * Page de remerciement (commande reçue) et détail d'une commande (Mon compte) :
+ * une colonne de lecture, le message de confirmation en avant, un récapitulatif en
+ * cartes, des titres à taille raisonnable, les adresses côte à côte.
+ * Variable : --mrz-order-width.
+ */
+.woocommerce-order {
+	max-width: var(--mrz-order-width, 48rem);
+	margin-inline: auto;
+}
+
+.woocommerce-order .woocommerce-thankyou-order-received {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin: 0 0 2rem;
+	color: var(--mrz-title-color, var(--color-text));
+	font-family: var(--font-title);
+	font-size: var(--mrz-h3);
+	font-weight: var(--mrz-title-weight);
+	line-height: var(--mrz-title-line-height);
+}
+
+/* Coche de confirmation, à la couleur principale (décorative : le texte dit déjà tout). */
+.woocommerce-order .woocommerce-thankyou-order-received::before {
+	content: "";
+	flex-shrink: 0;
+	width: 2.5rem;
+	height: 2.5rem;
+	/* Rond plein, coche découpée dedans (le fond se voit à travers) : aucune couleur en dur. */
+	background: var(--color-primary);
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cmask id='m'%3E%3Crect width='24' height='24' fill='%23fff'/%3E%3Cpath d='M7 12.5l3.5 3.5L17 9' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/mask%3E%3Ccircle cx='12' cy='12' r='12' mask='url(%23m)'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Récapitulatif (numéro, date, e-mail, total, paiement) : une ligne par élément, libellé à gauche, valeur à droite. */
+.woocommerce ul.order_details.woocommerce-order-overview {
+	margin: 0 0 3rem;
+	padding: 0;
+	list-style: none;
+}
+
+.woocommerce ul.order_details.woocommerce-order-overview::before,
+.woocommerce ul.order_details.woocommerce-order-overview::after {
+	display: none;
+}
+
+.woocommerce ul.order_details.woocommerce-order-overview li {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.25rem 1rem;
+	float: none;
+	margin: 0;
+	padding: 0.75rem 0;
+	border: 0;
+	border-bottom: 1px solid var(--color-border);
+	color: var(--color-muted);
+	font-size: var(--mrz-text-sm);
+	line-height: 1.5;
+	text-transform: none;
+}
+
+.woocommerce ul.order_details.woocommerce-order-overview li:first-child {
+	border-top: 1px solid var(--color-border);
+}
+
+.woocommerce ul.order_details.woocommerce-order-overview li strong {
+	color: var(--color-text);
+	font-size: var(--mrz-body-size, 1rem);
+	text-align: right;
+	overflow-wrap: anywhere;
+}
+
+/* Titres des blocs (détails, adresses, coordonnées bancaires). */
+.woocommerce-order h2,
+.woocommerce-order-details__title,
+.woocommerce-customer-details h2,
+.woocommerce-bacs-bank-details h2 {
+	margin: 0 0 1rem;
+	font-size: var(--mrz-h4);
+}
+
+.woocommerce-order-details,
+.woocommerce-customer-details,
+.woocommerce-bacs-bank-details {
+	margin-bottom: 3rem;
+}
+
+/* Tableau de la commande : sans cadre extérieur, des traits entre les lignes. */
+.woocommerce table.shop_table.order_details {
+	border-width: 0;
+	border-radius: 0;
+}
+
+.woocommerce table.shop_table.order_details th,
+.woocommerce table.shop_table.order_details td {
+	padding: 0.85rem 0;
+	/* Un seul trait par ligne (WooCommerce en met un en haut et un en bas de chaque cellule). */
+	border-width: 1px 0 0;
+}
+
+.woocommerce table.shop_table.order_details thead th {
+	border-top: 0;
+	color: var(--color-muted);
+	font-size: var(--mrz-text-sm);
+	font-weight: normal;
+}
+
+.woocommerce table.shop_table.order_details td:last-child,
+.woocommerce table.shop_table.order_details th:last-child {
+	text-align: right;
+}
+
+/* Adresses de facturation et de livraison côte à côte, dans des cadres légers. */
+.woocommerce-customer-details .col2-set {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1.5rem;
+}
+
+.woocommerce-customer-details .col2-set::before,
+.woocommerce-customer-details .col2-set::after {
+	display: none;
+}
+
+.woocommerce-customer-details .col2-set .col-1,
+.woocommerce-customer-details .col2-set .col-2 {
+	width: auto;
+	float: none;
+}
+
+.woocommerce .woocommerce-customer-details address {
+	padding: 1.25rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-base);
+	font-style: normal;
+	line-height: 1.6;
+}
+
+/* Coordonnées bancaires (virement) : même liste en cartes que le récapitulatif. */
+.woocommerce .woocommerce-bacs-bank-details ul.order_details {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+	gap: 0.75rem;
+	padding: 0;
+	list-style: none;
+}
+
+.woocommerce .woocommerce-bacs-bank-details ul.order_details li {
+	float: none;
+	margin: 0;
+	padding: 1rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-base);
+	font-size: var(--mrz-text-sm);
+	text-transform: none;
+}
+
+/*
+ * Mon compte, connecté : contenu en largeur de lecture, boutons des tableaux discrets,
+ * formulaires (détails du compte, adresses) plus compacts.
+ */
+.woocommerce-account .woocommerce-MyAccount-content {
+	max-width: var(--mrz-container-narrow);
+}
+
+.woocommerce-account .woocommerce-MyAccount-content > p:first-child {
+	margin-top: 0;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content > p {
+	margin-bottom: 1.5rem;
+}
+
+/* Numéro, date et état d'une commande dans la phrase d'introduction : sans surlignage jaune. */
+.woocommerce-account .woocommerce-MyAccount-content mark {
+	background: none;
+	color: inherit;
+	font-weight: var(--mrz-label-font-weight, 600);
+}
+
+/* Boutons « Voir », « Payer », « Télécharger » des tableaux : petits, à contour. */
+.woocommerce-account table.shop_table .button,
+.woocommerce-account table.shop_table a.button {
+	padding: 0.4rem 1rem;
+	border-color: currentColor;
+	background: transparent;
+	color: inherit;
+	font-size: var(--mrz-text-sm);
+}
+
+.woocommerce-account table.shop_table .button:hover,
+.woocommerce-account table.shop_table a.button:hover {
+	background: transparent;
+	color: inherit;
+	opacity: 0.75;
+	filter: none;
+}
+
+.woocommerce-account table.shop_table .button + .button {
+	margin-left: 0.5rem;
+}
+
+/* Détails du compte : le bloc « Changement de mot de passe » a un vrai intertitre. */
+.woocommerce-account .woocommerce-EditAccountForm fieldset {
+	margin: 2rem 0 1.5rem;
+	padding: 0;
+	border: 0;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm legend {
+	margin-bottom: 1rem;
+	padding: 0;
+	font-family: var(--font-title);
+	font-size: var(--mrz-h5);
+	font-weight: var(--mrz-title-weight);
+}
+
+.woocommerce-account .woocommerce-EditAccountForm .form-row em,
+.woocommerce-account .woocommerce-address-fields .form-row em {
+	display: block;
+	margin-top: 0.35rem;
+	color: var(--color-muted);
+	font-size: var(--mrz-text-sm);
+}
+
+/* Adresses : les deux cadres côte à côte, titre et lien « Modifier » sur une ligne. */
+.woocommerce-account .woocommerce-Addresses {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1.5rem;
+}
+
+.woocommerce-account .woocommerce-Addresses::before,
+.woocommerce-account .woocommerce-Addresses::after {
+	display: none;
+}
+
+.woocommerce-account .woocommerce-Addresses .woocommerce-Address {
+	width: auto;
+	float: none;
+}
+
+.woocommerce-account .woocommerce-Address-title {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.25rem;
+	margin-bottom: 0.75rem;
+	text-align: left;
+}
+
+.woocommerce-account .woocommerce-Address-title::before,
+.woocommerce-account .woocommerce-Address-title::after {
+	display: none;
+}
+
+.woocommerce-account .woocommerce-Address-title h2 {
+	margin: 0;
+	font-size: var(--mrz-h5);
+	text-align: left;
+}
+
+.woocommerce-account .woocommerce-Address-title .edit {
+	float: none;
+	font-size: var(--mrz-text-sm);
+}
+
+.woocommerce-account .woocommerce-Address address {
+	font-style: normal;
+	line-height: 1.6;
+}
+
+/* Mot de passe perdu, nouveau mot de passe : champs pleine largeur, texte d'explication discret. */
+.woocommerce form.lost_reset_password .form-row-first,
+.woocommerce form.lost_reset_password .form-row-last {
+	width: 100%;
+	float: none;
+}
+
+.woocommerce form.lost_reset_password > p:first-child {
+	margin-top: 0;
+	color: var(--color-muted);
+}

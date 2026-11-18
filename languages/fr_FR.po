@@ -1537,3 +1537,18 @@ msgstr "Nombre affiché sous la fiche produit, sur une ligne. 0 : aucun."
 
 msgid "Shop and categories. The [products] shortcode keeps its own columns."
 msgstr "Boutique et catégories. Le shortcode [products] garde ses propres colonnes."
+
+msgid "Don’t have an account yet?"
+msgstr "Vous n’avez pas encore de compte ?"
+
+msgid "Sign up"
+msgstr "S’inscrire"
+
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte ?"
+
+msgid "Log in"
+msgstr "Se connecter"
+
+msgid "Back to log in"
+msgstr "Retour à la connexion"

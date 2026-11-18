@@ -684,3 +684,77 @@ add_filter( 'render_block_data', 'mrz_theme_empty_cart_block' );
 
 // Variations en pastilles ou en couleurs, réglées attribut par attribut.
 require_once MRZ_THEME_DIR . '/inc/woocommerce-swatches.php';
+
+/*
+ * Mon compte, visiteur non connecté : une seule colonne à la fois, connexion par défaut,
+ * inscription avec ?action=register (quand l'inscription est ouverte dans WooCommerce),
+ * et un lien de l'une à l'autre. Le formulaire d'inscription s'envoie sur la même adresse :
+ * en cas d'erreur, il reste affiché.
+ */
+
+/**
+ * Le visiteur demande-t-il le formulaire d'inscription ?
+ *
+ * @return bool
+ */
+function mrz_theme_account_wants_register() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- simple choix d'affichage.
+	return isset( $_GET['action'] ) && 'register' === sanitize_key( wp_unslash( $_GET['action'] ) )
+		&& 'yes' === get_option( 'woocommerce_enable_myaccount_registration' );
+}
+
+/**
+ * Classes du body : formulaire affiché (connexion ou inscription).
+ *
+ * @param array $classes Classes.
+ * @return array
+ */
+function mrz_theme_account_body_classes( $classes ) {
+	if ( function_exists( 'is_account_page' ) && is_account_page() && ! is_user_logged_in() ) {
+		$classes[] = mrz_theme_account_wants_register() ? 'mrz-account-register' : 'mrz-account-login';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'mrz_theme_account_body_classes' );
+
+/**
+ * Sous le formulaire de connexion : « Vous n'avez pas encore de compte ? S'inscrire ».
+ */
+function mrz_theme_account_register_link() {
+	if ( 'yes' !== get_option( 'woocommerce_enable_myaccount_registration' ) || ! is_account_page() ) {
+		return;
+	}
+	printf(
+		'<p class="mrz-account-switch">%1$s <a href="%2$s">%3$s</a></p>',
+		esc_html__( 'Don’t have an account yet?', 'mrz-theme-exp' ),
+		esc_url( add_query_arg( 'action', 'register', wc_get_page_permalink( 'myaccount' ) ) ),
+		esc_html__( 'Sign up', 'mrz-theme-exp' )
+	);
+}
+add_action( 'woocommerce_login_form_end', 'mrz_theme_account_register_link' );
+
+/**
+ * Sous le formulaire d'inscription : « Vous avez déjà un compte ? Se connecter ».
+ */
+function mrz_theme_account_login_link() {
+	printf(
+		'<p class="mrz-account-switch">%1$s <a href="%2$s">%3$s</a></p>',
+		esc_html__( 'Already have an account?', 'mrz-theme-exp' ),
+		esc_url( wc_get_page_permalink( 'myaccount' ) ),
+		esc_html__( 'Log in', 'mrz-theme-exp' )
+	);
+}
+add_action( 'woocommerce_register_form_end', 'mrz_theme_account_login_link' );
+
+/**
+ * Sous le formulaire « Mot de passe perdu » : retour à la connexion.
+ */
+function mrz_theme_lost_password_back_link() {
+	printf(
+		'<p class="mrz-account-switch"><a href="%1$s">%2$s</a></p>',
+		esc_url( wc_get_page_permalink( 'myaccount' ) ),
+		esc_html__( 'Back to log in', 'mrz-theme-exp' )
+	);
+}
+add_action( 'woocommerce_after_lost_password_form', 'mrz_theme_lost_password_back_link' );
