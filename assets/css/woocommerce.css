@@ -1231,6 +1231,13 @@
 	flex-direction: column;
 	align-items: stretch;
 	gap: 1rem;
+	/* « Se souvenir de moi » près du mot de passe. */
+	margin-top: -0.5rem;
+}
+
+/* « S'inscrire » : de l'air avec la phrase au-dessus. */
+.woocommerce form.register .form-row:has(.woocommerce-form-register__submit) {
+	margin-top: 1.25rem;
 }
 
 .woocommerce form.login .woocommerce-form-login__rememberme {
