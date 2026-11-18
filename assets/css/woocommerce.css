@@ -425,39 +425,53 @@
 }
 
 /*
- * Ouverture adoucie : le voile apparaît en fondu, le panneau glisse depuis la droite.
+ * Ouverture et fermeture adoucies, en CSS seul : le voile apparaît et disparaît en
+ * fondu, le panneau glisse depuis la droite et y repart. Le navigateur garde le
+ * panneau affiché pendant sa sortie (display et overlay en allow-discrete) ; sans
+ * prise en charge (Firefox pour la fermeture), il se ferme simplement d'un coup.
  * Durées : --mrz-minicart-duration (panneau), --mrz-minicart-backdrop-duration (voile).
  */
+.mrz-minicart {
+	transform: translateX(100%);
+	transition:
+		transform var(--mrz-minicart-duration, 0.4s) cubic-bezier(0.32, 0.72, 0, 1),
+		overlay var(--mrz-minicart-duration, 0.4s) allow-discrete,
+		display var(--mrz-minicart-duration, 0.4s) allow-discrete;
+}
+
 .mrz-minicart[open] {
 	display: flex;
 	flex-direction: column;
-	animation: mrz-minicart-in var(--mrz-minicart-duration, 0.4s) cubic-bezier(0.32, 0.72, 0, 1);
+	transform: none;
 }
 
 .mrz-minicart::backdrop {
 	background: var(--mrz-minicart-backdrop, rgb(0 0 0 / 0.4));
+	opacity: 0;
+	transition:
+		opacity var(--mrz-minicart-backdrop-duration, 0.3s) ease-out,
+		overlay var(--mrz-minicart-backdrop-duration, 0.3s) allow-discrete,
+		display var(--mrz-minicart-backdrop-duration, 0.3s) allow-discrete;
 }
 
 .mrz-minicart[open]::backdrop {
-	animation: mrz-minicart-fade var(--mrz-minicart-backdrop-duration, 0.3s) ease-out;
+	opacity: 1;
 }
 
-@keyframes mrz-minicart-in {
-	from {
+@starting-style {
+	.mrz-minicart[open] {
 		transform: translateX(100%);
 	}
-}
 
-@keyframes mrz-minicart-fade {
-	from {
+	.mrz-minicart[open]::backdrop {
 		opacity: 0;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.mrz-minicart[open],
-	.mrz-minicart[open]::backdrop {
-		animation: none;
+	.mrz-minicart,
+	.mrz-minicart::backdrop {
+		transition: none;
 	}
 }
 
