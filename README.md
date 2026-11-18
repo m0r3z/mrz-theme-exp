@@ -293,8 +293,9 @@ Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier),
 
 ## Blog, CPT et plugins
 
-- **Blog et archives** : grille de cartes avec image, date et catégories, pagination, titres d'archive sans préfixe (« Actualités » plutôt que « Catégorie : Actualités »).
-- **Article seul** : image à la une, contenu, navigation entre articles, commentaires.
+- **Blog et archives** : grille de cartes avec image, date et catégories, extrait, pagination, titres d'archive sans préfixe (« Actualités » plutôt que « Catégorie : Actualités »). Réglages dans MRZ Theme > Blog : articles par ligne sur ordinateur (2 ou 3, un seul sur mobile), extrait affiché ou non.
+- **Page des articles** (Réglages > Lecture) : si elle a des sections dans le constructeur, elles s'affichent au-dessus de la liste et portent le `h1` (comme la page Boutique), sur la première page de la liste seulement. Sans sections, son titre s'affiche en `h1`.
+- **Article seul** : date et catégories, titre, image à la une, contenu, étiquettes, navigation entre articles, commentaires. MRZ Theme > Blog > « Disposition de l'article seul » : classique (titre, puis image) ou bannière (l'image à la une en fond du haut de l'article, titre posé dessus avec le voile des images de section, header transparent par-dessus, même si le header transparent n'est pas activé). Un article sans image à la une reste en classique, les CPT aussi.
 - **CPT** : affichés comme les articles. Pour un rendu propre à un CPT, créer `parts/content/single-{post_type}.php` (et `content-{post_type}.php` pour sa carte) dans l'enfant.
 - **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème. Icône du panier dans le header, avec le nombre d'articles, qui ouvre le panneau du panier ; icône du compte en option (MRZ Theme > Header). Réglages de la boutique dans MRZ Theme > Shop. Les pages Panier et Commande gardent les **blocs** de WooCommerce (pages créées ainsi à l'installation) : leur mise en page vient de WooCommerce, leurs boutons du thème (`.wp-element-button`, dans `assets/css/woocommerce.css`). Ne pas les remplacer par les anciens shortcodes. **Variations** : sur chaque attribut (Produits > Attributs > Modifier), champ « Type » : Menu déroulant (WooCommerce), Pastilles (texte, pour les tailles) ou Couleurs (ronds, pour les teintes ; une couleur par terme dans Configurer les termes). Les attributs propres à un seul produit restent en menu déroulant. Mon compte, visiteur : connexion seule, et inscription sur `?action=register` quand elle est ouverte (WooCommerce > Réglages > Comptes et confidentialité, « Autoriser les clients à créer un compte sur la page Mon compte »). Panier vide : le thème ne garde que le message et le lien vers la boutique (filtre `render_block_data`). Les boutons + et − du thème ne concernent que le panier en shortcode : le bloc Panier a les siens.
 - **Polylang** : sélecteur de langue dans le header et le menu mobile, dès que Polylang est actif.
@@ -380,7 +381,7 @@ mrz-theme-exp/
 ├── functions.php        chargeur, aucune logique
 ├── inc/                 options, setup, assets, admin, customizer, template-tags,
 │                        builder (moteur), builder-sections (sections du parent),
-│                        global-sections, page-options, modules, carousel, lightbox,
+│                        global-sections, page-options, blog, modules, carousel, lightbox,
 │                        video, woocommerce, woocommerce-swatches, updater
 ├── acf-json/            groupe de champs des sections globales (emplacement, conditions)
 ├── layouts/             sections du parent : mrz-text, mrz-html, mrz-global-section,
@@ -409,18 +410,14 @@ mrz-theme-exp/
 
 En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header en quatre dispositions (classique, centré, menu à gauche, logo centré) avec mega menu, menu secondaire, recherche, compte et panier, menu mobile en quatre styles, dix sections du parent (dont Galerie, Texte et média, Accordéon, Sous-menu d'ancres, Bandeau défilant), animations au défilement, parallaxe, lightbox, carrousel, vidéo de fond, transitions de page, couleurs de la charte dans le Customizer (quatre couleurs de marque, sombre, clair, bordures) et filtres d'icônes qui les suivent, variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce (panneau du panier, variations en pastilles ou couleurs, compte) branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
 
-**0.9**, dernière version avant la 1.0 : réglages du blog (point 4) et les deux petits restes ci-dessous. **1.0** : Theme Check (point 9), puis premier site client (point 8). Polylang (point 1) attend la suite.
+**0.9**, dernière version avant la 1.0 : réglages du blog (point 4, fait) et les deux petits restes ci-dessous. **1.0** : Theme Check (point 9), puis premier site client (point 8). Polylang (point 1) attend la suite.
 
 À faire, chacun comme un chantier à part :
 
 1. **Polylang** : reporté après la 1.0. Passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
 2. ~~**Menus du header**~~ : fait après la 0.3.0 (sous-menus au survol, au clavier, au toucher, retournés au bord de l'écran, variables `--mrz-submenu-*`).
 3. ~~**WooCommerce**~~ : fait en 0.8 (réglages Boutique, panneau du panier, ajout sans rechargement, accordéons, galerie, compte). À proposer ensuite : barre « livraison offerte » dans le panneau, bouton d'ajout collant sur mobile.
-4. **Blog (0.9)** : réglage de l'article seul, avec deux choix (demandé par le site test Energies Réunion) :
-   - image à la une au-dessus du titre (l'actuel) ;
-   - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.
-   
-   Mise en forme de la page des articles et des catégories. Dans le parent.
+4. ~~**Blog (0.9)**~~ : fait, non publié. Customizer > MRZ Theme > Blog : article seul classique ou en bannière (titre sur l'image, header transparent), articles par ligne (2 ou 3), extrait affiché ou non ; sections de la page des articles au-dessus de la liste. Reste à voir à l'usage : sections propres aux catégories, choix de la disposition article par article.
 5. ~~**JS, en modules chargés seulement sur les pages qui s'en servent**~~ : faits en 0.6 (lightbox et galerie, vidéo de fond) ; carrousel fait après la 0.3.0.
 6. ~~**V2**~~ : animations au défilement et parallaxe faites en 0.6 (déclenchées par `motion.js` depuis la 0.8.4, parallaxe en CSS seul) ; mega menu fait en 0.5, avec les sections globales en colonne en 0.5.1.
 7. ~~**0.7, sections d'appoint**~~ : faites (sous-menu d'ancres, bandeau défilant, compteur ; séparateurs de forme abandonnés). Abandonné pour le parent : la fenêtre pop-up (ce sera un plugin à part), la transition d'élément partagé et la révélation circulaire (dans l'enfant du site qui les veut).

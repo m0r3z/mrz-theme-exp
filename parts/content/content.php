@@ -16,6 +16,8 @@ defined( 'ABSPATH' ) || exit;
 	<div class="flex flex-1 flex-col gap-3 p-6">
 		<p class="text-sm text-muted"><?php mrz_theme_posted_on(); ?></p>
 		<h2 class="text-xl font-title"><a class="mrz-stretched-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-		<div class="text-muted"><?php the_excerpt(); ?></div>
+		<?php if ( mrz_theme_option( 'blog_excerpt' ) ) : ?>
+			<div class="text-muted"><?php the_excerpt(); ?></div>
+		<?php endif; ?>
 	</div>
 </article>

@@ -108,6 +108,7 @@ add_filter( 'body_class', 'mrz_theme_body_classes' );
  * Header transparent : seulement si l'option est active et que la page commence par
  * une section avec une image ou une vidéo de fond (comme le « when applicable » de Salient).
  * Une première section dont le nom contient « hero » compte aussi (compatibilité).
+ * Un article en bannière (Customizer > Blog) l'est toujours.
  *
  * @return bool
  */
@@ -120,6 +121,11 @@ function mrz_theme_is_transparent_header() {
 	$page_setting = mrz_theme_page_option( '_mrz_transparent_header' );
 	if ( 'on' === $page_setting || 'off' === $page_setting ) {
 		return 'on' === $page_setting;
+	}
+
+	// Article en bannière (Customizer > Blog) : le header passe toujours sur l'image.
+	if ( mrz_theme_is_post_banner() ) {
+		return true;
 	}
 
 	if ( ! mrz_theme_option( 'header_transparent' ) ) {

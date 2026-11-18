@@ -2220,6 +2220,19 @@
 		text-decoration: underline;
 	}
 
+	/*
+	 * Article en bannière (Customizer > Blog) : l'image à la une en fond du haut de
+	 * l'article, titre dessus. Sous le header transparent, c'est la bannière qui laisse
+	 * la place au header, pas l'article entier.
+	 */
+	.mrz-header-transparent .mrz-main > .mrz-post--banner:first-child {
+		padding-top: 0;
+	}
+
+	.mrz-header-transparent .mrz-post-banner {
+		padding-top: calc(var(--spacing-section-lg) + var(--mrz-header-offset));
+	}
+
 	/* Pagination et navigation d'articles */
 	.mrz-pagination .nav-links,
 	.mrz-post-nav .nav-links {

@@ -4,6 +4,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Customizer > MRZ Theme > **Blog** : « Disposition de l'article seul », classique (titre, puis image à la une, comme avant) ou **bannière** (image à la une en fond du haut de l'article, sur 70 % de l'écran, date et titre posés dessus avec le voile des images de section, image chargée en priorité). En bannière, le header est toujours transparent par-dessus. Un article sans image à la une, et les CPT, restent en classique. « Articles par ligne » sur ordinateur (2 ou 3, par défaut 3) et « Afficher l'extrait dans les listes » (coché par défaut), pour le blog, les catégories, les archives et la recherche.
+- Page des articles (Réglages > Lecture) : ses sections du constructeur s'affichent au-dessus de la liste et portent le `h1`, comme la page Boutique (première page de la liste seulement). Sans sections, rien ne change.
+
 ### Modifié
 - Animations au défilement, en remontant : l'élément disparaît dès que son haut repasse sous une ligne à 30 % du bas de l'écran, pendant qu'il est encore bien visible, au lieu d'attendre qu'il soit presque sorti de l'écran. L'apparition, en descendant, ne change pas (ligne à 10 % du bas).
 

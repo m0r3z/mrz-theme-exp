@@ -1552,3 +1552,27 @@ msgstr "Se connecter"
 
 msgid "Back to log in"
 msgstr "Retour à la connexion"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Single post layout"
+msgstr "Disposition de l’article seul"
+
+msgid "Banner: the featured image fills the top of the post, with the title on it, and the header is transparent over it. A post without a featured image keeps the classic layout."
+msgstr "Bannière : l’image à la une occupe le haut de l’article, avec le titre posé dessus, et le header passe par-dessus en transparent. Un article sans image à la une garde la disposition classique."
+
+msgid "Classic: title, then featured image"
+msgstr "Classique : titre, puis image à la une"
+
+msgid "Banner: title on the featured image"
+msgstr "Bannière : titre posé sur l’image à la une"
+
+msgid "Posts per row"
+msgstr "Articles par ligne"
+
+msgid "Blog page, categories, archives and search, on a computer. One per row on mobile."
+msgstr "Page des articles, catégories, archives et recherche, sur ordinateur. Un par ligne sur mobile."
+
+msgid "Show the excerpt in the lists"
+msgstr "Afficher l’extrait dans les listes"
