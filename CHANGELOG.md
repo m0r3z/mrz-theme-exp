@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Modifié
+- Animations au défilement, en remontant : l'élément disparaît dès que son haut repasse sous une ligne à 30 % du bas de l'écran, pendant qu'il est encore bien visible, au lieu d'attendre qu'il soit presque sorti de l'écran. L'apparition, en descendant, ne change pas (ligne à 10 % du bas).
+
 ### Corrigé
 - Header sticky : ouvrir la recherche faisait remonter la page de la hauteur du header (décalage des ancres appliqué au focus du champ). Même correction pour le focus clavier dans le header et dans le sous-menu d'ancres collant.
 
