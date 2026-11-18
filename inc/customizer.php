@@ -602,6 +602,17 @@ function mrz_theme_customize_register( $wp_customize ) {
 		)
 	);
 
+	mrz_theme_add_setting( $wp_customize, 'motion_replay', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_motion_replay',
+		array(
+			'label'       => __( 'Replay scroll animations when scrolling back up', 'mrz-theme-exp' ),
+			'description' => __( 'Unchecked: each element appears once, then stays.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_general',
+			'type'        => 'checkbox',
+		)
+	);
+
 	mrz_theme_add_setting( $wp_customize, 'page_404', 'absint' );
 	$wp_customize->add_control(
 		'mrz_page_404',

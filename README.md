@@ -98,7 +98,7 @@ Le Texte libre et les sections sur mesure qui les reprennent ont un groupe de r�
 | Image de fond | Vraie image derrière le contenu. Celle de la première section de la page se charge en priorité (image principale, LCP) |
 | Voile sur l'image | Sombre (texte clair), léger (texte clair, vérifier le contraste), sans voile (la section garde ses couleurs : image composée, motif) |
 | Dégradé | De la couleur de fond vers une seconde couleur de la palette, vers le bas, la droite ou en diagonale |
-| Animation au défilement | Aucune, apparition vers le haut, fondu, zoom, en cascade (éléments un par un). Sans JavaScript ; jamais sur la première section ; coupée si le visiteur limite les animations |
+| Animation au défilement | Aucune, apparition vers le haut, fondu, zoom, en cascade (éléments un par un). Déclenchée quand l'élément entre à l'écran, puis jouée en entier ; rejouée ou non en remontant (MRZ Theme > General) ; jamais sur la première section ; coupée si le visiteur limite les animations |
 | Parallaxe | Aucune, légère, moyenne : l'image de fond défile moins vite que la page |
 | Vidéo de fond | MP4 ou WebM, sans son, en boucle, avec bouton pause. L'image de fond s'affiche d'abord et reste seule sur mobile (sauf « Vidéo sur mobile »), si le visiteur limite les animations ou économise ses données |
 
@@ -192,6 +192,7 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Couleur entre les deux pages (palette ou fond du site) ; sens du rideau, affiché seulement pour le rideau | fond du site, vers le haut |
 | MRZ Theme > General | Largeur du contenu (px) | 1280 |
 | | Surlignage animé du mot en couleur des titres | non |
+| | Rejouer les animations au défilement en remontant (décoché : chaque élément apparaît une fois, puis reste) | oui |
 | | Page 404 : page affichée pour une URL inexistante, avec un vrai statut 404 | page par défaut du thème |
 | MRZ Theme > Shop (WooCommerce actif) | Icône du panier : ouvre un panneau à droite, ou mène à la page Panier (toujours le cas sur les pages Panier et Commande) | panneau |
 | | Ajout au panier sans recharger la fiche produit (les listes suivent le réglage de WooCommerce) | oui |

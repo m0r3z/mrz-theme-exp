@@ -908,30 +908,46 @@
 	}
 
 	/*
-	 * Animations au défilement, sans JavaScript (animation-timeline: view()).
-	 * Un navigateur qui ne les gère pas affiche tout normalement ; coupées si le visiteur
-	 * limite les animations. Les classes viennent des réglages de section (inc/builder.php).
+	 * Animations au défilement (réglage « Animation » des sections, inc/builder.php) :
+	 * assets/js/motion.js ajoute .is-inview quand l'élément entre à l'écran, et
+	 * l'animation se joue alors en entier (--mrz-motion-duration). En remontant, elle se
+	 * rejoue ou non selon le Customizer. Sans JavaScript (pas de .mrz-motion-js sur <html>)
+	 * ou si le visiteur limite les animations : tout s'affiche normalement.
+	 * La parallaxe et le surlignage restent liés au défilement (animation-timeline).
 	 */
-	@keyframes mrz-motion-fade-up {
-		from {
+	@media (prefers-reduced-motion: no-preference) {
+		.mrz-motion-js :is(.mrz-motion--fade-up, .mrz-motion--fade, .mrz-motion--zoom) > .mrz-container,
+		.mrz-motion-js .mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-accordion__item, .mrz-prose > *) {
 			opacity: 0;
 			transform: translateY(var(--mrz-motion-distance));
+			transition:
+				opacity var(--mrz-motion-duration) var(--mrz-motion-easing),
+				transform var(--mrz-motion-duration) var(--mrz-motion-easing);
 		}
-	}
 
-	@keyframes mrz-motion-fade {
-		from {
-			opacity: 0;
+		.mrz-motion-js .mrz-motion--fade > .mrz-container {
+			transform: none;
 		}
-	}
 
-	@keyframes mrz-motion-zoom {
-		from {
-			opacity: 0;
+		.mrz-motion-js .mrz-motion--zoom > .mrz-container {
 			transform: scale(var(--mrz-motion-scale));
 		}
-	}
 
+		.mrz-motion-js :is(.mrz-motion--fade-up, .mrz-motion--fade, .mrz-motion--zoom) > .mrz-container.is-inview,
+		.mrz-motion-js .mrz-motion--cascade .is-inview {
+			opacity: 1;
+			transform: none;
+		}
+
+		/* Cascade : sur une même ligne, chaque élément démarre un peu après le précédent. */
+		.mrz-motion-js .mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *):nth-child(3n + 2) {
+			transition-delay: var(--mrz-motion-stagger);
+		}
+
+		.mrz-motion-js .mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *):nth-child(3n + 3) {
+			transition-delay: calc(2 * var(--mrz-motion-stagger));
+		}
+	}
 	@keyframes mrz-parallax {
 		from {
 			transform: translateY(calc(-1 * var(--mrz-parallax)));
@@ -954,32 +970,6 @@
 
 	@media (prefers-reduced-motion: no-preference) {
 		@supports (animation-timeline: view()) {
-			.mrz-motion--fade-up > .mrz-container,
-			.mrz-motion--fade > .mrz-container,
-			.mrz-motion--zoom > .mrz-container,
-			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *, .mrz-accordion__item, .mrz-prose > *) {
-				animation: mrz-motion-fade-up var(--mrz-motion-easing) both;
-				animation-timeline: view();
-				animation-range: var(--mrz-motion-range);
-			}
-
-			.mrz-motion--fade > .mrz-container {
-				animation-name: mrz-motion-fade;
-			}
-
-			.mrz-motion--zoom > .mrz-container {
-				animation-name: mrz-motion-zoom;
-			}
-
-			/* Cascade : sur une même ligne, chaque élément démarre un peu après le précédent. */
-			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *):nth-child(3n + 2) {
-				animation-range: var(--mrz-motion-range-2);
-			}
-
-			.mrz-motion--cascade :is(.mrz-cards__item, .mrz-gallery__item, .mrz-split__grid > *):nth-child(3n + 3) {
-				animation-range: var(--mrz-motion-range-3);
-			}
-
 			/* Parallaxe : l'image dépasse de la section et glisse moins vite que la page. */
 			.mrz-parallax--light {
 				--mrz-parallax: var(--mrz-parallax-light);

@@ -155,6 +155,7 @@ function mrz_theme_section_open( $layout, $args = array() ) {
 	$motion = $settings['motion'] ?? 'none';
 	if ( in_array( $motion, array( 'fade_up', 'fade', 'zoom', 'cascade' ), true ) && 1 !== ( $GLOBALS['mrz_theme_section_index'] ?? 0 ) && empty( $GLOBALS['mrz_theme_in_menu'] ) ) {
 		$classes[] = 'mrz-motion--' . str_replace( '_', '-', $motion );
+		mrz_theme_motion_init();
 	}
 
 	if ( $image_id || $video_id ) {
@@ -320,3 +321,20 @@ function mrz_theme_section_heading( $title, $intro = '' ) {
 	echo '</header>';
 }
 
+/**
+ * Animations au défilement : charge assets/js/motion.js et, juste avant la première
+ * section animée, pose la classe mrz-motion-js sur <html>. Le CSS ne cache les éléments
+ * à animer qu'avec cette classe : sans JavaScript, tout s'affiche normalement, et la
+ * classe est posée avant que la section s'affiche (pas d'élément qui apparaît, disparaît
+ * puis s'anime). Si motion.js ne démarre pas dans les 4 s, la classe est retirée.
+ */
+function mrz_theme_motion_init() {
+	static $done = false;
+	if ( $done ) {
+		return;
+	}
+	$done = true;
+
+	wp_enqueue_script( 'mrz-motion' );
+	wp_print_inline_script_tag( 'document.documentElement.classList.add("mrz-motion-js");setTimeout(function(){if(!window.mrzMotionReady){document.documentElement.classList.remove("mrz-motion-js");}},4000);' );
+}

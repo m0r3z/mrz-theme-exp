@@ -49,6 +49,7 @@ function mrz_theme_option_defaults() {
 		'container_width'           => 1280,
 		'page_404'                  => 0,
 		'highlight_animated'        => false,
+		'motion_replay'             => true,
 		'shop_cart_behavior'        => 'drawer',
 		'shop_ajax_single'          => true,
 		'shop_product_details'      => 'summary',

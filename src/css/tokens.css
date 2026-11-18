@@ -288,13 +288,8 @@
 	/* Animations au défilement (réglages « Animation » et « Parallaxe ») */
 	--mrz-motion-distance: 3rem; /* course de l'apparition vers le haut */
 	--mrz-motion-scale: 0.94; /* départ du zoom */
-	/*
-	 * Quand l'animation joue, liée au défilement : plus l'écart est grand, plus elle est lente.
-	 * entry 15% = l'élément est un peu entré en bas de l'écran ; cover 55% = il a parcouru 55 % de sa traversée.
-	 */
-	--mrz-motion-range: entry 15% cover 55%;
-	--mrz-motion-range-2: entry 20% cover 60%; /* cascade : deuxième élément d'une ligne */
-	--mrz-motion-range-3: entry 25% cover 65%; /* cascade : troisième */
+	--mrz-motion-duration: 0.9s; /* l'animation, une fois déclenchée, se joue en entier */
+	--mrz-motion-stagger: 0.12s; /* cascade : décalage entre deux éléments d'une ligne */
 	--mrz-motion-easing: cubic-bezier(0.25, 0.6, 0.3, 1); /* départ franc, arrivée tout en douceur */
 	--mrz-parallax-light: 8%;
 	--mrz-parallax-medium: 16%;

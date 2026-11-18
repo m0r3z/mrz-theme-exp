@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MRZ Theme Experience 0.8.2\n"
+"Project-Id-Version: MRZ Theme Experience 0.8.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/mrz-theme-exp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-18T09:42:30+00:00\n"
+"POT-Creation-Date: 2026-11-18T10:42:51+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -1160,10 +1160,18 @@ msgid "The word between <em> and </em> in a title gets highlighted when the titl
 msgstr ""
 
 #: inc/customizer.php:609
-msgid "404 page"
+msgid "Replay scroll animations when scrolling back up"
 msgstr ""
 
 #: inc/customizer.php:610
+msgid "Unchecked: each element appears once, then stays."
+msgstr ""
+
+#: inc/customizer.php:620
+msgid "404 page"
+msgstr ""
+
+#: inc/customizer.php:621
 msgid "Page displayed when a URL does not exist. The real 404 status is kept for search engines."
 msgstr ""
 
@@ -1342,7 +1350,7 @@ msgid "My account"
 msgstr ""
 
 #: inc/template-tags.php:276
-#: inc/woocommerce.php:444
+#: inc/woocommerce.php:445
 msgid "Cart"
 msgstr ""
 
@@ -1463,11 +1471,11 @@ msgstr ""
 msgid "The product could not be added to the cart. Please try again."
 msgstr ""
 
-#: inc/woocommerce.php:447
+#: inc/woocommerce.php:448
 msgid "Close the cart"
 msgstr ""
 
-#: inc/woocommerce.php:465
+#: inc/woocommerce.php:466
 msgid "Continue shopping"
 msgstr ""
 

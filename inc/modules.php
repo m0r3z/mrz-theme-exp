@@ -23,6 +23,11 @@ function mrz_theme_register_module_scripts() {
 			),
 		),
 		'mrz-counter' => array( 'assets/js/counter.js', '', array() ),
+		'mrz-motion'  => array(
+			'assets/js/motion.js',
+			'mrzMotion',
+			array( 'replay' => (bool) mrz_theme_option( 'motion_replay' ) ),
+		),
 	);
 
 	foreach ( $modules as $handle => $module ) {
