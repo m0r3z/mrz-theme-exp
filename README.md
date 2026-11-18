@@ -4,7 +4,7 @@ Thème WordPress classique et léger de l'Agence Double A. Il remplace Salient +
 
 - **Éditeur classique** partout (Gutenberg désactivé, CSS de blocs retirés du front).
 - **Pages construites avec ACF Pro** : un constructeur (Flexible Content `mrz_builder`) dont les sections sont faites sur mesure pour chaque site, dans le thème enfant.
-- **Un seul CSS compilé** (Tailwind v4, ~22 ko), JS vanilla sans jQuery.
+- **Un seul CSS compilé** (Tailwind v4, 66 ko, 13 ko compressé), JS vanilla sans jQuery, en petits modules chargés seulement là où ils servent.
 - **Retouches sans compiler** : le thème enfant redéfinit des variables CSS et ajoute du CSS classique.
 
 Ce guide s'adresse à la personne qui installe ou retouche un site. Les règles détaillées pour l'IA sont dans [AGENTS.md](AGENTS.md).
@@ -128,7 +128,7 @@ Chaque page, article ou CPT a, dans la colonne de droite de son édition, une bo
 | Masquer le header | Masque le header et le menu mobile (landing page). Le body reçoit `mrz-no-header` |
 | Header | Défaut (réglage du Customizer), transparent ou non transparent, pour cette page seulement |
 
-- **Titre** : une page n'affiche jamais son titre, son contenu porte son propre `<h1>` (en général la première section). Un article affiche toujours le sien. Les pages faites d'un seul shortcode (panier, commande, compte, mentions légales) ont donc besoin d'un `<h1>` dans leur contenu.
+- **Titre** : une page n'affiche jamais son titre, son contenu porte son propre `<h1>` (en général la première section). Un article affiche toujours le sien. Les pages faites d'un seul bloc ou shortcode (panier, commande, compte, mentions légales) ont donc besoin d'un `<h1>` dans leur contenu.
 - **Footer** : c'est une section globale. Pour le retirer d'une page, l'exclure dans les conditions de la section (« Partout sauf sur… »).
 
 ## Sections globales
@@ -378,15 +378,23 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 ```
 mrz-theme-exp/
 ├── functions.php        chargeur, aucune logique
-├── inc/                 options, setup, assets, customizer, template-tags,
+├── inc/                 options, setup, assets, admin, customizer, template-tags,
 │                        builder (moteur), builder-sections (sections du parent),
-│                        global-sections, woocommerce, updater, admin
-├── acf-json/            groupe de champs des sections globales (emplacement)
-├── layouts/             templates des sections du parent (mrz-text, mrz-html, mrz-global-section)
-├── parts/               header/, mobile-menu/, content/
-├── src/css/             tokens.css (variables), base.css, components.css, main.css (entrée)
+│                        global-sections, page-options, modules, carousel, lightbox,
+│                        video, woocommerce, woocommerce-swatches, updater
+├── acf-json/            groupe de champs des sections globales (emplacement, conditions)
+├── layouts/             sections du parent : mrz-text, mrz-html, mrz-global-section,
+│                        mrz-cards, mrz-footer, mrz-gallery, mrz-split, mrz-accordion,
+│                        mrz-anchors, mrz-marquee
+├── parts/               header/ (classic, centered, left, split), mobile-menu/, content/
+├── src/css/             tokens.css (variables), base.css, components.css,
+│                        gravity-forms.css, main.css (entrée)
 ├── dist/main.css        CSS compilé, commité
-├── assets/              js/main.js, css/woocommerce.css, icons/ (SVG du header)
+├── assets/js/           main, motion, carousel, lightbox, video, counter, marquee,
+│                        anchors, shop (chacun chargé seulement où il sert)
+├── assets/css/          woocommerce.css (sans build)
+├── assets/icons/        SVG du header et du menu d'admin
+├── languages/           traduction française de l'admin
 ├── lib/                 Plugin Update Checker (mises à jour par GitHub)
 └── AGENTS.md            règles pour l'IA
 ```
@@ -399,25 +407,27 @@ mrz-theme-exp/
 
 **Site de test :** `https://helloworld.local/`, instance de développement dédiée aux recettes (Polylang compris).
 
-En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header classique ou centré avec menu secondaire, recherche, compte et panier, menu mobile en quatre styles, couleurs de la charte dans le Customizer (quatre couleurs de marque, sombre, clair, bordures) et filtres d'icônes qui les suivent, variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
+En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header en quatre dispositions (classique, centré, menu à gauche, logo centré) avec mega menu, menu secondaire, recherche, compte et panier, menu mobile en quatre styles, dix sections du parent (dont Galerie, Texte et média, Accordéon, Sous-menu d'ancres, Bandeau défilant), animations au défilement, parallaxe, lightbox, carrousel, vidéo de fond, transitions de page, couleurs de la charte dans le Customizer (quatre couleurs de marque, sombre, clair, bordures) et filtres d'icônes qui les suivent, variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce (panneau du panier, variations en pastilles ou couleurs, compte) branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
 
-À faire, chacun comme un chantier à part, dans l'ordre conseillé :
+**0.9**, dernière version avant la 1.0 : réglages du blog (point 4) et les deux petits restes ci-dessous. **1.0** : Theme Check (point 9), puis premier site client (point 8). Polylang (point 1) attend la suite.
 
-1. **Polylang** : passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
+À faire, chacun comme un chantier à part :
+
+1. **Polylang** : reporté après la 1.0. Passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
 2. ~~**Menus du header**~~ : fait après la 0.3.0 (sous-menus au survol, au clavier, au toucher, retournés au bord de l'écran, variables `--mrz-submenu-*`).
 3. ~~**WooCommerce**~~ : fait en 0.8 (réglages Boutique, panneau du panier, ajout sans rechargement, accordéons, galerie, compte). À proposer ensuite : barre « livraison offerte » dans le panneau, bouton d'ajout collant sur mobile.
-4. **Blog** : réglage de l'article seul, avec deux choix (demandé par le site test Energies Réunion) :
+4. **Blog (0.9)** : réglage de l'article seul, avec deux choix (demandé par le site test Energies Réunion) :
    - image à la une au-dessus du titre (l'actuel) ;
    - bannière avec le titre posé sur l'image, header transparent automatique dans ce cas.
    
    Mise en forme de la page des articles et des catégories. Dans le parent.
 5. ~~**JS, en modules chargés seulement sur les pages qui s'en servent**~~ : faits en 0.6 (lightbox et galerie, vidéo de fond) ; carrousel fait après la 0.3.0.
-6. ~~**V2**~~ : animations au défilement et parallaxe faites en 0.6 (CSS seul) ; mega menu fait en 0.5, avec les sections globales en colonne en 0.5.1.
+6. ~~**V2**~~ : animations au défilement et parallaxe faites en 0.6 (déclenchées par `motion.js` depuis la 0.8.4, parallaxe en CSS seul) ; mega menu fait en 0.5, avec les sections globales en colonne en 0.5.1.
 7. ~~**0.7, sections d'appoint**~~ : faites (sous-menu d'ancres, bandeau défilant, compteur ; séparateurs de forme abandonnés). Abandonné pour le parent : la fenêtre pop-up (ce sera un plugin à part), la transition d'élément partagé et la révélation circulaire (dans l'enfant du site qui les veut).
-8. **Premier site client** : vérifier que ManageWP détecte et lance la mise à jour du thème.
-9. **Theme Check** : passer le plugin avant la 1.0.
+8. **Premier site client (1.0)** : vérifier que ManageWP détecte et lance la mise à jour du thème.
+9. **Theme Check (1.0)** : passer le plugin avant la 1.0.
 
-Petits restes, à traiter quand l'occasion se présente :
+Petits restes, à traiter dans la 0.9 :
 - **Bordure des champs sur les fonds de couleur** (RGAA, contraste des composants) : sur une section sombre ou colorée, `--color-border` peut se confondre avec le fond. Prendre une bordure tirée du texte de la section (`color-mix()` de `--color-text`) quand `--mrz-field-border` n'est pas réglée.
 - **Mobile, connecté** : une bande de page apparaît au-dessus du header sticky au défilement.
 
