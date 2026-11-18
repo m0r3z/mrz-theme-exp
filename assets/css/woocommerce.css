@@ -378,17 +378,32 @@
 	display: none;
 }
 
+/*
+ * Informations complémentaires : traits pleins aux couleurs du site, à la place des
+ * pointillés de WooCommerce. Pas de trait en haut ni sous la dernière ligne : ceux de
+ * l'accordéon suffisent.
+ */
 .mrz-product-details table.shop_attributes {
 	margin-bottom: 0;
-	border-top-color: var(--color-border);
+	border-top: 0;
 }
 
 .mrz-product-details table.shop_attributes th,
 .mrz-product-details table.shop_attributes td {
 	padding: 0.5rem 0;
-	border-bottom-color: var(--color-border);
+	border-bottom: 1px solid var(--color-border);
 	font-style: normal;
 	text-align: left;
+}
+
+.mrz-product-details table.shop_attributes tr:last-child th,
+.mrz-product-details table.shop_attributes tr:last-child td {
+	border-bottom: 0;
+}
+
+/* Air entre le texte court du produit et le formulaire d'ajout (quantité, bouton). */
+.woocommerce div.product .woocommerce-product-details__short-description {
+	margin-bottom: var(--mrz-product-summary-gap, 1.5rem);
 }
 
 .mrz-product-details table.shop_attributes tr:nth-child(even) th,

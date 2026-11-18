@@ -5,6 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Modifié
+- Fiche produit : informations complémentaires séparées par des traits pleins aux couleurs du site (plus de pointillés ni de double trait avec l'accordéon) ; de l'air entre le texte court et le formulaire d'ajout (`--mrz-product-summary-gap`, 1,5 rem).
 - Panier vide (bloc Panier) : seulement le message et un bouton « Parcourir la boutique », centrés. Plus d'icône, de séparateur ni de « Nouveau dans la boutique » (grille de blocs WooCommerce qui ne suivait pas le style des produits du thème), retirés au rendu sans toucher au contenu de la page.
 
 ## [0.8.3] - 2026-11-18
