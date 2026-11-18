@@ -5,7 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
-- Fiche produit : **variations en pastilles** (tailles, couleurs…) à la place des menus déroulants, réglage Customizer > Shop (coché par défaut). Vrais boutons radio, au clavier ; le menu de WooCommerce reste masqué et calcule toujours prix, stock et image. Choix impossible grisé, combinaison en rupture barrée (et annoncée aux lecteurs d'écran). Variables `--mrz-swatch-gap`, `--mrz-swatch-padding`, `--mrz-swatch-radius`.
+- Fiche produit : **variations en pastilles ou en couleurs**, au choix sur chaque attribut (Produits > Attributs > Modifier, champ « Type » : Menu déroulant, Pastilles, Couleurs). En « Couleurs », une couleur par terme (Configurer les termes, sélecteur de couleur, colonne dans la liste) : ronds de couleur, nom de la couleur choisie à côté du libellé (« Couleur : Moutarde ») ; terme sans couleur affiché par son nom. Vrais boutons radio, au clavier ; le menu de WooCommerce reste masqué et calcule toujours prix, stock et image. Choix impossible grisé, combinaison en rupture barrée (et annoncée aux lecteurs d'écran). Thème changé : retour aux menus déroulants, couleurs gardées sur les termes. Variables `--mrz-swatch-gap`, `--mrz-swatch-padding`, `--mrz-swatch-radius`, `--mrz-swatch-size`.
 - Customizer > General : « Jouer les animations au défilement une seule fois » (décoché par défaut). Coché, un élément apparu reste affiché, même si on remonte puis redescend ; décoché, l'animation se joue en descendant, et à l'envers en remontant, dès que l'élément repasse sous la ligne de déclenchement.
 
 ### Modifié

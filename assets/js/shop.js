@@ -323,16 +323,32 @@
 					note = document.createElement( 'span' );
 					note.className = 'mrz-swatch__note screen-reader-text';
 					note.textContent = ' (' + ( i18n.outOfStock || 'out of stock' ) + ')';
-					label.querySelector( 'span' ).appendChild( note );
+					label.querySelector( '.mrz-swatch__body' ).appendChild( note );
 				} else if ( ! out && note ) {
 					note.remove();
 				}
 			} );
+
+			// Couleurs : le nom de la couleur choisie s'affiche à côté du libellé (« Couleur : Moutarde »).
+			var heading = group.classList.contains( 'mrz-swatches--colors' ) && select.id ? form.querySelector( 'label[for="' + select.id + '"]' ) : null;
+			if ( heading ) {
+				var checked = group.querySelector( 'input:checked' );
+				var value = heading.querySelector( '.mrz-swatches__value' );
+				if ( ! value ) {
+					value = document.createElement( 'span' );
+					value.className = 'mrz-swatches__value';
+					heading.appendChild( value );
+				}
+				value.textContent = checked ? ( i18n.swatchValue || ': %s' ).replace( '%s', checked.getAttribute( 'data-label' ) ) : '';
+			}
 		} );
 	}
 
-	if ( settings.swatches ) {
-		document.querySelectorAll( 'form.variations_form' ).forEach( function ( form ) {
+	document.querySelectorAll( 'form.variations_form' ).forEach( function ( form ) {
+		if ( ! form.querySelector( '[data-mrz-swatches]' ) ) {
+			return;
+		}
+		( function () {
 			form.addEventListener( 'change', function ( event ) {
 				var radio = event.target.closest( '[data-mrz-swatches] input[type="radio"]' );
 				if ( radio ) {
@@ -350,8 +366,8 @@
 				} );
 			}
 			syncSwatches( form );
-		} );
-	}
+		}() );
+	} );
 
 	/* Lien vers les avis (« 2 avis client ») : ouvre l'accordéon des avis. */
 	function openDetailsFor( hash ) {

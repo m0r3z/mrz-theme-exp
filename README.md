@@ -202,7 +202,6 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | | Menu de tri, nombre de résultats | oui, oui |
 | | Badge promo : texte, réduction en pourcentage, aucun | texte |
 | | Boutons + et − autour de la quantité | oui |
-| | Variations en pastilles (tailles, couleurs…) à la place des menus déroulants ; combinaison en rupture barrée | oui |
 
 ## Retoucher un site à la main
 
@@ -296,7 +295,7 @@ Les icônes du header sont dans `assets/icons/` du parent : `cart.svg` (panier),
 - **Blog et archives** : grille de cartes avec image, date et catégories, pagination, titres d'archive sans préfixe (« Actualités » plutôt que « Catégorie : Actualités »).
 - **Article seul** : image à la une, contenu, navigation entre articles, commentaires.
 - **CPT** : affichés comme les articles. Pour un rendu propre à un CPT, créer `parts/content/single-{post_type}.php` (et `content-{post_type}.php` pour sa carte) dans l'enfant.
-- **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème. Icône du panier dans le header, avec le nombre d'articles, qui ouvre le panneau du panier ; icône du compte en option (MRZ Theme > Header). Réglages de la boutique dans MRZ Theme > Shop. Les pages Panier et Commande gardent les **blocs** de WooCommerce (pages créées ainsi à l'installation) : leur mise en page vient de WooCommerce, leurs boutons du thème (`.wp-element-button`, dans `assets/css/woocommerce.css`). Ne pas les remplacer par les anciens shortcodes. Panier vide : le thème ne garde que le message et le lien vers la boutique (filtre `render_block_data`). Les boutons + et − du thème ne concernent que le panier en shortcode : le bloc Panier a les siens.
+- **WooCommerce** : aucun template surchargé, donc rien à mettre à jour quand WooCommerce évolue. Les styles suivent les variables du thème. Icône du panier dans le header, avec le nombre d'articles, qui ouvre le panneau du panier ; icône du compte en option (MRZ Theme > Header). Réglages de la boutique dans MRZ Theme > Shop. Les pages Panier et Commande gardent les **blocs** de WooCommerce (pages créées ainsi à l'installation) : leur mise en page vient de WooCommerce, leurs boutons du thème (`.wp-element-button`, dans `assets/css/woocommerce.css`). Ne pas les remplacer par les anciens shortcodes. **Variations** : sur chaque attribut (Produits > Attributs > Modifier), champ « Type » : Menu déroulant (WooCommerce), Pastilles (texte, pour les tailles) ou Couleurs (ronds, pour les teintes ; une couleur par terme dans Configurer les termes). Les attributs propres à un seul produit restent en menu déroulant. Panier vide : le thème ne garde que le message et le lien vers la boutique (filtre `render_block_data`). Les boutons + et − du thème ne concernent que le panier en shortcode : le bloc Panier a les siens.
 - **Polylang** : sélecteur de langue dans le header et le menu mobile, dès que Polylang est actif.
 - **Gravity Forms**, **MRZ Display Post**, **MRZ Maps** : leurs shortcodes (`[gravityform]`, `[mrzdpe]`, `[mrzme]`), dans un Texte libre, un champ de section ou un widget.
 
