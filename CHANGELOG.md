@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Modifié
+- Panier vide (bloc Panier) : seulement le message et un bouton « Parcourir la boutique », centrés. Plus d'icône, de séparateur ni de « Nouveau dans la boutique » (grille de blocs WooCommerce qui ne suivait pas le style des produits du thème), retirés au rendu sans toucher au contenu de la page.
+
 ## [0.8.3] - 2026-11-18
 
 ### Ajouté

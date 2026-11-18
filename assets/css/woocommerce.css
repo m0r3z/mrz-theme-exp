@@ -850,3 +850,48 @@
 .woocommerce-account .woocommerce-Address-title h2 {
 	font-size: var(--mrz-h4);
 }
+
+/*
+ * Panier vide (bloc Panier) : le message et un bouton vers la boutique, centrés.
+ * Pas d'icône (masque SVG de WooCommerce sur .with-empty-cart-icon).
+ */
+.wp-block-woocommerce-empty-cart-block {
+	padding-block: var(--spacing-section-sm);
+	text-align: center;
+}
+
+.wp-block-woocommerce-empty-cart-block .wc-block-cart__empty-cart__title {
+	margin: 0 0 1.5rem;
+	font-size: var(--mrz-h3);
+	text-align: center;
+}
+
+.wp-block-woocommerce-empty-cart-block .with-empty-cart-icon::before {
+	display: none;
+}
+
+.wp-block-woocommerce-empty-cart-block p {
+	margin: 0;
+	text-align: center;
+}
+
+/* « Parcourir la boutique » : le bouton du thème. */
+.wp-block-woocommerce-empty-cart-block p a {
+	display: inline-flex;
+	padding: var(--mrz-button-padding);
+	border: var(--mrz-button-border-width) solid var(--mrz-button-bg);
+	border-radius: var(--radius-button);
+	background: var(--mrz-button-bg);
+	color: var(--mrz-button-color);
+	font-family: var(--mrz-button-font-family, inherit);
+	font-size: var(--mrz-button-font-size);
+	font-weight: var(--mrz-button-font-weight);
+	letter-spacing: var(--mrz-button-letter-spacing);
+	text-transform: var(--mrz-button-text-transform);
+	text-decoration: none;
+	line-height: 1.2;
+}
+
+.wp-block-woocommerce-empty-cart-block p a:hover {
+	filter: brightness(1.08);
+}

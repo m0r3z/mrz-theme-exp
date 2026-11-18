@@ -496,3 +496,50 @@ function mrz_theme_cart_notices_fragment( $fragments ) {
 	return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'mrz_theme_cart_notices_fragment' );
+
+/**
+ * Panier vide (bloc Panier) : seulement le message « Votre panier est vide » et le lien
+ * vers la boutique. Le séparateur, « Nouveau dans la boutique » et sa grille de produits
+ * (blocs de WooCommerce, pas la grille du thème) sont retirés au rendu : rien à changer
+ * dans le contenu de la page, et le même résultat sur chaque site.
+ *
+ * @param array $parsed_block Bloc analysé.
+ * @return array
+ */
+function mrz_theme_empty_cart_block( $parsed_block ) {
+	if ( 'woocommerce/empty-cart-block' !== ( $parsed_block['blockName'] ?? '' ) || empty( $parsed_block['innerBlocks'] ) ) {
+		return $parsed_block;
+	}
+
+	$blocks  = array();
+	$content = array();
+	$index   = 0;
+	$cut     = false;
+
+	// innerContent mêle le HTML du bloc (chaînes) et la place de chaque bloc enfant (null).
+	foreach ( $parsed_block['innerContent'] as $chunk ) {
+		if ( null !== $chunk ) {
+			$content[] = $chunk;
+			continue;
+		}
+
+		$inner = $parsed_block['innerBlocks'][ $index ] ?? null;
+		++$index;
+		// Tout ce qui suit le premier séparateur est la suggestion de produits.
+		if ( ! $inner || 'core/separator' === $inner['blockName'] ) {
+			$cut = true;
+		}
+		if ( $cut ) {
+			continue;
+		}
+
+		$blocks[]  = $inner;
+		$content[] = null;
+	}
+
+	$parsed_block['innerBlocks']  = $blocks;
+	$parsed_block['innerContent'] = $content;
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'mrz_theme_empty_cart_block' );
