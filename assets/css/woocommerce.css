@@ -602,7 +602,7 @@
 	/* Place de la croix, posée en haut à droite hors de la grille. */
 	padding-right: 2.25rem;
 	font-family: var(--mrz-minicart-name-font-family, inherit);
-	font-size: var(--mrz-minicart-name-size, inherit);
+	font-size: var(--mrz-minicart-name-size, 0.9375rem);
 	font-weight: var(--mrz-minicart-name-weight, var(--mrz-label-font-weight, 600));
 	letter-spacing: var(--mrz-minicart-name-letter-spacing, normal);
 	text-transform: var(--mrz-minicart-name-text-transform, none);
@@ -615,7 +615,7 @@
 	margin-top: 0.15rem;
 	color: var(--color-muted);
 	font-family: var(--mrz-minicart-options-font-family, inherit);
-	font-size: var(--mrz-minicart-options-size, var(--mrz-text-sm));
+	font-size: var(--mrz-minicart-options-size, 0.8125rem);
 	letter-spacing: var(--mrz-minicart-options-letter-spacing, normal);
 	text-transform: var(--mrz-minicart-options-text-transform, none);
 }
@@ -646,17 +646,24 @@
 
 .mrz-minicart__price {
 	font-family: var(--mrz-minicart-price-font-family, inherit);
-	font-size: var(--mrz-minicart-price-size, inherit);
+	font-size: var(--mrz-minicart-price-size, 0.9375rem);
 	font-weight: var(--mrz-minicart-price-weight, var(--mrz-label-font-weight, 600));
 }
 
+/* Quantité du panneau, compacte : --mrz-minicart-qty-size (texte), --mrz-minicart-qty-height. */
+.mrz-minicart .quantity.mrz-qty {
+	height: var(--mrz-minicart-qty-height, 2rem);
+}
+
 .mrz-minicart .quantity.mrz-qty input.qty {
-	width: 2.5rem;
-	padding-block: 0.4rem;
+	width: 1.75rem;
+	padding: 0;
+	font-size: var(--mrz-minicart-qty-size, 0.8125rem);
 }
 
 .mrz-minicart .mrz-qty__button {
-	min-width: 2.25rem;
+	min-width: 1.75rem;
+	font-size: var(--mrz-minicart-qty-size, 0.8125rem);
 }
 
 /*
