@@ -21,6 +21,20 @@ function mrz_theme_admin_menu_slug() {
 }
 
 /**
+ * Icône du menu MRZ Theme : le SVG du thème (assets/icons/menu.svg), en data URI.
+ * WordPress la repeint aux couleurs de l'admin (gris, blanc au survol), comme ses
+ * propres icônes : le SVG n'a donc que des formes pleines, sans blanc dessiné.
+ *
+ * @return string
+ */
+function mrz_theme_admin_menu_icon() {
+	$file = MRZ_THEME_DIR . '/assets/icons/menu.svg';
+	$svg  = is_readable( $file ) ? file_get_contents( $file ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- fichier local du thème.
+
+	return $svg ? 'data:image/svg+xml;base64,' . base64_encode( $svg ) : 'dashicons-admin-appearance'; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- format attendu par add_menu_page().
+}
+
+/**
  * Déclare le menu MRZ Theme et son premier sous-menu.
  */
 function mrz_theme_admin_menu() {
@@ -30,7 +44,7 @@ function mrz_theme_admin_menu() {
 		'edit_theme_options',
 		mrz_theme_admin_menu_slug(),
 		'',
-		'dashicons-admin-appearance',
+		mrz_theme_admin_menu_icon(),
 		59
 	);
 

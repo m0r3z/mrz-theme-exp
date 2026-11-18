@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Modifié
+- Admin : le menu MRZ Theme a l'icône du thème (`assets/icons/menu.svg`, quatre cercles et étoile), repeinte aux couleurs de l'admin comme les icônes de WordPress, à la place du pinceau.
+
 ## [0.8.5] - 2026-11-18
 
 ### Modifié
