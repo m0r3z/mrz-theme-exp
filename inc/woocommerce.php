@@ -61,42 +61,17 @@ function mrz_theme_shop_has_sections() {
 		&& wc_get_page_id( 'shop' ) > 0 && mrz_theme_has_builder( wc_get_page_id( 'shop' ) );
 }
 
-/*
- * Titre et description des listes de produits (boutique, catégorie, étiquette, recherche) :
- * dans la colonne des produits, juste au-dessus du nombre de résultats, et pas au-dessus
- * de toute la page. Sur une catégorie : son nom, puis sa description. WooCommerce les
- * affiche avant la liste ; le thème les retire de là et les remet dans la liste
- * (woocommerce_before_shop_loop, priorité 6 : après l'ouverture de la colonne de
- * MRZ Product Filter, priorité 5, avant le nombre de résultats, 20).
- * Page Boutique avec des sections : elles portent le h1, pas de titre ici.
- */
-add_filter( 'woocommerce_show_page_title', '__return_false' );
-remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
-remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description', 10 );
-
 /**
- * En-tête de la liste de produits : titre (h1) et description.
+ * Page Boutique : quand ses sections sont affichées, elles portent le h1 (comme toute page
+ * du thème) et le titre de WooCommerce disparaît. Sinon il reste : la page garde son h1.
+ *
+ * @param bool $show Afficher le titre.
+ * @return bool
  */
-function mrz_theme_shop_header() {
-	static $done = false;
-	// Seulement sur les listes de produits : une grille [products] dans une page n'a pas de titre.
-	if ( $done || ! ( is_shop() || is_product_taxonomy() ) || mrz_theme_shop_has_sections() ) {
-		return;
-	}
-	$done = true;
-	?>
-	<header class="mrz-shop-header">
-		<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
-		<?php
-		woocommerce_taxonomy_archive_description();
-		woocommerce_product_archive_description();
-		?>
-	</header>
-	<?php
+function mrz_theme_shop_page_title( $show ) {
+	return mrz_theme_shop_has_sections() ? false : $show;
 }
-add_action( 'woocommerce_before_shop_loop', 'mrz_theme_shop_header', 6 );
-// Catégorie sans produit : WooCommerce ne passe pas par la liste, le titre reste.
-add_action( 'woocommerce_no_products_found', 'mrz_theme_shop_header', 5 );
+add_filter( 'woocommerce_show_page_title', 'mrz_theme_shop_page_title' );
 
 /**
  * Réglages Customizer > MRZ Theme > Boutique (seulement quand WooCommerce est actif).
