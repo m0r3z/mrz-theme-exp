@@ -696,6 +696,15 @@ function mrz_theme_customizer_css() {
 	 * pour passer devant la règle de la barre d'admin de WordPress.
 	 */
 	$css .= 'html:has(> body.mrz-header-sticky),html:has(> body.mrz-header-transparent){scroll-padding-top:calc(var(--mrz-header-height,0px) + var(--mrz-anchors-height,0px) + var(--wp-admin--admin-bar--height,0px))}';
+	/*
+	 * Ce décalage ne doit pas viser ce qui est déjà collé en haut : sans marge négative,
+	 * le focus d'un élément du header sticky (loupe, champ de recherche, Tab au clavier)
+	 * fait remonter la page de la hauteur du header. Chrome ignore cette marge quand il
+	 * ramène à l'écran un champ de saisie qui vient de prendre le focus : le décalage est
+	 * donc coupé tant que la recherche du header est ouverte.
+	 */
+	$css .= '.mrz-header-sticky :is(.mrz-header,.mrz-anchors--sticky) *{scroll-margin-top:calc(-1 * (var(--mrz-header-height,0px) + var(--mrz-anchors-height,0px) + var(--wp-admin--admin-bar--height,0px)))}';
+	$css .= 'html:has(> body.mrz-header-sticky):has(.mrz-header-search[open]){scroll-padding-top:0}';
 
 	$css .= '@media (min-width:' . ( $breakpoint + 1 ) . 'px){.mrz-mobile-only{display:none}}';
 	$css .= '@media (max-width:' . $breakpoint . 'px){';
@@ -705,6 +714,7 @@ function mrz_theme_customizer_css() {
 	$css .= '.mrz-header--split .mrz-header__bar{grid-template-columns:auto 1fr}.mrz-header--split .mrz-header__start{display:none}';
 	$css .= '.mrz-mobile-static:not(.mrz-header-transparent) .mrz-header{position:relative}';
 	$css .= 'html:has(> body.mrz-mobile-static:not(.mrz-header-transparent)){scroll-padding-top:var(--wp-admin--admin-bar--height,0px)}';
+	$css .= '.mrz-mobile-static:not(.mrz-header-transparent) .mrz-header *{scroll-margin-top:0}';
 	$css .= '}';
 
 	if ( mrz_theme_option( 'transition_enabled' ) ) {

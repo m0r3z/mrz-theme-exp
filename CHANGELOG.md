@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Corrigé
+- Header sticky : ouvrir la recherche faisait remonter la page de la hauteur du header (décalage des ancres appliqué au focus du champ). Même correction pour le focus clavier dans le header et dans le sous-menu d'ancres collant.
+
 ## [0.8.6] - 2026-11-18
 
 ### Modifié
