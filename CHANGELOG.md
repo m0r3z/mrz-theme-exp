@@ -5,6 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Admin, constructeur : les réglages de chaque section (fond, espacements, largeur, hauteur, image, animation…) sont repliés derrière un interrupteur à côté de « Réglages de la section ». Affichage seulement : les réglages sont enregistrés tels quels, interrupteur ouvert ou non. Vaut aussi pour les sections de l'enfant qui clonent ces réglages.
 - Accordéon : ouverture et fermeture en douceur, l'élément qui se referme (un seul ouvert à la fois) aussi. En CSS seul (`::details-content`, `interpolate-size`) ; navigateur sans ce support : ouverture immédiate, comme avant. Variable `--mrz-accordion-duration` (0,35 s). Rien si le visiteur limite les animations. Vaut aussi pour les accordéons de la fiche produit.
 - Customizer > MRZ Theme > Blog : « Afficher les articles précédent et suivant » (coché par défaut, comme avant). Décoché, l'article seul n'a plus ces liens en bas.
 - Blog : les catégories en cartouches entre le titre et les articles, sur la page des articles et les pages de catégorie. « Tous » puis chaque catégorie qui a des articles, celle de la page en plein (couleur principale, `aria-current`). De simples liens vers les catégories, sans filtre ni JavaScript ; rien sous deux catégories. Variables `--mrz-blog-category-radius` (999px) et `--mrz-blog-categories-space` (2,5 rem).
@@ -12,6 +13,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Page des articles (Réglages > Lecture) : ses sections du constructeur s'affichent au-dessus de la liste et portent le `h1`, comme la page Boutique (première page de la liste seulement). Sous la dernière section, le même écart que sous un titre d'archive (3 rem) avant les catégories et les articles. Sans sections, rien ne change.
 
 ### Modifié
+- Admin, constructeur : plus de description sous « Second bouton » (« Bouton à contour. »), « Hauteur » (« Contenu centré verticalement. ») et « Surtitre ». « Niveau du titre » dit seulement « Un seul H1 par page. ».
 - Animations au défilement, en remontant : l'élément disparaît dès que son haut repasse sous une ligne à 30 % du bas de l'écran, pendant qu'il est encore bien visible, au lieu d'attendre qu'il soit presque sorti de l'écran. L'apparition, en descendant, ne change pas (ligne à 10 % du bas).
 
 ### Corrigé

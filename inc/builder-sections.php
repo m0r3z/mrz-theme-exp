@@ -121,7 +121,6 @@ function mrz_theme_section_settings_field( $prefix ) {
 					'screen' => __( 'Full screen', 'mrz-theme-exp' ),
 				),
 				'default_value' => 'auto',
-				'instructions'  => __( 'Content centered vertically.', 'mrz-theme-exp' ),
 				'wrapper'       => array( 'width' => '25' ),
 			),
 			array(
@@ -313,7 +312,6 @@ function mrz_theme_parent_layouts() {
 					'key'          => 'field_mrz_text_eyebrow',
 					'name'         => 'eyebrow',
 					'label'        => __( 'Eyebrow', 'mrz-theme-exp' ),
-					'instructions' => __( 'Optional. Short line above the title.', 'mrz-theme-exp' ),
 					'type'         => 'text',
 					'wrapper'      => array( 'width' => '50' ),
 				),
@@ -341,7 +339,7 @@ function mrz_theme_parent_layouts() {
 					'key'           => 'field_mrz_text_title_tag',
 					'name'          => 'title_tag',
 					'label'         => __( 'Title level', 'mrz-theme-exp' ),
-					'instructions'  => __( 'H1 only when this section opens the page (one H1 per page). No skipped level.', 'mrz-theme-exp' ),
+					'instructions'  => __( 'One H1 per page.', 'mrz-theme-exp' ),
 					'type'          => 'select',
 					'choices'       => mrz_theme_title_tag_choices(),
 					'default_value' => 'h2',
@@ -368,7 +366,6 @@ function mrz_theme_parent_layouts() {
 					'key'           => 'field_mrz_text_link_2',
 					'name'          => 'link_2',
 					'label'         => __( 'Second button', 'mrz-theme-exp' ),
-					'instructions'  => __( 'Outlined.', 'mrz-theme-exp' ),
 					'type'          => 'link',
 					'return_format' => 'array',
 					'wrapper'       => array( 'width' => '50' ),
@@ -555,7 +552,6 @@ function mrz_theme_parent_layouts() {
 					'key'          => 'field_mrz_split_eyebrow',
 					'name'         => 'eyebrow',
 					'label'        => __( 'Eyebrow', 'mrz-theme-exp' ),
-					'instructions' => __( 'Optional. Short line above the title.', 'mrz-theme-exp' ),
 					'type'         => 'text',
 				),
 				array(
@@ -570,7 +566,7 @@ function mrz_theme_parent_layouts() {
 					'key'           => 'field_mrz_split_title_tag',
 					'name'          => 'title_tag',
 					'label'         => __( 'Title level', 'mrz-theme-exp' ),
-					'instructions'  => __( 'H1 only when this section opens the page (one H1 per page). No skipped level.', 'mrz-theme-exp' ),
+					'instructions'  => __( 'One H1 per page.', 'mrz-theme-exp' ),
 					'type'          => 'select',
 					'choices'       => mrz_theme_title_tag_choices(),
 					'default_value' => 'h2',
@@ -597,7 +593,6 @@ function mrz_theme_parent_layouts() {
 					'key'           => 'field_mrz_split_link_2',
 					'name'          => 'link_2',
 					'label'         => __( 'Second button', 'mrz-theme-exp' ),
-					'instructions'  => __( 'Outlined.', 'mrz-theme-exp' ),
 					'type'          => 'link',
 					'return_format' => 'array',
 					'wrapper'       => array( 'width' => '50' ),
@@ -1303,3 +1298,51 @@ function mrz_theme_compact_wysiwyg() {
 	<?php
 }
 add_action( 'acf/input/admin_footer', 'mrz_theme_compact_wysiwyg' );
+
+/**
+ * Réglages communs d'une section (groupe « settings », du parent ou cloné dans l'enfant) :
+ * repliés derrière un interrupteur, pour que le contenu de la section reste lisible.
+ * Affichage seulement : les réglages restent dans le formulaire et sont enregistrés
+ * tels quels, interrupteur ouvert ou non.
+ */
+function mrz_theme_section_settings_toggle() {
+	?>
+	<script>
+	if ( window.acf ) {
+		acf.addAction( 'new_field/type=group', function ( field ) {
+			var el = field.$el[0];
+			if ( 'settings' !== el.dataset.name || ! el.closest( '.acf-flexible-content' ) || el.querySelector( ':scope > .acf-label .mrz-settings-toggle' ) ) {
+				return;
+			}
+			var label = el.querySelector( ':scope > .acf-label' );
+			if ( ! label ) {
+				return;
+			}
+			var button = document.createElement( 'button' );
+			button.type = 'button';
+			button.className = 'mrz-settings-toggle';
+			button.setAttribute( 'role', 'switch' );
+			button.setAttribute( 'aria-checked', 'false' );
+			button.setAttribute( 'aria-label', <?php echo wp_json_encode( __( 'Show the section settings', 'mrz-theme-exp' ) ); ?> );
+			button.addEventListener( 'click', function () {
+				var open = ! el.classList.contains( 'mrz-settings-open' );
+				el.classList.toggle( 'mrz-settings-open', open );
+				button.setAttribute( 'aria-checked', open ? 'true' : 'false' );
+			} );
+			label.appendChild( button );
+		} );
+	}
+	</script>
+	<style>
+	.acf-flexible-content .acf-field-group[data-name="settings"] > .acf-label { display: flex; align-items: center; gap: 10px; }
+	.acf-flexible-content .acf-field-group[data-name="settings"] > .acf-label label { margin: 0; }
+	.acf-flexible-content .acf-field-group[data-name="settings"]:not(.mrz-settings-open) > .acf-input { display: none; }
+	.mrz-settings-toggle { position: relative; width: 36px; height: 20px; padding: 0; border: 1px solid #8c8f94; border-radius: 999px; background: #dcdcde; cursor: pointer; transition: background-color .15s; }
+	.mrz-settings-toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .3); transition: transform .15s; }
+	.mrz-settings-toggle[aria-checked="true"] { border-color: #2271b1; background: #2271b1; }
+	.mrz-settings-toggle[aria-checked="true"]::after { transform: translateX(16px); }
+	.mrz-settings-toggle:focus-visible { outline: 2px solid #2271b1; outline-offset: 2px; }
+	</style>
+	<?php
+}
+add_action( 'acf/input/admin_footer', 'mrz_theme_section_settings_toggle' );

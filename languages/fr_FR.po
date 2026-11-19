@@ -1588,3 +1588,9 @@ msgstr "Afficher les articles précédent et suivant"
 
 msgid "Links at the bottom of a single post, before the comments."
 msgstr "Liens en bas de l’article seul, avant les commentaires."
+
+msgid "Show the section settings"
+msgstr "Afficher les réglages de la section"
+
+msgid "One H1 per page."
+msgstr "Un seul H1 par page."
