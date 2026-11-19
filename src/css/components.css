@@ -1471,7 +1471,6 @@
 	.mrz-gallery__link {
 		display: block;
 		border-radius: var(--mrz-gallery-radius);
-		cursor: zoom-in;
 	}
 
 	/* Format imposé, ou format réel de l'image (place réservée avant chargement). */

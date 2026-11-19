@@ -16,6 +16,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Page des articles (Réglages > Lecture) : ses sections du constructeur s'affichent au-dessus de la liste et portent le `h1`, comme la page Boutique (première page de la liste seulement). Sous la dernière section, le même écart que sous un titre d'archive (3 rem) avant les catégories et les articles. Sans sections, rien ne change.
 
 ### Modifié
+- Galerie : curseur ordinaire (la main) sur les images, plus de loupe. La loupe reste dans la lightbox, sur une image qu'on peut agrandir.
 - Admin, constructeur : plus de description sous « Second bouton » (« Bouton à contour. »), « Hauteur » (« Contenu centré verticalement. ») et « Surtitre ». « Niveau du titre » dit seulement « Un seul H1 par page. ».
 - Animations au défilement, en remontant : l'élément disparaît dès que son haut repasse sous une ligne à 30 % du bas de l'écran, pendant qu'il est encore bien visible, au lieu d'attendre qu'il soit presque sorti de l'écran. L'apparition, en descendant, ne change pas (ligne à 10 % du bas).
 
