@@ -2146,7 +2146,7 @@
 
 	/* Texte riche (contenu de l'éditeur classique et des champs WYSIWYG) */
 	.mrz-prose > * + * {
-		margin-top: 1.25em;
+		margin-top: var(--mrz-prose-space);
 	}
 
 	/* Le titre colle à son surtitre ; les boutons du Texte libre prennent un peu d'air. */
@@ -2160,17 +2160,17 @@
 
 	.mrz-prose h2 {
 		font-size: var(--mrz-h2);
-		margin-top: 1.6em;
+		margin-top: var(--mrz-prose-h2-space);
 	}
 
 	.mrz-prose h3 {
 		font-size: var(--mrz-h3);
-		margin-top: 1.5em;
+		margin-top: var(--mrz-prose-h3-space);
 	}
 
 	.mrz-prose h4 {
 		font-size: var(--mrz-h4);
-		margin-top: 1.4em;
+		margin-top: var(--mrz-prose-h4-space);
 	}
 
 	.mrz-prose > :first-child {

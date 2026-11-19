@@ -89,6 +89,16 @@
 	--mrz-h5: 1.0625rem;
 	--mrz-h6: 1rem;
 
+	/*
+	 * Espace au-dessus des éléments du texte (.mrz-prose), en em : relatif à la taille de
+	 * l'élément. Rien en dessous : l'espace vient de l'élément suivant.
+	 * --mrz-prose-space : entre deux éléments (paragraphes, listes, h1, h5, h6).
+	 */
+	--mrz-prose-space: 1.25em;
+	--mrz-prose-h2-space: 1.6em;
+	--mrz-prose-h3-space: 1.5em;
+	--mrz-prose-h4-space: 1.4em;
+
 	/* Boutons : les mêmes partout (thème, formulaires, WooCommerce). */
 	--mrz-button-font-size: 1rem;
 	--mrz-button-font-weight: 600;

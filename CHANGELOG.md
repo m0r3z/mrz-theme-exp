@@ -5,6 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Variables d'espacement du texte (`.mrz-prose`) : `--mrz-prose-space`, `--mrz-prose-h2-space`, `--mrz-prose-h3-space`, `--mrz-prose-h4-space`. Mêmes valeurs qu'avant, rendu inchangé.
 - Classe `mrz-icon-image` : une icône en image (SVG noir) posée dans un contenu prend la couleur principale, avec `mx-auto` pour la centrer.
 - Admin, constructeur : les réglages de chaque section (fond, espacements, largeur, hauteur, image, animation…) sont repliés derrière un interrupteur à côté de « Réglages de la section ». Affichage seulement : les réglages sont enregistrés tels quels, interrupteur ouvert ou non. Vaut aussi pour les sections de l'enfant qui clonent ces réglages.
 - Accordéon : ouverture et fermeture en douceur, l'élément qui se referme (un seul ouvert à la fois) aussi. En CSS seul (`::details-content`, `interpolate-size`) ; navigateur sans ce support : ouverture immédiate, comme avant. Variable `--mrz-accordion-duration` (0,35 s). Rien si le visiteur limite les animations. Vaut aussi pour les accordéons de la fiche produit.
