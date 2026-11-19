@@ -171,7 +171,8 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'type'    => 'true_false',
 				'ui'      => 1,
 				'message' => __( 'From the background color to a second color', 'mrz-theme-exp' ),
-				'wrapper' => array( 'width' => '33' ),
+				// 34 et non 33 : trop large pour remonter à droite de la vidéo, plus haute, la ligne du dégradé repart à gauche.
+				'wrapper' => array( 'width' => '34' ),
 			),
 			array(
 				'key'               => $prefix . '_settings_gradient_to',
