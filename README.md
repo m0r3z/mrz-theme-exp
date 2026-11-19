@@ -353,13 +353,13 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 1. **Version** : monter `Version:` dans `style.css` et `MRZ_THEME_VERSION` dans `functions.php`. Premier chiffre si un nom utilisé par les enfants casse (fonction `mrz_theme_*`, classe `.mrz-`, variable, hook, section `mrz_`), deuxième pour un ajout, troisième pour une correction.
 2. **CHANGELOG.md** : déplacer « Non publié » sous le numéro de version, avec la date. Les notes de la release reprennent ce bloc.
 3. **Build** : `npm run build`, commiter, pousser `main`.
-4. **Recette sur MRZ-Dev** (bientôt `helloworld.local`, voir plus bas), connecté en administrateur, en desktop et en mobile :
+4. **Recette sur MRZ-Dev**, connecté en administrateur, en desktop et en mobile :
    - la **page d'accueil** de MRZ-Dev, qui sert de recette : titres, texte, listes, boutons et lien fléché sur chaque fond, cartes en grille et en carrousel (flèches, points, pause, glissé au doigt), ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
    - boutique, fiche produit (galerie dans ses cinq dispositions, zoom, variations, accordéons, + et −), ajout au panier sans rechargement (la pastille se met à jour, le panneau s'ouvre), panneau du panier (clavier, Échap, suppression d'un article, panier vide), panier, commande, compte ;
    - menu mobile (ouverture, Échap, sous-menus), sous-menus desktop (survol, Tab puis Échap, appui sur tablette), recherche du header, footer ;
    - **site sombre** : dans le Customizer, régler « Fond du site » sur une couleur sombre et repasser la page Recette en aperçu, sans publier (texte de chaque fond de section, formulaire dans une section claire, header transparent, image de fond) ;
-   - **bilingue** (HelloWorld, Polylang) : sélecteur de langue, footer et section globale insérée à la main dans chaque langue, 404 dans chaque langue ;
+   - **bilingue** (Beta-Bird, Polylang) : sélecteur de langue, footer et section globale insérée à la main dans chaque langue, 404 dans chaque langue ;
    - aucune nouvelle ligne dans `wp-content/debug.log`.
 5. **Release** : un tag égal à la version précédée de `v`, les notes tirées du CHANGELOG :
 
@@ -367,7 +367,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
    GH_TOKEN=$(gh auth token --user m0r3z) gh release create v0.4.0 --title "0.4.0" --notes-file notes.md
    ```
 
-6. **Premier site** : lancer la mise à jour sur un site de test qui n'est pas une copie Git (`dev.local`), refaire la recette rapide, puis seulement les autres sites, depuis ManageWP. Chaque site affiche « Mise à jour disponible » dans les 12 heures, ou tout de suite depuis **Tableau de bord > Mises à jour**.
+6. **Premier site** : lancer la mise à jour sur un site de test qui n'est pas une copie Git (Beta-Bird, Beta-Sonny ou `dev.m0r3z.com/mrz-dev`), refaire la recette rapide, puis seulement les autres sites, depuis ManageWP. Chaque site affiche « Mise à jour disponible » dans les 12 heures, ou tout de suite depuis **Tableau de bord > Mises à jour**.
 
 - Le zip téléchargé est celui que GitHub génère pour la release : les fichiers listés dans `.gitattributes` (`package.json`…) en sont exclus.
 - Une release marquée « pre-release » est ignorée par les sites.
@@ -405,19 +405,17 @@ mrz-theme-exp/
 
 ## État et feuille de route
 
-**Version publiée : 0.8.6 (18/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
+**Version publiée : 0.9.0 (19/11/2026).** Détail des changements dans [CHANGELOG.md](CHANGELOG.md).
 
-**Aucun site en production** : le thème tourne sur MRZ-Dev (où vit le dépôt) et sur trois sites de test, HelloWorld, Beta-Bird (Energies Réunion, bilingue) et Beta-Sonny (Morez, site sombre). Tant que c'est le cas, un changement cassant ne demande aucune migration.
-
-**Site de test :** `https://helloworld.local/`, instance de développement dédiée aux recettes (Polylang compris).
+**Aucun site en production** : le thème tourne sur MRZ-Dev (où vit le dépôt) et sur trois sites de test : Beta-Bird (Energies Réunion, bilingue), Beta-Sonny (Morez, site sombre) et la copie en ligne `https://dev.m0r3z.com/mrz-dev/`. Tant que c'est le cas, un changement cassant ne demande aucune migration.
 
 En place : éditeur classique, constructeur (sections du parent injectées, sections sur mesure dans l'enfant), sections globales avec conditions (dont le footer), réglages par page, menu MRZ Theme sur le Customizer, header en quatre dispositions (classique, centré, menu à gauche, logo centré) avec mega menu, menu secondaire, recherche, compte et panier, menu mobile en quatre styles, dix sections du parent (dont Galerie, Texte et média, Accordéon, Sous-menu d'ancres, Bandeau défilant), animations au défilement, parallaxe, lightbox, carrousel, vidéo de fond, transitions de page, couleurs de la charte dans le Customizer (quatre couleurs de marque, sombre, clair, bordures) et filtres d'icônes qui les suivent, variables partagées (texte, boutons, champs, menus), Gravity Forms et WooCommerce (panneau du panier, variations en pastilles ou couleurs, compte) branchés sur ces variables, traduction française, mises à jour par les releases GitHub (testées sur `dev.local`).
 
-**0.9**, dernière version avant la 1.0 : réglages du blog (point 4, fait) et les deux petits restes ci-dessous. **1.0** : Theme Check (point 9), puis premier site client (point 8). Polylang (point 1) attend la suite.
+**0.9** publiée le 19/11/2026 (blog, galerie produit, échelle des espaces, images : voir le CHANGELOG). **1.0** : les deux petits restes ci-dessous, Theme Check (point 9), puis premier site client (point 8). Polylang (point 1) attend la suite.
 
 À faire, chacun comme un chantier à part :
 
-1. **Polylang** : reporté après la 1.0. Passer une recette sur `helloworld.local`, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
+1. **Polylang** : reporté après la 1.0. Passer une recette sur Beta-Bird, en bilingue. Déjà en place depuis le site test Energies Réunion : sections globales traduisibles d'office, section insérée à la main et page 404 prises dans la langue courante, sélecteur compatible Polylang 3.9 (codes, drapeaux ou les deux). Reste à vérifier les conditions des sections globales sur des pages d'une seule langue.
 2. ~~**Menus du header**~~ : fait après la 0.3.0 (sous-menus au survol, au clavier, au toucher, retournés au bord de l'écran, variables `--mrz-submenu-*`).
 3. ~~**WooCommerce**~~ : fait en 0.8 (réglages Boutique, panneau du panier, ajout sans rechargement, accordéons, galerie, compte). À proposer ensuite : barre « livraison offerte » dans le panneau, bouton d'ajout collant sur mobile.
 4. ~~**Blog (0.9)**~~ : fait, non publié. Customizer > MRZ Theme > Blog : article seul classique ou en bannière (titre sur l'image, header transparent), articles par ligne (2 ou 3), extrait affiché ou non ; sections de la page des articles au-dessus de la liste. Reste à voir à l'usage : sections propres aux catégories, choix de la disposition article par article.
@@ -427,7 +425,7 @@ En place : éditeur classique, constructeur (sections du parent injectées, sect
 8. **Premier site client (1.0)** : vérifier que ManageWP détecte et lance la mise à jour du thème.
 9. **Theme Check (1.0)** : passer le plugin avant la 1.0.
 
-Petits restes, à traiter dans la 0.9 :
+Petits restes, à traiter dans la 1.0 :
 - **Bordure des champs sur les fonds de couleur** (RGAA, contraste des composants) : sur une section sombre ou colorée, `--color-border` peut se confondre avec le fond. Prendre une bordure tirée du texte de la section (`color-mix()` de `--color-text`) quand `--mrz-field-border` n'est pas réglée.
 - **Mobile, connecté** : une bande de page apparaît au-dessus du header sticky au défilement.
 
