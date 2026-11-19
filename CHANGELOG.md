@@ -20,6 +20,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Accordéon en cascade : ses éléments et les paragraphes de ses réponses apparaissaient un par un au défilement, et certains restaient invisibles en laissant un grand vide. Plus aucune animation au défilement dans un accordéon.
 - Header sticky : ouvrir la recherche faisait remonter la page de la hauteur du header (décalage des ancres appliqué au focus du champ). Même correction pour le focus clavier dans le header et dans le sous-menu d'ancres collant.
 
+### Retiré
+- Lightbox : plus de lecteur Vimeo. Un lien vers une vidéo Vimeo reste un lien ordinaire (il ouvre Vimeo). Restent les vidéos YouTube et les fichiers MP4 ou WebM du site.
+
+
 ## [0.8.6] - 2026-11-18
 
 ### Modifié

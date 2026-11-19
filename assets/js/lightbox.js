@@ -2,10 +2,10 @@
  * MRZ Theme Experience : lightbox (vanilla, sans dépendance, <dialog> natif).
  *
  * S'ouvre sur : les images de la section Galerie (data-mrz-lightbox), les liens vers une
- * image ou une vidéo YouTube ou Vimeo dans un texte (.mrz-prose), les galeries natives.
+ * image, une vidéo YouTube ou un fichier vidéo du site dans un texte (.mrz-prose), les galeries natives.
  * Image : affichée en entier ; si elle est plus grande que l'écran, un clic (ou le bouton
  * loupe) la montre en taille réelle, on s'y déplace en faisant défiler.
- * Vidéo : lecteur chargé seulement à l'ouverture (youtube-nocookie, Vimeo sans traceurs),
+ * Vidéo : lecteur YouTube chargé seulement à l'ouverture (youtube-nocookie),
  * ou fichier MP4 ou WebM du site lu dans un <video controls>.
  * Clavier : flèches, Échap ; focus rendu au lien de l'image affichée à la fermeture. Glissé au doigt.
  * Chargé seulement sur les pages qui en ont besoin (inc/lightbox.php).
@@ -22,10 +22,6 @@
 		var match = href.match( /(?:youtube\.com\/watch\?(?:.*&)?v=|youtu\.be\/)([\w-]{11})/ );
 		if ( match ) {
 			return 'https://www.youtube-nocookie.com/embed/' + match[ 1 ] + '?autoplay=1&rel=0';
-		}
-		match = href.match( /vimeo\.com\/(\d+)/ );
-		if ( match ) {
-			return 'https://player.vimeo.com/video/' + match[ 1 ] + '?autoplay=1&dnt=1';
 		}
 		return null;
 	}
