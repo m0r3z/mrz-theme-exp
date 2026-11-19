@@ -49,6 +49,8 @@
 	/* Contour de focus au clavier : celui du thème, 2px opaque (RGAA), pas le halo pâle d'Orbital. */
 	--gf-ctrl-outline-color-focus: var(--mrz-focus-color);
 	--gf-ctrl-outline-width-focus: 2px;
+	/* Focus instantané : la transition d'Orbital (0,15 s sur toutes les propriétés) rend le contour flou. */
+	--gf-transition-ctrl: 0s;
 	--gf-ctrl-color-disabled: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 60%, transparent);
 	--gf-ctrl-placeholder-color: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 70%, transparent);
 	--gf-ctrl-choice-check-color-disabled: color-mix(in srgb, var(--mrz-field-color, var(--color-text)) 20%, transparent);
