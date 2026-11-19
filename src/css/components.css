@@ -443,6 +443,11 @@
 		height: 1.375rem;
 	}
 
+	/* Icône en image (SVG noir) posée dans un contenu : couleur principale. Avec mx-auto pour la centrer. */
+	.mrz-icon-image {
+		filter: var(--mrz-icon-filter);
+	}
+
 	/* Recherche du header : icône + formulaire déplié sous l'icône. */
 	.mrz-header-search {
 		position: relative;

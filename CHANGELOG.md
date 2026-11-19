@@ -5,6 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Classe `mrz-icon-image` : une icône en image (SVG noir) posée dans un contenu prend la couleur principale, avec `mx-auto` pour la centrer.
 - Admin, constructeur : les réglages de chaque section (fond, espacements, largeur, hauteur, image, animation…) sont repliés derrière un interrupteur à côté de « Réglages de la section ». Affichage seulement : les réglages sont enregistrés tels quels, interrupteur ouvert ou non. Vaut aussi pour les sections de l'enfant qui clonent ces réglages.
 - Accordéon : ouverture et fermeture en douceur, l'élément qui se referme (un seul ouvert à la fois) aussi. En CSS seul (`::details-content`, `interpolate-size`) ; navigateur sans ce support : ouverture immédiate, comme avant. Variable `--mrz-accordion-duration` (0,35 s). Rien si le visiteur limite les animations. Vaut aussi pour les accordéons de la fiche produit.
 - Customizer > MRZ Theme > Blog : « Afficher les articles précédent et suivant » (coché par défaut, comme avant). Décoché, l'article seul n'a plus ces liens en bas.
