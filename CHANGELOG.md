@@ -18,6 +18,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Page des articles (Réglages > Lecture) : ses sections du constructeur s'affichent au-dessus de la liste et portent le `h1`, comme la page Boutique (première page de la liste seulement). Sous la dernière section, le même écart que sous un titre d'archive (3 rem) avant les catégories et les articles. Sans sections, rien ne change.
 
 ### Modifié
+- Fiche produit : un peu d'espace sous le titre « Produits similaires » (variable `--mrz-related-title-gap`, 1 rem).
 - Fiche produit : référence, catégories, étiquettes et marque passent une par ligne.
 - WooCommerce : tailles des images produit déclarées par le thème, doublées pour les écrans haute densité. Vignette de la liste 600 px, grande image de la fiche 1200 px, miniatures de la galerie 200 px (au lieu de 300, 600 et 100). Elles ne se règlent plus dans le Customizer ; le format des vignettes, si. Régénérer les miniatures après la mise à jour.
 - Galerie : curseur ordinaire (la main) sur les images, plus de loupe. La loupe reste dans la lightbox, sur une image qu'on peut agrandir.

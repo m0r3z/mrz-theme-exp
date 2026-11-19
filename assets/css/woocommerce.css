@@ -386,6 +386,11 @@
 	clear: both;
 }
 
+/* Titre « Produits similaires » et « Vous aimerez peut-être aussi » : un peu d'air avant les produits. */
+.woocommerce div.product :is(.upsells, .related) > h2 {
+	margin-bottom: var(--mrz-related-title-gap, 1rem);
+}
+
 /* Titre des avis : le libellé de l'accordéon le dit déjà. */
 .mrz-product-details .woocommerce-Reviews-title {
 	display: none;
