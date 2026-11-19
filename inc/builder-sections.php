@@ -1257,15 +1257,44 @@ function mrz_theme_is_editing_content_outside_global_sections() {
 }
 
 /**
- * HTML brut : champ réservé aux comptes qui peuvent publier du HTML non filtré.
+ * HTML brut : réservé aux administrateurs. unfiltered_html seul ne suffit pas : sur un
+ * site simple, les éditeurs l'ont aussi. Les deux droits ensemble excluent aussi les
+ * administrateurs d'un site en multisite.
+ *
+ * @return bool
+ */
+function mrz_theme_can_edit_raw_html() {
+	return current_user_can( 'manage_options' ) && current_user_can( 'unfiltered_html' );
+}
+
+/**
+ * HTML brut : champ masqué pour les autres comptes. Masqué, il n'est pas envoyé avec la
+ * page : ACF garde le code déjà enregistré.
  *
  * @param array $field Champ.
  * @return array|false
  */
 function mrz_theme_restrict_html_field( $field ) {
-	return current_user_can( 'unfiltered_html' ) ? $field : false;
+	return mrz_theme_can_edit_raw_html() ? $field : false;
 }
 add_filter( 'acf/prepare_field/key=field_mrz_html_code', 'mrz_theme_restrict_html_field' );
+
+/**
+ * HTML brut : un compte connecté sans le droit qui enverrait quand même le champ (requête
+ * fabriquée) voit son code filtré, scripts retirés. Sans compte connecté (code du site,
+ * WP-CLI), la valeur passe telle quelle.
+ *
+ * @param mixed $value Valeur envoyée.
+ * @return mixed
+ */
+function mrz_theme_filter_html_field_value( $value ) {
+	if ( ! is_user_logged_in() || mrz_theme_can_edit_raw_html() ) {
+		return $value;
+	}
+
+	return wp_kses_post( (string) $value );
+}
+add_filter( 'acf/update_value/key=field_mrz_html_code', 'mrz_theme_filter_html_field_value' );
 
 /**
  * Éditeurs de texte des sections : moins hauts (150px au lieu de 300px), ils grandissent
