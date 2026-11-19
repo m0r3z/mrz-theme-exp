@@ -277,7 +277,7 @@ function mrz_theme_heading_tag( $tag ) {
 }
 
 /**
- * Texte d'un titre : seuls <em> (mot en couleur, --mrz-title-highlight-color) et <br> passent.
+ * Texte d'un titre : seuls <em> (mot en couleur, --mrz-title-highlight-color), <strong> et <br> passent.
  *
  * @param string $title Titre saisi.
  * @return string HTML sûr.
@@ -286,8 +286,9 @@ function mrz_theme_title_html( $title ) {
 	return wp_kses(
 		(string) $title,
 		array(
-			'em' => array(),
-			'br' => array(),
+			'em'     => array(),
+			'strong' => array(),
+			'br'     => array(),
 		)
 	);
 }

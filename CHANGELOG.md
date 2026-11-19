@@ -5,6 +5,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Titres des sections : `<strong>` passe, en plus de `<em>` et `<br>`.
 - Variables d'espacement du texte (`.mrz-prose`) : `--mrz-prose-space`, `--mrz-prose-h2-space`, `--mrz-prose-h3-space`, `--mrz-prose-h4-space`. Mêmes valeurs qu'avant, rendu inchangé.
 - Classe `mrz-icon-image` : une icône en image (SVG noir) posée dans un contenu prend la couleur principale, avec `mx-auto` pour la centrer.
 - Admin, constructeur : les réglages de chaque section (fond, espacements, largeur, hauteur, image, animation…) sont repliés derrière un interrupteur à côté de « Réglages de la section ». Affichage seulement : les réglages sont enregistrés tels quels, interrupteur ouvert ou non. Vaut aussi pour les sections de l'enfant qui clonent ces réglages.

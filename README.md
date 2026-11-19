@@ -111,7 +111,7 @@ Le Texte libre a aussi :
 - un surtitre (petite ligne au-dessus du titre) et un alignement à gauche ou centré ;
 - deux boutons facultatifs, plein et à contour, sous le texte.
 
-Dans les titres des sections du parent, `<em>mot</em>` met un mot en couleur et `<br>` force un retour à la ligne.
+Dans les titres des sections du parent, `<em>mot</em>` met un mot en couleur, `<strong>` le met en gras et `<br>` force un retour à la ligne.
 
 Les Cartes ont un nombre de cartes par ligne propre à la section (automatique, 2, 3, 4) et un style « chiffres clés » : le titre de la carte est le chiffre, affiché en grand, le texte sert de libellé. En option, les chiffres montent depuis 0 quand les cartes arrivent à l'écran (compteur).
 
