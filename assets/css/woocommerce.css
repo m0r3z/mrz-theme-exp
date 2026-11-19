@@ -919,6 +919,158 @@
 }
 
 /*
+ * Disposition des images (Customizer > MRZ Theme > Boutique, inc/woocommerce.php).
+ * Largeur de la colonne de miniatures : --mrz-product-thumbs-width (5 rem).
+ * Sur mobile, toutes les dispositions reviennent aux miniatures dessous (ou au glissé).
+ */
+@media (min-width: 769px) {
+	/* Diaporama, miniatures à gauche ou à droite : colonne de miniatures à côté de l'image. */
+	.woocommerce div.product div.images:is(.mrz-product-gallery--left, .mrz-product-gallery--right) {
+		display: grid;
+		grid-template-columns: var(--mrz-product-thumbs-width, 5rem) minmax(0, 1fr);
+		gap: var(--mrz-gallery-gap);
+		align-items: start;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--right {
+		grid-template-columns: minmax(0, 1fr) var(--mrz-product-thumbs-width, 5rem);
+	}
+
+	.woocommerce div.product div.images:is(.mrz-product-gallery--left, .mrz-product-gallery--right) .flex-control-thumbs {
+		grid-row: 1;
+		grid-template-columns: minmax(0, 1fr);
+		margin-top: 0;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--left .flex-control-thumbs {
+		grid-column: 1;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--left :is(.flex-viewport, .woocommerce-product-gallery__wrapper) {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--right .flex-control-thumbs {
+		grid-column: 2;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--right :is(.flex-viewport, .woocommerce-product-gallery__wrapper) {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	/* Loupe : sur l'image, pas sur la colonne de miniatures. */
+	.woocommerce div.product div.images.mrz-product-gallery--right .woocommerce-product-gallery__trigger {
+		right: calc(var(--mrz-product-thumbs-width, 5rem) + var(--mrz-gallery-gap) + 0.5em);
+	}
+
+	/* Images empilées : toutes les images à la suite, colonne de miniatures fixe à côté. */
+	.woocommerce div.product div.images[class*="mrz-product-gallery--stacked"] .woocommerce-product-gallery__wrapper:has(.mrz-product-thumbs) {
+		display: grid;
+		grid-template-columns: var(--mrz-product-thumbs-width, 5rem) minmax(0, 1fr);
+		column-gap: var(--mrz-gallery-gap);
+		align-items: start;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--stacked-right .woocommerce-product-gallery__wrapper:has(.mrz-product-thumbs) {
+		grid-template-columns: minmax(0, 1fr) var(--mrz-product-thumbs-width, 5rem);
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--stacked-left .woocommerce-product-gallery__image {
+		grid-column: 2;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--stacked-right .woocommerce-product-gallery__image {
+		grid-column: 1;
+	}
+
+	.woocommerce div.product div.images[class*="mrz-product-gallery--stacked"] .woocommerce-product-gallery__image + .woocommerce-product-gallery__image {
+		margin-top: var(--mrz-gallery-gap);
+	}
+
+	/* Colonne de miniatures : sur toute la hauteur des images, reste à l'écran au défilement. */
+	.mrz-product-thumbs {
+		position: sticky;
+		top: calc(var(--mrz-product-sticky-top, 0px) + 1.5rem);
+		grid-row: 1 / span 30;
+		display: grid;
+		gap: var(--mrz-gallery-gap);
+	}
+
+	.mrz-product-gallery--stacked-left .mrz-product-thumbs {
+		grid-column: 1;
+	}
+
+	.mrz-product-gallery--stacked-right .mrz-product-thumbs {
+		grid-column: 2;
+	}
+
+	.woocommerce div.product div.images.mrz-product-gallery--stacked-right .woocommerce-product-gallery__trigger {
+		right: calc(var(--mrz-product-thumbs-width, 5rem) + var(--mrz-gallery-gap) + 0.5em);
+	}
+
+	/* Le titre, le prix et le bouton restent à l'écran pendant qu'on fait défiler les images. */
+	.woocommerce div.product .mrz-product-main > .summary {
+		position: sticky;
+		top: calc(var(--mrz-product-sticky-top, 0px) + 1.5rem);
+	}
+}
+
+/* Enveloppe des images et de la fiche (images empilées) : contient ses deux colonnes flottantes. */
+.mrz-product-main {
+	display: flow-root;
+}
+
+/* Header collé en haut : les éléments fixes de la fiche passent dessous. */
+.mrz-header-sticky {
+	--mrz-product-sticky-top: calc(var(--mrz-header-height, 0px) + var(--wp-admin--admin-bar--height, 0px));
+}
+
+/* Images empilées : pleine largeur (WooCommerce réduit à 25 % les images après la première). */
+.woocommerce div.product div.images[class*="mrz-product-gallery--stacked"] .woocommerce-product-gallery__image:nth-child(n+2) {
+	display: block;
+	width: auto;
+}
+
+.mrz-product-thumbs a {
+	display: block;
+	border-radius: var(--radius-base);
+	overflow: hidden;
+}
+
+.mrz-product-thumbs img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.woocommerce div.product div.images[class*="mrz-product-gallery--stacked"] .woocommerce-product-gallery__image img {
+	border-radius: var(--radius-base);
+}
+
+/* Images empilées sur mobile : on les fait glisser au doigt, sans miniatures. */
+@media (max-width: 768px) {
+	.woocommerce div.product div.images[class*="mrz-product-gallery--stacked"] .woocommerce-product-gallery__wrapper {
+		display: flex;
+		gap: var(--mrz-gallery-gap);
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+	}
+
+	.woocommerce div.product div.images[class*="mrz-product-gallery--stacked"] .woocommerce-product-gallery__image {
+		flex: 0 0 88%; /* Le bord de l'image suivante dépasse : on voit qu'il y en a d'autres. */
+		scroll-snap-align: start;
+	}
+
+	.mrz-product-thumbs {
+		display: none;
+	}
+}
+
+/*
  * Mon compte : menu en liste de liens (page active marquée, comme le menu du header),
  * à gauche sur grand écran, au-dessus du contenu sur mobile (disposition de WooCommerce).
  */

@@ -197,6 +197,8 @@ Les écrans Compositions et Polices de Gutenberg sont retirés d'Apparence.
 | MRZ Theme > Shop (WooCommerce actif) | Icône du panier : ouvre un panneau à droite, ou mène à la page Panier (toujours le cas sur les pages Panier et Commande) | panneau |
 | | Ajout au panier sans recharger la fiche produit (les listes suivent le réglage de WooCommerce) | oui |
 | | Description, informations complémentaires et avis, en accordéons : à côté des images sous le bouton d'ajout, ou sous les images | à côté des images |
+| | Images du produit : diaporama avec miniatures dessous, à gauche ou à droite, ou images empilées avec miniatures à gauche ou à droite (la fiche reste à l'écran au défilement ; sur mobile, glissé de côté) | diaporama, miniatures dessous |
+| | Zoom au survol de l'image du produit (sans zoom, un clic ouvre l'image en plein écran) | oui |
 | | Produits par ligne (boutique, catégories ; le shortcode `[products]` garde ses colonnes, MRZ Product Filter impose les siennes avec sa barre latérale) ; sur mobile (1 ou 2) | 4, 2 |
 | | Produits similaires : nombre sous la fiche produit, sur une ligne (0 : aucun) | 4 |
 | | Produits par page | 12 |
@@ -353,7 +355,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 4. **Recette sur MRZ-Dev** (bientôt `helloworld.local`, voir plus bas), connecté en administrateur, en desktop et en mobile :
    - la **page d'accueil** de MRZ-Dev, qui sert de recette : titres, texte, listes, boutons et lien fléché sur chaque fond, cartes en grille et en carrousel (flèches, points, pause, glissé au doigt), ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
-   - boutique, fiche produit (galerie, accordéons, + et −), ajout au panier sans rechargement (la pastille se met à jour, le panneau s'ouvre), panneau du panier (clavier, Échap, suppression d'un article, panier vide), panier, commande, compte ;
+   - boutique, fiche produit (galerie dans ses cinq dispositions, zoom, variations, accordéons, + et −), ajout au panier sans rechargement (la pastille se met à jour, le panneau s'ouvre), panneau du panier (clavier, Échap, suppression d'un article, panier vide), panier, commande, compte ;
    - menu mobile (ouverture, Échap, sous-menus), sous-menus desktop (survol, Tab puis Échap, appui sur tablette), recherche du header, footer ;
    - **site sombre** : dans le Customizer, régler « Fond du site » sur une couleur sombre et repasser la page Recette en aperçu, sans publier (texte de chaque fond de section, formulaire dans une section claire, header transparent, image de fond) ;
    - **bilingue** (HelloWorld, Polylang) : sélecteur de langue, footer et section globale insérée à la main dans chaque langue, 404 dans chaque langue ;

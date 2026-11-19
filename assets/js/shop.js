@@ -430,4 +430,34 @@
 		}
 	} );
 	openDetailsFor( window.location.hash );
+
+	/*
+	 * Images empilées (sans diaporama) : WooCommerce ne zoome que la première image.
+	 * Les suivantes reçoivent le même zoom, avec ses réglages et ses conditions.
+	 */
+	function zoomStackedImages() {
+		var $ = window.jQuery;
+
+		if ( ! $ ) {
+			return;
+		}
+
+		$( '.woocommerce-product-gallery[class*="mrz-product-gallery--stacked"]' ).each( function () {
+			var gallery = $( this ).data( 'product_gallery' );
+
+			if ( ! gallery || ! gallery.zoom_enabled ) {
+				return;
+			}
+
+			gallery.$images.slice( 1 ).each( function () {
+				gallery.initZoomForTarget( $( this ) );
+			} );
+		} );
+	}
+
+	if ( 'complete' === document.readyState ) {
+		zoomStackedImages();
+	} else {
+		window.addEventListener( 'load', zoomStackedImages );
+	}
 }() );

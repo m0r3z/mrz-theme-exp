@@ -57,6 +57,8 @@ function mrz_theme_option_defaults() {
 		'shop_cart_behavior'        => 'drawer',
 		'shop_ajax_single'          => true,
 		'shop_product_details'      => 'summary',
+		'shop_gallery_layout'       => 'below',
+		'shop_gallery_zoom'         => true,
 		'shop_columns'              => 4,
 		'shop_columns_mobile'       => 2,
 		'shop_per_page'             => 12,

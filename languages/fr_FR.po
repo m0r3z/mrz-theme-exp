@@ -72,7 +72,7 @@ msgstr "Aller au contenu"
 #: inc/customizer.php:241
 #: inc/page-options.php:62
 msgid "MRZ Theme"
-msgstr "MRZ Thème"
+msgstr "MRZ Theme"
 
 #: inc/admin.php:39
 #: inc/admin.php:40
@@ -1600,3 +1600,34 @@ msgstr "Tout déplier"
 
 msgid "Collapse all"
 msgstr "Tout replier"
+
+msgid "Product images"
+msgstr "Images du produit"
+
+msgid "Stacked: every image one under the other, the product details stay on screen while scrolling. On mobile, stacked images are swiped sideways, and side thumbnails go under the image."
+msgstr "Images empilées : toutes les images les unes sous les autres, la fiche du produit reste à l'écran pendant le défilement. Sur mobile, les images empilées se font glisser de côté, et les miniatures placées sur le côté passent sous l'image."
+
+msgid "Slideshow, thumbnails below"
+msgstr "Diaporama, miniatures dessous"
+
+msgid "Slideshow, thumbnails on the left"
+msgstr "Diaporama, miniatures à gauche"
+
+msgid "Slideshow, thumbnails on the right"
+msgstr "Diaporama, miniatures à droite"
+
+msgid "Stacked images, thumbnails on the left"
+msgstr "Images empilées, miniatures à gauche"
+
+msgid "Stacked images, thumbnails on the right"
+msgstr "Images empilées, miniatures à droite"
+
+msgid "Zoom on the product image"
+msgstr "Zoom sur l'image du produit"
+
+msgid "Enlarges the image under the mouse; the magnifier button opens it in full screen. Without zoom, a click on the image opens it in full screen."
+msgstr "Agrandit l'image sous la souris ; la loupe l'ouvre en plein écran. Sans zoom, un clic sur l'image l'ouvre en plein écran."
+
+#. translators: %d: image number.
+msgid "Image %d"
+msgstr "Image %d"

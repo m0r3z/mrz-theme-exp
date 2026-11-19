@@ -5,6 +5,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ## [Non publié]
 
 ### Ajouté
+- Fiche produit : réglage « Images du produit » (Customizer > MRZ Theme > Boutique). Diaporama avec miniatures dessous (comme avant), à gauche ou à droite, ou images empilées avec une colonne de miniatures à gauche ou à droite : un clic sur une miniature mène à l'image, la fiche reste à l'écran au défilement, et sur mobile les images se font glisser de côté. Variable `--mrz-product-thumbs-width`.
+- Fiche produit : réglage du zoom au survol de l'image. Sans zoom, un clic ouvre l'image en plein écran.
 - Titres des sections : `<strong>` passe, en plus de `<em>` et `<br>`.
 - Variables d'espacement du texte (`.mrz-prose`) : `--mrz-prose-space`, `--mrz-prose-h2-space`, `--mrz-prose-h3-space`, `--mrz-prose-h4-space`. Mêmes valeurs qu'avant, rendu inchangé.
 - Classe `mrz-icon-image` : une icône en image (SVG noir) posée dans un contenu prend la couleur principale, avec `mx-auto` pour la centrer.

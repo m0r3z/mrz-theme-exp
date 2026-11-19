@@ -127,6 +127,35 @@ function mrz_theme_shop_customize_register( $wp_customize ) {
 		)
 	);
 
+	mrz_theme_add_setting( $wp_customize, 'shop_gallery_layout', 'mrz_theme_sanitize_choice' );
+	$wp_customize->add_control(
+		'mrz_shop_gallery_layout',
+		array(
+			'label'       => __( 'Product images', 'mrz-theme-exp' ),
+			'description' => __( 'Stacked: every image one under the other, the product details stay on screen while scrolling. On mobile, stacked images are swiped sideways, and side thumbnails go under the image.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_shop',
+			'type'        => 'radio',
+			'choices'     => array(
+				'below'         => __( 'Slideshow, thumbnails below', 'mrz-theme-exp' ),
+				'left'          => __( 'Slideshow, thumbnails on the left', 'mrz-theme-exp' ),
+				'right'         => __( 'Slideshow, thumbnails on the right', 'mrz-theme-exp' ),
+				'stacked-left'  => __( 'Stacked images, thumbnails on the left', 'mrz-theme-exp' ),
+				'stacked-right' => __( 'Stacked images, thumbnails on the right', 'mrz-theme-exp' ),
+			),
+		)
+	);
+
+	mrz_theme_add_setting( $wp_customize, 'shop_gallery_zoom', 'mrz_theme_sanitize_checkbox' );
+	$wp_customize->add_control(
+		'mrz_shop_gallery_zoom',
+		array(
+			'label'       => __( 'Zoom on the product image', 'mrz-theme-exp' ),
+			'description' => __( 'Enlarges the image under the mouse; the magnifier button opens it in full screen. Without zoom, a click on the image opens it in full screen.', 'mrz-theme-exp' ),
+			'section'     => 'mrz_shop',
+			'type'        => 'checkbox',
+		)
+	);
+
 	mrz_theme_add_setting( $wp_customize, 'shop_columns', 'absint' );
 	$wp_customize->add_control(
 		'mrz_shop_columns',
@@ -339,6 +368,151 @@ function mrz_theme_product_details_setup() {
 	}
 }
 add_action( 'wp', 'mrz_theme_product_details_setup' );
+
+/**
+ * Disposition des images de la fiche produit (Customizer > MRZ Theme > Boutique).
+ *
+ * @return string below | left | right | stacked-left | stacked-right
+ */
+function mrz_theme_product_gallery_layout() {
+	$layout = (string) mrz_theme_option( 'shop_gallery_layout' );
+
+	return in_array( $layout, array( 'left', 'right', 'stacked-left', 'stacked-right' ), true ) ? $layout : 'below';
+}
+
+/**
+ * Images empilées : vrai pour stacked-left et stacked-right.
+ *
+ * @return bool
+ */
+function mrz_theme_product_gallery_is_stacked() {
+	return 0 === strpos( mrz_theme_product_gallery_layout(), 'stacked' );
+}
+
+/**
+ * Classe de la disposition sur la galerie : le CSS (woocommerce.css) s'y accroche.
+ *
+ * @param array $classes Classes de la galerie.
+ * @return array
+ */
+function mrz_theme_product_gallery_classes( $classes ) {
+	$classes[] = 'mrz-product-gallery--' . mrz_theme_product_gallery_layout();
+
+	return $classes;
+}
+add_filter( 'woocommerce_single_product_image_gallery_classes', 'mrz_theme_product_gallery_classes' );
+
+/**
+ * Images empilées : sans le diaporama, WooCommerce affiche toutes les images à la suite.
+ *
+ * @param bool $enabled Diaporama activé.
+ * @return bool
+ */
+function mrz_theme_product_gallery_slider( $enabled ) {
+	return mrz_theme_product_gallery_is_stacked() ? false : $enabled;
+}
+add_filter( 'woocommerce_single_product_flexslider_enabled', 'mrz_theme_product_gallery_slider' );
+
+/**
+ * Images empilées : sans diaporama, WooCommerce affiche les images après la première
+ * dans la taille des miniatures. Toutes prennent la taille de la grande image.
+ *
+ * @param string|array $size Taille des images de la galerie.
+ * @return string|array
+ */
+function mrz_theme_product_gallery_image_size( $size ) {
+	return is_product() && mrz_theme_product_gallery_is_stacked() ? 'woocommerce_single' : $size;
+}
+add_filter( 'woocommerce_gallery_image_size', 'mrz_theme_product_gallery_image_size' );
+
+/**
+ * Images empilées : les images et la fiche sont enveloppées ensemble. La fiche, fixe au
+ * défilement, s'arrête au bas des images au lieu de passer sur les produits similaires
+ * et les informations placées sous la fiche (tous dans div.product).
+ */
+function mrz_theme_product_main_open() {
+	if ( mrz_theme_product_gallery_is_stacked() ) {
+		echo '<div class="mrz-product-main">';
+	}
+}
+add_action( 'woocommerce_before_single_product_summary', 'mrz_theme_product_main_open', 1 );
+
+/**
+ * Ferme l'enveloppe ouverte par mrz_theme_product_main_open(), avant les accordéons
+ * placés sous la fiche (10), les ventes croisées (15) et les produits similaires (20).
+ */
+function mrz_theme_product_main_close() {
+	if ( mrz_theme_product_gallery_is_stacked() ) {
+		echo '</div>';
+	}
+}
+add_action( 'woocommerce_after_single_product_summary', 'mrz_theme_product_main_close', 1 );
+
+/**
+ * Zoom au survol de l'image : réglage du Customizer. La loupe (plein écran) reste.
+ *
+ * @param bool $enabled Zoom activé.
+ * @return bool
+ */
+function mrz_theme_product_gallery_zoom( $enabled ) {
+	return $enabled && (bool) mrz_theme_option( 'shop_gallery_zoom' );
+}
+add_filter( 'woocommerce_single_product_zoom_enabled', 'mrz_theme_product_gallery_zoom' );
+
+/**
+ * Images empilées : chaque image reçoit une ancre (#mrz-product-image-1…), cible des
+ * miniatures. Les identifiants sont gardés pour mrz_theme_product_gallery_thumbs().
+ *
+ * @param string $html          Balisage d'une image de la galerie.
+ * @param int    $attachment_id Image.
+ * @return string
+ */
+function mrz_theme_product_gallery_anchor( $html, $attachment_id ) {
+	if ( ! is_product() || ! mrz_theme_product_gallery_is_stacked() || ! $attachment_id ) {
+		return $html;
+	}
+
+	$GLOBALS['mrz_theme_product_images'][] = (int) $attachment_id;
+	$anchor                               = 'mrz-product-image-' . count( $GLOBALS['mrz_theme_product_images'] );
+
+	return preg_replace( '/^\s*<div /', '<div id="' . esc_attr( $anchor ) . '" ', $html, 1 );
+}
+add_filter( 'woocommerce_single_product_image_thumbnail_html', 'mrz_theme_product_gallery_anchor', 10, 2 );
+
+/**
+ * Images empilées : colonne de miniatures, de simples liens vers chaque image (sans JS).
+ * Après les images de la galerie (woocommerce_show_product_thumbnails, priorité 20),
+ * seulement à partir de deux images.
+ */
+function mrz_theme_product_gallery_thumbs() {
+	$images = $GLOBALS['mrz_theme_product_images'] ?? array();
+
+	if ( ! mrz_theme_product_gallery_is_stacked() || count( $images ) < 2 ) {
+		return;
+	}
+
+	echo '<nav class="mrz-product-thumbs" aria-label="' . esc_attr__( 'Product images', 'mrz-theme-exp' ) . '">';
+	foreach ( $images as $index => $image_id ) {
+		printf(
+			'<a href="#mrz-product-image-%1$d">%2$s</a>',
+			(int) $index + 1,
+			wp_get_attachment_image(
+				$image_id,
+				'woocommerce_gallery_thumbnail',
+				false,
+				array(
+					/* translators: %d: image number. */
+					'alt'     => sprintf( __( 'Image %d', 'mrz-theme-exp' ), (int) $index + 1 ),
+					'loading' => 'lazy',
+				)
+			)
+		);
+	}
+	echo '</nav>';
+
+	$GLOBALS['mrz_theme_product_images'] = array();
+}
+add_action( 'woocommerce_product_thumbnails', 'mrz_theme_product_gallery_thumbs', 30 );
 
 /**
  * Accordéons de la fiche produit : même balisage et mêmes variables

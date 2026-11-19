@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-19T14:49:37+00:00\n"
+"POT-Creation-Date: 2026-11-19T15:33:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mrz-theme-exp\n"
@@ -137,7 +137,7 @@ msgstr ""
 #: inc/builder-sections.php:226
 #: inc/builder-sections.php:271
 #: inc/builder-sections.php:688
-#: inc/woocommerce.php:218
+#: inc/woocommerce.php:247
 msgid "None"
 msgstr ""
 
@@ -1315,7 +1315,7 @@ msgid "Image viewer"
 msgstr ""
 
 #: inc/lightbox.php:33
-#: inc/woocommerce.php:444
+#: inc/woocommerce.php:583
 msgid "Close"
 msgstr ""
 
@@ -1362,15 +1362,15 @@ msgstr ""
 msgid "Not transparent"
 msgstr ""
 
-#: inc/setup.php:44
+#: inc/setup.php:55
 msgid "Primary menu"
 msgstr ""
 
-#: inc/setup.php:45
+#: inc/setup.php:56
 msgid "Secondary menu (header, right)"
 msgstr ""
 
-#: inc/setup.php:46
+#: inc/setup.php:57
 msgid "Mobile menu (falls back to primary)"
 msgstr ""
 
@@ -1397,7 +1397,7 @@ msgid "My account"
 msgstr ""
 
 #: inc/template-tags.php:276
-#: inc/woocommerce.php:474
+#: inc/woocommerce.php:613
 msgid "Cart"
 msgstr ""
 
@@ -1479,114 +1479,157 @@ msgid "Under the images, full width"
 msgstr ""
 
 #: inc/woocommerce.php:134
-msgid "Products per row"
+#: inc/woocommerce.php:459
+msgid "Product images"
 msgstr ""
 
 #: inc/woocommerce.php:135
-msgid "Shop and categories. The [products] shortcode keeps its own columns."
+msgid "Stacked: every image one under the other, the product details stay on screen while scrolling. On mobile, stacked images are swiped sideways, and side thumbnails go under the image."
 msgstr ""
 
-#: inc/woocommerce.php:149
-msgid "Products per row on mobile"
+#: inc/woocommerce.php:139
+msgid "Slideshow, thumbnails below"
+msgstr ""
+
+#: inc/woocommerce.php:140
+msgid "Slideshow, thumbnails on the left"
+msgstr ""
+
+#: inc/woocommerce.php:141
+msgid "Slideshow, thumbnails on the right"
+msgstr ""
+
+#: inc/woocommerce.php:142
+msgid "Stacked images, thumbnails on the left"
+msgstr ""
+
+#: inc/woocommerce.php:143
+msgid "Stacked images, thumbnails on the right"
+msgstr ""
+
+#: inc/woocommerce.php:152
+msgid "Zoom on the product image"
+msgstr ""
+
+#: inc/woocommerce.php:153
+msgid "Enlarges the image under the mouse; the magnifier button opens it in full screen. Without zoom, a click on the image opens it in full screen."
 msgstr ""
 
 #: inc/woocommerce.php:163
-msgid "Products per page"
+msgid "Products per row"
 msgstr ""
 
-#: inc/woocommerce.php:177
-msgid "Related products"
+#: inc/woocommerce.php:164
+msgid "Shop and categories. The [products] shortcode keeps its own columns."
 msgstr ""
 
 #: inc/woocommerce.php:178
-msgid "Number shown under the product page, on one row. 0: none."
+msgid "Products per row on mobile"
 msgstr ""
 
 #: inc/woocommerce.php:192
+msgid "Products per page"
+msgstr ""
+
+#: inc/woocommerce.php:206
+msgid "Related products"
+msgstr ""
+
+#: inc/woocommerce.php:207
+msgid "Number shown under the product page, on one row. 0: none."
+msgstr ""
+
+#: inc/woocommerce.php:221
 msgid "Sorting menu"
 msgstr ""
 
-#: inc/woocommerce.php:202
+#: inc/woocommerce.php:231
 msgid "Number of results"
 msgstr ""
 
-#: inc/woocommerce.php:212
+#: inc/woocommerce.php:241
 msgid "Sale badge"
 msgstr ""
 
-#: inc/woocommerce.php:216
+#: inc/woocommerce.php:245
 msgid "Text (\"Sale!\")"
 msgstr ""
 
-#: inc/woocommerce.php:217
+#: inc/woocommerce.php:246
 msgid "Discount (\"-20%\")"
 msgstr ""
 
-#: inc/woocommerce.php:227
+#: inc/woocommerce.php:256
 msgid "Plus and minus buttons around the quantity"
 msgstr ""
 
 #. translators: %d: réduction en pourcentage.
-#: inc/woocommerce.php:310
+#: inc/woocommerce.php:339
 #, php-format
 msgid "-%d%%"
 msgstr ""
 
-#: inc/woocommerce.php:445
+#. translators: %d: image number.
+#: inc/woocommerce.php:470
+#, php-format
+msgid "Image %d"
+msgstr ""
+
+#: inc/woocommerce.php:584
 msgid "out of stock"
 msgstr ""
 
 #. translators: %s: couleur choisie, après le libellé de l'attribut (« Couleur : Moutarde »).
-#: inc/woocommerce.php:447
+#: inc/woocommerce.php:586
 #, php-format
 msgid ": %s"
 msgstr ""
 
-#: inc/woocommerce.php:448
-#: inc/woocommerce.php:580
+#: inc/woocommerce.php:587
+#: inc/woocommerce.php:719
 msgid "Decrease quantity"
 msgstr ""
 
-#: inc/woocommerce.php:449
-#: inc/woocommerce.php:585
+#: inc/woocommerce.php:588
+#: inc/woocommerce.php:724
 msgid "Increase quantity"
 msgstr ""
 
-#: inc/woocommerce.php:450
+#: inc/woocommerce.php:589
 msgid "The product could not be added to the cart. Please try again."
 msgstr ""
 
-#: inc/woocommerce.php:477
+#: inc/woocommerce.php:616
 msgid "Close the cart"
 msgstr ""
 
-#: inc/woocommerce.php:495
+#: inc/woocommerce.php:634
 msgid "Continue shopping"
 msgstr ""
 
 #. translators: %s: nom du produit.
-#: inc/woocommerce.php:584
+#: inc/woocommerce.php:723
 #, php-format
 msgid "Quantity of %s"
 msgstr ""
 
-#: inc/woocommerce.php:730
+#: inc/woocommerce.php:869
 msgid "Don’t have an account yet?"
 msgstr ""
 
-#: inc/woocommerce.php:732
+#: inc/woocommerce.php:871
 msgid "Sign up"
 msgstr ""
 
-#: inc/woocommerce.php:743
+#: inc/woocommerce.php:882
 msgid "Already have an account?"
 msgstr ""
 
-#: inc/woocommerce.php:745
+#: inc/woocommerce.php:884
 msgid "Log in"
 msgstr ""
 
-#: inc/woocommerce.php:761
+#: inc/woocommerce.php:900
 msgid "Back to log in"
 msgstr ""
 
