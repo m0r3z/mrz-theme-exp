@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.9.0] - 2026-11-19
+
 ### Ajouté
 - Échelle des espaces en huit niveaux, `--mrz-space-2xs` à `--mrz-space-3xl` (0,25 à 4 rem). Les variables des composants et les marges, paddings et écarts du CSS en partent quand leur valeur correspond : rendu inchangé. Les tailles de composant (boutons, zones de clic, places d'icônes) restent hors échelle.
 - Fiche produit : réglage « Images du produit » (Customizer > MRZ Theme > Boutique). Diaporama avec miniatures dessous (comme avant), à gauche ou à droite, ou images empilées avec une colonne de miniatures à gauche ou à droite : un clic sur une miniature mène à l'image, la fiche reste à l'écran au défilement, et sur mobile les images se font glisser de côté. Variable `--mrz-product-thumbs-width`.
