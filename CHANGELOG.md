@@ -20,6 +20,7 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 - Animations au défilement, en remontant : l'élément disparaît dès que son haut repasse sous une ligne à 30 % du bas de l'écran, pendant qu'il est encore bien visible, au lieu d'attendre qu'il soit presque sorti de l'écran. L'apparition, en descendant, ne change pas (ligne à 10 % du bas).
 
 ### Corrigé
+- Menu desktop : en passant d'un élément à un autre, le sous-menu ouvert se ferme tout de suite, même s'il a gardé le focus après un clic. Plus jamais deux sous-menus l'un sur l'autre.
 - Admin : les boutons « Tout déplier » et « Tout replier » du constructeur sont traduits (absents de la traduction française d'ACF 6.8).
 - Admin : le réglage Dégradé ne remonte plus à droite de la vidéo de fond : ses trois champs tiennent sur une ligne.
 - Accordéon en cascade : ses éléments et les paragraphes de ses réponses apparaissaient un par un au défilement, et certains restaient invisibles en laissant un grand vide. Plus aucune animation au défilement dans un accordéon.

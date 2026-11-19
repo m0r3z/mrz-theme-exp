@@ -328,6 +328,21 @@
 		transform: rotate(-90deg);
 	}
 
+	/*
+	 * Survol d'un autre élément du même niveau : le sous-menu ouvert se ferme tout de suite,
+	 * sans le délai de fermeture, même s'il garde le focus (après un clic). Jamais deux ouverts.
+	 */
+	.mrz-menu:has(> li:hover) > li:not(:hover) > .sub-menu,
+	.mrz-menu .sub-menu:has(> li:hover) > li:not(:hover) > .sub-menu {
+		opacity: 0;
+		visibility: hidden;
+		transition: none;
+	}
+
+	.mrz-menu:has(> li:hover) > li:not(:hover) > a::after {
+		transform: none;
+	}
+
 	/* Échap : le sous-menu se ferme même si le focus reste sur son lien parent. */
 	.mrz-menu li.is-closed > .sub-menu {
 		opacity: 0;
