@@ -32,7 +32,18 @@ function mrz_theme_setup() {
 	);
 
 	// WooCommerce : déclaré même si le plugin est inactif, sans effet dans ce cas.
-	add_theme_support( 'woocommerce' );
+	// Tailles des images produit, doublées pour les écrans haute densité : vignette de la liste
+	// (4 colonnes d'environ 300 px), grande image de la fiche (environ 600 px), miniatures de la
+	// galerie (environ 100 px). Déclarées ici, elles disparaissent du Customizer ; le format des
+	// vignettes (carré, d'origine, personnalisé) y reste.
+	add_theme_support(
+		'woocommerce',
+		array(
+			'thumbnail_image_width'         => 600,
+			'single_image_width'            => 1200,
+			'gallery_thumbnail_image_width' => 200,
+		)
+	);
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );

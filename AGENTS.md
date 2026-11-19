@@ -206,6 +206,7 @@ Aucune surcharge de template. `woocommerce.php` + hooks dans `inc/woocommerce.ph
 - Conventions WordPress, échappement de toutes les sorties, `wp_enqueue_*` pour tous les assets.
 - JS vanilla, sans jQuery, dans `assets/js/` (pas de build JS).
 - Icônes SVG dans `assets/icons/`, affichées avec `mrz_theme_icon( 'nom' )` (en ligne, `fill="currentColor"`). L'enfant remplace une icône par un fichier du même nom dans son `assets/icons/`.
+- Tailles d'images : le thème n'en ajoute aucune. Il déclare seulement celles de WooCommerce (`inc/setup.php` : vignette 600, fiche 1200, galerie 200). Les templates appellent `medium`, `medium_large`, `large` et `full` ; une taille absente est remplacée par `full`. Le tri des tailles générées (plafond à 1920 px, seulement 768 px et WooCommerce) relève du mu-plugin d'agence `aa-images`, pas du thème.
 - Surcharges depuis l'enfant : mêmes chemins (`layouts/`, `parts/`), en dernier recours (la copie ne reçoit plus les corrections du parent). Préférer les hooks :
   - `mrz_header_tools_start`, `mrz_header_tools_end` : dans le header, avant et après les outils (recherche, compte, panier), pour un téléphone ou une icône. Un bouton avec un texte passe plutôt par le menu secondaire (texte traduit avec les menus) : l'enfant n'a pas de fichier de traduction ;
   - `mrz_mobile_menu_end` : en bas du menu mobile (aussi emplacement de section globale) ;
