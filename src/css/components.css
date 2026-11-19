@@ -331,9 +331,10 @@
 	/*
 	 * Survol d'un autre élément du même niveau : le sous-menu ouvert se ferme tout de suite,
 	 * sans le délai de fermeture, même s'il garde le focus (après un clic). Jamais deux ouverts.
+	 * Pas dans un mega menu : ses colonnes sont toutes affichées en même temps.
 	 */
 	.mrz-menu:has(> li:hover) > li:not(:hover) > .sub-menu,
-	.mrz-menu .sub-menu:has(> li:hover) > li:not(:hover) > .sub-menu {
+	.mrz-menu > li:not(.mrz-megamenu) .sub-menu:has(> li:hover) > li:not(:hover) > .sub-menu {
 		opacity: 0;
 		visibility: hidden;
 		transition: none;
