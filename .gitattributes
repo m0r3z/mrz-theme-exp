@@ -3,3 +3,7 @@
 .gitignore export-ignore
 package.json export-ignore
 package-lock.json export-ignore
+# Sources Tailwind : les sites reçoivent seulement dist/main.css, déjà compilé.
+src/ export-ignore
+# AGENTS.md, docs/ et README.md restent dans le zip : l'AGENTS.md de chaque enfant
+# renvoie à ../mrz-theme-exp/AGENTS.md et à ses fiches docs/ia/ sur le site.

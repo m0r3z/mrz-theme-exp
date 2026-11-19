@@ -7,6 +7,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ### Sécurité
 - Section « HTML brut » : réservée aux administrateurs (`manage_options` et `unfiltered_html`). Avant, le droit `unfiltered_html` suffisait, et les éditeurs l'ont sur un site simple : ils pouvaient poser un script. Un compte sans le droit qui envoie quand même le champ voit son code filtré (`wp_kses_post()`). Le code déjà enregistré ne change pas.
 
+### Modifié
+- Zip des mises à jour : les sources Tailwind (`src/`) n'y sont plus, les sites n'utilisent que `dist/main.css`.
+
 ## [0.9.0] - 2026-11-19
 
 ### Ajouté
