@@ -358,6 +358,15 @@
 }
 
 
+/* Fiche produit : référence, catégories, étiquettes et marque, une par ligne. */
+.woocommerce div.product .product_meta > span {
+	display: block;
+}
+
+.woocommerce div.product .product_meta > span + span {
+	margin-top: 0.25rem;
+}
+
 /*
  * Fiche produit : description, informations complémentaires et avis en accordéons
  * (classes et variables --mrz-accordion-* de la section Accordéon).
