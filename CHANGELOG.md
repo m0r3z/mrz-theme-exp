@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.9.1] - 2026-11-19
+
 ### Sécurité
 - Section « HTML brut » : réservée aux administrateurs (`manage_options` et `unfiltered_html`). Avant, le droit `unfiltered_html` suffisait, et les éditeurs l'ont sur un site simple : ils pouvaient poser un script. Un compte sans le droit qui envoie quand même le champ voit son code filtré (`wp_kses_post()`). Le code déjà enregistré ne change pas.
 
