@@ -115,7 +115,7 @@
 		top: 1rem;
 		left: 1rem;
 		z-index: 1000;
-		padding: 0.75rem 1rem;
+		padding: var(--mrz-space-sm) var(--mrz-space-md);
 		background: var(--color-background);
 		color: var(--color-text);
 		border-radius: var(--radius-base);
@@ -124,12 +124,12 @@
 	/* Classes d'alignement de WordPress (images de l'éditeur classique). */
 	.alignleft {
 		float: left;
-		margin: 0.25rem 1.5rem 1rem 0;
+		margin: var(--mrz-space-2xs) var(--mrz-space-lg) var(--mrz-space-md) 0;
 	}
 
 	.alignright {
 		float: right;
-		margin: 0.25rem 0 1rem 1.5rem;
+		margin: var(--mrz-space-2xs) 0 var(--mrz-space-md) var(--mrz-space-lg);
 	}
 
 	.aligncenter {
@@ -140,6 +140,6 @@
 	.wp-caption-text {
 		font-size: 0.875rem;
 		color: var(--color-muted);
-		margin-top: 0.5rem;
+		margin-top: var(--mrz-space-xs);
 	}
 }

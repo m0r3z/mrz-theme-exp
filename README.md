@@ -229,6 +229,7 @@ Le reste se règle en redéfinissant les variables dans le `:root` du `style.css
 | `--font-accent` | Troisième police, facultative (mono, manuscrite…) | police du texte |
 | `--radius-base` / `--radius-button` | Arrondi des cartes et images / des boutons | `10px` / `999px` |
 | `--spacing-section`, `-sm`, `-lg` | Espacement vertical des sections : normal, compact, large | `6rem`, `3rem`, `9rem` |
+| `--mrz-space-2xs` à `--mrz-space-3xl` | Échelle des marges, paddings et écarts des composants, en huit niveaux | `0.25rem`, `0.5rem`, `0.75rem`, `1rem`, `1.5rem`, `2rem`, `3rem`, `4rem` |
 | `--mrz-h1` à `--mrz-h6` | Tailles des titres | valeurs fluides |
 | `--mrz-button-*`, `--mrz-field-*`, `--mrz-label-*` | Boutons, champs et libellés, les mêmes partout (thème, Gravity Forms, WooCommerce) | voir `tokens.css` |
 | `--mrz-menu-font-family`, `-font-size`, `-font-weight`, `-text-transform`, `-letter-spacing` | Police, taille, graisse, casse et espacement des menus | police du texte, `1rem`, `500`, aucune, aucun |

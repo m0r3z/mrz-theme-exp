@@ -59,6 +59,21 @@
 
 /* Variables propres au thème (pas de classes Tailwind associées). */
 :root {
+	/*
+	 * Échelle des espaces : marges, paddings et écarts de tous les composants partent
+	 * de ces huit niveaux. Le thème enfant règle le rythme de tout le site ici ; la
+	 * variable d'un composant (--mrz-card-gap…) reste là pour le régler à part.
+	 * Espace des sections : --spacing-section, -sm, -lg (plus haut).
+	 */
+	--mrz-space-2xs: 0.25rem;
+	--mrz-space-xs: 0.5rem;
+	--mrz-space-sm: 0.75rem;
+	--mrz-space-md: 1rem;
+	--mrz-space-lg: 1.5rem;
+	--mrz-space-xl: 2rem;
+	--mrz-space-2xl: 3rem;
+	--mrz-space-3xl: 4rem;
+
 	/* Texte : trois tailles, à réutiliser partout (jamais de taille en dur). */
 	--mrz-body-size: 1.0625rem;
 	--mrz-body-line-height: 1.6;
@@ -133,8 +148,8 @@
 	 * définir --mrz-field-bg, --mrz-field-color ou --mrz-field-border dans l'enfant.
 	 */
 	--mrz-field-font-size: 1rem;
-	--mrz-field-padding-y: 0.75rem;
-	--mrz-field-padding-x: 1rem;
+	--mrz-field-padding-y: var(--mrz-space-sm);
+	--mrz-field-padding-x: var(--mrz-space-md);
 	--mrz-field-padding: var(--mrz-field-padding-y) var(--mrz-field-padding-x);
 	--mrz-field-border-focus: var(--mrz-focus-color);
 	--mrz-field-radius: var(--radius-base);
@@ -151,7 +166,7 @@
 
 	/* Carrousel (mrz_theme_carousel_open) : cartes visibles, décimales acceptées (3.5 montre la moitié de la suivante). */
 	--mrz-carousel-per-view: 1;
-	--mrz-carousel-gap: 1.5rem;
+	--mrz-carousel-gap: var(--mrz-space-lg);
 	--mrz-carousel-button-size: 2.75rem; /* 44px : cible tactile confortable */
 	/* --mrz-carousel-button-bg, --mrz-carousel-button-color : fond et couleur des boutons (transparent et texte par défaut). */
 	--mrz-carousel-dot-size: 0.625rem;
@@ -160,8 +175,8 @@
 	--mrz-cards-per-view: 1;
 	--mrz-cards-per-view-md: 2; /* à partir de 640px */
 	--mrz-cards-per-view-lg: 3; /* à partir de 1024px */
-	--mrz-card-padding: 2rem;
-	--mrz-card-gap: 1rem; /* entre l'icône, le titre, le texte et le lien */
+	--mrz-card-padding: var(--mrz-space-xl);
+	--mrz-card-gap: var(--mrz-space-md); /* entre l'icône, le titre, le texte et le lien */
 	--mrz-card-radius: var(--radius-base);
 	--mrz-card-border: 1px solid var(--color-border); /* cartes sans fond */
 	--mrz-card-shadow: none;
@@ -171,16 +186,16 @@
 	/* --mrz-card-media-ratio : format des images des cartes (16 / 9, 1…), recadrées ; format d'origine par défaut. */
 
 	/* Section Texte et média (mrz_split) */
-	--mrz-split-gap: clamp(2rem, 5vw, 5rem);
+	--mrz-split-gap: clamp(var(--mrz-space-xl), 5vw, 5rem);
 	--mrz-split-radius: var(--radius-base); /* coins de l'image et de l'encadré */
-	--mrz-split-box-padding: clamp(1.5rem, 4vw, 3.5rem);
+	--mrz-split-box-padding: clamp(var(--mrz-space-lg), 4vw, 3.5rem);
 	/* --mrz-split-image-ratio : format de l'image (4 / 3, 1…), recadrée ; format d'origine par défaut. */
 
 	/* Section Galerie (mrz_gallery) : images par ligne selon l'écran, grille et carrousel. */
 	--mrz-gallery-per-view: 2;
 	--mrz-gallery-per-view-md: 3; /* à partir de 640px */
 	--mrz-gallery-per-view-lg: 4; /* à partir de 1024px */
-	--mrz-gallery-gap: 1rem;
+	--mrz-gallery-gap: var(--mrz-space-md);
 	--mrz-gallery-radius: var(--radius-base);
 
 	/* Lightbox (images en grand, vidéos) */
@@ -189,15 +204,15 @@
 	--mrz-lightbox-duration: 0.45s; /* fondu à l'ouverture et entre deux images */
 
 	/* Sous-menu d'ancres (mrz_anchors) */
-	--mrz-anchors-padding: 0.75rem; /* haut et bas de la barre (remplace l'espacement de la section) */
-	--mrz-anchors-gap: 2rem;
+	--mrz-anchors-padding: var(--mrz-space-sm); /* haut et bas de la barre (remplace l'espacement de la section) */
+	--mrz-anchors-gap: var(--mrz-space-xl);
 	--mrz-anchors-active-color: var(--mrz-link-color); /* comme le lien actif du menu : principale, ou texte si elle manque de contraste */
 
 	/* Bandeau défilant (mrz_marquee) : durée d'un tour selon la vitesse. */
 	--mrz-marquee-duration-slow: 70s;
 	--mrz-marquee-duration: 45s;
 	--mrz-marquee-duration-fast: 25s;
-	--mrz-marquee-gap: 3rem;
+	--mrz-marquee-gap: var(--mrz-space-2xl);
 	--mrz-marquee-font-size: var(--mrz-h4);
 	--mrz-marquee-logo-height: 2.5rem;
 
@@ -216,12 +231,12 @@
 	--mrz-footer-logo-space: 5rem; /* sous le logo */
 	--mrz-footer-gap: 3.5rem; /* entre la phrase et les colonnes */
 	--mrz-footer-title-size: var(--mrz-h2);
-	--mrz-footer-columns-gap: 3rem 8rem;
+	--mrz-footer-columns-gap: var(--mrz-space-2xl) 8rem;
 	--mrz-footer-heading-size: var(--mrz-h5);
 	--mrz-footer-link-size: var(--mrz-text-sm);
 	--mrz-footer-link-space: 1.25rem; /* entre deux liens */
 	--mrz-footer-social-size: 1.5rem;
-	--mrz-footer-bottom-space: 4rem; /* au-dessus de la ligne du bas */
+	--mrz-footer-bottom-space: var(--mrz-space-3xl); /* au-dessus de la ligne du bas */
 	--mrz-footer-bottom-size: var(--mrz-text-sm);
 	--mrz-footer-bottom-border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
 	--mrz-footer-free-width: 22rem; /* colonne libre (formulaire d'inscription…) */
@@ -258,7 +273,7 @@
 	--mrz-logo-height-mobile: 40px;
 	/* --mrz-logo-height-scrolled : hauteur du logo une fois la page défilée, sur ordinateur (inchangée par défaut). */
 
-	--mrz-header-padding: 1rem; /* espace en haut et en bas du header */
+	--mrz-header-padding: var(--mrz-space-md); /* espace en haut et en bas du header */
 	--mrz-header-max-width: calc(var(--mrz-container) + 2 * var(--mrz-gutter)); /* none : header pleine largeur */
 	--mrz-header-bg: var(--color-background);
 	--mrz-header-color: var(--mrz-title-color, var(--color-text));
@@ -273,7 +288,7 @@
 	 * calcul approché sans JS.
 	 */
 	/* Bandeau au-dessus du header (sections globales « Top bar ») */
-	--mrz-topbar-padding: 0.5rem; /* haut et bas */
+	--mrz-topbar-padding: var(--mrz-space-xs); /* haut et bas */
 	--mrz-topbar-font-size: var(--mrz-text-sm);
 	--mrz-topbar-font-weight: inherit;
 	--mrz-topbar-letter-spacing: normal;
