@@ -1594,3 +1594,9 @@ msgstr "Afficher les réglages de la section"
 
 msgid "One H1 per page."
 msgstr "Un seul H1 par page."
+
+msgid "Expand all"
+msgstr "Tout déplier"
+
+msgid "Collapse all"
+msgstr "Tout replier"

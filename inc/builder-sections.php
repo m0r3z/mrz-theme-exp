@@ -1346,3 +1346,28 @@ function mrz_theme_section_settings_toggle() {
 	<?php
 }
 add_action( 'acf/input/admin_footer', 'mrz_theme_section_settings_toggle' );
+
+/**
+ * Boutons « Expand All » et « Collapse All » du constructeur : absents de la traduction
+ * française d'ACF (6.8). Traduits par le thème tant qu'ACF ne le fait pas.
+ *
+ * @param string $translation Texte traduit.
+ * @param string $text        Texte d'origine.
+ * @return string
+ */
+function mrz_theme_acf_missing_translations( $translation, $text ) {
+	if ( $translation !== $text ) {
+		return $translation;
+	}
+
+	if ( 'Expand All' === $text ) {
+		return __( 'Expand all', 'mrz-theme-exp' );
+	}
+
+	if ( 'Collapse All' === $text ) {
+		return __( 'Collapse all', 'mrz-theme-exp' );
+	}
+
+	return $translation;
+}
+add_filter( 'gettext_acf', 'mrz_theme_acf_missing_translations', 10, 2 );
