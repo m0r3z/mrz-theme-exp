@@ -219,7 +219,7 @@
 	/* Section Accordéon (mrz_accordion) */
 	--mrz-accordion-gap: 0; /* entre deux éléments (0 : éléments séparés par un trait) */
 	--mrz-accordion-border: 1px solid var(--color-border);
-	--mrz-accordion-padding: 1.25rem 0;
+	--mrz-accordion-padding: var(--mrz-space-lg) 0;
 	--mrz-accordion-question-size: var(--mrz-h5);
 	/* --mrz-accordion-question-font-family, --mrz-accordion-question-text-transform : police (des titres) et casse des questions. */
 	--mrz-accordion-icon-size: 1.25rem;
@@ -228,13 +228,13 @@
 
 	/* Section Footer (mrz_footer) */
 	--mrz-footer-logo-height: 4.5rem;
-	--mrz-footer-logo-space: 5rem; /* sous le logo */
-	--mrz-footer-gap: 3.5rem; /* entre la phrase et les colonnes */
+	--mrz-footer-logo-space: var(--mrz-space-3xl); /* sous le logo */
+	--mrz-footer-gap: var(--mrz-space-2xl); /* entre la phrase et les colonnes */
 	--mrz-footer-title-size: var(--mrz-h2);
 	--mrz-footer-columns-gap: var(--mrz-space-2xl) 8rem;
 	--mrz-footer-heading-size: var(--mrz-h5);
 	--mrz-footer-link-size: var(--mrz-text-sm);
-	--mrz-footer-link-space: 1.25rem; /* entre deux liens */
+	--mrz-footer-link-space: var(--mrz-space-lg); /* entre deux liens */
 	--mrz-footer-social-size: 1.5rem;
 	--mrz-footer-bottom-space: var(--mrz-space-3xl); /* au-dessus de la ligne du bas */
 	--mrz-footer-bottom-size: var(--mrz-text-sm);
@@ -326,7 +326,7 @@
 
 	/* Catégories du blog en cartouches */
 	--mrz-blog-category-radius: 999px;
-	--mrz-blog-categories-space: 2.5rem; /* entre les cartouches et les articles */
+	--mrz-blog-categories-space: var(--mrz-space-xl); /* entre les cartouches et les articles */
 
 	/* Hauteur des sections (réglage « Hauteur ») */
 	--mrz-section-height-large: 70svh;
