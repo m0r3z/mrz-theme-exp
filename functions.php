@@ -29,6 +29,7 @@ $mrz_theme_includes = array(
 	'builder-sections',
 	'global-sections',
 	'blog',
+	'search',
 	'woocommerce',
 	'updater',
 );

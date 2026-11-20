@@ -355,7 +355,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 3. **Build** : `npm run build`, commiter, pousser `main`.
 4. **Recette sur MRZ-Dev**, connecté en administrateur, en desktop et en mobile :
    - la **page d'accueil** de MRZ-Dev, qui sert de recette : titres, texte, listes, boutons et lien fléché sur chaque fond, cartes en grille et en carrousel (flèches, points, pause, glissé au doigt), ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
-   - accueil, une page en Texte libre, un article, une catégorie, une recherche, une 404 (vrai statut 404) ;
+   - accueil, une page en Texte libre, un article, une catégorie, une recherche (un mot qui n'est que dans une section trouve la page, avec un extrait), une 404 (vrai statut 404) ;
    - boutique, fiche produit (galerie dans ses cinq dispositions, zoom, variations, accordéons, + et −), ajout au panier sans rechargement (la pastille se met à jour, le panneau s'ouvre), panneau du panier (clavier, Échap, suppression d'un article, panier vide), panier, commande, compte ;
    - menu mobile (ouverture, Échap, sous-menus), sous-menus desktop (survol, Tab puis Échap, appui sur tablette), recherche du header, footer ;
    - **site sombre** : dans le Customizer, régler « Fond du site » sur une couleur sombre et repasser la page Recette en aperçu, sans publier (texte de chaque fond de section, formulaire dans une section claire, header transparent, image de fond) ;

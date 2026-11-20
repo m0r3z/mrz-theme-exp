@@ -4,6 +4,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Ajouté
+- Recherche : la recherche du site trouve les pages construites. Le texte des sections (titres, textes, boutons, éléments des répéteurs, sans les réglages ni les ancres) est recopié sans balises dans une meta cachée, `_mrz_search_text`, à chaque enregistrement du constructeur, `update_field()` compris. Les pages déjà construites sont calculées une fois, à la première page d'admin après la mise à jour. `post_content` et `post_excerpt` ne changent pas.
+- Extrait automatique d'une page construite sans extrait : le début du texte de ses sections (résultats de recherche, listes). Rank Math ne s'en sert pas : la meta description reste à écrire.
+
 ## [0.9.1] - 2026-11-19
 
 ### Sécurité
