@@ -7,6 +7,10 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ### Ajouté
 - Recherche : la recherche du site trouve les pages construites. Le texte des sections (titres, textes, boutons, éléments des répéteurs, sans les réglages ni les ancres) est recopié sans balises dans une meta cachée, `_mrz_search_text`, à chaque enregistrement du constructeur, `update_field()` compris. Les pages déjà construites sont calculées une fois, à la première page d'admin après la mise à jour. `post_content` et `post_excerpt` ne changent pas.
 - Extrait automatique d'une page construite sans extrait : le début du texte de ses sections (résultats de recherche, listes). Rank Math ne s'en sert pas : la meta description reste à écrire.
+- Commande WP-CLI `wp mrz-theme sections` : la référence des sections du parent (noms, clés, types, choix, valeurs par défaut, sous-champs, conditions), lue dans `inc/builder-sections.php`. `--write` écrit `docs/ia/sections.json` (copie Git du thème seulement), `--check` vérifie qu'il est à jour.
+
+### Modifié
+- `docs/ia/sections.md` ne liste plus les champs des sections, tenus à la main : ils sont dans `docs/ia/sections.json`, généré. La fiche garde le rôle de chaque section et les explications.
 
 ## [0.9.1] - 2026-11-19
 

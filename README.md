@@ -352,7 +352,7 @@ Les sites se mettent à jour depuis les releases GitHub du dépôt, grâce à [P
 
 1. **Version** : monter `Version:` dans `style.css` et `MRZ_THEME_VERSION` dans `functions.php`. Premier chiffre si un nom utilisé par les enfants casse (fonction `mrz_theme_*`, classe `.mrz-`, variable, hook, section `mrz_`), deuxième pour un ajout, troisième pour une correction.
 2. **CHANGELOG.md** : déplacer « Non publié » sous le numéro de version, avec la date. Les notes de la release reprennent ce bloc.
-3. **Build** : `npm run build`, commiter, pousser `main`.
+3. **Build** : `npm run build`, et `wp mrz-theme sections --check` (la fiche `docs/ia/sections.json` suit `inc/builder-sections.php` ; sinon `--write` et commiter le JSON). Commiter, pousser `main`.
 4. **Recette sur MRZ-Dev**, connecté en administrateur, en desktop et en mobile :
    - la **page d'accueil** de MRZ-Dev, qui sert de recette : titres, texte, listes, boutons et lien fléché sur chaque fond, cartes en grille et en carrousel (flèches, points, pause, glissé au doigt), ancre sous le header, formulaire, liste MRZ Display Post dans un Texte libre (la liste s'affiche, aucun JSON en clair), MRZ Maps, HTML brut ;
    - accueil, une page en Texte libre, un article, une catégorie, une recherche (un mot qui n'est que dans une section trouve la page, avec un extrait), une 404 (vrai statut 404) ;
@@ -384,8 +384,11 @@ mrz-theme-exp/
 ├── functions.php        chargeur, aucune logique
 ├── inc/                 options, setup, assets, admin, customizer, template-tags,
 │                        builder (moteur), builder-sections (sections du parent),
-│                        global-sections, page-options, blog, modules, carousel, lightbox,
-│                        video, woocommerce, woocommerce-swatches, updater
+│                        global-sections, page-options, blog, search (texte des sections
+│                        pour la recherche et l'extrait), modules, carousel, lightbox,
+│                        video, woocommerce, woocommerce-swatches, updater,
+│                        cli (wp mrz-theme sections, chargé sous WP-CLI seulement)
+├── docs/ia/             fiches pour l'IA ; sections.json généré par wp mrz-theme sections
 ├── acf-json/            groupe de champs des sections globales (emplacement, conditions)
 ├── layouts/             sections du parent : mrz-text, mrz-html, mrz-global-section,
 │                        mrz-cards, mrz-footer, mrz-gallery, mrz-split, mrz-accordion,

@@ -10,7 +10,8 @@ Thème WordPress classique de l'Agence Double A. Le guide d'utilisation est dans
 
 ## Fiches de référence (`docs/ia/`)
 Ce fichier contient les règles. Le détail est dans des fiches, à lire quand la tâche touche leur sujet :
-- `docs/ia/sections.md` : sections du parent, leurs champs, réglages communs (fond, image et vidéo de fond, animations). **À lire avant de construire une page.**
+- `docs/ia/sections.md` : sections du parent, réglages communs (fond, image et vidéo de fond, animations), recherche. **À lire avant de construire une page.**
+- `docs/ia/sections.json` : champs de chaque section et des réglages communs (noms, clés, types, choix, valeurs par défaut), généré depuis `inc/builder-sections.php` par `wp mrz-theme sections --write`. Ne jamais l'écrire à la main. Sur un site, `wp mrz-theme sections` affiche la même référence.
 - `docs/ia/variables.md` : toutes les variables CSS, par famille. **À lire avant d'écrire du CSS dans l'enfant.**
 - `docs/ia/composants.md` : header transparent, options du Customizer, réglages par page, sections globales et footer, transitions, carrousel, lightbox, sous-menus et mega menu, menu mobile.
 - `docs/ia/integrations.md` : plugins MRZ (Display Post, Maps), SVG, Polylang, Gravity Forms, WooCommerce.
@@ -43,7 +44,7 @@ Le thème et chaque site suivent les critères du RGAA : https://accessibilite.n
 - Pas de mention « conforme RGAA » ni de déclaration d'accessibilité sur un site, sauf demande expresse (clients publics soumis à l'obligation légale).
 
 ## Construire une page
-Remplir `mrz_builder` avec `update_field( 'field_mrz_builder', $rows, $post_id )`. Chaque ligne porte `acf_fc_layout`. Sections du parent et leurs champs : `docs/ia/sections.md`. Une section sur mesure seulement pour ce qu'elles ne savent pas faire.
+Remplir `mrz_builder` avec `update_field( 'field_mrz_builder', $rows, $post_id )`. Chaque ligne porte `acf_fc_layout`. Sections du parent : `docs/ia/sections.md`, leurs champs : `docs/ia/sections.json`. Une modification de `inc/builder-sections.php` se commite avec le JSON régénéré. Une section sur mesure seulement pour ce qu'elles ne savent pas faire.
 
 ### Sections sur mesure (thème enfant)
 Une section par rangée de la maquette. Pour en créer une :

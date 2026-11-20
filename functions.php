@@ -37,3 +37,8 @@ $mrz_theme_includes = array(
 foreach ( $mrz_theme_includes as $mrz_theme_file ) {
 	require_once MRZ_THEME_DIR . '/inc/' . $mrz_theme_file . '.php';
 }
+
+// Commandes WP-CLI (wp mrz-theme sections) : rien n'est chargé hors de WP-CLI.
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	require_once MRZ_THEME_DIR . '/inc/cli.php';
+}

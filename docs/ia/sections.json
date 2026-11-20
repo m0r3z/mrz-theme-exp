@@ -1,0 +1,1007 @@
+{
+    "_generated": "Generated from inc/builder-sections.php by \"wp mrz-theme sections --write\". Do not edit by hand.",
+    "builder": {
+        "field_key": "field_mrz_builder",
+        "field_name": "mrz_builder"
+    },
+    "settings": {
+        "name": "settings",
+        "description": "Common settings group, present in every section that has \"settings\": true. Keys below are those of the clone group; in a parent section they read field_<section>_settings_<name> (field_mrz_text_settings_background). Child sections get it by cloning group_mrz_section_settings.",
+        "clone_group": "group_mrz_section_settings",
+        "fields": [
+            {
+                "name": "background",
+                "key": "field_mrz_section_settings_background",
+                "type": "select",
+                "label": "Background",
+                "choices": {
+                    "none": "None",
+                    "light": "Light",
+                    "dark": "Dark",
+                    "primary": "Primary color",
+                    "secondary": "Secondary color",
+                    "tertiary": "Tertiary color",
+                    "quaternary": "Quaternary color"
+                },
+                "default": "none"
+            },
+            {
+                "name": "spacing",
+                "key": "field_mrz_section_settings_spacing",
+                "type": "select",
+                "label": "Spacing",
+                "choices": {
+                    "normal": "Normal",
+                    "compact": "Compact",
+                    "large": "Large",
+                    "none": "None"
+                },
+                "default": "normal"
+            },
+            {
+                "name": "width",
+                "key": "field_mrz_section_settings_width",
+                "type": "select",
+                "label": "Width",
+                "choices": {
+                    "container": "Container",
+                    "narrow": "Narrow (reading width)",
+                    "wide": "Wide",
+                    "full": "Full width"
+                },
+                "default": "container"
+            },
+            {
+                "name": "anchor",
+                "key": "field_mrz_section_settings_anchor",
+                "type": "text",
+                "label": "Anchor"
+            },
+            {
+                "name": "spacing_top",
+                "key": "field_mrz_section_settings_spacing_top",
+                "type": "select",
+                "label": "Top spacing",
+                "choices": {
+                    "inherit": "Same as spacing",
+                    "none": "None",
+                    "compact": "Compact",
+                    "normal": "Normal",
+                    "large": "Large"
+                },
+                "default": "inherit"
+            },
+            {
+                "name": "spacing_bottom",
+                "key": "field_mrz_section_settings_spacing_bottom",
+                "type": "select",
+                "label": "Bottom spacing",
+                "choices": {
+                    "inherit": "Same as spacing",
+                    "none": "None",
+                    "compact": "Compact",
+                    "normal": "Normal",
+                    "large": "Large"
+                },
+                "default": "inherit"
+            },
+            {
+                "name": "height",
+                "key": "field_mrz_section_settings_height",
+                "type": "select",
+                "label": "Height",
+                "choices": {
+                    "auto": "Automatic (content)",
+                    "large": "Large (70% of the screen)",
+                    "screen": "Full screen"
+                },
+                "default": "auto"
+            },
+            {
+                "name": "image_overlay",
+                "key": "field_mrz_section_settings_image_overlay",
+                "type": "select",
+                "label": "Image overlay",
+                "choices": {
+                    "dark": "Dark overlay, light text",
+                    "light": "Light overlay, light text",
+                    "none": "No overlay, section colors"
+                },
+                "default": "dark"
+            },
+            {
+                "name": "background_image",
+                "key": "field_mrz_section_settings_background_image",
+                "type": "image",
+                "label": "Background image",
+                "instructions": "Shown behind the content. On the first section of the page, it loads first (main image of the page).",
+                "return_format": "id"
+            },
+            {
+                "name": "background_video",
+                "key": "field_mrz_section_settings_background_video",
+                "type": "file",
+                "label": "Background video",
+                "instructions": "MP4 or WebM, muted and looped, with a pause button. Always set a background image too: it is shown first, while the video loads, and stays alone on mobile.",
+                "return_format": "id"
+            },
+            {
+                "name": "video_mobile",
+                "key": "field_mrz_section_settings_video_mobile",
+                "type": "true_false",
+                "label": "Video on mobile"
+            },
+            {
+                "name": "gradient",
+                "key": "field_mrz_section_settings_gradient",
+                "type": "true_false",
+                "label": "Gradient"
+            },
+            {
+                "name": "gradient_to",
+                "key": "field_mrz_section_settings_gradient_to",
+                "type": "select",
+                "label": "Gradient to",
+                "instructions": "Used only when Gradient is on.",
+                "choices": {
+                    "none": "Site background",
+                    "light": "Light",
+                    "dark": "Dark",
+                    "primary": "Primary color",
+                    "secondary": "Secondary color",
+                    "tertiary": "Tertiary color",
+                    "quaternary": "Quaternary color"
+                },
+                "default": "dark"
+            },
+            {
+                "name": "gradient_direction",
+                "key": "field_mrz_section_settings_gradient_direction",
+                "type": "select",
+                "label": "Gradient direction",
+                "instructions": "Used only when Gradient is on.",
+                "choices": {
+                    "bottom": "Downward",
+                    "right": "To the right",
+                    "diagonal": "Diagonal"
+                },
+                "default": "bottom"
+            },
+            {
+                "name": "motion",
+                "key": "field_mrz_section_settings_motion",
+                "type": "select",
+                "label": "Animation on scroll",
+                "instructions": "Never on the first section of the page. Off for visitors who limit animations.",
+                "choices": {
+                    "none": "None",
+                    "fade_up": "Appear upward",
+                    "fade": "Fade in",
+                    "zoom": "Zoom in",
+                    "cascade": "Cascade (items one after another)"
+                },
+                "default": "none"
+            },
+            {
+                "name": "parallax",
+                "key": "field_mrz_section_settings_parallax",
+                "type": "select",
+                "label": "Parallax",
+                "instructions": "The background image scrolls slower than the page.",
+                "choices": {
+                    "none": "None",
+                    "light": "Subtle",
+                    "medium": "Medium"
+                },
+                "default": "none"
+            }
+        ]
+    },
+    "sections": [
+        {
+            "name": "mrz_text",
+            "key": "layout_mrz_text",
+            "label": "Free text",
+            "global_only": false,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "eyebrow",
+                    "key": "field_mrz_text_eyebrow",
+                    "type": "text",
+                    "label": "Eyebrow"
+                },
+                {
+                    "name": "align",
+                    "key": "field_mrz_text_align",
+                    "type": "select",
+                    "label": "Alignment",
+                    "choices": {
+                        "left": "Left",
+                        "center": "Centered"
+                    },
+                    "default": "left",
+                    "return_format": "value"
+                },
+                {
+                    "name": "title",
+                    "key": "field_mrz_text_title",
+                    "type": "text",
+                    "label": "Title",
+                    "instructions": "Put a word between <em> and </em> to color it; <br> for a line break."
+                },
+                {
+                    "name": "title_tag",
+                    "key": "field_mrz_text_title_tag",
+                    "type": "select",
+                    "label": "Title level",
+                    "instructions": "One H1 per page.",
+                    "choices": {
+                        "h2": "H2",
+                        "h1": "H1",
+                        "h3": "H3",
+                        "h4": "H4",
+                        "h5": "H5",
+                        "h6": "H6"
+                    },
+                    "default": "h2",
+                    "return_format": "value"
+                },
+                {
+                    "name": "content",
+                    "key": "field_mrz_text_content",
+                    "type": "wysiwyg",
+                    "label": "Text"
+                },
+                {
+                    "name": "link",
+                    "key": "field_mrz_text_link",
+                    "type": "link",
+                    "label": "Button",
+                    "return_format": "array"
+                },
+                {
+                    "name": "link_2",
+                    "key": "field_mrz_text_link_2",
+                    "type": "link",
+                    "label": "Second button",
+                    "return_format": "array"
+                }
+            ]
+        },
+        {
+            "name": "mrz_html",
+            "key": "layout_mrz_html",
+            "label": "Raw HTML",
+            "global_only": false,
+            "settings": false,
+            "fields": [
+                {
+                    "name": "code",
+                    "key": "field_mrz_html_code",
+                    "type": "textarea",
+                    "label": "HTML code",
+                    "instructions": "Displayed as is, scripts included. Reserved for administrators."
+                }
+            ]
+        },
+        {
+            "name": "mrz_cards",
+            "key": "layout_mrz_cards",
+            "label": "Cards",
+            "global_only": false,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "title",
+                    "key": "field_mrz_cards_title",
+                    "type": "text",
+                    "label": "Section title",
+                    "instructions": "Optional. Also names the carousel for screen readers. Put a word between <em> and </em> to color it; <br> for a line break."
+                },
+                {
+                    "name": "display",
+                    "key": "field_mrz_cards_display",
+                    "type": "select",
+                    "label": "Display",
+                    "choices": {
+                        "grid": "Grid",
+                        "carousel": "Carousel"
+                    },
+                    "default": "grid",
+                    "return_format": "value"
+                },
+                {
+                    "name": "autoplay",
+                    "key": "field_mrz_cards_autoplay",
+                    "type": "true_false",
+                    "label": "Autoplay",
+                    "instructions": "Every 5 seconds, with a pause button.",
+                    "default": 0,
+                    "shown_if": [
+                        [
+                            {
+                                "field": "display",
+                                "operator": "==",
+                                "value": "carousel"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "name": "per_row",
+                    "key": "field_mrz_cards_per_row",
+                    "type": "select",
+                    "label": "Cards per row",
+                    "instructions": "On a large screen. Automatic: the site setting.",
+                    "choices": {
+                        "auto": "Automatic",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4"
+                    },
+                    "default": "auto",
+                    "return_format": "value"
+                },
+                {
+                    "name": "card_style",
+                    "key": "field_mrz_cards_card_style",
+                    "type": "select",
+                    "label": "Card style",
+                    "instructions": "Key figures: the card title is the figure, shown large.",
+                    "choices": {
+                        "default": "Standard",
+                        "figures": "Key figures"
+                    },
+                    "default": "default",
+                    "return_format": "value"
+                },
+                {
+                    "name": "link_style",
+                    "key": "field_mrz_cards_link_style",
+                    "type": "select",
+                    "label": "Link style",
+                    "choices": {
+                        "link": "Arrow link",
+                        "outline": "Outline button",
+                        "primary": "Filled button"
+                    },
+                    "default": "link",
+                    "return_format": "value"
+                },
+                {
+                    "name": "count_up",
+                    "key": "field_mrz_cards_count_up",
+                    "type": "true_false",
+                    "label": "Counter",
+                    "default": 0,
+                    "shown_if": [
+                        [
+                            {
+                                "field": "card_style",
+                                "operator": "==",
+                                "value": "figures"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "name": "items",
+                    "key": "field_mrz_cards_items",
+                    "type": "repeater",
+                    "label": "Cards",
+                    "sub_fields": [
+                        {
+                            "name": "image",
+                            "key": "field_mrz_cards_item_image",
+                            "type": "image",
+                            "label": "Image or icon",
+                            "instructions": "An SVG icon takes the text color of the card.",
+                            "return_format": "id"
+                        },
+                        {
+                            "name": "title",
+                            "key": "field_mrz_cards_item_title",
+                            "type": "text",
+                            "label": "Title"
+                        },
+                        {
+                            "name": "background",
+                            "key": "field_mrz_cards_item_background",
+                            "type": "select",
+                            "label": "Background",
+                            "choices": {
+                                "none": "None (border)",
+                                "light": "Light",
+                                "dark": "Dark",
+                                "primary": "Primary color",
+                                "secondary": "Secondary color",
+                                "tertiary": "Tertiary color",
+                                "quaternary": "Quaternary color"
+                            },
+                            "default": "none",
+                            "return_format": "value"
+                        },
+                        {
+                            "name": "text",
+                            "key": "field_mrz_cards_item_text",
+                            "type": "wysiwyg",
+                            "label": "Text"
+                        },
+                        {
+                            "name": "link",
+                            "key": "field_mrz_cards_item_link",
+                            "type": "link",
+                            "label": "Link",
+                            "instructions": "Shown as an arrow link.",
+                            "return_format": "array"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mrz_split",
+            "key": "layout_mrz_split",
+            "label": "Text and media",
+            "global_only": false,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "eyebrow",
+                    "key": "field_mrz_split_eyebrow",
+                    "type": "text",
+                    "label": "Eyebrow"
+                },
+                {
+                    "name": "title",
+                    "key": "field_mrz_split_title",
+                    "type": "text",
+                    "label": "Title",
+                    "instructions": "Put a word between <em> and </em> to color it; <br> for a line break."
+                },
+                {
+                    "name": "title_tag",
+                    "key": "field_mrz_split_title_tag",
+                    "type": "select",
+                    "label": "Title level",
+                    "instructions": "One H1 per page.",
+                    "choices": {
+                        "h2": "H2",
+                        "h1": "H1",
+                        "h3": "H3",
+                        "h4": "H4",
+                        "h5": "H5",
+                        "h6": "H6"
+                    },
+                    "default": "h2",
+                    "return_format": "value"
+                },
+                {
+                    "name": "content",
+                    "key": "field_mrz_split_content",
+                    "type": "wysiwyg",
+                    "label": "Text"
+                },
+                {
+                    "name": "link",
+                    "key": "field_mrz_split_link",
+                    "type": "link",
+                    "label": "Button",
+                    "return_format": "array"
+                },
+                {
+                    "name": "link_2",
+                    "key": "field_mrz_split_link_2",
+                    "type": "link",
+                    "label": "Second button",
+                    "return_format": "array"
+                },
+                {
+                    "name": "media_type",
+                    "key": "field_mrz_split_media_type",
+                    "type": "select",
+                    "label": "Other column",
+                    "choices": {
+                        "image": "Image",
+                        "content": "Content"
+                    },
+                    "default": "image",
+                    "return_format": "value"
+                },
+                {
+                    "name": "image",
+                    "key": "field_mrz_split_image",
+                    "type": "image",
+                    "label": "Image",
+                    "return_format": "id",
+                    "shown_if": [
+                        [
+                            {
+                                "field": "media_type",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "name": "aside_background",
+                    "key": "field_mrz_split_aside_background",
+                    "type": "select",
+                    "label": "Column background",
+                    "instructions": "None: a second text. A color: a colored box.",
+                    "choices": {
+                        "none": "None",
+                        "light": "Light",
+                        "dark": "Dark",
+                        "primary": "Primary color",
+                        "secondary": "Secondary color",
+                        "tertiary": "Tertiary color",
+                        "quaternary": "Quaternary color"
+                    },
+                    "default": "none",
+                    "return_format": "value",
+                    "shown_if": [
+                        [
+                            {
+                                "field": "media_type",
+                                "operator": "==",
+                                "value": "content"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "name": "aside_content",
+                    "key": "field_mrz_split_aside_content",
+                    "type": "wysiwyg",
+                    "label": "Column content",
+                    "shown_if": [
+                        [
+                            {
+                                "field": "media_type",
+                                "operator": "==",
+                                "value": "content"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "name": "media_side",
+                    "key": "field_mrz_split_media_side",
+                    "type": "select",
+                    "label": "Image or content side",
+                    "choices": {
+                        "right": "Right",
+                        "left": "Left"
+                    },
+                    "default": "right",
+                    "return_format": "value"
+                },
+                {
+                    "name": "ratio",
+                    "key": "field_mrz_split_ratio",
+                    "type": "select",
+                    "label": "Column widths",
+                    "choices": {
+                        "equal": "Equal",
+                        "text_wide": "Wide text (2/3)",
+                        "media_wide": "Wide image or content (2/3)"
+                    },
+                    "default": "equal",
+                    "return_format": "value"
+                },
+                {
+                    "name": "vertical_align",
+                    "key": "field_mrz_split_vertical_align",
+                    "type": "select",
+                    "label": "Vertical alignment",
+                    "choices": {
+                        "center": "Centered",
+                        "top": "Top"
+                    },
+                    "default": "center",
+                    "return_format": "value"
+                },
+                {
+                    "name": "sticky",
+                    "key": "field_mrz_split_sticky",
+                    "type": "select",
+                    "label": "Sticky column",
+                    "instructions": "Stays visible while scrolling, on a large screen.",
+                    "choices": {
+                        "none": "None",
+                        "media": "Image or content",
+                        "text": "Text"
+                    },
+                    "default": "none",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "name": "mrz_accordion",
+            "key": "layout_mrz_accordion",
+            "label": "Accordion",
+            "global_only": false,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "title",
+                    "key": "field_mrz_accordion_title",
+                    "type": "text",
+                    "label": "Section title",
+                    "instructions": "Optional. Put a word between <em> and </em> to color it; <br> for a line break."
+                },
+                {
+                    "name": "intro",
+                    "key": "field_mrz_accordion_intro",
+                    "type": "text",
+                    "label": "Introduction"
+                },
+                {
+                    "name": "items",
+                    "key": "field_mrz_accordion_items",
+                    "type": "repeater",
+                    "label": "Items",
+                    "sub_fields": [
+                        {
+                            "name": "question",
+                            "key": "field_mrz_accordion_item_question",
+                            "type": "text",
+                            "label": "Question or heading"
+                        },
+                        {
+                            "name": "answer",
+                            "key": "field_mrz_accordion_item_answer",
+                            "type": "wysiwyg",
+                            "label": "Answer"
+                        }
+                    ]
+                },
+                {
+                    "name": "open_first",
+                    "key": "field_mrz_accordion_open_first",
+                    "type": "true_false",
+                    "label": "First item open",
+                    "default": 0
+                },
+                {
+                    "name": "single_open",
+                    "key": "field_mrz_accordion_single_open",
+                    "type": "true_false",
+                    "label": "One item open at a time",
+                    "instructions": "Opening an item closes the others.",
+                    "default": 0
+                }
+            ]
+        },
+        {
+            "name": "mrz_gallery",
+            "key": "layout_mrz_gallery",
+            "label": "Gallery",
+            "global_only": false,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "title",
+                    "key": "field_mrz_gallery_title",
+                    "type": "text",
+                    "label": "Section title",
+                    "instructions": "Optional. Also names the carousel for screen readers. Put a word between <em> and </em> to color it; <br> for a line break."
+                },
+                {
+                    "name": "intro",
+                    "key": "field_mrz_gallery_intro",
+                    "type": "text",
+                    "label": "Introduction"
+                },
+                {
+                    "name": "images",
+                    "key": "field_mrz_gallery_images",
+                    "type": "gallery",
+                    "label": "Images",
+                    "instructions": "The alternative text of each image describes it in the gallery; its caption is shown under it and in the viewer.",
+                    "return_format": "id"
+                },
+                {
+                    "name": "display",
+                    "key": "field_mrz_gallery_display",
+                    "type": "select",
+                    "label": "Display",
+                    "choices": {
+                        "grid": "Grid",
+                        "masonry": "Masonry (original formats, in columns)",
+                        "carousel": "Carousel"
+                    },
+                    "default": "grid",
+                    "return_format": "value"
+                },
+                {
+                    "name": "per_row",
+                    "key": "field_mrz_gallery_per_row",
+                    "type": "select",
+                    "label": "Images per row",
+                    "instructions": "On a large screen.",
+                    "choices": {
+                        "auto": "Automatic",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5"
+                    },
+                    "default": "auto",
+                    "return_format": "value"
+                },
+                {
+                    "name": "ratio",
+                    "key": "field_mrz_gallery_ratio",
+                    "type": "select",
+                    "label": "Image format",
+                    "instructions": "Not used in masonry.",
+                    "choices": {
+                        "original": "Original",
+                        "square": "Square",
+                        "4-3": "4/3",
+                        "16-9": "16/9"
+                    },
+                    "default": "4-3",
+                    "return_format": "value"
+                },
+                {
+                    "name": "captions",
+                    "key": "field_mrz_gallery_captions",
+                    "type": "true_false",
+                    "label": "Captions",
+                    "default": 0
+                },
+                {
+                    "name": "lightbox",
+                    "key": "field_mrz_gallery_lightbox",
+                    "type": "true_false",
+                    "label": "Viewer",
+                    "default": 1
+                }
+            ]
+        },
+        {
+            "name": "mrz_anchors",
+            "key": "layout_mrz_anchors",
+            "label": "Anchor menu",
+            "global_only": false,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "items",
+                    "key": "field_mrz_anchors_items",
+                    "type": "repeater",
+                    "label": "Links",
+                    "instructions": "Each link goes to a section of the page that has this anchor (section settings > Anchor).",
+                    "sub_fields": [
+                        {
+                            "name": "label",
+                            "key": "field_mrz_anchors_item_label",
+                            "type": "text",
+                            "label": "Text"
+                        },
+                        {
+                            "name": "anchor",
+                            "key": "field_mrz_anchors_item_anchor",
+                            "type": "text",
+                            "label": "Anchor"
+                        }
+                    ]
+                },
+                {
+                    "name": "sticky",
+                    "key": "field_mrz_anchors_sticky",
+                    "type": "true_false",
+                    "label": "Sticky",
+                    "default": 1
+                },
+                {
+                    "name": "align",
+                    "key": "field_mrz_anchors_align",
+                    "type": "select",
+                    "label": "Alignment",
+                    "choices": {
+                        "left": "Left",
+                        "center": "Centered"
+                    },
+                    "default": "center",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "name": "mrz_marquee",
+            "key": "layout_mrz_marquee",
+            "label": "Scrolling band",
+            "global_only": false,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "items",
+                    "key": "field_mrz_marquee_items",
+                    "type": "repeater",
+                    "label": "Items",
+                    "instructions": "A text, or an image (logo). With a logo, the text becomes its alternative text (the logo name); left empty, the media library alternative text is used.",
+                    "sub_fields": [
+                        {
+                            "name": "text",
+                            "key": "field_mrz_marquee_item_text",
+                            "type": "text",
+                            "label": "Text"
+                        },
+                        {
+                            "name": "image",
+                            "key": "field_mrz_marquee_item_image",
+                            "type": "image",
+                            "label": "Image",
+                            "return_format": "id"
+                        },
+                        {
+                            "name": "link",
+                            "key": "field_mrz_marquee_item_link",
+                            "type": "link",
+                            "label": "Link",
+                            "return_format": "array"
+                        }
+                    ]
+                },
+                {
+                    "name": "speed",
+                    "key": "field_mrz_marquee_speed",
+                    "type": "select",
+                    "label": "Speed",
+                    "choices": {
+                        "slow": "Slow",
+                        "normal": "Normal",
+                        "fast": "Fast"
+                    },
+                    "default": "normal",
+                    "return_format": "value"
+                },
+                {
+                    "name": "direction",
+                    "key": "field_mrz_marquee_direction",
+                    "type": "select",
+                    "label": "Direction",
+                    "choices": {
+                        "left": "To the left",
+                        "right": "To the right"
+                    },
+                    "default": "left",
+                    "return_format": "value"
+                },
+                {
+                    "name": "separator",
+                    "key": "field_mrz_marquee_separator",
+                    "type": "text",
+                    "label": "Separator",
+                    "instructions": "Between two texts.",
+                    "default": "•"
+                }
+            ]
+        },
+        {
+            "name": "mrz_footer",
+            "key": "layout_mrz_footer",
+            "label": "Footer",
+            "global_only": true,
+            "settings": true,
+            "fields": [
+                {
+                    "name": "logo",
+                    "key": "field_mrz_footer_logo",
+                    "type": "image",
+                    "label": "Logo",
+                    "instructions": "Optional: centered above the footer.",
+                    "return_format": "id"
+                },
+                {
+                    "name": "title",
+                    "key": "field_mrz_footer_title",
+                    "type": "textarea",
+                    "label": "Sentence"
+                },
+                {
+                    "name": "button",
+                    "key": "field_mrz_footer_button",
+                    "type": "link",
+                    "label": "Button",
+                    "return_format": "array"
+                },
+                {
+                    "name": "columns",
+                    "key": "field_mrz_footer_columns",
+                    "type": "repeater",
+                    "label": "Link columns",
+                    "sub_fields": [
+                        {
+                            "name": "title",
+                            "key": "field_mrz_footer_column_title",
+                            "type": "text",
+                            "label": "Title"
+                        },
+                        {
+                            "name": "links",
+                            "key": "field_mrz_footer_column_links",
+                            "type": "wysiwyg",
+                            "label": "Links",
+                            "instructions": "A bulleted list of links."
+                        }
+                    ]
+                },
+                {
+                    "name": "socials",
+                    "key": "field_mrz_footer_socials",
+                    "type": "repeater",
+                    "label": "Social networks",
+                    "instructions": "Black SVG icon (colored by the theme), link and network name (read by screen readers).",
+                    "sub_fields": [
+                        {
+                            "name": "icon",
+                            "key": "field_mrz_footer_social_icon",
+                            "type": "image",
+                            "label": "Icon",
+                            "return_format": "id"
+                        },
+                        {
+                            "name": "url",
+                            "key": "field_mrz_footer_social_url",
+                            "type": "url",
+                            "label": "Link"
+                        },
+                        {
+                            "name": "name",
+                            "key": "field_mrz_footer_social_name",
+                            "type": "text",
+                            "label": "Name"
+                        }
+                    ]
+                },
+                {
+                    "name": "free_title",
+                    "key": "field_mrz_footer_free_title",
+                    "type": "text",
+                    "label": "Free column: title"
+                },
+                {
+                    "name": "free_content",
+                    "key": "field_mrz_footer_free_content",
+                    "type": "wysiwyg",
+                    "label": "Free column: content",
+                    "instructions": "After the link columns: text, newsletter form (shortcode)…"
+                },
+                {
+                    "name": "bottom",
+                    "key": "field_mrz_footer_bottom",
+                    "type": "wysiwyg",
+                    "label": "Bottom line",
+                    "instructions": "Copyright, legal links. Tags: {year}, {site}."
+                }
+            ]
+        },
+        {
+            "name": "mrz_global_section",
+            "key": "layout_mrz_global_section",
+            "label": "Global section",
+            "global_only": false,
+            "settings": false,
+            "fields": [
+                {
+                    "name": "section",
+                    "key": "field_mrz_global_section_section",
+                    "type": "post_object",
+                    "label": "Global section",
+                    "return_format": "id",
+                    "post_type": [
+                        "mrz_section"
+                    ]
+                }
+            ]
+        }
+    ]
+}
