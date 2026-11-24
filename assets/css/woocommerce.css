@@ -1032,6 +1032,11 @@
 	--mrz-product-sticky-top: calc(var(--mrz-header-height, 0px) + var(--wp-admin--admin-bar--height, 0px));
 }
 
+/* Commande : le récapitulatif reste sous le header. */
+.wc-block-checkout .wc-block-checkout__sidebar.is-sticky {
+	top: calc(var(--mrz-product-sticky-top, var(--wp-admin--admin-bar--height, 0px)) + var(--mrz-space-xl));
+}
+
 /* Images empilées : pleine largeur (WooCommerce réduit à 25 % les images après la première). */
 .woocommerce div.product div.images[class*="mrz-product-gallery--stacked"] .woocommerce-product-gallery__image:nth-child(n+2) {
 	display: block;
