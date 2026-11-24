@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.10.1] - 2026-11-24
+
 ### Corrigé
 - Page commande : le récapitulatif collé au défilement ne passe plus derrière le header ; il reste dessous, à `--mrz-space-xl` (avec la barre d'administration aussi).
 
