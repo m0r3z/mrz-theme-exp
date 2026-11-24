@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.10.2] - 2026-11-24
+
 ### Modifié
 - Icône du compte : une silhouette remplace le portrait dans un cercle (`assets/icons/account.svg`).
 
