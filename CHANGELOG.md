@@ -4,6 +4,8 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+## [0.11.0] - 2026-11-25
+
 ### Corrigé
 - Image principale : une section globale dans le menu mobile (`mrz_mobile_menu_end`) ne prend plus le rang de première section, la bannière garde son chargement prioritaire. Dans ce panneau, les titres sont des paragraphes et les sections ne s'animent pas.
 - Gravity Forms : avec Orbital comme thème par défaut (nouvelles installations), les formulaires gardent les couleurs et les tailles du thème. Un style réglé pour un formulaire passe toujours devant.
