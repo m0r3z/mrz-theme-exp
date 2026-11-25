@@ -50,6 +50,11 @@ $mrz_style    = array_key_exists( $mrz_style, mrz_theme_mobile_menu_styles() ) ?
 			</nav>
 		<?php endif; ?>
 		<?php mrz_theme_language_switcher( 'mrz-lang--mobile' ); ?>
-		<?php do_action( 'mrz_mobile_menu_end' ); // Fin du menu mobile : un bouton, des coordonnées… ?>
+		<?php
+		// Les sections du menu ne comptent pas dans le rang des sections de la page (image prioritaire).
+		$GLOBALS['mrz_theme_in_menu'] = true;
+		do_action( 'mrz_mobile_menu_end' );
+		$GLOBALS['mrz_theme_in_menu'] = false;
+		?>
 	</div>
 </div>

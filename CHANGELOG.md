@@ -4,6 +4,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 
 ## [Non publié]
 
+### Corrigé
+- Image principale : une section globale dans le menu mobile (`mrz_mobile_menu_end`) ne prend plus le rang de première section, la bannière garde son chargement prioritaire. Dans ce panneau, les titres sont des paragraphes et les sections ne s'animent pas.
+
 ## [0.10.2] - 2026-11-24
 
 ### Modifié
