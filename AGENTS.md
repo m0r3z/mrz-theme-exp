@@ -50,6 +50,7 @@ Remplir `mrz_builder` avec `update_field( 'field_mrz_builder', $rows, $post_id )
 Une section par rangée de la maquette. Pour en créer une :
 1. Ajouter le layout dans `acf-json/group_mrzchild_builder.json` de l'enfant, sur `field_mrz_builder`. Nom `mrzchild_<nom>`, clés `layout_mrzchild_<nom>` et `field_mrzchild_<nom>_<champ>`, chaque sous-champ avec `parent_layout`. Mettre à jour `modified`.
    Un sous-champ d'un répéteur porte `parent_repeater` (voir l'exemple). **Instructions ACF : le HTML y est interprété.** Écrire `&lt;em&gt;`, jamais `<em>`.
+   Champ image : `"preview_size": "thumbnail"`, pour une petite miniature dans l'admin.
 2. Pour les réglages communs, ajouter un sous-champ `clone` de `group_mrz_section_settings` (`display: seamless`, `prefix_name: 0`).
 3. Créer `layouts/mrzchild-<nom>.php` dans l'enfant (le nom, `_` remplacés par `-`) : `mrz_theme_section_open( 'mrzchild-<nom>' )`, le contenu échappé, `mrz_theme_section_close()`.
 4. Le style de la section va dans le fichier de sa partie, `css/<partie>.css` de l'enfant, en CSS classique et uniquement avec les variables du site (voir CSS).

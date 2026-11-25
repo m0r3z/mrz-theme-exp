@@ -142,7 +142,7 @@ function mrz_theme_section_settings_field( $prefix ) {
 				'label'         => __( 'Background image', 'mrz-theme-exp' ),
 				'type'          => 'image',
 				'return_format' => 'id',
-				'preview_size'  => 'medium',
+				'preview_size'  => 'thumbnail',
 				'instructions'  => __( 'Shown behind the content. On the first section of the page, it loads first (main image of the page).', 'mrz-theme-exp' ),
 			),
 			array(
@@ -616,7 +616,7 @@ function mrz_theme_parent_layouts() {
 					'label'             => __( 'Image', 'mrz-theme-exp' ),
 					'type'              => 'image',
 					'return_format'     => 'id',
-					'preview_size'      => 'medium',
+					'preview_size'      => 'thumbnail',
 					'wrapper'           => array( 'width' => '75' ),
 					'conditional_logic' => array( array( array( 'field' => 'field_mrz_split_media_type', 'operator' => '==', 'value' => 'image' ) ) ),
 				),
@@ -1002,7 +1002,7 @@ function mrz_theme_parent_layouts() {
 					'instructions'  => __( 'Optional: centered above the footer.', 'mrz-theme-exp' ),
 					'type'          => 'image',
 					'return_format' => 'id',
-					'preview_size'  => 'medium',
+					'preview_size'  => 'thumbnail',
 					'wrapper'       => array( 'width' => '30' ),
 				),
 				array(

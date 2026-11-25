@@ -10,6 +10,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ### Ajouté
 - Menu « Ajouter une section » : intitulés « Sections du site » et « Sections du thème » quand l'enfant a ses propres sections, et liste défilante au-delà de 60 % de la hauteur de l'écran.
 
+### Modifié
+- Champs image des sections : miniature `thumbnail` dans l'admin, plus petite.
+
 ## [0.10.2] - 2026-11-24
 
 ### Modifié
