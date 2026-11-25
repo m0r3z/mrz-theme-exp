@@ -1631,3 +1631,9 @@ msgstr "Agrandit l'image sous la souris ; la loupe l'ouvre en plein écran. Sans
 #. translators: %d: image number.
 msgid "Image %d"
 msgstr "Image %d"
+
+msgid "Site sections"
+msgstr "Sections du site"
+
+msgid "Theme sections"
+msgstr "Sections du thème"

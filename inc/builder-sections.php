@@ -1377,6 +1377,29 @@ function mrz_theme_section_settings_toggle() {
 }
 add_action( 'acf/input/admin_footer', 'mrz_theme_section_settings_toggle' );
 
+// Menu « Ajouter une section » : intitulés des sections du site et du thème.
+function mrz_theme_layout_menu_groups() {
+	$flags = JSON_UNESCAPED_UNICODE | JSON_HEX_TAG;
+	?>
+	<style>
+	.acf-fc-popup {
+		--mrz-site-sections: <?php echo wp_json_encode( __( 'Site sections', 'mrz-theme-exp' ), $flags ); ?>;
+		--mrz-theme-sections: <?php echo wp_json_encode( __( 'Theme sections', 'mrz-theme-exp' ), $flags ); ?>;
+	}
+	.acf-fc-popup ul { max-height: 60vh; overflow: hidden auto; }
+	.acf-fc-popup li { flex-shrink: 0; }
+	.acf-fc-popup a { box-sizing: border-box; min-height: 40px; line-height: 30px; }
+	.acf-fc-popup li:first-child:has(> a[data-layout^="mrzchild_"]),
+	.acf-fc-popup li:has(> a[data-layout^="mrzchild_"]) + li:has(> a[data-layout^="mrz_"]) { flex-direction: column; align-items: stretch; height: auto; }
+	.acf-fc-popup li:first-child:has(> a[data-layout^="mrzchild_"])::before,
+	.acf-fc-popup li:has(> a[data-layout^="mrzchild_"]) + li:has(> a[data-layout^="mrz_"])::before { content: var(--mrz-theme-sections); padding: 10px 10px 4px; color: #50575e; font-weight: 600; }
+	.acf-fc-popup li:first-child:has(> a[data-layout^="mrzchild_"])::before { content: var(--mrz-site-sections); }
+	.acf-fc-popup li:has(> a[data-layout^="mrzchild_"]) + li:has(> a[data-layout^="mrz_"])::before { margin-top: 6px; border-top: 1px solid #dcdcde; }
+	</style>
+	<?php
+}
+add_action( 'acf/input/admin_footer', 'mrz_theme_layout_menu_groups' );
+
 /**
  * Boutons « Expand All » et « Collapse All » du constructeur : absents de la traduction
  * française d'ACF (6.8). Traduits par le thème tant qu'ACF ne le fait pas.

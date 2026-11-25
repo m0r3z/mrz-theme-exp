@@ -7,6 +7,9 @@ Toutes les évolutions notables du thème. Format inspiré de [Keep a Changelog]
 ### Corrigé
 - Image principale : une section globale dans le menu mobile (`mrz_mobile_menu_end`) ne prend plus le rang de première section, la bannière garde son chargement prioritaire. Dans ce panneau, les titres sont des paragraphes et les sections ne s'animent pas.
 
+### Ajouté
+- Menu « Ajouter une section » : intitulés « Sections du site » et « Sections du thème » quand l'enfant a ses propres sections, et liste défilante au-delà de 60 % de la hauteur de l'écran.
+
 ## [0.10.2] - 2026-11-24
 
 ### Modifié
