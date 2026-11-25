@@ -92,3 +92,15 @@ add_filter(
 		return 'orbital';
 	}
 );
+
+// Sans style propre au formulaire, les couleurs par défaut d'Orbital ne passent pas devant celles du thème.
+add_filter(
+	'gform_pre_render',
+	static function ( $form ) {
+		if ( is_array( $form ) && isset( $form['styles'] ) && empty( $form['styles'] ) ) {
+			$form['styles'] = false;
+		}
+
+		return $form;
+	}
+);

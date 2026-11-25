@@ -27,6 +27,7 @@ Les icônes des Cartes et des réseaux du Footer sont des SVG : le plugin **Safe
 - Thème de formulaire **Orbital** imposé à tous les formulaires (filtre `gform_form_theme_slug`) : c'est le seul qui gère tous les types de champs (choix d'image, fichiers, dates…) et qui se règle par variables CSS (`--gf-*`).
 - `src/css/gravity-forms.css` (compilé dans `dist/main.css`) donne aux variables d'Orbital les valeurs du thème (`--color-*`, `--mrz-field-*`, `--mrz-label-*`, `--mrz-button-*`). Les formulaires suivent donc les variables du site et le fond de leur section, bouton inversé compris. Le focus clavier des champs et des boutons reprend `--mrz-focus-color`, en 2px.
 - Dans l'enfant : régler les variables du thème, **jamais un sélecteur de Gravity Forms** ni une variable `--gf-*`. Ne pas régler de style de formulaire dans l'éditeur de blocs de Gravity Forms : il passerait devant le thème.
+- Thème par défaut de Gravity Forms : laisser Orbital (réglage des nouvelles installations). Le parent retire les couleurs qu'il imprime pour chaque formulaire (`gform_pre_render`) : aucun contournement dans l'enfant.
 - Padding des champs et des boutons : `--mrz-field-padding-y`/`-x` et `--mrz-button-padding-y`/`-x` (Gravity Forms les lit séparément), pas le raccourci `--mrz-field-padding`.
 - Poids : Orbital ajoute environ 37 Ko compressés, seulement sur les pages qui ont un formulaire.
 
